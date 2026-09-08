@@ -16,7 +16,12 @@ CHORD = {
 }
 
 
-def placeholder(out, dur, root="Dm", level=0.13):
+def placeholder(out, dur, root="Dm", level=0.85):
+    """Bed nhac o muc GAN FULL SCALE; assemble moi la cho quyet dinh am luong.
+
+    Truoc day bed sinh ra o level 0.13 (mean -39.6 dB) roi assemble nhan them
+    volume=0.16 -> ket qua ~-56 dB: nhac nen hoan toan khong nghe thay.
+    """
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
     freqs = CHORD[root]
     ins, chains = [], []

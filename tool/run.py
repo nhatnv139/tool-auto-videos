@@ -242,7 +242,8 @@ def main():
     ap.add_argument("--dur", type=float, default=120.0)
     ap.add_argument("--provider", choices=["elevenlabs", "edge"], default="edge")
     ap.add_argument("--edge-voice", default=None)
-    ap.add_argument("--rate", default="+0%")
+    # edge-tts o +0% doc ~168 wpm — nhanh hon muc 158 wpm cua video binh luan.
+    ap.add_argument("--rate", default="-5%")
     ap.add_argument("--wpm", type=float, default=160.0)
     ap.add_argument("--emit-only", action="store_true")
     ap.add_argument("--only", type=int, nargs="*")

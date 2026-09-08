@@ -273,22 +273,25 @@ def render_pil(cell, style, out, root):
     # ffmpeg zoompan tren PNG (nhanh hon ve tung frame bang PIL)
     png_rel = os.path.relpath(png_path, root).replace("\\", "/")
     zoom_to = cell.get("zoom_end", 1.05)
-    z = 1.0 / 60.0  # tang 1.0 -> zoom_to trong ~dur*60 buoc (cham, muot)
-    zstep = (zoom_to - 1.0) / (dur * 60.0)
+    # Bien do: d=1 nghia la moi frame mot buoc -> chia cho dur*FPS. Ban cu chia
+    # cho dur*60 nen zoom that chi dat 24/60 = 40% muc dat ra (1.05 -> 1.02).
+    zstep = (zoom_to - 1.0) / max(1.0, dur * FPS)
     # card/quote: khong fade-in o render (tranh den 0.4s truoc khi text hien;
     # stage1 xu ly fade nhanh 0.2s). Giu zoompan nhe.
     fade = cell.get("fade_in", 0.0)
-    vf = (f"scale={W}:{H},setsar=1,"
-          f"zoompan=z='min(zoom+{zstep:.5f},{zoom_to})':"
+    # Chong giat: zoompan lam tron x/y ve pixel nguyen moi frame, voi buoc zoom
+    # rat nho thi text nhay 1px khong deu. Chay o 2x roi ha xuong -> sai so chia doi.
+    vf = (f"scale={W * 2}:{H * 2}:flags=lanczos,setsar=1,"
+          f"zoompan=z='min(zoom+{zstep:.7f},{zoom_to})':"
           f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
-          f"d=1:fps={FPS}:s={W}x{H},"
-          f"format=yuv420p")
+          f"d=1:fps={FPS}:s={W * 2}x{H * 2},"
+          f"scale={W}:{H}:flags=lanczos,format=yuv420p")
     if fade:
         vf += f",fade=t=in:st=0:d={fade}"
     cmd = ["ffmpeg", "-y", "-v", "error",
            "-loop", "1", "-t", f"{dur:.3f}", "-i", png_rel,
-           "-vf", vf, "-c:v", "libx264", "-crf", "17", "-pix_fmt", "yuv420p",
-           os.path.join(root, out)]
+           "-vf", vf, "-c:v", "libx264", "-crf", "15", "-preset", "medium",
+           "-pix_fmt", "yuv420p", os.path.join(root, out)]
     emit(cmd, root)
     return os.path.join(root, out)
 
@@ -352,16 +355,25 @@ def _cinema(cell):
     """
     if cell.get("cinema") is False:
         return ""
-    strength = cell.get("cinema_strength", 6)
+    # Grain MAC DINH TAT o day. Noise temporal la thu ton bit nhat cua H.264:
+    # no day cell stock len 12 Mbps roi con bi encode lai 2 lan nua trong
+    # assemble -> vo cuc, bet mau. Grain dien anh nay duoc them DUNG MOT LAN o
+    # lan encode cuoi (assemble stage2, kem -tune grain).
+    strength = cell.get("cinema_strength", 0)
     fx = cell.get("fx", "")
     parts = []
-    # base grade
-    parts.append(f"noise=alls={strength}:allf=t")
+    # base grade — 10-bit trung gian de eq/vignette khong tao banding
+    if strength:
+        parts.append(f"noise=alls={strength}:allf=t")
+    parts.append("format=yuv420p10le")
     parts.append("eq=contrast=1.06:saturation=0.90:brightness=-0.02:gamma=0.98")
     parts.append("vignette=angle=PI/5")
-    # letterbox nhe (cinematic bars)
-    parts.append("drawbox=x=0:y=0:w=iw:h=44:color=black:t=fill")
-    parts.append("drawbox=x=0:y=ih-44:w=iw:h=44:color=black:t=fill")
+    parts.append("format=yuv420p")
+    if cell.get("letterbox"):
+        # Mac dinh TAT: 2 thanh den 44px an mat 8% chieu cao khung 1080p vinh
+        # vien, va van bi encode lai 3 lan. Bat lai bang "letterbox": true.
+        parts.append("drawbox=x=0:y=0:w=iw:h=44:color=black:t=fill")
+        parts.append("drawbox=x=0:y=ih-44:w=iw:h=44:color=black:t=fill")
     if fx == "blur-in":
         # boxblur radius khong ho tro bieu thuc t trong build nay -> static 1.2s
         parts.append(r"boxblur=luma_radius=14:luma_power=1:enable=lt(t\,1.2)")
@@ -394,7 +406,10 @@ def _reframe(cell):
         x, y, w, h = (float(v) for v in crop.split(","))
         parts.append(f"crop=iw*{w}:ih*{h}:iw*{x}:ih*{y}")
     if zoom and abs(zoom - 1.0) > 0.001:
-        parts.append(f"scale=iw*{zoom}:ih*{zoom}")
+        # CROP chu khong scale: "scale=iw*1.06" roi fit lai vao 1920x1080 cho ra
+        # dung khung hinh ban dau (khong reframe gi ca) va mat them mot lan
+        # resample. Crop moi that su doi khung + doi fingerprint.
+        parts.append(f"crop=iw/{zoom}:ih/{zoom}")
     if cell.get("flip"):
         parts.append("hflip")
     if not parts:
@@ -588,37 +603,58 @@ def render_stock(cell, out, root, style=None, stock_idx=0, avail=None,
                          "content": _content_hash(src),
                          "start": cell_start, "end": cell_start + dur})
         return dur
-    # cell dai: moi doan dung 1 file khac nhau, uu tien content chua dung toan video.
-    n_seg = int(dur / SEG) + 1
+    # Cell dai: chia deu thanh n_seg doan (khong con doan thua 0.1s o cuoi).
+    n_seg = max(1, round(dur / SEG))
+    seg_len = dur / n_seg
     seg_files = []
     tdir = os.path.join(root, "build", "tmp")
     os.makedirs(tdir, exist_ok=True)
-    # pool xoay: uu tien segment_pool (global, da dedup content) roi avail
-    rotate_pool = segment_pool or avail or ([src] if src else [])
-    # content fresh: chua dung bao gio trong video
-    fresh = [f for f in rotate_pool
-             if _content_hash(f) and _content_hash(f) not in used_at]
-    # sap xep de bat dau tu src_override (giu lien mach voi cell)
-    if fresh and src in fresh:
-        fresh.insert(0, fresh.pop(fresh.index(src)))
-    pool = fresh or rotate_pool
-    for i in range(n_seg):
-        f = pool[i % len(pool)] if pool else src
-        seg_file = os.path.join(tdir, f"stockseg-{cell['id']}-{i}.mp4")
-        seg_dur = min(SEG, max(0.0, dur - i * SEG))
-        if seg_dur <= 0.3:
+    # Ke hoach doan: (file, offset). Truoc day offset LUON = 0.0 nen moi doan deu
+    # la 6 giay dau cua mot file KHAC — vua bo phi phan con lai cua clip, vua buoc
+    # phai di muon hinh chu de khac. Nay vat kiet chinh clip da chon truoc (cac
+    # doan khac nhau cua no: cung boi canh, cung tong mau), het moi sang file cung
+    # theme, cuoi cung moi den pool rong.
+    seg_plan = []
+
+    def _add_offsets(f, limit):
+        try:
+            flen = duration(f)
+        except SystemExit:
+            return
+        off = 0.0
+        while off + 1.5 <= flen and len(seg_plan) < limit:
+            seg_plan.append((f, off))
+            off += seg_len
+
+    if src:
+        _add_offsets(src, n_seg)
+    for f in list(avail or []):
+        if len(seg_plan) >= n_seg:
             break
-        _render_stock_segment(f, 0.0, seg_dur, reframe, clip_cell, f_reg, f_bold,
+        if f != src:
+            _add_offsets(f, n_seg)
+    for f in list(segment_pool or []):
+        if len(seg_plan) >= n_seg:
+            break
+        if f != src and f not in (avail or []):
+            _add_offsets(f, n_seg)
+    while len(seg_plan) < n_seg:      # kho qua nho -> danh chap nhan lap
+        seg_plan.append(seg_plan[len(seg_plan) % max(1, len(seg_plan))]
+                        if seg_plan else (src, 0.0))
+    for i in range(n_seg):
+        f, off = seg_plan[i]
+        seg_file = os.path.join(tdir, f"stockseg-{cell['id']}-{i}.mp4")
+        seg_dur = seg_len
+        _render_stock_segment(f, off, seg_dur, reframe, clip_cell, f_reg, f_bold,
                               root, seg_file)
         seg_files.append(seg_file)
         timeline.append({"cell": cell["id"], "file": f,
                          "content": _content_hash(f),
-                         "start": cell_start + i * SEG,
-                         "end": cell_start + i * SEG + seg_dur})
-        # content nay vua dung -> khong dung lai o segment ke tiep cua video
+                         "start": cell_start + i * seg_len,
+                         "end": cell_start + (i + 1) * seg_len})
         h = _content_hash(f)
         if h:
-            used_at.setdefault(h, cell_start + i * SEG + seg_dur)
+            used_at.setdefault(h, cell_start + (i + 1) * seg_len)
     # concat cac segment — dung concat FILTER (re-encode) de PTS dung;
     # concat demuxer -c copy cho PTS sai khi segment co B-frames -> video bi
     # cat cum, giam thoi luong that (khong khop VO).
@@ -632,8 +668,10 @@ def render_stock(cell, out, root, style=None, stock_idx=0, avail=None,
               "-c", "copy", os.path.join(root, out)], root)
         return dur
     fmd = f"{fmap}concat=n={len(seg_files)}:v=1:a=0[out]"
+    # CRF 18/preset fast o day la mat xich yeu nhat: file nay con bi encode lai
+    # 2 lan nua trong assemble, CRF cong don thanh ~22-24.
     cmd = ["ffmpeg", "-y", "-v", "error", *inputs, "-filter_complex", fmd,
-           "-map", "[out]", "-c:v", "libx264", "-crf", "18", "-preset", "fast",
+           "-map", "[out]", "-c:v", "libx264", "-crf", "14", "-preset", "medium",
            "-pix_fmt", "yuv420p", "-an", os.path.join(root, out)]
     emit(cmd, root)
     return dur
@@ -642,19 +680,27 @@ def render_stock(cell, out, root, style=None, stock_idx=0, avail=None,
 def _render_stock_segment(src, offset, seg_dur, reframe, clip_cell, f_reg, f_bold,
                           root, out):
     """Render 1 doan stock (mute) tu offset -> offset+seg_dur."""
-    scale = f"[0:v]"
+    try:
+        sw = (streams(src).get("video") or {}).get("w") or 1920
+    except SystemExit:
+        sw = 1920
+    # decrease+pad de lai thanh den khi ti le lech; increase+crop lap day khung.
+    # lanczos net hon bicubic mac dinh; nguon duoi 1080 thi them unsharp bu do net.
+    fit = ("scale=1920:1080:force_original_aspect_ratio=increase:flags=lanczos,"
+           "crop=1920:1080")
+    if sw < 1920:
+        fit += ",unsharp=5:5:0.7:5:5:0.0"
+    scale = "[0:v]"
     if reframe:
         scale += reframe + ","
-    scale += (f"scale=1920:1080:force_original_aspect_ratio=decrease,"
-              f"pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0x14110F,"
-              f"setsar=1,format=yuv420p,fps={FPS}")
+    scale += fit + f",setsar=1,format=yuv420p,fps={FPS}"
     scale += _cinema(clip_cell)
     fc = _attribution_filter(root, clip_cell, f_reg, f_bold,
                              label_in=scale, label_out="[v]")
     cmd = ["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1",
            "-ss", f"{offset:.2f}", "-i", src,
            "-filter_complex", fc,
-           "-map", "[v]", "-c:v", "libx264", "-crf", "16",
+           "-map", "[v]", "-c:v", "libx264", "-crf", "14", "-preset", "slow",
            "-t", f"{seg_dur:.2f}", os.path.join(root, out)]
     emit(cmd, root)
 
@@ -708,6 +754,7 @@ def _build_global_pool(root, stock_avail):
     if not _os.path.isdir(d):
         return pool
     by_kw = {}
+    kw_of_file = {}
     for kw in order:
         for idx in range(12):
             for api in ("pixabay", "pexels"):
@@ -716,6 +763,7 @@ def _build_global_pool(root, stock_avail):
                 f = _os.path.join(d, h + ".mp4")
                 if _os.path.exists(f):
                     by_kw.setdefault(kw, []).append(f)
+                    kw_of_file.setdefault(f, kw)
     for kw in order:
         for f in by_kw.get(kw, []):
             h = _content_hash(f)
@@ -724,46 +772,70 @@ def _build_global_pool(root, stock_avail):
             if h:
                 seen_c.add(h)
             pool.append(f)
-    return pool
+    return pool, kw_of_file
 
 
-def _pick_cell_file(global_pool, avail, timeline, now, kw):
-    """Chon file cho 1 cell stock bat dau tai thoi diem `now`. Uu tien:
-    1) content CHUA dung bao gio trong avail (theme khop).
-    2) content CHUA dung trong global_pool (bat ky theme) — tranh tai dung.
-    3) het toan bo -> content dung lau nhat (fallback).
-    Tra ve (file, content_hash) hoac (None, None)."""
-    from stock import _content_hash
-    if not avail and not global_pool:
+# Duoi nguong nay (giay) thi mot content coi nhu "vua dung xong".
+REUSE_COOLDOWN = 150.0
+# Trong so cham diem: LIEN QUAN quan trong hon MOI.
+W_REL, W_FRESH, W_COLOR, W_STICKY = 0.45, 0.20, 0.20, 0.15
+
+
+def _pick_cell_file(global_pool, avail, timeline, now, kw,
+                    prev_sig=None, prev_theme=None, kw_of_file=None):
+    """Chon file cho 1 cell stock bat dau tai thoi diem `now`.
+
+    Ban cu xep hang theo DUY NHAT mot tieu chi: content chua tung dung. Hau qua
+    la mot clip dung chu de nhung da dung o phut truoc se bi loai de nhuong cho
+    mot clip khac hoan toan lac de — do la ly do hinh giua cac canh khong lien
+    quan nhau. Nay cham diem tong hop, trong do do LIEN QUAN (0.45) nang hon do
+    MOI (0.20): clip hop chu de dung cach day 150s se thang clip la nhung lac de.
+    """
+    from stock import _content_hash, color_sig, color_dist, theme_index, _THEME_OF
+    avail = avail or []
+    in_avail = set(avail)
+    cand = avail + [f for f in (global_pool or []) if f not in in_avail]
+    if not cand:
         return None, None
-    used_at = {}
+    last_use = {}
     for rec in timeline:
         h = rec.get("content")
         if h:
-            used_at.setdefault(h, rec.get("end", 0))
-    fresh = [f for f in (avail or []) if _content_hash(f)
-             and _content_hash(f) not in used_at]
-    if fresh:
-        f = fresh[0]
-        return f, _content_hash(f)
-    # avail (theme) het fresh -> tim fresh trong global pool (moi theme)
-    gfresh = [f for f in (global_pool or []) if _content_hash(f)
-              and _content_hash(f) not in used_at]
-    if gfresh:
-        f = gfresh[0]
-        return f, _content_hash(f)
-    # that su can kiet -> content dung lau nhat (gan day nhat)
+            last_use[h] = max(last_use.get(h, -1e9), rec.get("end", 0))
+    my_theme, _ = theme_index(kw)
+    kw_of_file = kw_of_file or {}
+
     best = None
-    for f in (avail or []) + (global_pool or []):
+    for f in cand:
         h = _content_hash(f)
         if not h:
             continue
-        last = used_at.get(h, -1e9)
-        if best is None or last < best[0]:
-            best = (last, f)
+        gap = now - last_use.get(h, -1e9)
+        fresh = 1.0 if h not in last_use else min(1.0, gap / REUSE_COOLDOWN)
+        if fresh < 0.25:          # vua dung trong ~37s -> loai han
+            continue
+        f_kw = kw_of_file.get(f)
+        f_theme = _THEME_OF.get(f_kw) if f_kw else None
+        rel = 1.0 if f in in_avail else (0.6 if (f_theme is not None
+                                                 and f_theme == my_theme) else 0.0)
+        cont = (1.0 - min(1.0, color_dist(color_sig(f), prev_sig) / 0.35)
+                if prev_sig else 0.5)
+        sticky = 1.0 if (prev_theme is not None and f_theme == prev_theme) else 0.0
+        sc = W_REL * rel + W_FRESH * fresh + W_COLOR * cont + W_STICKY * sticky
+        if best is None or sc > best[0]:
+            best = (sc, f, h)
     if best:
-        return best[1], _content_hash(best[1])
-    return None, None
+        return best[1], best[2]
+    # moi ung vien deu vua dung xong -> lay content dung lau nhat
+    oldest = None
+    for f in cand:
+        h = _content_hash(f)
+        if not h:
+            continue
+        last = last_use.get(h, -1e9)
+        if oldest is None or last < oldest[0]:
+            oldest = (last, f, h)
+    return (oldest[1], oldest[2]) if oldest else (None, None)
 
 
 def render_all(cfg, root, only=None):
@@ -795,9 +867,12 @@ def render_all(cfg, root, only=None):
         if not k or k in stock_avail:
             continue
         stock_avail[k] = stock_pool(root, k)
+    kw_of_file = {}
     if stock_avail:
-        global_pool = _build_global_pool(root, stock_avail)
+        global_pool, kw_of_file = _build_global_pool(root, stock_avail)
     chosen = None
+    # mach thi giac: theme + tong mau cua cell stock TRUOC do, de cell sau bam theo
+    prev_theme, prev_sig, prev_beat = None, None, None
     t_cursor = 0.0  # thoi diem bat dau cell hien tai trong video
     for cell in cfg["cells"]:
         if only and int(cell["id"]) not in only:
@@ -810,24 +885,39 @@ def render_all(cfg, root, only=None):
             continue
         stock_idx = 0
         if cell.get("type") == "stock":
-            from stock import _content_hash
+            from stock import _content_hash, color_sig, theme_index
             kw = cell.get("stock") or cell.get("keyword") or ""
             avail = stock_avail.get(kw)
             if avail:
                 stock_seen[kw] = stock_seen.get(kw, 0) + 1
                 # re-render: bo record cu cua cell nay, ghi lai moi
                 timeline = [r for r in timeline if r.get("cell") != cell["id"]]
+                beat = cell.get("beat")
+                if beat is not None and beat != prev_beat:
+                    prev_theme, prev_sig = None, None   # sang y moi -> cho doi mach
+                t_idx, t_score = theme_index(kw)
+                if t_score < 0.4 and prev_theme is not None:
+                    t_idx = prev_theme    # keyword mo ho -> giu theme dang chay
                 chosen, ch = _pick_cell_file(global_pool, avail, timeline,
-                                             t_cursor, kw)
+                                             t_cursor, kw, prev_sig=prev_sig,
+                                             prev_theme=prev_theme,
+                                             kw_of_file=kw_of_file)
+                if chosen:
+                    prev_sig = color_sig(chosen)
+                    prev_theme = t_idx
+                    prev_beat = beat
                 if chosen in avail:
                     stock_idx = avail.index(chosen)
         if cell.get("type") == "hold":
             # hold doc frame cuoi shot truoc -> shot do phai da encode xong
             flush_sh(root, "run_render_pre-hold.sh")
-        ret = render_cell(cfg, cell, root, prev_shot, stock_idx,
-                          stock_avail.get(cell.get("stock") or cell.get("keyword") or ""),
+        cell_avail = stock_avail.get(cell.get("stock") or cell.get("keyword") or "")
+        ret = render_cell(cfg, cell, root, prev_shot, stock_idx, cell_avail,
                           chosen if cell.get("type") == "stock" else None,
-                          global_pool, timeline, t_cursor)
+                          # segment_pool: BAM THEME cua cell. Truoc day truyen
+                          # global_pool nen mot cell VO 30s nhay 6s mot chu de —
+                          # dut mach ngay giua mot cau noi.
+                          (cell_avail or global_pool), timeline, t_cursor)
         dur_map[cell["id"]] = ret
         # render_cell tra ve DURATION (float) hoac duong dan shot tuy loai cell;
         # prev_shot luon la duong dan (cell 'hold' can doc file shot truoc).

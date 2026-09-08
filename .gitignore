@@ -1,0 +1,12 @@
+# API keys — KHONG commit
+tool/.env
+
+__pycache__/
+*.pyc
+
+# Kho stock dung chung (~17GB, tai bang: run.py stock --all)
+assets/stock/
+
+# San pham dung video: chi giu script + manifest + config
+videos/*/build/
+videos/*/assets/

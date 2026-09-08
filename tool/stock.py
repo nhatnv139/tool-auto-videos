@@ -48,9 +48,11 @@ def _stock_dir(root=None):
     Neu root la video -> van tro ve assets/stock/ cap project de khong tai lai.
     """
     base = root or KIT_ROOT
-    # neu root tro toi videos/<topic>/ -> day len project
-    if os.path.basename(os.path.dirname(os.path.dirname(os.path.abspath(base)))) == "ai-frontier" and \
-            os.path.basename(os.path.dirname(os.path.abspath(base))) == "videos":
+    # Neu root tro toi videos/<topic>/ -> day len project (kho stock dung chung).
+    # Ban cu con doi ten thu muc project phai dung bang "ai-frontier"; thu muc
+    # that ten "ai-frontier-kit" nen dieu kien khong bao gio dung -> moi video di
+    # tim kho rieng trong videos/<topic>/assets/stock (rong) va tai lai tu dau.
+    if os.path.basename(os.path.dirname(os.path.abspath(base))) == "videos":
         base = KIT_ROOT
     d = os.path.join(base, "assets", "stock")
     os.makedirs(d, exist_ok=True)
@@ -99,10 +101,46 @@ for ti, group in enumerate(STOCK_THEMES):
         _THEME_OF.setdefault(kw, ti)
 
 
+# Tu bo qua khi so khop keyword voi theme (qua chung, khong phan biet duoc theme)
+_STOP = {"ai", "the", "a", "an", "of", "and", "in", "on", "for", "with",
+         "technology", "digital", "futuristic", "abstract"}
+
+
+def _toks(s):
+    return {t for t in re.split(r"[^a-z0-9]+", (s or "").lower())
+            if t and t not in _STOP}
+
+
+_THEME_TOKS = [set().union(*[_toks(k) for k in g]) for g in STOCK_THEMES]
+
+
+def theme_index(keyword, min_score=0.15):
+    """Tra ve (theme_idx, score) cho keyword BAT KY.
+
+    Keyword nguoi viet tu go (vd "nvidia chip factory") khong nam trong
+    STOCK_THEMES; so khop tuyet doi se tra ve None -> pool chi 1 keyword ->
+    het file sau 2-3 cell -> phai lay hinh theme khac (dut mach). Nen o day
+    do do trung token de van gan duoc vao theme gan nhat.
+    """
+    if keyword in _THEME_OF:
+        return _THEME_OF[keyword], 1.0
+    kt = _toks(keyword)
+    if not kt:
+        return None, 0.0
+    best, best_score = None, 0.0
+    for i, tt in enumerate(_THEME_TOKS):
+        s = len(kt & tt) / len(kt)
+        if s > best_score:
+            best, best_score = i, s
+    return (best, best_score) if best_score >= min_score else (None, 0.0)
+
+
 def theme_keywords(keyword):
-    """Tra ve list keyword cung theme (gom ca keyword goc)."""
-    idx = _THEME_OF.get(keyword)
-    return list(STOCK_THEMES[idx]) if idx is not None else [keyword]
+    """Tra ve list keyword cung theme (keyword goc dung dau)."""
+    idx, _ = theme_index(keyword)
+    if idx is None:
+        return [keyword]
+    return [keyword] + [k for k in STOCK_THEMES[idx] if k != keyword]
 
 
 def stock_pool(root, keyword, max_files=40):
@@ -167,11 +205,59 @@ def _content_hash(f):
     return h
 
 
+def color_sig(f):
+    """Chu ky mau: mean RGB cua frame 8x8 tai 0s/2s/4s -> vector 9 chieu.
+
+    Dung de do do "hop tong" giua canh truoc va canh sau: hai clip cung chu de
+    nhung mot cai xanh lanh, mot cai vang chay thi cat lien nhau van thay coc.
+    Cache ra file .c ben canh video (giong _content_hash).
+    """
+    cache = f + ".c"
+    try:
+        if os.path.exists(cache):
+            with open(cache, encoding="utf-8") as fh:
+                data = fh.read().split("\n")
+            if len(data) >= 2 and float(data[1]) == os.path.getmtime(f):
+                return [float(x) for x in data[0].split(",")]
+    except Exception:
+        pass
+    import numpy as np
+    from PIL import Image
+    vals = []
+    for ss in ("0", "2", "4"):
+        png = f + f".c{ss}.png"
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", ss, "-i", f,
+                        "-frames:v", "1", "-vf", "scale=8:8", png],
+                       capture_output=True, timeout=8)
+        if not os.path.exists(png):
+            return None
+        try:
+            a = np.asarray(Image.open(png).convert("RGB"), dtype=float) / 255.0
+            vals += [float(x) for x in a.mean(axis=(0, 1))]
+        finally:
+            os.remove(png)
+    try:
+        with open(cache, "w", encoding="utf-8") as fh:
+            fh.write(",".join(f"{v:.4f}" for v in vals) + "\n"
+                     + str(os.path.getmtime(f)))
+    except Exception:
+        pass
+    return vals
+
+
+def color_dist(a, b):
+    """0 = cung tong mau, ~1 = nguoc han. Thieu du lieu -> 0.5 (trung tinh)."""
+    if not a or not b or len(a) != len(b):
+        return 0.5
+    return sum(abs(x - y) for x, y in zip(a, b)) / len(a)
+
+
 def _pixabay_search(key, keyword, per=50):
     """Tra ve list (url, width, height) — uu tien video 16:9 chay ngang."""
     q = urllib.parse.quote(keyword)
     url = (f"https://pixabay.com/api/videos/?key={key}&q={q}"
-           f"&video_type=film&per_page={per}&safesearch=true")
+           f"&video_type=film&per_page={per}&safesearch=true"
+           f"&min_width={MIN_W}&min_height={MIN_H}&order=popular")
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
         data = json.loads(r.read().decode("utf-8"))
@@ -179,50 +265,69 @@ def _pixabay_search(key, keyword, per=50):
     out = []
     for h in hits:
         vids = h.get("videos", {})
-        best = None
-        # uu tien large (1920x1080) -> medium (1280x720)
-        for size in ("large", "medium", "small"):
-            if size in vids:
-                best = vids[size]
-                break
-        if best and best.get("url"):
-            out.append((best["url"], best.get("width", 0), best.get("height", 0)))
+        # chon theo PIXEL that su, khong theo ten size: Pixabay luon tra du ca
+        # 4 key large/medium/small/tiny, va entry khong ton tai co width=0.
+        cands = [v for v in vids.values()
+                 if v.get("url") and (v.get("width") or 0) >= MIN_W]
+        if not cands:
+            continue
+        best = max(cands, key=lambda v: (v.get("width") or 0) * (v.get("height") or 0))
+        out.append((best["url"], best.get("width", 0), best.get("height", 0)))
     return out
 
 
 def _pexels_search(key, keyword, per=50):
     q = urllib.parse.quote(keyword)
-    url = f"https://api.pexels.com/videos/search?query={q}&per_page={per}"
+    url = (f"https://api.pexels.com/videos/search?query={q}&per_page={per}"
+           f"&orientation=landscape&size=large")
     req = urllib.request.Request(url, headers={"Authorization": key,
                                                "User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
         data = json.loads(r.read().decode("utf-8"))
     out = []
     for v in data.get("videos", []):
-        files = v.get("video_files", [])
-        best = None
-        for f in sorted(files, key=lambda x: (x.get("width") or 0) * (x.get("height") or 0),
-                        reverse=True):
-            if f.get("file_type", "").startswith("video") and f.get("link"):
-                best = f
-                break
-        if best:
-            out.append((best["link"], best.get("width", 0), best.get("height", 0)))
+        files = [f for f in v.get("video_files", [])
+                 if f.get("link") and f.get("file_type", "").startswith("video")
+                 and (f.get("width") or 0) >= MIN_W]
+        if not files:
+            continue
+        # ban nho nhat trong so cac ban >= 1920 rong: khong bao gio phai upscale,
+        # ma cung khong tai ve file 4K nang gap 4 lan cho mot khung 1080p.
+        hd = [f for f in files if (f.get("width") or 0) >= 1920]
+        best = (min(hd, key=lambda f: f["width"] * f["height"]) if hd
+                else max(files, key=lambda f: f["width"] * f["height"]))
+        out.append((best["link"], best.get("width", 0), best.get("height", 0)))
     return out
 
 
+MIN_W, MIN_H = 1280, 720
+
+
 def _pick_landscape(items):
-    """Uu tien clip 16:9 / landscape, rui do cao gan 1080."""
+    """Loai portrait + duoi HD, uu tien do phan giai CANG CAO CANG TOT.
+
+    Ban cu cham diem bang abs(h - 1080) nen phat ca hai chieu: clip 4K bi xep
+    duoi clip 540p, va vi _fetch_keyword lay items[i] theo thu tu nay nen ban
+    540p duoc tai ve con ban 4K gan nhu khong bao gio duoc dung. Nguon 540p
+    phong len 1920x1080 chinh la mot nguyen nhan "video mo".
+    """
+    def ok(it):
+        _, w, h = it
+        return w and h and w >= MIN_W and h >= MIN_H and (w / h) >= 1.5
+
     def score(it):
-        url, w, h = it
-        if not w or not h:
-            return 0
-        ratio = w / h
-        # diem cao neu ratio ~1.78 (16:9), thap neu portrait
-        rs = 1.0 - min(abs(ratio - 1.78) / 1.5, 1.0)
-        hs = 1.0 - min(abs(h - 1080) / 1500, 1.0)
-        return rs * 0.7 + hs * 0.3
-    return sorted(items, key=score, reverse=True) if items else []
+        _, w, h = it
+        rs = 1.0 - min(abs(w / h - 1.7778) / 0.6, 1.0)
+        if h >= 2160:
+            hs = 1.00        # 4K: downscale ve 1080 -> net nhat
+        elif h >= 1440:
+            hs = 0.98
+        elif h >= 1080:
+            hs = 0.95
+        else:
+            hs = 0.45        # 720p: phai upscale -> tru diem manh
+        return hs * 0.65 + rs * 0.35
+    return sorted([i for i in (items or []) if ok(i)], key=score, reverse=True)
 
 
 def fetch_stock(root, cfg, force=False):
@@ -284,11 +389,19 @@ def _fetch_keyword(root, kw, count, pk, px, force):
         if not items:
             print(f"  WARN {api} khong tim thay '{kw}'")
             continue
+        # items[i % len(items)] cua ban cu tai CUNG mot URL vao nhieu file khac
+        # nhau khi ket qua it hon count -> pool "to" nhung toan ban sao.
+        seen_url, picked = set(), []
+        for it in items:
+            if it[0] in seen_url:
+                continue
+            seen_url.add(it[0])
+            picked.append(it)
+            if len(picked) >= count:
+                break
         off = offsets[api]
-        for i in range(count):
+        for i, (url, w, h) in enumerate(picked):
             idx = off + i
-            item = items[i % len(items)]
-            url, w, h = item
             path, _ = _cache_path(root, api, kw, idx)
             if os.path.exists(path) and not force:
                 got += 1
@@ -299,9 +412,26 @@ def _fetch_keyword(root, kw, count, pk, px, force):
             except Exception as e:
                 print(f"  WARN tai that bai '{kw}'#{idx}: {e}")
                 continue
+            if not _verify_hd(path):
+                continue
             print(f"stock '{kw}'#{idx} -> {os.path.relpath(path, root)}")
             got += 1
     return got
+
+
+def _verify_hd(path):
+    """Kiem tra file vua tai co dung do phan giai khong — API co the tra sai."""
+    try:
+        from probe import streams
+        v = streams(path).get("video")
+        if not v or (v.get("h") or 0) < 900:
+            print(f"  BO {os.path.basename(path)}: chi {v.get('w')}x{v.get('h')}"
+                  if v else f"  BO {os.path.basename(path)}: khong co video stream")
+            os.remove(path)
+            return False
+    except Exception:
+        pass
+    return True
 
 
 def fetch_stock_all(root=None, variants=12, force=False):
@@ -481,12 +611,14 @@ def _download(url, path):
 
 
 def stock_file(root, keyword, idx=0):
-    """Tra ve duong dan clip stock variant idx cho keyword, hoac None."""
-    pk, px = _keys()
-    for api, key in (("pixabay", pk), ("pexels", px)):
-        if not key:
-            continue
-        path, h = _cache_path(root, api, keyword, idx)
+    """Tra ve duong dan clip stock variant idx cho keyword, hoac None.
+
+    KHONG phu thuoc API key: key chi can luc TAI. Ban cu bo qua ca file da co
+    san khi thieu key, nghia la mat key thi toan bo kho stock da tai thanh vo
+    hinh va video im lang rot ve card.
+    """
+    for api in ("pixabay", "pexels"):
+        path, _h = _cache_path(root, api, keyword, idx)
         if os.path.exists(path):
             return path
     return None

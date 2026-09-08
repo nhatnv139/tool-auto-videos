@@ -18,6 +18,8 @@ khong burn caption — chi attribution da co o render.
 ffmpeg filter phuc tap chay qua git-bash (may nay segfault khi subprocess
 spawn filter) — emit .sh va chay source.
 """
+import argparse
+import json
 import os
 import shlex
 import subprocess
@@ -27,7 +29,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from probe import duration, streams  # noqa: E402
 import config as CFG  # noqa: E402
 
-GIT_BASH = r"C:\Program Files\Git\bin\bash.exe"
+GIT_BASH = os.environ.get("GIT_BASH") or r"C:\Program Files\Git\bin\bash.exe"
 KIT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AR = 48000
 CAP_FADE = 0.3
@@ -38,6 +40,7 @@ def plan(root, cfg, strict=True):
     rows = []
     cursor = 0.0
     missing = []
+    fps = cfg.get("fps", 24)
     for cell in cfg["cells"]:
         cid = cell["id"]
         shot = os.path.join(root, "build", "shots", f"cell-{cid}.mp4")
@@ -63,9 +66,15 @@ def plan(root, cfg, strict=True):
             # sfx: dung do dai audio that (whoosh dai hon dur khai bao)
             cell_dur = max(cell.get("dur") or shot_dur, shot_dur)
         else:
-            cell_dur = cell.get("dur", shot_dur) or shot_dur
+            # pause_after phai ap cho CA cell im lang (card/quote) — day chinh la
+            # nhip "let it land" sau mot reveal; truoc day bi bo qua.
+            cell_dur = (cell.get("dur", shot_dur) or shot_dur) + pause
         if cell_dur <= 0:
             cell_dur = shot_dur
+        # Lam tron ve luoi frame TRUOC khi cong don: stage1 cat theo bien frame
+        # nhung timeline audio tinh bang so thuc -> moi cell lech ~0.04s, video
+        # 100 cell lech toi ~4s giua tieng va hinh.
+        cell_dur = round(cell_dur * fps) / fps
         has_audio = bool(os.path.exists(shot) and streams(shot).get("audio"))
         rows.append({
             "cell": cell, "start": round(cursor, 3), "dur": round(cell_dur, 3),
@@ -78,7 +87,7 @@ def plan(root, cfg, strict=True):
 
 # ---------------------------------------------------------------- stage 1
 # Subtitle: ASS per-segment, instant show, 1-2 dong, sanitize ky tu khong font
-CAP_MAX_CHARS = 42
+CAP_MAX_CHARS = 34      # chu to hon (56px) -> moi dong phai ngan lai
 CAP_MIN_CHARS = 12
 
 
@@ -95,27 +104,42 @@ def _sanitize_sub(text):
 
 def _split_segments(text, max_chars=CAP_MAX_CHARS, min_chars=CAP_MIN_CHARS):
     """Tach caption thanh cac doan ngoan (1-2 dong), instant sub."""
+    import re
     text = _sanitize_sub(text)
-    words = text.split()
-    if not words:
+    if not text.split():
         return []
-    # cat theo cau (., !, ?) truoc, roi them tu den khi du max_chars
+    # Cat theo CAU truoc, roi trong moi cau uu tien cat o dau phay/cham phay —
+    # ban cu chi cat tham theo so ky tu (du comment noi la cat theo cau) nen
+    # ranh gioi cau roi vao giua doan, dau phay bi ket cuoi dong.
     segs = []
-    cur = ""
-    for w in words:
-        test = (cur + " " + w).strip()
-        if len(test) <= max_chars:
-            cur = test
-        else:
-            if cur:
+    for sent in re.split(r"(?<=[.!?])\s+", text):
+        sent = sent.strip()
+        if not sent:
+            continue
+        if len(sent) <= max_chars:
+            segs.append(sent)
+            continue
+        cur = ""
+        for chunk in re.split(r"(?<=[,;:])\s+", sent):
+            for w in chunk.split():
+                test = (cur + " " + w).strip()
+                if len(test) <= max_chars:
+                    cur = test
+                else:
+                    if cur:
+                        segs.append(cur)
+                    cur = w
+            # het mot menh de: xuong doan moi neu doan hien tai da kha day
+            if cur and len(cur) >= max_chars * 0.6:
                 segs.append(cur)
-            cur = w
-    if cur:
-        segs.append(cur)
-    # gop doan qua ngan vao doan truoc (tranh sub chop chop 2-3 tu)
+                cur = ""
+        if cur:
+            segs.append(cur)
+    # gop doan qua ngan vao doan truoc — nhung khong duoc vuot max_chars
     merged = []
     for s in segs:
-        if merged and len(s) < min_chars:
+        if (merged and len(s) < min_chars
+                and len(merged[-1]) + 1 + len(s) <= max_chars):
             merged[-1] = merged[-1] + " " + s
         else:
             merged.append(s)
@@ -194,29 +218,50 @@ def _caption_filter(root, cell, f_bold, vo_dur, fps, cell_start=0.0):
     segs = _split_segments(cell["cap"])
     if not segs or not vo_dur:
         return "", None
+    marks = _word_marks(root, cell["id"])
     total_words = sum(len(s.split()) for s in segs)
     fpath = _ensure_font_bold(root)  # relative path, khong co drive colon
     parts = []
-    used = 0.0
+    used = 0
     for i, s in enumerate(segs):
         n_words = len(s.split())
-        t0 = (used / total_words) * vo_dur
+        if marks and len(marks) >= total_words:
+            # Moc tu THAT tu edge-tts (WordBoundary). Chia deu theo so tu se lech
+            # 200-400ms, va lech nang hon nua khi VO co khoang lang giua cac cau.
+            t0 = marks[min(used, len(marks) - 1)]["t"]
+            j = min(used + n_words, len(marks) - 1)
+            t1 = (marks[j]["t"] if used + n_words < len(marks)
+                  else marks[-1]["t"] + marks[-1]["d"])
+        else:
+            t0 = (used / total_words) * vo_dur
+            t1 = ((used + n_words) / total_words) * vo_dur
         used += n_words
-        t1 = (used / total_words) * vo_dur
-        t1 = max(t1, t0 + 0.4)
-        t1 = min(t1, vo_dur)
+        t1 = min(max(t1, t0 + 0.4), vo_dur)
         tf = _textfile(root, s, f"seg{cell['id']}_{i}")
         tf_rel = os.path.relpath(tf, root).replace("\\", "/")
-        alpha = (f"'if(lt(t\\,{t0:.2f})\\,0\\,if(lt(t\\,{t1:.2f})\\,1\\,0))'")
-        y = cell.get("cap_y", 880)
+        y = cell.get("cap_y", "h-260")
         parts.append(
-            f"drawtext=fontfile={fpath}:textfile={tf_rel}:fontsize=44:"
-            f"fontcolor=white:x=(w-text_w)/2:y={y}:alpha={alpha}:"
-            f"shadowcolor=black@0.95:shadowx=3:shadowy=3:"
-            f"borderw=2:bordercolor=black@0.6")
+            f"drawtext=fontfile={fpath}:textfile={tf_rel}:fontsize=56:"
+            f"fontcolor=white:x=(w-text_w)/2:y={y}:"
+            f"box=1:boxcolor=black@0.55:boxborderw=22:"
+            f"borderw=4:bordercolor=black@0.9:"
+            f"shadowcolor=black@0.9:shadowx=0:shadowy=3:"
+            f"enable='between(t\\,{t0:.2f}\\,{t1:.2f})'")
     if not parts:
         return "", None
     return ",".join(parts), None
+
+
+def _word_marks(root, cell_id):
+    """Doc moc thoi gian tung tu do tts ghi ra (build/voice/cell-N.words.json)."""
+    p = os.path.join(root, "build", "voice", f"cell-{cell_id}.words.json")
+    if not os.path.exists(p):
+        return None
+    try:
+        with open(p, encoding="utf-8") as f:
+            return json.load(f).get("words") or None
+    except Exception:
+        return None
 
 
 def _ensure_font_bold(root):
@@ -452,9 +497,6 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
     _mix(vo_parts, "vo")
     _mix(clip_parts, "clipraw")
     _mix(sfx_parts, "sfx")
-    # Loi sidechaincompress cua ffmpeg: khi main (clip) gan im + sidechain (vo)
-    # co tin hieu -> output sai, lam mat VO khi mix lai. Clip cells hiếm khi
-    # trung luc VO nen mix thang VO + clip + sfx (khong duck) la an toan.
     fc.append("[vo][clipraw][sfx]amix=inputs=3:normalize=0,"
               f"atrim=0:{total:.2f},asetpts=PTS-STARTPTS[side]")
 
@@ -464,7 +506,7 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
         # tao nhac co silence tai cell out/drop
         music_seg = _build_music_segments(root, cfg, rows, total)
         ins += ["-i", music_seg]
-        level = cfg["music"].get("level", 0.16)
+        level = cfg["music"].get("level", 0.28)
         fi = cfg["music"].get("fade_in", 1.5)
         fo = cfg["music"].get("fade_out", 3.0)
         fc.append(f"[{n_in}:a]aformat=sample_rates={AR}:channel_layouts=stereo,"
@@ -472,17 +514,25 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
                   f"afade=t=in:st=0:d={fi},afade=t=out:st={max(0.0,total-fo):.2f}:"
                   f"d={fo}[mb]")
         n_in += 1
-        # sidechaincompress cua ffmpeg loi khi main gan im + side co tin hieu
-        # (lam mat VO) -> mix nhac thang o level thap, khong duck.
-        fc.append(f"[side][mb]amix=inputs=2:normalize=0,atrim=0:{total},"
+        # DUCKING: nen nhac theo tin hieu thoai. sidechaincompress chi xuat luong
+        # main (nhac) da nen — no KHONG tra lai sidechain — nen phai split va mix
+        # thoai vao lai sau do. Ban cu map thang output cua no nen mat VO, roi
+        # ket luan nham la "ffmpeg loi" va bo duck luon.
+        fc.append("[side]asplit=2[side_out][side_key]")
+        fc.append("[side_key]highpass=f=200,lowpass=f=4000,volume=3[key]")
+        fc.append("[mb][key]sidechaincompress=threshold=0.02:ratio=8:attack=15:"
+                  "release=350:makeup=1:level_sc=1[mduck]")
+        fc.append(f"[side_out][mduck]amix=inputs=2:normalize=0,atrim=0:{total},"
                   f"aformat=sample_rates={AR}:channel_layouts=stereo[aout]")
         audio_out = "[aout]"
 
-    out = os.path.join(tdir, "audio.m4a")
+    # Xuat WAV: loudnorm + AAC duoc lam MOT LAN o stage4 (do duoc loudness that
+    # roi moi chuan hoa tuyen tinh), thay vi encode AAC o day roi encode lai.
+    out = os.path.join(tdir, "audio_raw.wav")
     cmds = part_cmds + [["ffmpeg", "-y", "-v", "error", *ins,
                          "-filter_complex", ";".join(fc),
-                         "-map", audio_out, "-c:a", "aac", "-b:a", "192k",
-                         "-ar", str(AR), "-t", str(total), out]]
+                         "-map", audio_out, "-c:a", "pcm_s24le",
+                         "-ar", str(AR), "-ac", "2", "-t", str(total), out]]
     _emit(root, "run_stage3.sh", cmds)
     return out
 
@@ -539,14 +589,61 @@ def _build_music_segments(root, cfg, rows, total):
 
 
 # ---------------------------------------------------------------- stage 4
+TARGET_LUFS = -14.0     # chuan YouTube
+TARGET_TP = -1.0        # true peak
+
+
+def _measure_loudness(path):
+    """Pass 1 cua loudnorm: do loudness that de pass 2 chuan hoa TUYEN TINH.
+
+    Chuan hoa 1 pass se nen dong (bop dynamic); 2 pass chi dich gain nen giu
+    nguyen nhip to-nho cua giong doc.
+    """
+    if not os.path.exists(path):
+        return None
+    r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", path,
+                        "-af", f"loudnorm=I={TARGET_LUFS}:TP={TARGET_TP}:LRA=11:"
+                        f"print_format=json", "-f", "null", "-"],
+                       capture_output=True, text=True)
+    txt = r.stderr or ""
+    i = txt.rfind("{")
+    if i < 0:
+        return None
+    try:
+        import json as _json
+        return _json.loads(txt[i:txt.rfind("}") + 1])
+    except Exception:
+        return None
+
+
 def stage4_mux(root, cfg, total):
     tdir = os.path.join(root, "build", "trim")
     out = CFG.resolve(root, cfg["out"])
     os.makedirs(os.path.dirname(out), exist_ok=True)
+    araw = os.path.join(tdir, "audio_raw.wav")
+    m = _measure_loudness(araw)
+    lra = 11.0
+    ln = ""
+    if m:
+        # Timeline video co dai dong rat rong (doan noi to xen doan chi con nhac):
+        # do duoc LRA ~23 LU. Neu dat LRA muc tieu thap hon LRA do duoc thi
+        # loudnorm bo che do linear, chuyen sang nen dong va KHONG toi dich —
+        # do la ly do ban dau ra -16.3 thay vi -14. Noi rong LRA de chi dich gain.
+        lra = max(11.0, float(m["input_lra"]) + 1.0)
+        print(f"  loudness truoc: {m['input_i']} LUFS (dai dong {m['input_lra']} LU), "
+              f"peak {m['input_tp']} dBTP -> chuan hoa ve {TARGET_LUFS} LUFS")
+    ln = f"loudnorm=I={TARGET_LUFS}:TP={TARGET_TP}:LRA={lra:.1f}"
+    if m:
+        ln += (f":linear=true:measured_I={m['input_i']}:measured_TP={m['input_tp']}"
+               f":measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}"
+               f":offset={m['target_offset']}")
+    af = ln + ",alimiter=limit=0.97:attack=5:release=50:level=disabled"
     cmd = ["ffmpeg", "-y", "-v", "error",
            "-i", os.path.join(tdir, "video.mp4"),
-           "-i", os.path.join(tdir, "audio.m4a"),
-           "-c", "copy", "-movflags", "+faststart", "-t", str(total), out]
+           "-i", araw,
+           "-map", "0:v", "-map", "1:a", "-af", af,
+           "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", "-ar", str(AR),
+           "-movflags", "+faststart", "-shortest", out]
     _emit(root, "run_stage4.sh", [cmd])
     return out
 
