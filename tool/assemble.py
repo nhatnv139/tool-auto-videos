@@ -87,7 +87,9 @@ def plan(root, cfg, strict=True):
 
 # ---------------------------------------------------------------- stage 1
 # Subtitle: ASS per-segment, instant show, 1-2 dong, sanitize ky tu khong font
-CAP_MAX_CHARS = 34      # chu to hon (56px) -> moi dong phai ngan lai
+# 42 ky tu o 56px bold ~ 1300px, con thua trong khung 1920. Ha xuong 34 lam
+# menh de bi be doi giua chung ("machine," bat dau mot doan moi).
+CAP_MAX_CHARS = 42
 CAP_MIN_CHARS = 12
 
 
@@ -318,20 +320,27 @@ def stage1_trim(rows, root, fps):
         cap, _ = _caption_filter(root, r["cell"], None, r["vo_dur"], fps)
         if cap:
             vf.append(cap)
-        # fade: vao 0.2s, ra 0.2s; dip-to-black manh hon (0.4) o beat drop.
-        # Cell fx=flash: white flash 0.15s dau (khong fade-in che).
-        fi = 0.2
-        fo = 0.2
+        # CAT THANG giua cac cell. Truoc day moi cell fade ra den 0.2s roi cell
+        # sau fade tu den 0.2s -> moi diem cat la 0.4s man hinh toi; video 6 cell
+        # /34s co 2.4s bi am. Dung phim that cat thang, chi dip-to-black o beat
+        # co chu dinh (music=drop) va o dau/cuoi video.
+        first, last = r is rows[0], r is rows[-1]
+        fi = 0.6 if first else 0.0
+        fo = 0.8 if last else 0.0
         if r["cell"].get("music") == "drop" and r["cell"].get("fx") != "flash":
-            fi, fo = 0.35, 0.35
+            fi, fo = max(fi, 0.35), max(fo, 0.35)
         if r["cell"].get("fx") == "flash":
             fi = 0.0
             vf.append("fade=t=in:st=0:d=0.15:color=white")
         if dur > (fi + fo + 0.2):
-            vf.append(f"fade=t=in:st=0:d={fi}")
-            vf.append(f"fade=t=out:st={dur - fo:.3f}:d={fo}")
+            if fi > 0:
+                vf.append(f"fade=t=in:st=0:d={fi}")
+            if fo > 0:
+                vf.append(f"fade=t=out:st={dur - fo:.3f}:d={fo}")
         cmd = ["ffmpeg", "-y", "-v", "error", "-i", r["shot"],
-               "-vf", ",".join(vf), "-c:v", "libx264", "-crf", "16",
+               "-vf", ",".join(vf), "-c:v", "libx264", "-crf", "15",
+               "-preset", "medium", "-colorspace", "bt709",
+               "-color_primaries", "bt709", "-color_trc", "bt709",
                "-an", out]
         cmds.append(cmd)
     _emit(root, "run_stage1.sh", cmds)
@@ -352,9 +361,14 @@ def stage2_concat(rows, root, fps=24):
         for r in rows:
             f.write(f"file 'cell-{r['cell']['id']}.mp4'\n")
     out = os.path.join(tdir, "video.mp4")
+    # Lan encode CUOI cua duong hinh — dung preset nhanh nhat o day la dat sai
+    # cho: cung CRF, preset fast cho file to hon ma quyet dinh rd/mb-tree kem hon.
     cmd = ["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0",
-           "-i", list_file, "-c:v", "libx264", "-crf", "16", "-preset", "fast",
-           "-g", str(int(2 * fps)), "-bf", "0", "-pix_fmt", "yuv420p", out]
+           "-i", list_file, "-c:v", "libx264", "-crf", "16", "-preset", "slow",
+           "-g", str(int(2 * fps)), "-bf", "0", "-pix_fmt", "yuv420p",
+           "-maxrate", "20M", "-bufsize", "40M",
+           "-colorspace", "bt709", "-color_primaries", "bt709",
+           "-color_trc", "bt709", out]
     _emit(root, "run_stage2.sh", [cmd])
     return out
 
