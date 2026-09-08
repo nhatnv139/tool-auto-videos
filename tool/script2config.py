@@ -147,7 +147,7 @@ def parse_script(path):
         cells.append(cell)
 
     def flush_vo():
-        nonlocal vo_buf
+        nonlocal vo_buf, pending
         if not vo_buf:
             return
         text = " ".join(vo_buf).strip()
@@ -162,8 +162,9 @@ def parse_script(path):
             if not extra.get("pause_after"):
                 extra["pause_after"] = 0.4
             add_cell({"type": pending["type"], **extra, "vo": text})
-            # pending da tieu thu
-            pending.pop("consumed", None)
+            # pending da tieu thu: dong VO sau do phai tao cell card moi,
+            # khong dung lai marker cu
+            pending = None
 
     with open(path, encoding="utf-8") as f:
         lines = f.read().splitlines()

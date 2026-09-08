@@ -87,6 +87,30 @@ def run_sh(root, script_name="run_render.sh"):
     return sh, n
 
 
+def _git_bash():
+    return os.environ.get("GIT_BASH") or r"C:\Program Files\Git\bin\bash.exe"
+
+
+def flush_sh(root, script_name="run_render.sh"):
+    """Chay ngay cac lenh ffmpeg dang cho trong _sh (rong thi bo qua).
+
+    Can thiet cho cell 'hold': no doc frame cuoi cua shot truoc bang subprocess,
+    nen shot do phai ton tai TRUOC — khong the doi den cuoi render_all.
+    """
+    if not _sh:
+        return 0
+    sh, cnt = run_sh(root, script_name)
+    print(f"emit {cnt} lenh filter -> {sh}")
+    r = subprocess.run([_git_bash(), "-lc", f'source "{sh.replace(os.sep, "/")}"'],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        print(r.stdout[-1200:])
+        print(r.stderr[-1200:])
+        raise SystemExit(f"render filter loi rc={r.returncode}")
+    print(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "ok")
+    return cnt
+
+
 def encode_frames(frames_dir, out, dur, crf=15):
     cmd = ["ffmpeg", "-v", "error", "-y", "-framerate", str(FPS),
            "-i", os.path.join(frames_dir, "%04d.jpg"),
@@ -797,26 +821,21 @@ def render_all(cfg, root, only=None):
                                              t_cursor, kw)
                 if chosen in avail:
                     stock_idx = avail.index(chosen)
-        prev_shot = render_cell(cfg, cell, root, prev_shot, stock_idx,
-                                stock_avail.get(cell.get("stock") or cell.get("keyword") or ""),
-                                chosen if cell.get("type") == "stock" else None,
-                                global_pool, timeline, t_cursor)
-        dur_map[cell["id"]] = prev_shot
-        # render_cell tra ve DURATION (float) cua cell -> t_cursor tien len
-        if isinstance(prev_shot, (int, float)):
-            t_cursor += prev_shot
+        if cell.get("type") == "hold":
+            # hold doc frame cuoi shot truoc -> shot do phai da encode xong
+            flush_sh(root, "run_render_pre-hold.sh")
+        ret = render_cell(cfg, cell, root, prev_shot, stock_idx,
+                          stock_avail.get(cell.get("stock") or cell.get("keyword") or ""),
+                          chosen if cell.get("type") == "stock" else None,
+                          global_pool, timeline, t_cursor)
+        dur_map[cell["id"]] = ret
+        # render_cell tra ve DURATION (float) hoac duong dan shot tuy loai cell;
+        # prev_shot luon la duong dan (cell 'hold' can doc file shot truoc).
+        prev_shot = out_path
+        if isinstance(ret, (int, float)):
+            t_cursor += ret
         n += 1
-    if _sh:
-        sh, cnt = run_sh(root)
-        print(f"emit {cnt} lenh filter -> {sh}")
-        bash = r"C:\Program Files\Git\bin\bash.exe"
-        r = subprocess.run([bash, "-lc", f'source "{sh.replace(os.sep, "/")}"'],
-                           capture_output=True, text=True)
-        if r.returncode != 0:
-            print(r.stdout[-1200:])
-            print(r.stderr[-1200:])
-            raise SystemExit(f"render filter loi rc={r.returncode}")
-        print(r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "ok")
+    flush_sh(root)
     # save state: keyword seen + timeline (file/content + thoi diem da dung)
     try:
         os.makedirs(os.path.dirname(state_path), exist_ok=True)
