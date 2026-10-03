@@ -48,7 +48,29 @@ SFX_MANIFEST = {
     "glitch-whoosh": "https://assets.mixkit.co/active_storage/sfx/2596/2596-preview.mp3",
     "cinematic-boom": "https://assets.mixkit.co/active_storage/sfx/1286/1286-preview.mp3",
     "hit-impact": "https://assets.mixkit.co/active_storage/sfx/2148/2148-preview.mp3",
+
+    # --- khong khi thien nhien / lang que -------------------------------------
+    # Cho video truyen van hoa Viet: bo tren khong hop: whoosh/glitch/beep la
+    # ngon ngu video cong nghe. Canh lang can gio qua tan la, chim, la kho, song.
+    "gio-tan-la":   "https://assets.mixkit.co/active_storage/sfx/2427/2427-preview.mp3",
+    "chim-sang":    "https://assets.mixkit.co/active_storage/sfx/2472/2472-preview.mp3",
+    "dem-con-trung": "https://assets.mixkit.co/active_storage/sfx/2414/2414-preview.mp3",
+    "la-kho":       "https://assets.mixkit.co/active_storage/sfx/2428/2428-preview.mp3",
+    "song-nuoc":    "https://assets.mixkit.co/active_storage/sfx/2452/2452-preview.mp3",
+    "gio-trong":    "https://assets.mixkit.co/active_storage/sfx/2658/2658-preview.mp3",
+    "chim-hot":     "https://assets.mixkit.co/active_storage/sfx/2432/2432-preview.mp3",
+    "mua-nhe":      "https://assets.mixkit.co/active_storage/sfx/2393/2393-preview.mp3",
+    "mua-rung":     "https://assets.mixkit.co/active_storage/sfx/2396/2396-preview.mp3",
+    "sam":          "https://assets.mixkit.co/active_storage/sfx/2405/2405-preview.mp3",
+
+    # --- chuyen chuong --------------------------------------------------------
+    "chuong-tram":  "https://assets.mixkit.co/active_storage/sfx/623/623-preview.mp3",
+    "chuong-ngan":  "https://assets.mixkit.co/active_storage/sfx/3109/3109-preview.mp3",
+    "chuong-manh":  "https://assets.mixkit.co/active_storage/sfx/619/619-preview.mp3",
 }
+
+# Lop khong khi nen (ambience) — chay duoi suot ca video, khac voi SFX mot phat.
+AMBIENCE = ["gio-tan-la", "chim-sang", "dem-con-trung", "gio-trong", "song-nuoc"]
 
 
 def sfx_dir(root):

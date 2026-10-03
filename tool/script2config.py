@@ -23,6 +23,9 @@ Marker:
   [[broll:ID]]           clip-mute: lay hinh clip ID, tat tieng, VO doc de
   [[clip-mute:ID]]       alias cua broll
   [[stock:"server room ai"]]  stock footage (Pixabay/Pexels), VO doc de
+  [[stock:"canh"|ent="Qianlong Emperor"]]  uu tien anh tu lieu THAT cua ent
+                         (bai Wikipedia EN + Commons Category), canh la duong lui
+  [[wiki:"Qianlong Emperor"]]  = stock voi keyword rong + ent
   [[card:"text"|src=...]]   card im lang (khong VO), text + nguon
   [[quote:"text"|who=..|role=..]]   quote im lang + attribution
   [[black]] / [[hold]] / [[sfx]]     cac cell khac
@@ -99,6 +102,23 @@ def _parse_card(text):
     return body, kv
 
 
+def _parse_stock(clean):
+    """'stock:"canh"|ent="Qianlong Emperor"' -> ("canh", "Qianlong Emperor").
+
+    `ent` = ten bai Wikipedia tieng Anh / Commons category cua nhan vat, dia
+    danh, su kien, hien vat ma canh nay noi toi. Co ent -> hinh lay tu lieu
+    THAT cua thuc the do truoc (wiki_images.fetch_entity), keyword canh chi con
+    la duong lui. Bi danh: 'wiki:"Qianlong Emperor"' = stock keyword rong + ent.
+    Marker cu [[stock:"kw"]] (khong ent) giu nguyen nghia.
+    """
+    kind, rest = clean.split(":", 1)
+    body, kv = _parse_card(rest)
+    ent = (kv.get("ent") or "").strip().strip('"').strip()
+    if kind == "wiki":
+        return "", (ent or body)
+    return body, ent
+
+
 def _strip_opts(marker):
     """Bo cac tuy chon |pause, |music, |fx, |low ra khoi marker."""
     pause = 0.0
@@ -146,6 +166,24 @@ def parse_script(path):
             del pending_sfx[0]
         cells.append(cell)
 
+    def flush_pending_silent():
+        """[[black]]/[[hold]] khong co VO theo sau VAN la mot nhip co chu dich.
+
+        Ban cu de no treo cho VO; gap ngay tieu de chuong (dong '#') thi marker
+        bi ghi de va mat hut, khong mot canh bao. Do la ly do 7 diem ngat chuong
+        5 giay cua script cay-da khong he ton tai trong video dung ra.
+        """
+        nonlocal pending
+        if pending is None:
+            return
+        extra = dict(pending["extra"])
+        dur = extra.pop("pause_after", 0.0) or 0.0
+        if dur > 0:
+            add_cell({"type": pending["type"], **extra,
+                      "dur": float(dur), "pause_after": 0.0})
+            print(f"  nhip im lang {dur:.1f}s ({pending['type']}) — ngat chuong")
+        pending = None
+
     def flush_vo():
         nonlocal vo_buf, pending
         if not vo_buf:
@@ -155,12 +193,12 @@ def parse_script(path):
         if pending is None:
             # tao cell card moi, text = dong dau lam caption
             add_cell({"type": "card", "vo": text, "cap": text,
-                      "pause_after": 0.4})
+                      "pause_after": 0.15})
         else:
             # gan vo vao cell pending (clip-mute/black/hold/card)
             extra = dict(pending["extra"])
             if not extra.get("pause_after"):
-                extra["pause_after"] = 0.4
+                extra["pause_after"] = 0.15
             add_cell({"type": pending["type"], **extra, "vo": text})
             # pending da tieu thu: dong VO sau do phai tao cell card moi,
             # khong dung lai marker cu
@@ -176,6 +214,7 @@ def parse_script(path):
         m = MARKER_RE.match(line)
         if m:
             flush_vo()
+            flush_pending_silent()   # marker moi -> marker cu khong con cho VO
             marker = m.group(1)
             clean, opts = _strip_opts(marker)
             if clean.startswith("clip:"):
@@ -193,13 +232,13 @@ def parse_script(path):
                          "fx": opts["fx"], "low": opts["low"]}
                 _set_attribution(extra, cid)
                 pending = {"type": "clip-mute", "consumed": False, "extra": extra}
-            elif clean.startswith("stock:"):
-                kw = clean[len("stock:"):].strip()
-                kw = kw.strip('"').strip()
-                pending = {"type": "stock", "consumed": False,
-                           "extra": {"stock": kw, "music": opts["music"] or "in",
-                                     "pause_after": opts["pause_after"],
-                                     "fx": opts["fx"]}}
+            elif clean.startswith(("stock:", "wiki:")):
+                kw, ent = _parse_stock(clean)
+                extra = {"stock": kw, "music": opts["music"] or "in",
+                         "pause_after": opts["pause_after"], "fx": opts["fx"]}
+                if ent:
+                    extra["ent"] = ent
+                pending = {"type": "stock", "consumed": False, "extra": extra}
             elif clean.startswith("card:"):
                 body, kv = _parse_card(clean[len("card:"):])
                 cell = {"type": "card", "text": body, "src": kv.get("src", ""),
@@ -245,6 +284,7 @@ def parse_script(path):
         # dong text thuong -> VO
         vo_buf.append(line)
     flush_vo()
+    flush_pending_silent()
     if pending_sfx:
         # sfx treo cuoi script: bo qua (khong co cell de gan)
         print(f"  WARN {len(pending_sfx)} sfx treo cuoi script (khong co cell ke) — bo qua")
@@ -274,6 +314,13 @@ def build(video_root):
             cell["dur"] = None
         if "vo" in cell and "cap" not in cell:
             cell["cap"] = cell["vo"]
+        # Ky tu ngat nghi ('//', '///', '|', '^', '*') la lenh nhip cho TTS,
+        # khong phai chu. Giu nguyen trong "vo" (plan_units can chung), nhung
+        # boc khoi "cap" ngay tu day de config sach — assemble van boc mot lan
+        # nua, nhung moi duong khac doc "cap" thi khong phai nho.
+        if cell.get("cap"):
+            from tts import strip_marks
+            cell["cap"] = strip_marks(cell["cap"])
         cells_out.append(cell)
 
     cfg = {

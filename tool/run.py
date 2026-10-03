@@ -93,11 +93,16 @@ def cmd_sfx(root, refresh, only, list_only):
     print(f"SFX xong: {n} file tai")
 
 
-def cmd_tts(root, provider, edge_voice, rate, wpm):
+def cmd_tts(root, provider, edge_voice, rate, wpm, wpm_lo=None, wpm_hi=None):
     cfg = CFG.load(root)
     from tts import generate_for_case
     generate_for_case(root, cfg, provider=provider, edge_voice=edge_voice,
-                      rate=rate, target_wpm=wpm)
+                      rate=rate, target_wpm=wpm,
+                      # dai chap nhan mac dinh bam quanh target (+-8%) de doi
+                      # target sang style khac (vd 196 wpm kieu ke su) khong
+                      # con vuong dai cu 145-172.
+                      wpm_lo=wpm_lo if wpm_lo is not None else wpm * 0.92,
+                      wpm_hi=wpm_hi if wpm_hi is not None else wpm * 1.08)
 
 
 def cmd_music(root, dur):
@@ -186,7 +191,7 @@ def _warn_repeat_source(root):
             prev_vid = None
 
 
-def cmd_assemble(root, emit_only):
+def cmd_assemble(root, emit_only, loud=None):
     cfg = CFG.load(root)
     fps = cfg.get("fps", 24)
     rows, total, missing = AS.plan(root, cfg, strict=True)
@@ -195,24 +200,25 @@ def cmd_assemble(root, emit_only):
         AS.stage1_trim(rows, root, fps)
         AS.stage2_concat(rows, root, fps)
         AS.stage3_audio(rows, total, root, cfg)
-        AS.stage4_mux(root, cfg, total)
-        print("chay: source build/run_stage1.sh; stage2; stage3; stage4")
+        AS.stage4_mux(root, cfg, total, loud=loud)
+        print("chay: source build/run_stage1.sh; stage3; stage4")
         return
     print("stage 1: trim + caption ...")
     AS.stage1_trim(rows, root, fps)
     AS.run_script(root, "run_stage1.sh")
-    print("stage 2: concat (GOP 2s, no B-frame) ...")
+    # stage 2 chi con ghi danh sach lo (list.txt); stage 4 doc thang cac lo,
+    # khong con ban trim/video.mp4 day du nam giua.
     AS.stage2_concat(rows, root, fps)
-    AS.run_script(root, "run_stage2.sh")
     print("stage 3: audio ...")
     AS.stage3_audio(rows, total, root, cfg)
     AS.run_script(root, "run_stage3.sh")
-    print("stage 4: mux ...")
-    AS.stage4_mux(root, cfg, total)
+    print("stage 4: mux (noi lo + audio, chuan loudness mot lan) ...")
+    AS.stage4_mux(root, cfg, total, loud=loud)
     AS.run_script(root, "run_stage4.sh")
     out = CFG.resolve(root, cfg["out"])
     print("stage 5: decode check ...")
     AS.decode_check(root, out)
+    AS.finish_loud(out)
     print(f"DONE  {out}")
 
 
@@ -238,13 +244,20 @@ def main():
     ap.add_argument("--case", required=True)
     ap.add_argument("command", choices=["config", "fetch", "script2config", "render",
                                         "stock", "stock-usage", "sfx", "tts", "music",
-                                        "plan", "assemble", "sources", "search", "thumb"])
+                                        "plan", "assemble", "sources", "search", "thumb",
+                                        "wiki", "photo"])
     ap.add_argument("--dur", type=float, default=120.0)
-    ap.add_argument("--provider", choices=["elevenlabs", "edge"], default="edge")
+    ap.add_argument("--provider", choices=["elevenlabs", "edge", "vbee", "azure"],
+                    default="edge")
+    # --edge-voice cung dung lam voice_code cho provider vbee (xem tts.py).
     ap.add_argument("--edge-voice", default=None)
     # edge-tts o +0% doc ~168 wpm — nhanh hon muc 158 wpm cua video binh luan.
-    ap.add_argument("--rate", default="-5%")
+    ap.add_argument("--rate", default="-18%")
     ap.add_argument("--wpm", type=float, default=160.0)
+    ap.add_argument("--wpm-lo", type=float, default=None, dest="wpm_lo",
+                    help="nguong duoi chap nhan (mac dinh --wpm * 0.92)")
+    ap.add_argument("--wpm-hi", type=float, default=None, dest="wpm_hi",
+                    help="nguong tren chap nhan (mac dinh --wpm * 1.08)")
     ap.add_argument("--emit-only", action="store_true")
     ap.add_argument("--only", type=int, nargs="*")
     ap.add_argument("--force", action="store_true")
@@ -262,6 +275,13 @@ def main():
                     help="stock --prune: xoa file stock trung noi dung (dry-run)")
     ap.add_argument("--prune-yes", action="store_true",
                     help="stock --prune --prune-yes: xoa that")
+    ap.add_argument("--per", type=int, default=6,
+                    help="wiki/photo: so shot (anh) tao cho moi keyword")
+    # assemble: dich loudness cua kenh (steps truyen tu queue.yml). Bo trong
+    # -> -14 LUFS nhu cu.
+    ap.add_argument("--lufs", type=float, default=None)
+    ap.add_argument("--lra", type=float, default=3.0)
+    ap.add_argument("--tp", type=float, default=-2.5)
     args = ap.parse_args()
 
     root = case_root(args.case)
@@ -275,18 +295,28 @@ def main():
         cmd_render(root, args.only)
     elif args.command == "stock":
         cmd_stock(root, args.all, args.prune, args.prune_yes)
+    elif args.command == "wiki":
+        import wiki_images
+        wiki_images.fetch_all(root, per=args.per, force=args.force)
+    elif args.command == "photo":
+        import stock_photo
+        stock_photo.fetch_all(root, per=args.per, force=args.force)
     elif args.command == "stock-usage":
         cmd_stock_usage(root)
     elif args.command == "sfx":
         cmd_sfx(root, args.refresh, args.sfx_only, args.list_sfx)
     elif args.command == "tts":
-        cmd_tts(root, args.provider, args.edge_voice, args.rate, args.wpm)
+        cmd_tts(root, args.provider, args.edge_voice, args.rate, args.wpm,
+                args.wpm_lo, args.wpm_hi)
     elif args.command == "music":
         cmd_music(root, args.dur)
     elif args.command == "plan":
         cmd_plan(root)
     elif args.command == "assemble":
-        cmd_assemble(root, args.emit_only)
+        loud = None
+        if args.lufs is not None:
+            loud = {"I": args.lufs, "LRA": args.lra, "TP": args.tp}
+        cmd_assemble(root, args.emit_only, loud=loud)
     elif args.command == "sources":
         cmd_sources(root)
     elif args.command == "search":

@@ -1,0 +1,717 @@
+{
+  "nhan_vat_chinh": {
+    "vi": "Càn Long",
+    "en": "Qianlong Emperor",
+    "goi_khac": [
+      "Hoằng Lịch",
+      "Thanh Cao Tông",
+      "Càn Long Đế",
+      "Văn Thù Hoàng Đế",
+      "Bảo Thân vương",
+      "Thái thượng hoàng",
+      "Nguyên Thọ"
+    ]
+  },
+  "the": [
+    {
+      "vi": "Khang Hi",
+      "en": "Kangxi Emperor",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "Ung Chính",
+      "en": "Yongzheng Emperor",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "Gia Khánh",
+      "en": "Jiaqing Emperor",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "Hòa Thân",
+      "en": "Heshen",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "Vu Mẫn Trung",
+      "en": "Yu Minzhong",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "Minh Thụy",
+      "en": "Mingrui",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "Lê Chiêu Thống",
+      "en": "Lê Chiêu Thống",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "Nguyễn Huệ",
+      "en": "Quang Trung",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "George Macartney",
+      "en": "George Macartney, 1st Earl Macartney",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "vua George III",
+      "en": "George III",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "Isaac Titsingh",
+      "en": "Isaac Titsingh",
+      "loai": "nguoi",
+      "hop_le": true
+    },
+    {
+      "vi": "cung Càn Thanh",
+      "en": "Palace of Heavenly Purity",
+      "loai": "dia_danh",
+      "hop_le": true
+    },
+    {
+      "vi": "Viên Minh Viên",
+      "en": "Old Summer Palace",
+      "loai": "dia_danh",
+      "hop_le": true
+    },
+    {
+      "vi": "Ninh Thọ cung",
+      "en": "Palace of Tranquil Longevity",
+      "loai": "dia_danh",
+      "hop_le": true
+    },
+    {
+      "vi": "Tân Cương",
+      "en": "Xinjiang",
+      "loai": "dia_danh",
+      "hop_le": true
+    },
+    {
+      "vi": "vụ mưu phản của Hoằng Hi",
+      "en": "Coup of Hongxi",
+      "loai": "su_kien",
+      "hop_le": true
+    },
+    {
+      "vi": "cuộc diệt chủng Chuẩn Cát Nhĩ",
+      "en": "Dzungar genocide",
+      "loai": "su_kien",
+      "hop_le": true
+    },
+    {
+      "vi": "Thập toàn võ công",
+      "en": "Ten Great Campaigns",
+      "loai": "su_kien",
+      "hop_le": true
+    },
+    {
+      "vi": "chiến tranh Thanh – Miến",
+      "en": "Sino-Burmese War",
+      "loai": "su_kien",
+      "hop_le": true
+    },
+    {
+      "vi": "văn tự ngục",
+      "en": "Literary inquisition",
+      "loai": "su_kien",
+      "hop_le": true
+    },
+    {
+      "vi": "phái đoàn Macartney",
+      "en": "Macartney Embassy",
+      "loai": "su_kien",
+      "hop_le": true
+    },
+    {
+      "vi": "khởi nghĩa Bạch Liên giáo",
+      "en": "White Lotus Rebellion",
+      "loai": "su_kien",
+      "hop_le": true
+    },
+    {
+      "vi": "Tứ khố toàn thư",
+      "en": "Siku Quanshu",
+      "loai": "hien_vat",
+      "hop_le": true
+    },
+    {
+      "vi": "bộ tranh Bốn tuấn mã Afghanistan",
+      "en": "Four Afghan Steeds",
+      "loai": "hien_vat",
+      "hop_le": true
+    },
+    {
+      "vi": "chế độ Quảng Châu nhất khẩu thông thương",
+      "en": "Canton System",
+      "loai": "to_chuc",
+      "hop_le": true
+    }
+  ],
+  "facts": [
+    {
+      "id": "F01",
+      "nam": "1711",
+      "noi_dung": "Hoằng Lịch chào đời lúc nửa đêm ngày 25 tháng 9 năm 1711 (13 tháng 8 âm lịch) tại Đông thư viện trong phủ Ung Thân vương, tên lúc nhỏ là Nguyên Thọ. Ông là con của Ung Thân vương, tức hoàng đế Ung Chính sau này.",
+      "the": [
+        "Qianlong Emperor",
+        "Yongzheng Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F02",
+      "nam": "1711",
+      "noi_dung": "Dã sử kể rằng Càn Long thực ra là con trai nhà họ Trần ở Hải Ninh (Trần Thế Quán), bị đánh tráo vào phủ Ung Thân vương. Một thuyết khác cho rằng mẹ ruột ông là cung nữ Lý Kim Quế. Wikipedia tiếng Việt đánh giá cả hai thuyết đều 'cực kỳ đáng nghi' về mặt sử liệu, nhưng chúng lại thành chất liệu cho Thư kiếm ân cừu lục của Kim Dung, cho phim Hậu cung Chân Hoàn truyện và Như Ý truyện.",
+      "the": [
+        "Qianlong Emperor",
+        "Yongzheng Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F03",
+      "nam": "1721",
+      "noi_dung": "Năm 1721, Khang Hi nghe tin người cháu Hoằng Lịch rất thông minh nên cho gọi vào gặp, rồi giữ lại trong cung để học và đưa theo lên hành cung Nhiệt Hà. Lúc ấy Hoằng Lịch mới 10 tuổi.",
+      "the": [
+        "Kangxi Emperor",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F04",
+      "nam": "1723",
+      "noi_dung": "Tháng 8 năm 1723, Ung Chính viết sẵn tên người kế vị là Hoằng Lịch, cho vào một chiếc hộp niêm phong đặt sau tấm biển 'Chính đại quang minh' phía trên ngai vàng ở cung Càn Thanh. Hộp chỉ được mở sau khi hoàng đế băng hà. Một số sử gia còn cho rằng Khang Hi chọn Ung Chính kế vị chủ yếu vì Hoằng Lịch là cháu ông yêu quý nhất.",
+      "the": [
+        "Yongzheng Emperor",
+        "Palace of Heavenly Purity",
+        "Kangxi Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F05",
+      "nam": "1733",
+      "noi_dung": "Năm 1733, Hoằng Lịch được phong Bảo Thân vương và được cho dự bàn hai việc lớn nhất của triều đình lúc bấy giờ: đánh Hãn quốc Chuẩn Cát Nhĩ và dẹp người Miêu ở Quý Châu.",
+      "the": [
+        "Qianlong Emperor",
+        "Yongzheng Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F06",
+      "nam": "1735",
+      "noi_dung": "Năm 1735, Ung Chính đột ngột qua đời. Di chiếu được mang ra đọc trước toàn triều, và Hoằng Lịch lên ngôi ở điện Thái Hòa, đặt niên hiệu Càn Long, nghĩa là 'hưng thịnh lâu dài'.",
+      "the": [
+        "Yongzheng Emperor",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F07",
+      "nam": "1735–1736",
+      "noi_dung": "Vừa lên ngôi, Càn Long lập tức sai quân đàn áp cuộc khởi nghĩa của người Miêu.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F08",
+      "nam": "1735",
+      "noi_dung": "Càn Long bỏ lối cai trị hà khắc của Ung Chính. Ông thả những người trong tông thất bị giam, cho các văn sĩ vô tội từng bị đày ra biên giới làm nô lệ được về quê. Ông cũng cấm hoạn quan học chữ và dẹp Nội thư đường, nơi hoạn quan học đọc sách.",
+      "the": [
+        "Qianlong Emperor",
+        "Yongzheng Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F09",
+      "nam": "1735",
+      "noi_dung": "Khi Càn Long bắt đầu trị vì, ngân khố nhà Thanh thặng dư khoảng 33,95 triệu lạng bạc.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F10",
+      "nam": "1739",
+      "noi_dung": "Năm 1739, hoàng thân Hoằng Hi (con của phế thái tử Dận Nhưng) cùng năm vị hoàng thân khác mưu lật đổ Càn Long ngay trong cuộc săn ở bãi săn Mộc Lan, nhưng bị Hoằng Phổ tố giác. Đến năm 1783, Càn Long ra lệnh cho sử quan phải nhấn mạnh vai trò của hoàng đế trong việc dẹp vụ này.",
+      "the": [
+        "Coup of Hongxi",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F11",
+      "nam": "1744",
+      "noi_dung": "Năm 1744, Càn Long biến Ung Hòa Cung thành chùa Phật giáo Tây Tạng dành cho người Mông Cổ. Ông còn đặt vẽ một bức thangka thể hiện chính mình là Văn Thù Bồ Tát, vị bồ tát của trí tuệ.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F12",
+      "nam": "1749–1800",
+      "noi_dung": "Trước tác của Càn Long được in thành mười đợt trong khoảng 1749–1800, gồm hơn 40.000 bài thơ và 1.300 bài văn xuôi. Nếu tự tay viết hết, ông sẽ thuộc hàng những người viết nhiều nhất mọi thời đại.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F13",
+      "nam": "1751",
+      "noi_dung": "Sau vụ bạo loạn ở Lhasa năm 1750, ngày 23 tháng 1 năm 1751 tướng Mãn Châu Bandi xử lăng trì bảy thủ lĩnh nổi dậy người Tây Tạng. Những người còn lại bị treo cổ hoặc chém đầu, đầu bị cắm lên cọc cho dân chúng xem, và Bandi gửi báo cáo chi tiết về cho Càn Long.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F14",
+      "nam": "1755",
+      "noi_dung": "Năm 1755, Càn Long bác bỏ quan niệm rằng chỉ người Hán và đất Hán mới là 'Trung Quốc'. Ông tuyên bố quan niệm đó thuộc về các triều Hán, Đường, Tống, Minh, 'không phải cách hiểu của triều đại chúng ta'.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F15",
+      "nam": "1757",
+      "noi_dung": "Công ty Đông Ấn Anh chuyển dần việc buôn bán lên Ninh Ba vì giá và thuế ở đó rẻ hơn Quảng Châu. Càn Long tăng phí để ngăn nhưng không được, nên mùa đông năm 1757 ông tuyên bố từ năm sau Quảng Châu là cảng duy nhất cho thương nhân nước ngoài. Từ đó hình thành chế độ Quảng Châu nhất khẩu thông thương.",
+      "the": [
+        "Canton System",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F16",
+      "nam": "",
+      "noi_dung": "Sau khi đánh bại Hãn quốc Chuẩn Cát Nhĩ, Càn Long ra lệnh diệt chủng người Chuẩn Cát Nhĩ. Theo học giả Ngụy Nguyên, trong số 600.000 người Chuẩn Cát Nhĩ có 40% chết vì đậu mùa, 20% chạy sang Nga hoặc sang các bộ lạc Kazakh, và 30% bị quân Thanh giết. Sử gia Peter Perdue cho rằng đây là một chính sách diệt chủng có chủ đích.",
+      "the": [
+        "Dzungar genocide",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F17",
+      "nam": "",
+      "noi_dung": "Chuẩn Cát Nhĩ và lòng chảo Tarim bị sáp nhập, đổi tên thành Tân Cương. Qua Thập toàn võ công, lãnh thổ nhà Thanh mở rộng tới khoảng 14,7 triệu km², trong khi Trung Quốc ngày nay rộng khoảng 9,6 triệu km². Diện tích đế quốc gần như tăng gấp đôi.",
+      "the": [
+        "Xinjiang",
+        "Ten Great Campaigns",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F18",
+      "nam": "1763",
+      "noi_dung": "Năm 1763, Ahmad Shah Durrani của Afghanistan cử sứ đến Bắc Kinh, tặng Càn Long bốn con ngựa quý. Họa sĩ cung đình Giuseppe Castiglione vẽ chúng thành bộ tranh Bốn tuấn mã Afghanistan. Chánh sứ Khwaja Mirhan ban đầu từ chối quỳ lạy khấu đầu, khiến quan lại nhà Thanh sững sờ.",
+      "the": [
+        "Four Afghan Steeds",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F19",
+      "nam": "1765–1767",
+      "noi_dung": "Càn Long tin sẽ thắng dễ dàng trước một 'bộ lạc man di' nên chỉ gửi quân Lục doanh đóng ở Vân Nam sang đánh Miến Điện. Cả hai cuộc xâm lược 1765–66 và 1766–67 đều bị quân Miến đánh bại ngay ở vùng biên giới.",
+      "the": [
+        "Sino-Burmese War",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F20",
+      "nam": "1768",
+      "noi_dung": "Năm 1768, chủ tướng Minh Thụy thua trận Maymyo. Càn Long ra lệnh xử lăng trì tướng Mãn Châu Eledeng'e vì ông này không đến được điểm hẹn để hỗ trợ cánh quân của Minh Thụy.",
+      "the": [
+        "Mingrui",
+        "Sino-Burmese War",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F21",
+      "nam": "1769–1790",
+      "noi_dung": "Tháng 12 năm 1769, quân Thanh bị bao vây hoàn toàn và phải ký ngừng bắn với Miến Điện. Nhà Thanh sau đó cấm buôn bán qua biên giới suốt hai thập kỷ. Năm 1790, khi hai nước nối lại bang giao, triều Thanh tự coi đó là Miến Điện thần phục và tuyên bố mình thắng.",
+      "the": [
+        "Sino-Burmese War",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F22",
+      "nam": "1771–1776",
+      "noi_dung": "Năm 1771, Càn Long cho xây Ninh Thọ cung (còn gọi là vườn Càn Long), một khu biệt cung rộng hai mẫu Anh trong Tử Cấm Thành để về hưu. Công trình hoàn thành năm 1776, trong đó có thư phòng Quyện Cần Trai, nghĩa là 'thư phòng mệt mỏi vì chuyên cần phục vụ'. Nhưng ông chưa bao giờ dọn vào ở.",
+      "the": [
+        "Palace of Tranquil Longevity",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F23",
+      "nam": "",
+      "noi_dung": "Càn Long mở rộng Viên Minh Viên lên 350 ha, rộng gấp năm lần Tử Cấm Thành. Ông thuê Giuseppe Castiglione xây Tây Dương Lâu kiểu châu Âu và nhờ Michel Benoist làm hệ thống đài phun nước có máy móc ngầm. Để mừng thọ 60 tuổi của mẹ, ông còn cho nạo vét hồ Côn Minh.",
+      "the": [
+        "Old Summer Palace",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F24",
+      "nam": "",
+      "noi_dung": "Để có đồ sưu tầm, Càn Long đôi khi ép các quan giàu 'tặng' vật quý để đổi lấy việc bỏ qua sai sót trong công việc của họ. Có lần ông bảo rằng một bức tranh chỉ an toàn khỏi trộm và hỏa hoạn nếu được đưa vào Tử Cấm Thành. Hầu hết vài nghìn món ngọc trong bộ sưu tập hoàng gia có từ thời ông.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F25",
+      "nam": "1773–1782",
+      "noi_dung": "Càn Long giao cho 361 học giả, đứng đầu là Kỷ Quân và Lục Tích Hùng, biên soạn Tứ khố toàn thư. Bộ sách gồm 36.381 quyển, khoảng 2,3 triệu trang và 800 triệu chữ, với tới 15.000 người chép tay.",
+      "the": [
+        "Siku Quanshu",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F26",
+      "nam": "1773–1782",
+      "noi_dung": "Trong khoảng mười năm biên soạn Tứ khố toàn thư, có 2.300 tác phẩm bị liệt vào danh sách cấm toàn bộ và 350 tác phẩm bị cấm một phần. Tổng cộng 3.100 đầu sách, tức khoảng 150.000 bản, bị đốt hoặc cấm lưu hành, trong đó sách in thời Minh chịu thiệt hại nặng nhất.",
+      "the": [
+        "Siku Quanshu",
+        "Literary inquisition"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F27",
+      "nam": "",
+      "noi_dung": "Dưới thời Càn Long có 53 vụ văn tự ngục. Chỉ cần một chữ hay một câu bị coi là xúc phạm triều đình là nạn nhân có thể bị chém đầu, xử lăng trì, hoặc bị băm xác nếu đã chết.",
+      "the": [
+        "Literary inquisition",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F28",
+      "nam": "khoảng 1775",
+      "noi_dung": "Vào lúc đỉnh cao, khoảng năm 1775, dù đã giảm thuế thêm, ngân khố vẫn thặng dư 73,9 triệu lạng bạc. Đó là kỷ lục mà cả Khang Hi lẫn Ung Chính chưa từng đạt được.",
+      "the": [
+        "Qianlong Emperor",
+        "Kangxi Emperor",
+        "Yongzheng Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F29",
+      "nam": "1776",
+      "noi_dung": "Chiến dịch đánh người miền núi Kim Xuyên kéo dài 2–3 năm. Ban đầu quân Thanh bị đánh tơi tả, về sau Nhạc Chung Kỳ, hậu duệ của Nhạc Phi, mới xoay chuyển được tình hình. Năm 1776, người Tây Tạng ở Kim Xuyên bị tiêu diệt.",
+      "the": [
+        "Ten Great Campaigns",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F30",
+      "nam": "1784",
+      "noi_dung": "Năm 1784, hơn 1.000 phụ nữ và trẻ em người Hồi thuộc dòng Jahriyya ở đông Cam Túc bị tướng Lý Thị Nghiêu thảm sát. Càn Long hỏi quan lại vì sao người Hồi ở nhiều vùng lại cùng nổi dậy, rồi tự gạt từng giả thuyết một và cứ hỏi mãi 'tại sao'.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F31",
+      "nam": "",
+      "noi_dung": "Những năm cuối đời, Càn Long tin dùng các quan tham như Vu Mẫn Trung và Hòa Thân. Việc cai trị hằng ngày được giao hết cho Hòa Thân, còn hoàng đế đắm mình trong nghệ thuật, xa hoa và văn chương.",
+      "the": [
+        "Heshen",
+        "Yu Minzhong",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F32",
+      "nam": "1788",
+      "noi_dung": "Tháng 5 năm 1788, Lê Chiêu Thống sang Long Châu cầu viện. Cuối năm đó, Càn Long sai Tổng đốc Lưỡng Quảng Tôn Sĩ Nghị dẫn hơn 29 vạn quân sang Đại Việt với danh nghĩa 'phù Lê diệt Tây Sơn', và quân Thanh dễ dàng chiếm Thăng Long.",
+      "the": [
+        "Lê Chiêu Thống",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F33",
+      "nam": "1789",
+      "noi_dung": "Chỉ trong 6 ngày kể từ đêm 30 Tết, quân Tây Sơn của Quang Trung Nguyễn Huệ đánh tan 29 vạn quân Thanh, và trưa mồng 5 Tết Kỷ Dậu thì tiến vào Thăng Long. Càn Long chấp nhận giảng hòa, và nhà Thanh không can thiệp vào Việt Nam trong 90 năm sau đó.",
+      "the": [
+        "Quang Trung",
+        "Lê Chiêu Thống",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F34",
+      "nam": "1791",
+      "noi_dung": "Năm 1791, người Gurkha (Nepal) tràn vào Tây Tạng, và Càn Long phái Phúc Khang An cùng Hải Lan Sát đem quân đánh đuổi. Wikipedia tiếng Anh ghi rằng các chiến dịch đánh Nepal kết thúc trong thế giằng co, hai bên đều phải nhượng bộ.",
+      "the": [
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F35",
+      "nam": "1793",
+      "noi_dung": "Năm 1793, vua George III cử phái đoàn lớn do nhà ngoại giao George Macartney dẫn đầu sang Bắc Kinh để xin mở rộng thương mại. Hàng mẫu người Anh mang theo để chào bán bị triều Thanh hiểu nhầm thành đồ triều cống, lại còn bị chê là kém chất lượng.",
+      "the": [
+        "Macartney Embassy",
+        "George III",
+        "George Macartney, 1st Earl Macartney"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F36",
+      "nam": "1793",
+      "noi_dung": "Macartney được Càn Long tiếp kiến trong hai ngày, ngày thứ hai trùng sinh nhật 82 tuổi của hoàng đế. Macartney viết rằng ông đã cự tuyệt đòi hỏi quỳ lạy khấu đầu, nhưng các ghi chép của triều Thanh và của phía Anh khác nhau, nên đến nay vẫn còn tranh cãi.",
+      "the": [
+        "Macartney Embassy",
+        "George Macartney, 1st Earl Macartney",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F37",
+      "nam": "1793",
+      "noi_dung": "Một người hầu trong phái đoàn Anh tả Càn Long lúc về già: cao khoảng 5 feet 10 inch, dáng mảnh nhưng thanh lịch, mắt đen, mũi hơi khoằm, mặc áo lụa vàng rộng, đội mũ nhung đen có quả cầu đỏ và lông công, đi hài lụa thêu vàng. Người này nhận xét gương mặt ông 'không hề cho thấy tuổi tác cao như người ta nói'.",
+      "the": [
+        "Macartney Embassy",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F38",
+      "nam": "1793",
+      "noi_dung": "Càn Long trao cho Macartney một bức thư gửi vua Anh, giải thích lý do bác mọi yêu cầu. Bức thư không được công chúng biết đến cho tới khi được dịch năm 1914, rồi về sau bị coi là biểu tượng cho việc Trung Quốc khước từ hiện đại hóa. Tuy vậy, các tư liệu lưu trữ công bố từ thập niên 1990 cho thấy triều đình Càn Long là những người 'làm chính trị khôn khéo và có năng lực'.",
+      "the": [
+        "Macartney Embassy",
+        "George III",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F39",
+      "nam": "",
+      "noi_dung": "Trong hồi ký, Macartney ví Đế quốc Trung Hoa như một chiến hạm hạng nhất cũ kỹ, xộc xệch, chỉ nhờ một chuỗi sĩ quan tài giỏi mà nổi được suốt 150 năm. Theo ông, hễ một kẻ bất tài cầm lái thì kỷ luật và sự an toàn của con tàu sẽ tan biến; nó có thể trôi dạt như xác tàu rồi vỡ nát vào bờ, và 'không bao giờ đóng lại được trên cái sống tàu cũ'.",
+      "the": [
+        "George Macartney, 1st Earl Macartney",
+        "Macartney Embassy"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F40",
+      "nam": "1795",
+      "noi_dung": "Trong hai năm 1794–95, Isaac Titsingh dẫn sứ đoàn Hà Lan đến Bắc Kinh mừng Càn Long tròn 60 năm trị vì. Khác với Macartney, Titsingh chịu quỳ lạy khấu đầu và được đón tiếp nồng hậu. Đây là lần cuối cùng người châu Âu ra mắt triều Thanh theo nghi lễ bang giao truyền thống.",
+      "the": [
+        "Isaac Titsingh",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F41",
+      "nam": "1795",
+      "noi_dung": "Tháng 10 năm 1795, Càn Long tuyên bố sẽ thoái vị vào mùa xuân năm sau, khi đã 85 tuổi. Tương truyền năm lên ngôi ông đã hứa không trị vì lâu hơn ông nội Khang Hi, người ở ngôi 61 năm.",
+      "the": [
+        "Qianlong Emperor",
+        "Kangxi Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F42",
+      "nam": "1796–1799",
+      "noi_dung": "Năm 1796, Càn Long nhường ngôi cho con trai thứ 15 là Vĩnh Diễm, tức Gia Khánh, và lên làm Thái thượng hoàng. Nhưng ông vẫn nắm quyền, sử gọi là 'Huấn chính', còn Gia Khánh chỉ là vua trên danh nghĩa.",
+      "the": [
+        "Jiaqing Emperor",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://vi.wikipedia.org/wiki/C%C3%A0n_Long"
+    },
+    {
+      "id": "F43",
+      "nam": "",
+      "noi_dung": "Cuối triều Càn Long, tướng lĩnh sống an nhàn, không còn luyện quân, khiến quân đội suy yếu nhanh. Đây là lý do chính khiến quân Thanh không dẹp nổi khởi nghĩa Bạch Liên giáo, cuộc khởi nghĩa nổ ra cuối triều Càn Long và kéo dài sang thời Gia Khánh.",
+      "the": [
+        "White Lotus Rebellion",
+        "Jiaqing Emperor",
+        "Qianlong Emperor"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F44",
+      "nam": "1799",
+      "noi_dung": "Càn Long mất ngày 7 tháng 2 năm 1799, thọ 88 tuổi theo Wikipedia tiếng Việt (tiếng Anh ghi 87). Ngay sau đó Gia Khánh xử tử Hòa Thân, và triều đình phát hiện tài sản của Hòa Thân lên tới 900 triệu lạng bạc, nhiều hơn cả ngân khố đã cạn của nhà Thanh và bằng tổng thặng dư ngân khố của 12 năm.",
+      "the": [
+        "Qianlong Emperor",
+        "Jiaqing Emperor",
+        "Heshen"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    },
+    {
+      "id": "F45",
+      "nam": "",
+      "noi_dung": "Tham nhũng kéo dài, các chuyến tuần du phương Nam, việc xây cung điện, các cuộc chiến và dẹp loạn, cộng với lối sống xa hoa của chính Càn Long, đã tiêu tốn của ngân khố tổng cộng 150,2 triệu lạng bạc.",
+      "the": [
+        "Qianlong Emperor",
+        "Heshen"
+      ],
+      "nguon": "https://en.wikipedia.org/wiki/Qianlong_Emperor"
+    }
+  ],
+  "dan_y": {
+    "tieu_de": "CÀN LONG: 60 NĂM ĐỈNH CAO VÀ CÁI GIÁ PHẢI TRẢ",
+    "cau_hoi_trung_tam": "Vì sao chính vị hoàng đế đưa nhà Thanh lên đỉnh cao nhất lại là người gieo mầm cho sự suy tàn của nó?",
+    "phan": [
+      {
+        "loai": "hook",
+        "ten": "",
+        "cau_hoi": "Càn Long mà ta biết qua phim cung đấu khác gì với ông vua đã để lại kho vàng 900 triệu lạng trong tay một viên quan tham?",
+        "facts": [
+          "F02",
+          "F12",
+          "F44",
+          "F39"
+        ],
+        "nhan_vat": [
+          "Qianlong Emperor",
+          "Heshen",
+          "George Macartney, 1st Earl Macartney"
+        ],
+        "y_chinh": "Khán giả thường biết Càn Long qua dã sử đánh tráo và phim Như Ý truyện, hoặc như một ông vua làm hơn 40.000 bài thơ. Nhưng ông chết chưa bao lâu thì kho vàng 900 triệu lạng của Hòa Thân lộ ra, và sứ thần Anh đã ví đế quốc của ông như một chiến hạm cũ kỹ đang trôi dạt.",
+        "am_tiet": 149
+      },
+      {
+        "loai": "chuong",
+        "ten": "Ông vua sinh ra để thắng",
+        "cau_hoi": "Cậu bé 10 tuổi được Khang Hi để mắt đã leo lên ngai vàng và đẩy nhà Thanh lên đỉnh cao bằng cách nào?",
+        "facts": [
+          "F03",
+          "F04",
+          "F06",
+          "F08",
+          "F09",
+          "F10",
+          "F16",
+          "F17"
+        ],
+        "nhan_vat": [
+          "Kangxi Emperor",
+          "Palace of Heavenly Purity",
+          "Dzungar genocide",
+          "Xinjiang"
+        ],
+        "y_chinh": "Chương kể từ lúc Khang Hi đưa cháu vào cung, qua chiếc hộp niêm phong sau biển 'Chính đại quang minh', những chính sách khoan dung đầu triều và vụ mưu phản năm 1739, đến chuyện đánh chiếm Tân Cương. Chương kết ở lãnh thổ 14,7 triệu km², và cái giá đầu tiên là cả một dân tộc Chuẩn Cát Nhĩ bị xóa sổ.",
+        "am_tiet": 698
+      },
+      {
+        "loai": "chuong",
+        "ten": "Chiến công dát vàng, thất bại giấu kín",
+        "cau_hoi": "Những năm cuối triều, Càn Long thắng thật hay chỉ tuyên bố là mình thắng?",
+        "facts": [
+          "F20",
+          "F21",
+          "F26",
+          "F31",
+          "F33",
+          "F36",
+          "F38",
+          "F44"
+        ],
+        "nhan_vat": [
+          "Heshen",
+          "Quang Trung",
+          "George Macartney, 1st Earl Macartney",
+          "Macartney Embassy"
+        ],
+        "y_chinh": "Chương kể chuỗi thất bại được sơn lại thành chiến thắng: thua ở Miến Điện rồi tuyên bố thắng, đốt 3.100 đầu sách, giao việc nước cho Hòa Thân, 29 vạn quân tan trong 6 ngày Tết trước Quang Trung, rồi khép cửa trước phái đoàn Macartney. Chương kết ở cái chết năm 1799 và kho của Hòa Thân lớn hơn cả ngân khố quốc gia.",
+        "am_tiet": 698
+      },
+      {
+        "loai": "chuong",
+        "ten": "Con tàu mục dưới lớp sơn vàng",
+        "cau_hoi": "Vì sao chính 60 năm cực thịnh lại gieo mầm cho sự suy tàn của nhà Thanh?",
+        "facts": [
+          "F15",
+          "F24",
+          "F27",
+          "F28",
+          "F29",
+          "F39",
+          "F43",
+          "F45"
+        ],
+        "nhan_vat": [
+          "Heshen",
+          "Canton System",
+          "Literary inquisition",
+          "White Lotus Rebellion"
+        ],
+        "y_chinh": "Chương phân tích nguyên nhân. Về khách quan: chiến tranh liên miên làm cạn tiền và mòn quân, từ Kim Xuyên đến Bạch Liên giáo. Về chủ quan: sự tự mãn, lối sống xa hoa, thói ép quan 'tặng' đồ quý, việc bịt miệng giới chữ nghĩa và đóng cửa chỉ còn cảng Quảng Châu, khiến ngân khố từ thặng dư 73,9 triệu lạng bị tiêu tốn 150,2 triệu. Chương kết bằng lời tiên tri về con tàu của Macartney.",
+        "am_tiet": 698
+      }
+    ]
+  },
+  "_khoa": "4194c4efc964",
+  "_wiki_vi": "Càn Long",
+  "dang": "nhan-vat"
+}

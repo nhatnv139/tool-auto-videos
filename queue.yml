@@ -1,0 +1,159 @@
+# queue.yml — danh sach video muon lam.
+#
+# Chay:  python auto\runner.py            (lam het muc chua xong)
+#        python auto\runner.py --list     (xem trang thai)
+#        lam-di.cmd                       (nhu tren, tu chay lai neu dut)
+#
+# File nay CHI BAN sua. Runner khong bao gio ghi de len no —
+# trang thai nam o auto\state\<slug>.json.
+
+defaults:
+  do_dai: 20                # PHUT VIDEO mong muon
+  wpm: 196                  # toc do DOC (am tiet/phut khi dang noi) -> buoc tts
+  am_tiet_phut_video: 187   # do thuc 13/09/2026 tren CA BA video 20 phut vua ra:
+                            #   2649/14.31 = 185 | 2721/14.72 = 185 | 2631/13.74 = 191
+                            #   Ban cu de 130 -> dat 20 phut chi ra 14 phut, ma
+                            #   check_script van cham "du dai" nen khong ai bat duoc.
+  provider: vbee            # vbee | azure | edge
+  voice: hn_male_phuthang_stor_24k-stl  # "Anh Khoi nang cao (Beta)" — giong nam
+                            # Ha Noi, kieu ke chuyen (stor), VBEE, 2 credit/ky tu
+                            # (re hon manhdung_full_24k-st von 3 credit).
+  rate: "-25%"              # DO THAT 26/09/2026 tren chinh giong nay, mau 35 am
+                            # tiet, do rieng thoi gian DANG NOI (tru im lang):
+                            #   1.10 -> 379 | 1.00 -> 297 | 0.90 -> 286
+                            #   0.82 -> 279 | 0.75 -> 276 | 0.70 -> 275 | 0.60 -> 275
+                            # BAO HOA o 275: cham hon nua khong duoc. Manh Dung
+                            # xuong duoc 249, giong nay thi khong. Trong vung
+                            # 0.6-0.9 no gan nhu tro voi speed_rate (lech 4%),
+                            # nen don bay nhip that su la `nhip`, khong phai rate.
+                            # -25% = 0.75, sat day ma khong phi.
+  anh: photo,stock          # ghep nhieu nguon bang dau phay
+                            # bg    = MOT anh nen duy nhat cho ca video (nhe, nhanh)
+                            # wiki  = anh tu lieu Wikimedia (nang, lau, khong can key)
+                            # photo = anh Unsplash/Pexels/Pixabay -> Ken Burns (can key)
+                            # stock = video Pexels/Pixabay/Coverr (can key)
+                            # mix   = wiki,photo | full = wiki,photo,stock (bi danh)
+  # anh_per: 3              # so anh Wikimedia moi keyword
+  # anh_photo_per: 3        # so anh stock moi keyword (mac dinh = anh_per)
+  duyet: auto               # auto = viet xong dung luon | tay = dung cho nguoi duyet
+
+videos:
+  - slug: t10-ong-cong-ong-tao
+    de_tai: "Vi sao ong Cong ong Tao ve troi bang ca chep"
+    goc_nhin: "Ca chep la con vat duy nhat trong tich cu di duoc tu nuoc len troi"
+    do_dai: 0.17            # ~10 giay
+
+  - slug: t10-kieng-quet-nha
+    de_tai: "Vi sao kieng quet nha mung Mot Tet"
+    goc_nhin: "Khong phai kieng ban, la kieng quet mat than Tai vua moi vao nha"
+    do_dai: 0.17            # ~10 giay
+
+  # --- loat nhan vat lich su Trung Hoa ---
+  # dang: nhan-vat  -> dung skill su-nhan-vat (cong thuc do tu kenh BattleCry):
+  #   canh truoc ho so sau, hook tuyen bo nguoi xem sai, chuong 4-5 phut co ten,
+  #   >= 4 con so that moi phut, chao lai giua video, ket bang chuong phan tich.
+
+
+  - slug: vo-tac-thien-bia-khong-chu
+    dang: nhan-vat
+    de_tai: "Cuoc doi Vo Tac Thien - tu tai nhan 14 tuoi den hoang de duy nhat cua Trung Hoa"
+    goc_nhin: "Nguoi ta nho ba nhu mot nguoi dan ba tan nhan. Nhung vu khi ba dung suot doi khong phai guom ma la CHU: sua su, dat lai nien hieu, che ca chu moi, kiem soat moi dong viet ve minh. Va ket thuc bang mot tam bia de trang - cho duy nhat ba khong cho ai viet gi"
+    do_dai: 20
+    # Script viet tay theo skill su-nhan-vat, da qua check_script:
+    #   4746 am tiet | 21,3 phut | 73 marker hinh (17,5s/anh) | 5 chuong
+    #   4 nhan vat co ten | 7,0 con so that moi phut (spec doi >= 4)
+    # Ban sao de doi chieu: D:\dev\content\vo-tac-thien-ban-viet-tay\
+    no_ai: true               # dung script/script.md co san, KHONG goi claude viet lai
+    duyet: auto
+    timeout_script: 5400      # han-cao-to-luu-bang chet vi het 2400s o buoc nay.
+                              # De san cho lan sau neu quay lai cho AI tu viet.
+    am_tiet_phut_video: 223   # spec BattleCry: 223 am tiet moi phut VIDEO
+    wpm: 223
+    nhip: 0.43                # 1.0 = 24% im lang -> 0.43 ~ 10,4%
+    # --- TAM THOI 25/09/2026: Vbee DOWN (504 Gateway Timeout, 30s moi lan goi,
+    # het ca 5 vong thu lai). Chuyen sang Azure de con ra duoc video.
+    # Tra ve chuan kenh khi Vbee song lai:
+    #     provider: vbee
+    #     voice: hn_male_manhdung_full_24k-st
+    #     rate: "-30%"     (san that cua Vbee, speed_rate 0.7)
+    # roi chay:  python auto\runner.py --slug vo-tac-thien-bia-khong-chu --from tts
+    provider: azure
+    voice: vi-VN-NamMinhNeural
+    rate: "+25%"              # DO THAT 25/09/2026 tren vi-VN-NamMinhNeural:
+                              #   rate -5% -> 169 am tiet/phut VIDEO (28,1 phut)
+                              # Voi nhip 0.43 (im lang ~10,4%) thi toc do luc noi
+                              # la 169/0,896 = 189. Muon tong 223 phai noi o 249,
+                              # tuc nhanh hon 1,32 lan: -5% + 32% ~ +25%.
+                              # Azure an tuyen tinh, KHONG bao hoa nhu Vbee.
+    anh: wiki,photo           # de tai co anh tu lieu that tren Wikimedia (chan
+                              # dung, Can Lang, Vo Tu Bi, chu Tac Thien tan tu).
+                              # DA RA VIDEO — giu nguyen de con doi chung. Ly do
+                              # cu ("photo,stock hay ra cosplay sai thoi") da het
+                              # hieu luc tu 26/09: _rel_filter() trong stock.py
+                              # loc clip sai thoi giong het bo loc anh. Cac muc
+                              # duoi day dung `anh: full` de co b-roll dong.
+
+  # --- LOAT 10 HOANG DE NOI TIENG NHAT TRUNG HOA ---
+  # Tan Thuy Hoang (#1) va Vo Tac Thien (#6) da ra video o tren, 8 vi con lai o duoi.
+  # wpm 223 + nhip 0.15 = spec do tu kenh BattleCry trong skill su-nhan-vat:
+  # ke lien tuc, day du kien, it khoang lang -> giong hung hon. Ba video truoc
+  # chay mac dinh 196/24% (nhip truyen van hoa), nghe tram va cham hon han.
+
+  # --- LOAT 3 HOANG DE, VAN PHONG "CHIEM NGHIEM" (mau nguoi dung dua 26/09) ---
+  # Cau ngan xuong dong lien tuc, nhip diep khuc, xung "chung ta", ket vong lai
+  # hinh anh mo dau. KHAC han spec su-nhan-vat (doan lien mach, day so lieu).
+  # Vi vay KHONG dat `dang: nhan-vat` — luat do chan script co >50% cau ngan.
+  # Script viet tay san -> `no_ai: true`, runner bo qua han buoc goi claude.
+  # Nhip 196 a/p + im lang 24% (mac dinh) hop giong chiem nghiem hon 223/3,5%.
+
+  - slug: can-long-sau-muoi-nam
+    de_tai: "Can Long - 60 nam tren ngoi va cuoc doi vi hoang de dung tren dinh cao Dai Thanh"
+    goc_nhin: "Nguoi co tat ca nhung khong giu duoc thoi gian. Quyen luc co the khien ca thien ha cui dau, nhung truoc thoi gian moi vi hoang de deu binh dang"
+    do_dai: 29
+    no_ai: true
+    anh: full
+    # 5435 am tiet | 171 marker | 10,2s/anh | 15 ngat chuong
+
+  - slug: tan-thuy-hoang-noi-so
+    de_tai: "Tan Thuy Hoang - nguoi thong nhat thien ha va noi so khong buong tha ong"
+    goc_nhin: "Mo bang doan xe cho ca uop giau mui thi the hoang de. Moi viec lon ong lam deu sinh ra tu noi so bi giet - va chinh thuoc truong sinh da giet ong"
+    do_dai: 20
+    no_ai: true
+    anh: full
+    # 3807 am tiet | 105 marker | 11,6s/anh | 8 ngat chuong
+
+  - slug: chu-nguyen-chuong-bat-com
+    de_tai: "Chu Nguyen Chuong - tu dua tre di xin an den nguoi lap ra nha Minh"
+    goc_nhin: "Ong khong giet cong than vi tu ti xuat than. Ong da nhin ca nha chet doi vi nha nuoc khong hoat dong, nen coi moi vet nut la de sap vo"
+    do_dai: 19
+    no_ai: true
+    anh: full
+    # 3495 am tiet | 100 marker | 11,2s/anh | 7 ngat chuong
+
+  # --- DEMO 03/10/2026: lich su Viet Nam 3 phut, thu nen ambience + ent= ---
+  - slug: demo-bach-dang-938
+    dang: nhan-vat
+    de_tai: "Tran Bach Dang 938 - Ngo Quyen va con nuoc ket thuc mot nghin nam Bac thuoc"
+    goc_nhin: "Coc chi la mot nua; nua con lai la thuy trieu - hieu con song cua minh manh hon dao quan lon nhat"
+    do_dai: 3
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    giu_build: true
+
+  # --- 03/10/2026: video 15 phut su Viet, ba tran Bach Dang ---
+  - slug: bach-dang-ba-tran
+    dang: nhan-vat
+    de_tai: "Bach Dang - mot con song, ba lan chon thuy quan phuong Bac (938, 981, 1288)"
+    goc_nhin: "Cong thuc that khong phai coc ma la hieu con nuoc; ba tran dung coc ba cach khac nhau"
+    do_dai: 15
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    giu_build: true

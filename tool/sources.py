@@ -20,6 +20,40 @@ def _fmt_time(sec):
     return f"{h}:{m:02d}:{s:02d}" if h else f"{m:02d}:{s:02d}"
 
 
+def _muc_hinh(root):
+    """Muc ghi cong nguon hinh: Wikimedia + anh stock (Unsplash/Pexels/Pixabay).
+
+    Unsplash BAT BUOC ghi ten tac gia trong dieu khoan API; Pexels/Pixabay thi
+    khuyen khich. Gom ca hai file credit do wiki_images/stock_photo ghi ra, bo
+    trung theo (tac gia, trang nguon).
+    """
+    rows, seen = [], set()
+    for ten in ("wiki-credits.json", "photo-credits.json", "bg-credit.json"):
+        p = os.path.join(root, "build", ten)
+        if not os.path.exists(p):
+            continue
+        try:
+            with open(p, encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            continue
+        for c in (data if isinstance(data, list) else [data]):
+            khoa = (c.get("credit", ""), c.get("page", ""))
+            if khoa in seen:
+                continue
+            seen.add(khoa)
+            rows.append(c)
+    if not rows:
+        return []
+    out = ["", "## Images & footage", ""]
+    for c in rows:
+        ai = c.get("credit") or "?"
+        lic = c.get("license") or "?"
+        page = c.get("page") or ""
+        out.append(f"- {ai} — {lic}  {page}".rstrip())
+    return out
+
+
 def generate(root, cfg_name=None):
     clips = load_manifest(root)
     refs = load_references(root)
@@ -51,6 +85,8 @@ def generate(root, cfg_name=None):
                 lines.append(f"- {desc}  {ref.get('url', '')}".strip())
     else:
         lines.append("(khong co references.json hoac rong)")
+
+    lines += _muc_hinh(root)
 
     out = os.path.join(root, "build", "sources.md")
     os.makedirs(os.path.dirname(out), exist_ok=True)

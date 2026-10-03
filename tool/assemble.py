@@ -1,11 +1,12 @@
 """
 assemble.py — Ghep video tu config.json, chia 4 giai doan.
 
-  Stage 1 (trim):   moi cell -> build/trim/cell-<id>.mp4 (cat dung cell_dur,
-                    burn caption khi co VO, dong last frame neu shot ngan)
-  Stage 2 (concat): noi trim thanh build/trim/video.mp4
-  Stage 3 (audio):  mix VO + clip audio + SFX + nhac duck -> build/trim/audio.m4a
-  Stage 4 (mux):    ghep video + audio -> out
+  Stage 1 (trim):   moi lo 8 cell -> build/trim/batch-<n>.mp4 (+ .sig), cac lo
+                    encode SONG SONG (cat dung cell_dur, burn caption, dong
+                    last frame neu shot ngan). Lo co chu ky khop -> dung lai.
+  Stage 2 (concat): chi ghi build/trim/list.txt (khong con video.mp4 day du)
+  Stage 3 (audio):  mix VO + clip audio + SFX + nhac duck -> audio_raw.flac
+  Stage 4 (mux):    concat lo (-c copy) + audio, loudnorm MOT LAN -> out
 
 Giai thich nhac: moi cell khai music (in/out/drop/swell). Voi test dau,
 nhac = bed duy nhat, duck theo VO+clip audio (sidechaincompress). Cell
@@ -163,7 +164,10 @@ def _build_ass(root, cell, vo_dur, start=0.0):
     Moi cell duoc trim rieng (stage1) nen ASS dung moc LOCAL cua cell
     (0..vo_dur). Tra ve path .ass (hoac None neu cell khong co cap/vo).
     """
-    cap = cell.get("cap") or cell.get("vo")
+    # Boc ky tu ngat nghi ('//', '|', '^', '*') truoc khi ve: chung la lenh nhip
+    # cho TTS, khong phai chu — de lot vao day thi chung hien tren man hinh.
+    from tts import strip_marks
+    cap = strip_marks(cell.get("cap") or cell.get("vo") or "")
     if not cap or not vo_dur:
         return None
     segs = _split_segments(cap)
@@ -217,7 +221,8 @@ def _caption_filter(root, cell, f_bold, vo_dur, fps, cell_start=0.0):
     """
     if not cell.get("vo") or not cell.get("cap"):
         return "", None
-    segs = _split_segments(cell["cap"])
+    from tts import strip_marks
+    segs = _split_segments(strip_marks(cell["cap"]))
     if not segs or not vo_dur:
         return "", None
     marks = _word_marks(root, cell["id"])
@@ -297,80 +302,209 @@ def _ensure_stage1_fonts(root):
             shutil.copy(os.path.join(src_dir, fn), d)
 
 
+# So cell moi lan encode. Moi input mo them ~250-300 MB (giai ma + bo dem), lo 8
+# cell an ~2,6 GB. May 16 GB dang mo Chrome thi Claude Code tung tat runner o
+# buoc nay vi het RAM (03/10/2026, hai lan). STAGE1_BATCH=4 -> ~1,3 GB/lo.
+BATCH = int(os.environ.get("STAGE1_BATCH", "8"))
+
+
+def batch_size(n_rows):
+    """Video ngan thi chia lo nho hon de du lo chay song song: 15 cell / 8 = 2
+    lo -> lo dau (164s video) la duong gang, may ranh mot nua thoi gian. Chi
+    phu thuoc so cell (khong theo RAM luc chay) de chu ky lo on dinh khi resume.
+    """
+    return max(3, min(BATCH, -(-n_rows // 6)))
+
+
+def _cell_chain(r, root, fps, rows, idx):
+    """Chuoi filter cho 1 cell trong filtergraph gop: pad/trim/scale/caption/fade."""
+    dur = r["dur"]
+    vf = []
+    need_pad = max(0.0, dur - r["shot_dur"])
+    if need_pad > 0.01:
+        vf.append(f"tpad=stop_mode=clone:stop_duration={need_pad + 0.2:.3f}")
+    vf.append("setpts=PTS-STARTPTS")
+    # Cat theo SO FRAME, khong theo thoi gian: trim=duration so sanh PTS dau
+    # phay dong nen moi cell rung mat dung 1 frame (video 6 cell ngan hon
+    # timeline audio 0.25s, va sai so nay cong don theo do dai video).
+    vf.append(f"fps={fps}")
+    vf.append(f"trim=end_frame={int(round(dur * fps))}")
+    vf.append("setpts=PTS-STARTPTS")
+    # KHONG dat them fps= o day. fps thu hai (sau trim + scale) lam roi dung
+    # MOT frame cuoi moi cell — do 01/10/2026: trim=end_frame=137 ra 136 frame;
+    # lo 8 cell cua Can Long ngan hon ke hoach dung 8 frame, ca video 186 cell
+    # hinh hut 7,75s so voi tieng (phu de chay truoc giong ~1 frame moi cell,
+    # cuoi video -shortest cat mat duoi tieng). fps da chuan hoa truoc trim.
+    vf.append("scale=1920:1080:force_original_aspect_ratio=decrease,"
+              "pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0x14110F,setsar=1,"
+              "format=yuv420p")
+    cap, _ = _caption_filter(root, r["cell"], None, r["vo_dur"], fps)
+    if cap:
+        vf.append(cap)
+    # CAT THANG giua cac cell. Truoc day moi cell fade ra den 0.2s roi cell sau
+    # fade tu den 0.2s -> moi diem cat la 0.4s man hinh toi (video 6 cell/34s co
+    # 2.4s bi am). Dung phim that cat thang; chi dip-to-black o beat co chu dinh
+    # (music=drop) va o dau/cuoi video.
+    first, last = idx == 0, idx == len(rows) - 1
+    fi = 0.6 if first else 0.0
+    fo = 0.8 if last else 0.0
+    if r["cell"].get("music") == "drop" and r["cell"].get("fx") != "flash":
+        fi, fo = max(fi, 0.35), max(fo, 0.35)
+    if r["cell"].get("fx") == "flash":
+        fi = 0.0
+        vf.append("fade=t=in:st=0:d=0.15:color=white")
+    if dur > (fi + fo + 0.2):
+        if fi > 0:
+            vf.append(f"fade=t=in:st=0:d={fi}")
+        if fo > 0:
+            vf.append(f"fade=t=out:st={dur - fo:.3f}:d={fo}")
+    return ",".join(vf)
+
+
 def stage1_trim(rows, root, fps):
+    """Trim + caption + noi — GOP THANH MOT LAN ENCODE cho moi lo cell.
+
+    Truoc day moi cell duoc encode rieng (stage1) roi ca video encode lai lan
+    nua de noi (stage2): moi frame qua 2 the he sau khi da qua 1 the he o
+    render. Nay mot lo = mot filtergraph = mot lan encode; noi cac lo bang
+    concat demuxer -c copy (stage2) nen khong con the he thu hai.
+    """
     tdir = os.path.join(root, "build", "trim")
     os.makedirs(tdir, exist_ok=True)
     _ensure_stage1_fonts(root)
     cmds = []
-    for r in rows:
-        cid = r["cell"]["id"]
-        out = os.path.join(tdir, f"cell-{cid}.mp4")
-        dur = r["dur"]
-        need_pad = max(0.0, dur - r["shot_dur"])
-        vf = []
-        if need_pad > 0.01:
-            vf.append(f"tpad=stop_mode=clone:stop_duration={need_pad:.3f}")
-        vf.append("setpts=PTS-STARTPTS")
-        vf.append(f"trim=duration={dur}")
-        vf.append("setpts=PTS-STARTPTS")
-        vf.append("scale=1920:1080:force_original_aspect_ratio=decrease,"
-                  "pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0x14110F,setsar=1,"
-                  f"fps={fps},format=yuv420p")
-        # subtitle: burn ASS instant (local timeline 0..vo_dur)
-        cap, _ = _caption_filter(root, r["cell"], None, r["vo_dur"], fps)
-        if cap:
-            vf.append(cap)
-        # CAT THANG giua cac cell. Truoc day moi cell fade ra den 0.2s roi cell
-        # sau fade tu den 0.2s -> moi diem cat la 0.4s man hinh toi; video 6 cell
-        # /34s co 2.4s bi am. Dung phim that cat thang, chi dip-to-black o beat
-        # co chu dinh (music=drop) va o dau/cuoi video.
-        first, last = r is rows[0], r is rows[-1]
-        fi = 0.6 if first else 0.0
-        fo = 0.8 if last else 0.0
-        if r["cell"].get("music") == "drop" and r["cell"].get("fx") != "flash":
-            fi, fo = max(fi, 0.35), max(fo, 0.35)
-        if r["cell"].get("fx") == "flash":
-            fi = 0.0
-            vf.append("fade=t=in:st=0:d=0.15:color=white")
-        if dur > (fi + fo + 0.2):
-            if fi > 0:
-                vf.append(f"fade=t=in:st=0:d={fi}")
-            if fo > 0:
-                vf.append(f"fade=t=out:st={dur - fo:.3f}:d={fo}")
-        cmd = ["ffmpeg", "-y", "-v", "error", "-i", r["shot"],
-               "-vf", ",".join(vf), "-c:v", "libx264", "-crf", "15",
-               "-preset", "medium", "-colorspace", "bt709",
-               "-color_primaries", "bt709", "-color_trc", "bt709",
-               "-an", out]
-        cmds.append(cmd)
-    _emit(root, "run_stage1.sh", cmds)
+    n_skip = 0
+    bs = batch_size(len(rows))
+    for b, batch in enumerate(_chunked(rows, bs)):
+        ins, chains, labels = [], [], ""
+        for k, r in enumerate(batch):
+            ins += ["-i", r["shot"]]
+            chains.append(f"[{k}:v]"
+                          + _cell_chain(r, root, fps, rows, b * bs + k)
+                          + f"[c{k}]")
+            labels += f"[c{k}]"
+        chains.append(f"{labels}concat=n={len(batch)}:v=1:a=0[v]")
+        out = os.path.join(tdir, f"batch-{b}.mp4")
+        cmd = ["ffmpeg", "-y", "-v", "error", *ins,
+               "-filter_complex", ";".join(chains), "-map", "[v]",
+               *final_venc(fps),
+               "-colorspace", "bt709", "-color_primaries", "bt709",
+               "-color_trc", "bt709", "-an", out]
+        sig = _batch_sig(root, batch, cmd)
+        # Lo da encode xong thi bo qua — mot video 22 phut mat ~25 phut o
+        # stage1, dut giua chung (het dia, bi kill) khong phai lam lai tu lo 0.
+        # Ban cu chi xet "doc duoc va dai > 0" nen doi config/giong xong chay
+        # lai van an nham lo CU (phu de, do dai cell sai). Nay lo phai kem chu ky
+        # (hash lenh ffmpeg + kich thuoc/mtime shot + noi dung phu de) khop moi
+        # duoc dung lai. Chu ky chi ghi SAU khi ffmpeg xong, nen file cut do bi
+        # kill khong bao gio co chu ky.
+        if _batch_ok(out, sig, sum(r["dur"] for r in batch)):
+            n_skip += 1
+            continue
+        for p in (out, out + ".sig"):
+            try:
+                os.remove(p)
+            except OSError:
+                pass
+        cmds.append(["sig1", sig, out, *cmd])
+    if n_skip:
+        print(f"  dung lai {n_skip} lo da encode (chu ky khop)")
+    _emit(root, "run_stage1.sh", cmds, jobs=stage1_jobs())
     return tdir
+
+
+# Encode cuoi (lan duy nhat nguoi xem thay). Ban cu libx264 CRF 16 preset slow,
+# maxrate 20M. Do 01/10/2026 tren lo 8 cell (164s) cua case test, VMAF so voi
+# ban lossless cung filter:
+#   crf16 slow    200s  711 CPU-s  158 MB  VMAF 96.86
+#   crf16 medium  117s  458 CPU-s  153 MB  VMAF 96.75   <- chon
+#   crf17 medium  115s  445 CPU-s  133 MB  VMAF 96.64
+#   crf16 fast    105s  401 CPU-s  149 MB  VMAF 96.72
+# (rieng filter + giai ma ~160 CPU-s, phan con lai la encoder). Tran bitrate
+# 12M: thuc te ra ~6,5 Mbps, video 30 phut ~1,5 GB; YouTube tu nen lai ve
+# ~8 Mbps nen dat hon cung khong duoc gi.
+FINAL_CRF = os.environ.get("FINAL_CRF", "16")
+FINAL_PRESET = os.environ.get("FINAL_PRESET", "medium")
+FINAL_MAXRATE = os.environ.get("FINAL_MAXRATE", "12M")
+# Lo chay song song, toi da 3 (16 luong / ~5 luong hieu qua moi x264). Moi lo
+# mo 8 shot 1080p cung luc: do 01/10/2026 an ~2,3 GB RAM, nen so lo con bi
+# chan theo RAM dang trong (xem render.jobs_by_ram) — tran RAM thi Windows
+# day ra pagefile va ca 3 lo cung bo.
+def stage1_jobs():
+    from render import jobs_by_ram
+    return jobs_by_ram(2.3, max(2, (os.cpu_count() or 8) // 5), "STAGE1_JOBS")
+
+
+def final_venc(fps):
+    g = str(int(2 * fps))
+    # -r: bo fps= trong chuoi filter thi timebase ra encoder la 1/1000000 va
+    # packet CUOI moi lo khong co duration -> concat demuxer dat lo sau chong
+    # len frame cuoi lo truoc (dts trung o moi moi noi). -r cho timebase 1/fps.
+    return ["-r", str(fps),
+            "-c:v", "libx264", "-crf", FINAL_CRF, "-preset", FINAL_PRESET,
+            "-g", g, "-keyint_min", g, "-sc_threshold", "0", "-bf", "0",
+            "-pix_fmt", "yuv420p", "-maxrate", FINAL_MAXRATE,
+            "-bufsize", str(int(FINAL_MAXRATE.rstrip("Mm") or 12) * 2) + "M"]
+
+
+def _batch_sig(root, batch, cmd):
+    """Chu ky cua mot lo: doi bat cu dau vao nao -> lo bi lam lai."""
+    import hashlib
+    h = hashlib.md5()
+    h.update("\x00".join(cmd).encode("utf-8"))
+    for r in batch:
+        for p in (r["shot"], r.get("vo")):
+            if p and os.path.exists(p):
+                st = os.stat(p)
+                h.update(f"{p}|{st.st_size}|{int(st.st_mtime)}".encode("utf-8"))
+        # phu de doc tu textfile (ten co dinh theo cell) -> bam noi dung chu
+        h.update((r["cell"].get("cap") or "").encode("utf-8"))
+    return h.hexdigest()[:16]
+
+
+def _batch_ok(out, sig, want_dur):
+    if not os.path.exists(out):
+        return False
+    try:
+        from probe import duration as _d
+        got = _d(out)
+    except (SystemExit, Exception):
+        return False
+    sp = out + ".sig"
+    if not os.path.exists(sp):
+        # Lo CU (truoc khi co chu ky, vd case dang do can-long) luon bi lam lai:
+        # code cu roi mat 1 frame moi cell (xem _cell_chain) nen lo cu ngan hon
+        # ke hoach dung so cell — do tren Can Long ca 23 lo deu hut 8 frame.
+        # Tron lo cu voi lo moi con hong ca noi -c copy (SPS preset khac nhau).
+        return False
+    try:
+        return (open(sp, encoding="utf-8").read().strip() == sig
+                and abs(got - want_dur) <= 0.1)
+    except OSError:
+        return False
 
 
 # ---------------------------------------------------------------- stage 2
 def stage2_concat(rows, root, fps=24):
-    """Noi cac cell -> video.mp4, RE-ENCODE de GOP ngan (2s) + khong B-frame.
+    """Noi cac LO -> video.mp4 bang concat demuxer, KHONG encode lai.
 
-    Ly do: Windows Media Player (codec DMO cu) fail 0x80004005 khi seek vao
-    giua GOP dai (moi cell = 1 GOP 3-10s). `-g {2*fps}` (2s) + `-bf 0` lam
-    keyframe gan de seek. Nha diem: file lon hon ~5-10%.
+    Cac lo deu do stage1 encode voi cung tham so (cung fps, cung SAR, GOP 2s,
+    -bf 0, keyframe co dinh) nen -c copy noi duoc thang. GOP 2s + keyint_min +
+    sc_threshold=0 giu keyframe gan de Windows Media Player (codec DMO cu, fail
+    0x80004005 khi seek giua GOP dai) van seek duoc.
     """
+    # KHONG con ghi build/trim/video.mp4: ban cu noi cac lo ra mot ban day du
+    # (-c copy) roi stage4 lai copy no sang final — tren dia cung luc co 3 ban
+    # cua ca video (lo + video.mp4 + final), case 30 phut la ~6 GB chi cho
+    # video. Nay stage4 doc thang danh sach lo bang concat demuxer.
     tdir = os.path.join(root, "build", "trim")
+    bs = batch_size(len(rows))
+    n_batch = (len(rows) + bs - 1) // bs
     list_file = os.path.join(tdir, "list.txt")
     with open(list_file, "w", encoding="utf-8", newline="\n") as f:
-        for r in rows:
-            f.write(f"file 'cell-{r['cell']['id']}.mp4'\n")
-    out = os.path.join(tdir, "video.mp4")
-    # Lan encode CUOI cua duong hinh — dung preset nhanh nhat o day la dat sai
-    # cho: cung CRF, preset fast cho file to hon ma quyet dinh rd/mb-tree kem hon.
-    cmd = ["ffmpeg", "-y", "-v", "error", "-f", "concat", "-safe", "0",
-           "-i", list_file, "-c:v", "libx264", "-crf", "16", "-preset", "slow",
-           "-g", str(int(2 * fps)), "-bf", "0", "-pix_fmt", "yuv420p",
-           "-maxrate", "20M", "-bufsize", "40M",
-           "-colorspace", "bt709", "-color_primaries", "bt709",
-           "-color_trc", "bt709", out]
-    _emit(root, "run_stage2.sh", [cmd])
-    return out
+        for b in range(n_batch):
+            f.write(f"file 'batch-{b}.mp4'\n")
+    return list_file
 
 
 def decode_check(root, out):
@@ -379,6 +513,10 @@ def decode_check(root, out):
                        capture_output=True, text=True)
     if r.returncode != 0:
         raise SystemExit(f"decode check loi {out}:\n{r.stderr[-1500:]}")
+    if (r.stderr or "").strip():
+        # rc=0 nhung co canh bao (vd dts trung o moi noi lo) — in ra cho thay
+        print("decode check: OK nhung co canh bao:\n" + r.stderr.strip()[-800:])
+        return
     print("decode check: OK")
 
 
@@ -438,30 +576,50 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
 
     part_cmds, parts_by_tag = [], {}
 
+    # Moi file tung phan chi phu DUNG KHOANG thoi gian cua nhom no (roi dat vao
+    # moc o lan mix cuoi), va luu FLAC. Ban cu moi phan dai BANG CA VIDEO
+    # (adelay + apad + atrim=total), PCM 16-bit stereo: video 30 phut 186 cell
+    # = 16 phan x 345 MB = 5,5 GB chi cho giong doc — chinh no lam case Can Long
+    # chet het dia o assemble. Nay tong cac phan ~ do dai video x 1, nen FLAC.
     def _mk_partials(items, tag, is_vo=False, is_sfx=False):
         parts = []
         for ci, group in enumerate(_chunked(items, chunk)):
             if not group:
                 continue
-            ins, fc, n_in, src = [], [], 0, ""
+            spans = []
             for it in group:
+                if is_vo:
+                    start, vo_path = it
+                    spans.append((start, start + duration(vo_path)))
+                elif is_sfx:
+                    start, cid = it
+                    cell = next(r["cell"] for r in rows if r["cell"]["id"] == cid)
+                    at = start + cell.get("sfx_at", 0.0)
+                    spans.append((at, at + _sfx_source(root, cell)[1]))
+                else:
+                    start, cid, _vol = it
+                    dur = next(r["dur"] for r in rows if r["cell"]["id"] == cid)
+                    spans.append((start, start + dur))
+            g0 = min(s for s, _ in spans)
+            g1 = min(total, max(e for _, e in spans) + 0.05)
+            ins, fc, n_in, src = [], [], 0, ""
+            for it, (s0, _e) in zip(group, spans):
+                rel_ms = int(round((s0 - g0) * 1000))
                 if is_vo:
                     start, vo_path = it
                     ins += ["-i", vo_path]
                     fc.append(f"[{n_in}:a]aformat=sample_rates={AR}:channel_layouts="
-                              f"stereo,asetpts=PTS-STARTPTS,adelay={int(start*1000)}|"
-                              f"{int(start*1000)},apad[{tag}{ci}_{n_in}]")
+                              f"stereo,asetpts=PTS-STARTPTS,adelay={rel_ms}|"
+                              f"{rel_ms},apad[{tag}{ci}_{n_in}]")
                 elif is_sfx:
                     start, cid = it
                     cell = next(r["cell"] for r in rows if r["cell"]["id"] == cid)
-                    name = cell.get("sfx")
                     sfx_path, sfx_len = _sfx_source(root, cell)
-                    at_ms = int((start + cell.get("sfx_at", 0.0)) * 1000)
                     vol = cell.get("sfx_vol", 0.6)
                     ins += ["-i", sfx_path]
                     fc.append(f"[{n_in}:a]aformat=sample_rates={AR}:channel_layouts="
                               f"stereo,asetpts=PTS-STARTPTS,atrim=duration={sfx_len:.3f},"
-                              f"volume={vol},adelay={at_ms}|{at_ms},"
+                              f"volume={vol},adelay={rel_ms}|{rel_ms},"
                               f"apad[{tag}{ci}_{n_in}]")
                 else:
                     start, cid, vol = it
@@ -470,18 +628,18 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
                     ins += ["-i", shot]
                     fc.append(f"[{n_in}:a]aformat=sample_rates={AR}:channel_layouts="
                               f"stereo,asetpts=PTS-STARTPTS,atrim=duration={dur},"
-                              f"volume={vol},adelay={int(start*1000)}|{int(start*1000)},"
+                              f"volume={vol},adelay={rel_ms}|{rel_ms},"
                               f"apad[{tag}{ci}_{n_in}]")
                 src += f"[{tag}{ci}_{n_in}]"
                 n_in += 1
-            fc.append(f"{src}amix=inputs={n_in}:normalize=0,atrim=0:{total},"
+            fc.append(f"{src}amix=inputs={n_in}:normalize=0,atrim=0:{g1 - g0:.3f},"
                       f"asetpts=PTS-STARTPTS[a{ci}]")
-            p = os.path.join(tdir, f"{tag}-{ci}.wav")
+            p = os.path.join(tdir, f"{tag}-{ci}.flac")
             part_cmds.append(["ffmpeg", "-y", "-v", "error", *ins,
                               "-filter_complex", ";".join(fc),
-                              "-map", f"[a{ci}]", "-c:a", "pcm_s16le",
+                              "-map", f"[a{ci}]", "-c:a", "flac",
                               "-ar", str(AR), "-ac", "2", p])
-            parts.append(p)
+            parts.append((p, g0))
         parts_by_tag[tag] = parts
         return parts
 
@@ -495,9 +653,11 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
     def _mix(parts, out_label):
         nonlocal n_in, ins, fc
         src = ""
-        for p in parts:
+        for p, g0 in parts:
             ins += ["-i", p]
-            fc.append(f"[{n_in}:a]asetpts=PTS-STARTPTS[a{n_in}]")
+            ms = int(round(g0 * 1000))
+            fc.append(f"[{n_in}:a]asetpts=PTS-STARTPTS,adelay={ms}|{ms},apad,"
+                      f"atrim=0:{total:.3f}[a{n_in}]")
             src += f"[a{n_in}]"
             n_in += 1
         if not src:
@@ -542,12 +702,14 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
 
     # Xuat WAV: loudnorm + AAC duoc lam MOT LAN o stage4 (do duoc loudness that
     # roi moi chuan hoa tuyen tinh), thay vi encode AAC o day roi encode lai.
-    out = os.path.join(tdir, "audio_raw.wav")
-    cmds = part_cmds + [["ffmpeg", "-y", "-v", "error", *ins,
-                         "-filter_complex", ";".join(fc),
-                         "-map", audio_out, "-c:a", "pcm_s24le",
-                         "-ar", str(AR), "-ac", "2", "-t", str(total), out]]
-    _emit(root, "run_stage3.sh", cmds)
+    # FLAC thay WAV 24-bit (30 phut = 518 MB): khong mat mat, nhe ~3 lan.
+    out = os.path.join(tdir, "audio_raw.flac")
+    final = [["ffmpeg", "-y", "-v", "error", *ins,
+              "-filter_complex", ";".join(fc),
+              "-map", audio_out, "-c:a", "flac", "-sample_fmt", "s32",
+              "-ar", str(AR), "-ac", "2", "-t", str(total), out]]
+    # cac phan doc lap nhau -> chay song song; lan mix cuoi chay sau cung
+    _emit(root, "run_stage3.sh", part_cmds, jobs=4, after=final)
     return out
 
 
@@ -569,35 +731,20 @@ def _build_music_segments(root, cfg, rows, total):
         else:
             merged.append((s, e, on))
     # tao track gating: cat bed theo doan, chen silence
-    out = os.path.join(root, "build", "trim", "music-gate.wav")
-    lst = []
-    for i, (s, e, on) in enumerate(merged):
-        if not on:
-            continue
-        p = os.path.join(root, "build", "trim", f"mseg-{i}.wav")
-        subprocess.run(
-            ["ffmpeg", "-y", "-v", "error", "-ss", str(s), "-i", music,
-             "-t", str(max(0.1, e - s)), "-c:a", "pcm_s16le", "-ar", str(AR),
-             "-ac", "2", p], check=True)
-        lst.append((s, p))
-    # mix cac doan nhac dung vao dung moc
-    ins, fc, src, n = [], [], "", 0
-    for start, p in lst:
-        ins += ["-i", p]
-        fc.append(f"[{n}:a]asetpts=PTS-STARTPTS,adelay={int(start*1000)}|"
-                  f"{int(start*1000)},apad[m{n}]")
-        src += f"[m{n}]"
-        n += 1
-    if not lst:
-        subprocess.run(["ffmpeg", "-y", "-v", "error",
-                        "-f", "lavfi", "-t", str(total), "-i",
-                        "anullsrc=r=48000:cl=stereo", out], check=True)
-        return out
-    fc.append(f"{src}amix=inputs={len(lst)}:normalize=0,atrim=0:{total},"
-              f"asetpts=PTS-STARTPTS[aout]")
-    subprocess.run(["ffmpeg", "-y", "-v", "error", *ins,
-                    "-filter_complex", ";".join(fc),
-                    "-map", "[aout]", "-c:a", "pcm_s16le",
+    # MOT lenh: tat tieng bed trong cac doan off bang volume=0:enable. Ban cu
+    # cat moi doan "on" ra mseg-i.wav (moi doan mot tien trinh ffmpeg) roi mix
+    # lai thanh music-gate.wav day du — ket qua y het (doan on lay dung bed tai
+    # cung moc giay) nhung ton N+1 lan chay va ~2x do dai video PCM tren dia.
+    out = os.path.join(root, "build", "trim", "music-gate.flac")
+    offs = [(s, e) for s, e, on in merged if not on]
+    af = [f"aformat=sample_rates={AR}:channel_layouts=stereo", "apad",
+          f"atrim=0:{total}", "asetpts=PTS-STARTPTS"]
+    if offs:
+        expr = "+".join(f"between(t\\,{s:.3f}\\,{e:.3f})" for s, e in offs)
+        af.append(f"volume=0:enable='{expr}'")
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", music,
+                    "-filter_complex", "[0:a]" + ",".join(af) + "[aout]",
+                    "-map", "[aout]", "-c:a", "flac",
                     "-ar", str(AR), "-ac", "2", out], check=True)
     return out
 
@@ -607,7 +754,7 @@ TARGET_LUFS = -14.0     # chuan YouTube
 TARGET_TP = -1.0        # true peak
 
 
-def _measure_loudness(path):
+def _measure_loudness(path, I=TARGET_LUFS, TP=TARGET_TP, LRA=11):
     """Pass 1 cua loudnorm: do loudness that de pass 2 chuan hoa TUYEN TINH.
 
     Chuan hoa 1 pass se nen dong (bop dynamic); 2 pass chi dich gain nen giu
@@ -616,7 +763,7 @@ def _measure_loudness(path):
     if not os.path.exists(path):
         return None
     r = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", path,
-                        "-af", f"loudnorm=I={TARGET_LUFS}:TP={TARGET_TP}:LRA=11:"
+                        "-af", f"loudnorm=I={I}:TP={TP}:LRA={LRA}:"
                         f"print_format=json", "-f", "null", "-"],
                        capture_output=True, text=True)
     txt = r.stderr or ""
@@ -630,11 +777,64 @@ def _measure_loudness(path):
         return None
 
 
-def stage4_mux(root, cfg, total):
+def loud_marker(out):
+    """File ghi dich loudness ma final da duoc chuan — steps.chuan_tieng doc no
+    de biet khong can encode audio lan nua."""
+    return os.path.splitext(out)[0] + ".loudness.json"
+
+
+def finish_loud(out):
+    """Goi SAU khi stage4 chay xong: marker .pending -> marker that."""
+    p = loud_marker(out) + ".pending"
+    if os.path.exists(p):
+        os.replace(p, loud_marker(out))
+        os.utime(loud_marker(out))    # mtime > final: chuan_tieng so sanh moc nay
+
+
+def stage4_mux(root, cfg, total, loud=None):
+    """Ghep lo video (concat demuxer, -c copy) + audio -> final. Chuan hoa
+    loudness MOT LAN o day.
+
+    loud = {"I", "LRA", "TP"} (tu queue.yml qua steps): chuan thang ve dich cua
+    kenh. Ban cu chuan 3 lan: tts -16/cell, o day -14 + alimiter + AAC 256k,
+    roi steps.chuan_tieng lai loudnorm ve -19,7 va encode AAC lan hai (100s
+    cho video 20 phut, va hai the he AAC). Nay mot lan loudnorm 2 pass dung
+    dich, mot lan AAC; chuan_tieng chi con do lai de xac nhan.
+    Khong co loud (goi tay tu CLI) -> hanh vi cu: -14 LUFS / TP -1.
+    """
     tdir = os.path.join(root, "build", "trim")
     out = CFG.resolve(root, cfg["out"])
     os.makedirs(os.path.dirname(out), exist_ok=True)
-    araw = os.path.join(tdir, "audio_raw.wav")
+    araw = os.path.join(tdir, "audio_raw.flac")
+    try:
+        os.remove(loud_marker(out))
+    except OSError:
+        pass
+    if loud:
+        I, LRA, TP = float(loud["I"]), float(loud["LRA"]), float(loud["TP"])
+        m = _measure_loudness(araw, I=I, TP=TP, LRA=LRA)
+        af = f"loudnorm=I={I}:LRA={LRA}:TP={TP}"
+        if m:
+            print(f"  loudness truoc: {m['input_i']} LUFS (dai dong {m['input_lra']} LU)"
+                  f", peak {m['input_tp']} dBTP -> chuan MOT LAN ve {I} LUFS / "
+                  f"LRA {LRA} / TP {TP}")
+            # linear=true: neu dat duoc dich chi bang dich gain thi giu nguyen
+            # dong; khong dat (LRA do > LRA dich) ffmpeg tu chuyen sang nen
+            # dong — dung nhu ban loudnorm 1 pass cu cua chuan_tieng.
+            af += (f":linear=true:measured_I={m['input_i']}"
+                   f":measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}"
+                   f":measured_thresh={m['input_thresh']}"
+                   f":offset={m['target_offset']}")
+        cmd = ["ffmpeg", "-y", "-v", "error",
+               "-f", "concat", "-safe", "0", "-i", os.path.join(tdir, "list.txt"),
+               "-i", araw,
+               "-map", "0:v", "-map", "1:a", "-af", af,
+               "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-ar", str(AR),
+               "-movflags", "+faststart", "-shortest", out]
+        _emit(root, "run_stage4.sh", [cmd])
+        with open(loud_marker(out) + ".pending", "w", encoding="utf-8") as f:
+            json.dump({"I": I, "LRA": LRA, "TP": TP}, f)
+        return out
     m = _measure_loudness(araw)
     lra = 11.0
     ln = ""
@@ -653,7 +853,7 @@ def stage4_mux(root, cfg, total):
                f":offset={m['target_offset']}")
     af = ln + ",alimiter=limit=0.97:attack=5:release=50:level=disabled"
     cmd = ["ffmpeg", "-y", "-v", "error",
-           "-i", os.path.join(tdir, "video.mp4"),
+           "-f", "concat", "-safe", "0", "-i", os.path.join(tdir, "list.txt"),
            "-i", araw,
            "-map", "0:v", "-map", "1:a", "-af", af,
            "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", "-ar", str(AR),
@@ -663,7 +863,11 @@ def stage4_mux(root, cfg, total):
 
 
 # ---------------------------------------------------------------- helpers
-def _emit(root, name, cmds):
+def _emit(root, name, cmds, jobs=1, after=()):
+    """Ghi lenh ra .sh. jobs > 1: chay song song toi da `jobs` lenh (xem
+    render.par_header). Lenh bat dau bang "sig1 <sig> <out>" = ffmpeg xong thi
+    ghi chu ky vao <out>.sig (de lan chay sau biet lo nay con dung duoc)."""
+    from render import par_header, par_line, PAR_FOOTER
     sh = os.path.join(root, "build", name)
     root_posix = root.replace("\\", "/")
     with open(sh, "w", encoding="utf-8", newline="\n") as f:
@@ -671,10 +875,19 @@ def _emit(root, name, cmds):
         f.write(f'cd "{root_posix}"\n')
         f.write("r() { n=0; while :; do \"$@\" && return 0; n=$((n+1)); "
                 "[ $n -ge 3 ] && return 1; echo \"  retry $n\" >&2; sleep 1; done; }\n")
+        f.write("sig1() { s=\"$1\"; o=\"$2\"; shift 2; \"$@\" && "
+                "printf '%s\\n' \"$s\" > \"$o.sig\"; }\n")
+        if jobs > 1:
+            f.write(par_header(jobs))
         for c in cmds:
+            line = "r " + " ".join(shlex.quote(a) for a in c)
+            f.write((par_line(line) if jobs > 1 else line) + "\n")
+        if jobs > 1:
+            f.write(PAR_FOOTER)
+        for c in after:          # chay tuan tu, SAU khi moi lenh song song xong
             f.write("r " + " ".join(shlex.quote(a) for a in c) + "\n")
         f.write(f'echo "{name} OK"\n')
-    print(f"emit {len(cmds)} lenh -> {name}")
+    print(f"emit {len(cmds)} lenh -> {name}" + (f" (song song {jobs})" if jobs > 1 else ""))
 
 
 def run_script(root, name):
@@ -708,21 +921,20 @@ def main():
         stage2_concat(rows, root)
         stage3_audio(rows, total, root, cfg)
         stage4_mux(root, cfg, total)
-        print("chay lan luot: source build/run_stage1.sh .. stage4")
+        print("chay lan luot: source build/run_stage1.sh, stage3, stage4")
         return
 
     print("stage 1: trim + caption ...")
     stage1_trim(rows, root, cfg.get("fps", 24))
     run_script(root, "run_stage1.sh")
-    print("stage 2: concat ...")
     stage2_concat(rows, root)
-    run_script(root, "run_stage2.sh")
     print("stage 3: audio ...")
     stage3_audio(rows, total, root, cfg)
     run_script(root, "run_stage3.sh")
     print("stage 4: mux ...")
     stage4_mux(root, cfg, total)
     run_script(root, "run_stage4.sh")
+    finish_loud(CFG.resolve(root, cfg["out"]))
     print(f"DONE  {CFG.resolve(root, cfg['out'])}")
 
 

@@ -1,0 +1,172 @@
+{
+ "name": "_test-speed",
+ "out": "build/final/video-1.mp4",
+ "fps": 24,
+ "w": 1920,
+ "h": 1080,
+ "style": {
+  "ink": "#14110F",
+  "paper": "#F2EDE4",
+  "amber": "#E0A82E",
+  "font_reg": "tool/fonts/arial.ttf",
+  "font_bold": "tool/fonts/arialbd.ttf"
+ },
+ "music": {
+  "file": "assets/music/bed.wav",
+  "level": 0.16,
+  "fade_in": 1.5,
+  "fade_out": 3.0
+ },
+ "caption": {
+  "on": true,
+  "font": "tool/fonts/arialbd.ttf",
+  "size": 46,
+  "color": "#FFFFFF",
+  "y": 920
+ },
+ "cells": [
+  {
+   "id": 1,
+   "type": "stock",
+   "stock": "Tang dynasty palace painting court",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "^Chào mừng các bạn đã quay trở lại với kênh. Hôm nay chúng tôi kể cho các bạn nghe về người đàn bà duy nhất từng ngồi lên ngai vàng Trung Hoa trong suốt 2132 năm chế độ hoàng đế.",
+   "cap": "Chào mừng các bạn đã quay trở lại với kênh. Hôm nay chúng tôi kể cho các bạn nghe về người đàn bà duy nhất từng ngồi lên ngai vàng Trung Hoa trong suốt 2132 năm chế độ hoàng đế."
+  },
+  {
+   "id": 2,
+   "type": "stock",
+   "stock": "Confucian scholar ancient Chinese book",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Nhắc tới bà, phần lớn các bạn sẽ nhớ ngay tới mấy chữ quen thuộc: tàn nhẫn, dâm loạn, bóp chết con gái ruột của mình để đoạt lấy ngôi hoàng hậu. Suốt 1300 năm, những bộ sử do đàn ông viết đã dựng bà thành con ngáo ộp của đạo Nho, một tấm gương treo lên để răn đe rằng đàn bà mà nắm quyền thì thiên hạ đại loạn.",
+   "cap": "Nhắc tới bà, phần lớn các bạn sẽ nhớ ngay tới mấy chữ quen thuộc: tàn nhẫn, dâm loạn, bóp chết con gái ruột của mình để đoạt lấy ngôi hoàng hậu. Suốt 1300 năm, những bộ sử do đàn ông viết đã dựng bà thành con ngáo ộp của đạo Nho, một tấm gương treo lên để răn đe rằng đàn bà mà nắm quyền thì thiên hạ đại loạn."
+  },
+  {
+   "id": 3,
+   "type": "stock",
+   "stock": "ancient Chinese ink brush calligraphy",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Tuy nhiên, nếu các bạn nghĩ rằng thứ đưa bà lên ngôi là sự tàn nhẫn, thì các bạn đã mắc một sai lầm to lớn. // Tàn nhẫn là thứ rẻ tiền nhất trong cung đình Trung Hoa, và người tàn nhẫn thì thời nào cũng có hàng trăm.",
+   "cap": "Tuy nhiên, nếu các bạn nghĩ rằng thứ đưa bà lên ngôi là sự tàn nhẫn, thì các bạn đã mắc một sai lầm to lớn. Tàn nhẫn là thứ rẻ tiền nhất trong cung đình Trung Hoa, và người tàn nhẫn thì thời nào cũng có hàng trăm."
+  },
+  {
+   "id": 4,
+   "type": "stock",
+   "stock": "Qianling Mausoleum stone stele",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Vũ khí bà dùng suốt 50 năm cầm quyền không phải là gươm, mà là chữ. Bà sửa sử, đổi niên hiệu 14 lần, chế hẳn một bộ chữ mới cho riêng mình, và kiểm soát từng dòng mà người đời được phép viết về bà. Để rồi khi chết, bà dựng một tấm bia cao 7,5 mét, nặng gần 99 tấn, và không cho khắc lên đó một chữ nào. ///",
+   "cap": "Vũ khí bà dùng suốt 50 năm cầm quyền không phải là gươm, mà là chữ. Bà sửa sử, đổi niên hiệu 14 lần, chế hẳn một bộ chữ mới cho riêng mình, và kiểm soát từng dòng mà người đời được phép viết về bà. Để rồi khi chết, bà dựng một tấm bia cao 7,5 mét, nặng gần 99 tấn, và không cho khắc lên đó một chữ nào."
+  },
+  {
+   "id": 5,
+   "type": "black",
+   "music": "drop",
+   "pause_after": 2.5,
+   "fx": null,
+   "vo": "Chương một. // Mười hai năm không ai nhớ tên.",
+   "cap": "Chương một. Mười hai năm không ai nhớ tên."
+  },
+  {
+   "id": 6,
+   "type": "stock",
+   "stock": "Jialing river Sichuan mountains mist",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Năm 624, bên bờ sông Gia Lăng thuộc đất Lợi Châu, nay là thành phố Quảng Nguyên tỉnh Tứ Xuyên, nhà Đường mới dựng được 6 năm và thiên hạ vẫn còn nguyên mùi khói của loạn lạc. Trong phủ một viên quan đô đốc, một đứa bé gái chào đời. Sử sách không chép lại điềm lành nào cho lần sinh nở ấy, không rồng, không sao, bởi lúc đó nó chỉ là con gái thứ hai của một ông quan tỉnh lẻ mang họ Võ.",
+   "cap": "Năm 624, bên bờ sông Gia Lăng thuộc đất Lợi Châu, nay là thành phố Quảng Nguyên tỉnh Tứ Xuyên, nhà Đường mới dựng được 6 năm và thiên hạ vẫn còn nguyên mùi khói của loạn lạc. Trong phủ một viên quan đô đốc, một đứa bé gái chào đời. Sử sách không chép lại điềm lành nào cho lần sinh nở ấy, không rồng, không sao, bởi lúc đó nó chỉ là con gái thứ hai của một ông quan tỉnh lẻ mang họ Võ."
+  },
+  {
+   "id": 900,
+   "type": "hold",
+   "dur": 3.0,
+   "music": "in"
+  },
+  {
+   "id": 7,
+   "type": "stock",
+   "stock": "ancient Chinese timber merchant wood logs",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Cha đứa bé tên Võ Sĩ Hoạch, xuất thân là một người buôn gỗ. Năm 617, khi Lý Uyên khởi binh ở Tấn Dương, ông bỏ tiền nhà ra góp quân lương và theo về, để rồi được xếp vào hàng công thần khai quốc nhà Đường. Nhưng trong cái xã hội mà gia phả quyết định tất cả, hai chữ thương nhân bám lấy ông như một vết chàm không rửa được.",
+   "cap": "Cha đứa bé tên Võ Sĩ Hoạch, xuất thân là một người buôn gỗ. Năm 617, khi Lý Uyên khởi binh ở Tấn Dương, ông bỏ tiền nhà ra góp quân lương và theo về, để rồi được xếp vào hàng công thần khai quốc nhà Đường. Nhưng trong cái xã hội mà gia phả quyết định tất cả, hai chữ thương nhân bám lấy ông như một vết chàm không rửa được."
+  },
+  {
+   "id": 8,
+   "type": "stock",
+   "stock": "Tang dynasty noble lady silk painting",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Mẹ đứa bé là Dương thị, dòng dõi hoàng tộc nhà Tùy vừa sụp đổ, lấy chồng khi đã ngoài 40 tuổi và chỉ sinh được ba người con gái. Vậy nên ngay từ trong nhà mình, đứa bé ấy đã đứng ở chỗ thấp nhất của mọi thang bậc: con gái, con vợ kế, con của một dòng họ bị người ta coi là trọc phú.",
+   "cap": "Mẹ đứa bé là Dương thị, dòng dõi hoàng tộc nhà Tùy vừa sụp đổ, lấy chồng khi đã ngoài 40 tuổi và chỉ sinh được ba người con gái. Vậy nên ngay từ trong nhà mình, đứa bé ấy đã đứng ở chỗ thấp nhất của mọi thang bậc: con gái, con vợ kế, con của một dòng họ bị người ta coi là trọc phú."
+  },
+  {
+   "id": 9,
+   "type": "stock",
+   "stock": "ancient Chinese funeral mourning ceremony",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Năm 635, Võ Sĩ Hoạch qua đời. Hai người con trai riêng của ông lập tức đuổi mẹ con bà ra rìa, cắt xén cấp dưỡng, đối xử như với kẻ ăn nhờ. Bài học đầu tiên của đời bà đến từ đó, và nó rất phũ phàng: huyết thống không bảo vệ được ai cả. *Chỉ có quyền lực mới bảo vệ được.*",
+   "cap": "Năm 635, Võ Sĩ Hoạch qua đời. Hai người con trai riêng của ông lập tức đuổi mẹ con bà ra rìa, cắt xén cấp dưỡng, đối xử như với kẻ ăn nhờ. Bài học đầu tiên của đời bà đến từ đó, và nó rất phũ phàng: huyết thống không bảo vệ được ai cả. Chỉ có quyền lực mới bảo vệ được."
+  },
+  {
+   "id": 10,
+   "type": "stock",
+   "stock": "Tang dynasty Chang'an city plan map",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Năm 637, một chiếu chỉ tuyển mỹ nữ về tới đất Tịnh Châu. Cô bé họ Võ khi đó 14 tuổi, được đưa vào cung Đường Thái Tông và phong làm tài nhân, tức bậc thứ 5 trong 9 bậc phi tần, ngang hàng với vài chục người đàn bà khác mà sử không buồn chép tên.",
+   "cap": "Năm 637, một chiếu chỉ tuyển mỹ nữ về tới đất Tịnh Châu. Cô bé họ Võ khi đó 14 tuổi, được đưa vào cung Đường Thái Tông và phong làm tài nhân, tức bậc thứ 5 trong 9 bậc phi tần, ngang hàng với vài chục người đàn bà khác mà sử không buồn chép tên."
+  },
+  {
+   "id": 11,
+   "type": "stock",
+   "stock": "Chinese mother daughter farewell painting",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Sử chép rằng hôm lên đường, mẹ bà khóc đến ngất. Cô bé 14 tuổi quay lại nói một câu mà về sau người ta còn nhắc mãi: được gặp thiên tử, biết đâu lại là phúc, hà cớ gì phải khóc lóc như thế. Đó là câu nói đầu tiên của bà được ghi vào sử, và nó đã có đủ cái giọng của 68 năm còn lại.",
+   "cap": "Sử chép rằng hôm lên đường, mẹ bà khóc đến ngất. Cô bé 14 tuổi quay lại nói một câu mà về sau người ta còn nhắc mãi: được gặp thiên tử, biết đâu lại là phúc, hà cớ gì phải khóc lóc như thế. Đó là câu nói đầu tiên của bà được ghi vào sử, và nó đã có đủ cái giọng của 68 năm còn lại."
+  },
+  {
+   "id": 12,
+   "type": "stock",
+   "stock": "Tang dynasty imperial palace hall interior",
+   "music": "in",
+   "pause_after": 0.15,
+   "fx": null,
+   "vo": "Trường An khi ấy là đô thành lớn nhất thế giới, gần 1 triệu dân, 108 phường ô vuông chia bằng thước kẻ, tường thành dài hơn 35 kilômét. Đường Thái Tông đặt cho cô gái mới vào cung một cái tên: Mị. Võ Mị Nương. Một cái tên đẹp, và tuyệt đối không có trọng lượng chính trị nào.",
+   "cap": "Trường An khi ấy là đô thành lớn nhất thế giới, gần 1 triệu dân, 108 phường ô vuông chia bằng thước kẻ, tường thành dài hơn 35 kilômét. Đường Thái Tông đặt cho cô gái mới vào cung một cái tên: Mị. Võ Mị Nương. Một cái tên đẹp, và tuyệt đối không có trọng lượng chính trị nào."
+  },
+  {
+   "id": 24,
+   "type": "card",
+   "text": "Cùng một cái chết. Hai bộ sử. Hai người thủ ác khác nhau.",
+   "src": "Cựu Đường thư & Tân Đường thư",
+   "dur": 3.0,
+   "music": "out",
+   "pause_after": 1.2
+  },
+  {
+   "id": 901,
+   "type": "quote",
+   "text": "Công tội để hậu thế bình luận.",
+   "who": "Võ Tắc Thiên",
+   "role": "Nữ hoàng",
+   "dur": 4.0,
+   "music": "in"
+  }
+ ]
+}

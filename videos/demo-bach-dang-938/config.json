@@ -1,0 +1,237 @@
+{
+  "name": "demo-bach-dang-938",
+  "out": "build/final/video-1.mp4",
+  "fps": 24,
+  "w": 1920,
+  "h": 1080,
+  "style": {
+    "ink": "#14110F",
+    "paper": "#F2EDE4",
+    "amber": "#E0A82E",
+    "font_reg": "tool/fonts/arial.ttf",
+    "font_bold": "tool/fonts/arialbd.ttf"
+  },
+  "music": {
+    "file": "assets/music/bed.wav",
+    "level": 0.16,
+    "fade_in": 1.5,
+    "fade_out": 3.0
+  },
+  "caption": {
+    "on": true,
+    "font": "tool/fonts/arialbd.ttf",
+    "size": 46,
+    "color": "#FFFFFF",
+    "y": 920
+  },
+  "cells": [
+    {
+      "id": 1,
+      "type": "stock",
+      "stock": "Vietnam river mist dawn wooden boats",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Bạch Đằng River",
+      "vo": "^Năm 938, trên một con sông ở miền Bắc Việt Nam, // một đạo thủy quân phương Bắc bị tiêu diệt chỉ trong một con nước. ///",
+      "cap": "Năm 938, trên một con sông ở miền Bắc Việt Nam, một đạo thủy quân phương Bắc bị tiêu diệt chỉ trong một con nước."
+    },
+    {
+      "id": 2,
+      "type": "stock",
+      "stock": "ocean tide receding mudflat aerial",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Người ta hay kể rằng Ngô Quyền thắng nhờ bãi cọc. | Nhưng cọc chỉ là một nửa câu chuyện. // Nửa còn lại nằm ở thứ mà không vị tướng nào điều khiển được: /// thủy triều.",
+      "cap": "Người ta hay kể rằng Ngô Quyền thắng nhờ bãi cọc. Nhưng cọc chỉ là một nửa câu chuyện. Nửa còn lại nằm ở thứ mà không vị tướng nào điều khiển được: thủy triều."
+    },
+    {
+      "id": 3,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.0,
+      "fx": null,
+      "vo": "Hãy quay lại một năm trước đó.",
+      "cap": "Hãy quay lại một năm trước đó."
+    },
+    {
+      "id": 4,
+      "type": "stock",
+      "stock": "ancient Vietnamese citadel ruins moss",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Dương Đình Nghệ",
+      "vo": "Năm 931, Dương Đình Nghệ đánh bật quân Nam Hán khỏi thành Đại La và tự cai quản Tĩnh Hải quân. // Nhưng chỉ sáu năm sau, năm 937, ông bị chính thuộc tướng của mình là Kiều Công Tiễn giết chết để đoạt quyền.",
+      "cap": "Năm 931, Dương Đình Nghệ đánh bật quân Nam Hán khỏi thành Đại La và tự cai quản Tĩnh Hải quân. Nhưng chỉ sáu năm sau, năm 937, ông bị chính thuộc tướng của mình là Kiều Công Tiễn giết chết để đoạt quyền."
+    },
+    {
+      "id": 5,
+      "type": "stock",
+      "stock": "stormy sea dark clouds horizon",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Southern Han",
+      "vo": "Sợ bị trả thù, Kiều Công Tiễn cầu cứu nhà Nam Hán ở phương Bắc. // Vua Nam Hán là Lưu Nghiễm chớp lấy cơ hội. | Ông phong con trai là Lưu Hoằng Tháo làm Giao Vương, giao cho một đạo thủy quân lớn, tiến xuống theo đường biển.",
+      "cap": "Sợ bị trả thù, Kiều Công Tiễn cầu cứu nhà Nam Hán ở phương Bắc. Vua Nam Hán là Lưu Nghiễm chớp lấy cơ hội. Ông phong con trai là Lưu Hoằng Tháo làm Giao Vương, giao cho một đạo thủy quân lớn, tiến xuống theo đường biển."
+    },
+    {
+      "id": 6,
+      "type": "stock",
+      "stock": "Vietnamese temple ancient statue incense",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Ngô Quyền",
+      "vo": "Ở phía Nam, con rể của Dương Đình Nghệ là Ngô Quyền kéo quân từ Ái Châu ra. // Ông giết Kiều Công Tiễn trước khi viện binh kịp đến. /// Rồi ông làm một việc mà kẻ địch không ngờ tới.",
+      "cap": "Ở phía Nam, con rể của Dương Đình Nghệ là Ngô Quyền kéo quân từ Ái Châu ra. Ông giết Kiều Công Tiễn trước khi viện binh kịp đến. Rồi ông làm một việc mà kẻ địch không ngờ tới."
+    },
+    {
+      "id": 7,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần một. // Bãi cọc dưới lòng sông.",
+      "cap": "Phần một. Bãi cọc dưới lòng sông."
+    },
+    {
+      "id": 8,
+      "type": "stock",
+      "stock": "river estuary mangrove aerial Vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Bạch Đằng River",
+      "vo": "Sông Bạch Đằng là cửa ngõ duy nhất để thuyền lớn từ biển vào sâu đất liền. | Nó rộng, sâu, và chịu ảnh hưởng của thủy triều rất mạnh. // Khi triều lên, mặt nước dâng cao hàng mét. | Khi triều rút, lòng sông lộ ra những bãi bùn mênh mông.",
+      "cap": "Sông Bạch Đằng là cửa ngõ duy nhất để thuyền lớn từ biển vào sâu đất liền. Nó rộng, sâu, và chịu ảnh hưởng của thủy triều rất mạnh. Khi triều lên, mặt nước dâng cao hàng mét. Khi triều rút, lòng sông lộ ra những bãi bùn mênh mông."
+    },
+    {
+      "id": 9,
+      "type": "stock",
+      "stock": "wooden stakes riverbed low tide",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Battle of Bạch Đằng (938)",
+      "vo": "Ngô Quyền cho đóng hàng nghìn cọc gỗ lớn xuống lòng sông, mỗi cọc dài hai đến ba mét, đầu vót nhọn và bịt sắt. /// Khi triều lên, cọc chìm hẳn dưới mặt nước. | Không ai nhìn thấy gì.",
+      "cap": "Ngô Quyền cho đóng hàng nghìn cọc gỗ lớn xuống lòng sông, mỗi cọc dài hai đến ba mét, đầu vót nhọn và bịt sắt. Khi triều lên, cọc chìm hẳn dưới mặt nước. Không ai nhìn thấy gì."
+    },
+    {
+      "id": 10,
+      "type": "stock",
+      "stock": "bamboo forest wind light Vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hai bên bờ, quân mai phục ẩn trong rừng. // Phía thượng nguồn, một đội thuyền nhẹ chờ sẵn. /// Tất cả chỉ cần một thứ: // đạo quân Nam Hán phải đi vào đúng lúc nước lớn.",
+      "cap": "Hai bên bờ, quân mai phục ẩn trong rừng. Phía thượng nguồn, một đội thuyền nhẹ chờ sẵn. Tất cả chỉ cần một thứ: đạo quân Nam Hán phải đi vào đúng lúc nước lớn."
+    },
+    {
+      "id": 11,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần hai. // Con nước quyết định.",
+      "cap": "Phần hai. Con nước quyết định."
+    },
+    {
+      "id": 12,
+      "type": "stock",
+      "stock": "Vietnam river morning fog boats moving",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cuối năm 938, đoàn thuyền của Hoằng Tháo tiến vào cửa Bạch Đằng. // Ngô Quyền cho thuyền nhẹ ra khiêu chiến, đánh rồi giả thua rút chạy.",
+      "cap": "Cuối năm 938, đoàn thuyền của Hoằng Tháo tiến vào cửa Bạch Đằng. Ngô Quyền cho thuyền nhẹ ra khiêu chiến, đánh rồi giả thua rút chạy."
+    },
+    {
+      "id": 13,
+      "type": "stock",
+      "stock": "wooden boats racing river Vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Battle of Bạch Đằng (938)",
+      "vo": "Quân Nam Hán đuổi theo, kéo cả đoàn thuyền lớn vượt qua bãi cọc đang chìm, | tiến sâu vào trong sông. /// Và rồi, nước bắt đầu rút.",
+      "cap": "Quân Nam Hán đuổi theo, kéo cả đoàn thuyền lớn vượt qua bãi cọc đang chìm, tiến sâu vào trong sông. Và rồi, nước bắt đầu rút."
+    },
+    {
+      "id": 14,
+      "type": "stock",
+      "stock": "river low tide exposed mud wooden poles",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Battle of Bạch Đằng (938)",
+      "vo": "Thuyền Nam Hán quay đầu thì đã muộn. | Lòng sông hạ xuống, bãi cọc trồi lên, đâm thủng đáy thuyền. // Thuyền lớn mắc cạn, va vào nhau, không tiến không lùi được.",
+      "cap": "Thuyền Nam Hán quay đầu thì đã muộn. Lòng sông hạ xuống, bãi cọc trồi lên, đâm thủng đáy thuyền. Thuyền lớn mắc cạn, va vào nhau, không tiến không lùi được."
+    },
+    {
+      "id": 15,
+      "type": "stock",
+      "stock": "fire smoke on water dusk",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Quân mai phục từ hai bờ đổ ra. | Thuyền nhẹ từ thượng nguồn lao xuống. /// Hơn một nửa quân Nam Hán chết trận hoặc chết đuối. | Lưu Hoằng Tháo tử trận ngay trên sông.",
+      "cap": "Quân mai phục từ hai bờ đổ ra. Thuyền nhẹ từ thượng nguồn lao xuống. Hơn một nửa quân Nam Hán chết trận hoặc chết đuối. Lưu Hoằng Tháo tử trận ngay trên sông."
+    },
+    {
+      "id": 16,
+      "type": "stock",
+      "stock": "stormy sea ship retreat dark",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Southern Han",
+      "vo": "Lưu Nghiễm đang đóng quân ở biên giới chờ tin thắng trận. // Nghe tin con chết, ông thu quân về. /// Nam Hán không bao giờ quay lại nữa.",
+      "cap": "Lưu Nghiễm đang đóng quân ở biên giới chờ tin thắng trận. Nghe tin con chết, ông thu quân về. Nam Hán không bao giờ quay lại nữa."
+    },
+    {
+      "id": 17,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần ba. // Vì sao trận này lớn hơn một trận đánh.",
+      "cap": "Phần ba. Vì sao trận này lớn hơn một trận đánh."
+    },
+    {
+      "id": 18,
+      "type": "stock",
+      "stock": "ancient Vietnamese citadel earth rampart",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Cổ Loa Citadel",
+      "vo": "Năm 939, Ngô Quyền xưng vương, bỏ chức Tiết độ sứ của phương Bắc, đóng đô ở Cổ Loa. // Tính từ năm 111 trước Công nguyên, khi nhà Hán chiếm Nam Việt, đến lúc ấy là 1050 năm. // Lần đầu tiên sau chừng ấy thời gian, người Việt có một triều đình của riêng mình mà không xin phép ai.",
+      "cap": "Năm 939, Ngô Quyền xưng vương, bỏ chức Tiết độ sứ của phương Bắc, đóng đô ở Cổ Loa. Tính từ năm 111 trước Công nguyên, khi nhà Hán chiếm Nam Việt, đến lúc ấy là 1050 năm. Lần đầu tiên sau chừng ấy thời gian, người Việt có một triều đình của riêng mình mà không xin phép ai."
+    },
+    {
+      "id": 19,
+      "type": "stock",
+      "stock": "museum ancient wooden stakes display",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Battle of Bạch Đằng (938)",
+      "vo": "Và cách đánh ấy không chỉ dùng một lần. // 43 năm sau, năm 981, Lê Hoàn dùng lại ở chính sông này để chặn quân Tống. | Và năm 1288, Trần Hưng Đạo dùng lại lần thứ ba, chôn vùi đạo thủy quân Mông Nguyên với hơn bốn trăm chiến thuyền.",
+      "cap": "Và cách đánh ấy không chỉ dùng một lần. 43 năm sau, năm 981, Lê Hoàn dùng lại ở chính sông này để chặn quân Tống. Và năm 1288, Trần Hưng Đạo dùng lại lần thứ ba, chôn vùi đạo thủy quân Mông Nguyên với hơn bốn trăm chiến thuyền."
+    },
+    {
+      "id": 20,
+      "type": "stock",
+      "stock": "Vietnam river sunset calm reflection",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "ent": "Ngô Quyền",
+      "vo": "Ngô Quyền không có quân đông hơn. | Không có thuyền to hơn. // Ông chỉ hiểu con sông của mình hơn kẻ địch. /// Và trong lịch sử, hiểu đất của mình đôi khi còn mạnh hơn cả đạo quân lớn nhất. ////",
+      "cap": "Ngô Quyền không có quân đông hơn. Không có thuyền to hơn. Ông chỉ hiểu con sông của mình hơn kẻ địch. Và trong lịch sử, hiểu đất của mình đôi khi còn mạnh hơn cả đạo quân lớn nhất."
+    }
+  ]
+}

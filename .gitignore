@@ -10,3 +10,15 @@ assets/stock/
 # San pham dung video: chi giu script + manifest + config
 videos/*/build/
 videos/*/assets/
+tool/vbee_config.json
+
+# Dau ra va rac chay may
+OUTBOX/
+.backup-*/
+auto/logs/
+auto/state/
+__pycache__/
+tool_base/
+*.stackdump
+**/.env
+**/vbee_config.json

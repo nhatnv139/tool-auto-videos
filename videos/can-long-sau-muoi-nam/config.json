@@ -1,0 +1,1874 @@
+{
+  "name": "can-long-sau-muoi-nam",
+  "out": "build/final/video-1.mp4",
+  "fps": 24,
+  "w": 1920,
+  "h": 1080,
+  "style": {
+    "ink": "#14110F",
+    "paper": "#F2EDE4",
+    "amber": "#E0A82E",
+    "font_reg": "tool/fonts/arial.ttf",
+    "font_bold": "tool/fonts/arialbd.ttf"
+  },
+  "music": {
+    "file": "assets/music/bed.wav",
+    "level": 0.16,
+    "fade_in": 1.5,
+    "fade_out": 3.0
+  },
+  "caption": {
+    "on": true,
+    "font": "tool/fonts/arialbd.ttf",
+    "size": 46,
+    "color": "#FFFFFF",
+    "y": 920
+  },
+  "cells": [
+    {
+      "id": 1,
+      "type": "stock",
+      "stock": "Forbidden City Beijing palace dawn",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "^Hãy thử tưởng tượng một buổi sáng trong Tử Cấm Thành. // Trời vừa sáng.",
+      "cap": "Hãy thử tưởng tượng một buổi sáng trong Tử Cấm Thành. Trời vừa sáng."
+    },
+    {
+      "id": 2,
+      "type": "stock",
+      "stock": "ancient Chinese palace stone floor corridor",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tiếng bước chân của thái giám vang lên trên nền đá lạnh. | Cánh cửa cung điện từ từ mở.",
+      "cap": "Tiếng bước chân của thái giám vang lên trên nền đá lạnh. Cánh cửa cung điện từ từ mở."
+    },
+    {
+      "id": 3,
+      "type": "stock",
+      "stock": "ancient Chinese officials court assembly",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bên ngoài, hàng trăm quan viên đã đứng thành hàng ngay ngắn. Không ai dám nói chuyện lớn tiếng. Không ai dám bước sai vị trí. // Tất cả đều đang chờ một người xuất hiện.",
+      "cap": "Bên ngoài, hàng trăm quan viên đã đứng thành hàng ngay ngắn. Không ai dám nói chuyện lớn tiếng. Không ai dám bước sai vị trí. Tất cả đều đang chờ một người xuất hiện."
+    },
+    {
+      "id": 4,
+      "type": "stock",
+      "stock": "ancient Chinese emperor dragon robe",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Người ấy không phải một vị tướng. Không phải một nhà quý tộc. Không phải một người giàu nhất thiên hạ. /// Mà là hoàng đế.",
+      "cap": "Người ấy không phải một vị tướng. Không phải một nhà quý tộc. Không phải một người giàu nhất thiên hạ. Mà là hoàng đế."
+    },
+    {
+      "id": 5,
+      "type": "stock",
+      "stock": "ancient Chinese imperial edict scroll",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Chỉ một cái phất tay của ông có thể quyết định chức tước của một quan viên. Một đạo thánh chỉ có thể thay đổi số phận của cả một gia đình.",
+      "cap": "Chỉ một cái phất tay của ông có thể quyết định chức tước của một quan viên. Một đạo thánh chỉ có thể thay đổi số phận của cả một gia đình."
+    },
+    {
+      "id": 6,
+      "type": "stock",
+      "stock": "ancient Chinese army soldiers marching",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một mệnh lệnh quân sự có thể đưa hàng vạn người ra chiến trường. Một quyết định về thuế có thể ảnh hưởng đến cuộc sống của hàng triệu nông dân.",
+      "cap": "Một mệnh lệnh quân sự có thể đưa hàng vạn người ra chiến trường. Một quyết định về thuế có thể ảnh hưởng đến cuộc sống của hàng triệu nông dân."
+    },
+    {
+      "id": 7,
+      "type": "stock",
+      "stock": "ancient Chinese throne hall golden",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và người đang nắm trong tay thứ quyền lực ấy là Càn Long. ///",
+      "cap": "Và người đang nắm trong tay thứ quyền lực ấy là Càn Long."
+    },
+    {
+      "id": 8,
+      "type": "stock",
+      "stock": "ancient Chinese calendar scroll numbers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông sinh năm 1711. | Lên ngôi năm 1735. | Trị vì đúng sáu mươi năm. | Sống đến tuổi 87.",
+      "cap": "Ông sinh năm 1711. Lên ngôi năm 1735. Trị vì đúng sáu mươi năm. Sống đến tuổi 87."
+    },
+    {
+      "id": 9,
+      "type": "stock",
+      "stock": "ancient Chinese emperor looking distance",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Trong suốt cuộc đời, Càn Long đã nhìn thấy gần như tất cả những gì một con người có thể nhìn thấy khi đứng ở vị trí cao nhất của một đế quốc.",
+      "cap": "Trong suốt cuộc đời, Càn Long đã nhìn thấy gần như tất cả những gì một con người có thể nhìn thấy khi đứng ở vị trí cao nhất của một đế quốc."
+    },
+    {
+      "id": 10,
+      "type": "stock",
+      "stock": "ancient Chinese victory banners celebration",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông nhìn thấy chiến thắng. Nhìn thấy sự giàu có. Nhìn thấy những cung điện nguy nga. Nhìn thấy những đoàn quân chiến thắng trở về. Nhìn thấy những vị quan cúi đầu trước mình.",
+      "cap": "Ông nhìn thấy chiến thắng. Nhìn thấy sự giàu có. Nhìn thấy những cung điện nguy nga. Nhìn thấy những đoàn quân chiến thắng trở về. Nhìn thấy những vị quan cúi đầu trước mình."
+    },
+    {
+      "id": 11,
+      "type": "stock",
+      "stock": "ancient Chinese funeral mourning white",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông cũng nhìn thấy người thân qua đời. Nhìn thấy tuổi già đến. Nhìn thấy những vấn đề trong triều đình ngày càng lớn.",
+      "cap": "Ông cũng nhìn thấy người thân qua đời. Nhìn thấy tuổi già đến. Nhìn thấy những vấn đề trong triều đình ngày càng lớn."
+    },
+    {
+      "id": 12,
+      "type": "stock",
+      "stock": "ancient Chinese old man window light",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và có lẽ điều quan trọng nhất… // ông đã sống đủ lâu để chứng kiến một thế giới bắt đầu thay đổi. ///",
+      "cap": "Và có lẽ điều quan trọng nhất… ông đã sống đủ lâu để chứng kiến một thế giới bắt đầu thay đổi."
+    },
+    {
+      "id": 13,
+      "type": "stock",
+      "stock": "ancient Chinese prosperous city market",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long từng cai trị Đại Thanh khi đế quốc này ở một trong những thời kỳ huy hoàng nhất. Nhưng chỉ vài thập niên sau khi ông qua đời, nhà Thanh bắt đầu phải đối mặt với những cuộc khủng hoảng nghiêm trọng.",
+      "cap": "Càn Long từng cai trị Đại Thanh khi đế quốc này ở một trong những thời kỳ huy hoàng nhất. Nhưng chỉ vài thập niên sau khi ông qua đời, nhà Thanh bắt đầu phải đối mặt với những cuộc khủng hoảng nghiêm trọng."
+    },
+    {
+      "id": 14,
+      "type": "stock",
+      "stock": "ancient Chinese emperor portrait painting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy Càn Long thực sự là người như thế nào? // Ông có phải một vị minh quân? Một nhà chinh phục? Một người yêu nghệ thuật? Một ông vua xa hoa?",
+      "cap": "Vậy Càn Long thực sự là người như thế nào? Ông có phải một vị minh quân? Một nhà chinh phục? Một người yêu nghệ thuật? Một ông vua xa hoa?"
+    },
+    {
+      "id": 15,
+      "type": "stock",
+      "stock": "ancient Chinese emperor alone throne shadow",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hay là một con người đã đứng trên đỉnh cao quá lâu, đến mức không nhận ra thế giới bên ngoài đang thay đổi? ///",
+      "cap": "Hay là một con người đã đứng trên đỉnh cao quá lâu, đến mức không nhận ra thế giới bên ngoài đang thay đổi?"
+    },
+    {
+      "id": 16,
+      "type": "stock",
+      "stock": "ancient Chinese baby birth palace",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Muốn trả lời câu hỏi ấy, chúng ta phải quay trở lại năm 1711. // Khi ấy, chưa ai biết rằng một đứa trẻ vừa chào đời sẽ trở thành một trong những vị hoàng đế nổi tiếng nhất lịch sử Trung Hoa. ////",
+      "cap": "Muốn trả lời câu hỏi ấy, chúng ta phải quay trở lại năm 1711. Khi ấy, chưa ai biết rằng một đứa trẻ vừa chào đời sẽ trở thành một trong những vị hoàng đế nổi tiếng nhất lịch sử Trung Hoa."
+    },
+    {
+      "id": 17,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần một. // Hoằng Lịch, đứa trẻ sinh ra giữa hoàng gia.",
+      "cap": "Phần một. Hoằng Lịch, đứa trẻ sinh ra giữa hoàng gia."
+    },
+    {
+      "id": 18,
+      "type": "stock",
+      "stock": "ancient Chinese noble infant cradle",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Năm 1711, dưới triều Khang Hy, một bé trai ra đời. Tên của cậu là Hoằng Lịch. Cha cậu là Dận Chân, người sau này trở thành Hoàng đế Ung Chính.",
+      "cap": "Năm 1711, dưới triều Khang Hy, một bé trai ra đời. Tên của cậu là Hoằng Lịch. Cha cậu là Dận Chân, người sau này trở thành Hoàng đế Ung Chính."
+    },
+    {
+      "id": 19,
+      "type": "stock",
+      "stock": "ancient Chinese wealthy household interior",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hoằng Lịch được sinh ra trong một thế giới hoàn toàn khác với cuộc sống của người dân bình thường. Cậu không phải lo chuyện kiếm sống. Không phải lo ngày mai có đủ cơm ăn hay không.",
+      "cap": "Hoằng Lịch được sinh ra trong một thế giới hoàn toàn khác với cuộc sống của người dân bình thường. Cậu không phải lo chuyện kiếm sống. Không phải lo ngày mai có đủ cơm ăn hay không."
+    },
+    {
+      "id": 20,
+      "type": "stock",
+      "stock": "ancient Chinese peasant family poverty",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Không phải lo bệnh tật hay chiến tranh sẽ ảnh hưởng đến gia đình mình như thế nào. // Nhưng đổi lại, cậu cũng không có thứ tự do mà một đứa trẻ bình thường có.",
+      "cap": "Không phải lo bệnh tật hay chiến tranh sẽ ảnh hưởng đến gia đình mình như thế nào. Nhưng đổi lại, cậu cũng không có thứ tự do mà một đứa trẻ bình thường có."
+    },
+    {
+      "id": 21,
+      "type": "stock",
+      "stock": "ancient Chinese child studying calligraphy",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ngay từ khi còn nhỏ, Hoằng Lịch đã được giáo dục để trở thành một người đặc biệt. Cậu học chữ. Học kinh điển Nho giáo. Học lịch sử. Học thư pháp. Học văn chương.",
+      "cap": "Ngay từ khi còn nhỏ, Hoằng Lịch đã được giáo dục để trở thành một người đặc biệt. Cậu học chữ. Học kinh điển Nho giáo. Học lịch sử. Học thư pháp. Học văn chương."
+    },
+    {
+      "id": 22,
+      "type": "stock",
+      "stock": "ancient Chinese archery horseback training",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Học cưỡi ngựa. Học bắn cung. // Đây không đơn thuần là một chương trình giáo dục dành cho một hoàng tử. /// Đó là quá trình đào tạo một người có khả năng cai trị.",
+      "cap": "Học cưỡi ngựa. Học bắn cung. Đây không đơn thuần là một chương trình giáo dục dành cho một hoàng tử. Đó là quá trình đào tạo một người có khả năng cai trị."
+    },
+    {
+      "id": 23,
+      "type": "stock",
+      "stock": "Manchu Qing dynasty warriors banner",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bởi nhà Thanh được xây dựng trên một nền tảng rất đặc biệt. Đây là một triều đại do người Mãn Châu thành lập, cai trị một đất nước mà phần lớn dân số là người Hán.",
+      "cap": "Bởi nhà Thanh được xây dựng trên một nền tảng rất đặc biệt. Đây là một triều đại do người Mãn Châu thành lập, cai trị một đất nước mà phần lớn dân số là người Hán."
+    },
+    {
+      "id": 24,
+      "type": "stock",
+      "stock": "ancient Chinese scholar Confucian books",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Muốn giữ được quyền lực, hoàng đế phải vừa hiểu văn hóa Trung Hoa, vừa giữ được truyền thống quân sự của người Mãn Châu. Hoằng Lịch lớn lên trong chính sự giao thoa ấy.",
+      "cap": "Muốn giữ được quyền lực, hoàng đế phải vừa hiểu văn hóa Trung Hoa, vừa giữ được truyền thống quân sự của người Mãn Châu. Hoằng Lịch lớn lên trong chính sự giao thoa ấy."
+    },
+    {
+      "id": 25,
+      "type": "stock",
+      "stock": "Kangxi emperor portrait Qing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông nội của cậu là Khang Hy. Đây là một trong những vị hoàng đế nổi tiếng nhất của nhà Thanh. Khang Hy lên ngôi khi còn rất nhỏ và trị vì hơn sáu mươi năm.",
+      "cap": "Ông nội của cậu là Khang Hy. Đây là một trong những vị hoàng đế nổi tiếng nhất của nhà Thanh. Khang Hy lên ngôi khi còn rất nhỏ và trị vì hơn sáu mươi năm."
+    },
+    {
+      "id": 26,
+      "type": "stock",
+      "stock": "ancient Chinese empire map territory",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông củng cố quyền lực trung ương, mở rộng lãnh thổ, xử lý nhiều cuộc nổi dậy và xây dựng một triều đình tương đối ổn định.",
+      "cap": "Ông củng cố quyền lực trung ương, mở rộng lãnh thổ, xử lý nhiều cuộc nổi dậy và xây dựng một triều đình tương đối ổn định."
+    },
+    {
+      "id": 27,
+      "type": "stock",
+      "stock": "ancient Chinese emperor working documents",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Sau Khang Hy là cha của Hoằng Lịch. // Ung Chính. /// Nếu Khang Hy được nhớ đến bởi thời gian trị vì dài và nhiều chiến công, thì Ung Chính nổi tiếng bởi sự chăm chỉ và quyết đoán.",
+      "cap": "Sau Khang Hy là cha của Hoằng Lịch. Ung Chính. Nếu Khang Hy được nhớ đến bởi thời gian trị vì dài và nhiều chiến công, thì Ung Chính nổi tiếng bởi sự chăm chỉ và quyết đoán."
+    },
+    {
+      "id": 28,
+      "type": "stock",
+      "stock": "ancient Chinese treasury silver coins",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông tập trung vào việc cải cách tài chính. Kiểm soát quan lại. Tăng cường quyền lực của hoàng đế. Cắt giảm một số đặc quyền.",
+      "cap": "Ông tập trung vào việc cải cách tài chính. Kiểm soát quan lại. Tăng cường quyền lực của hoàng đế. Cắt giảm một số đặc quyền."
+    },
+    {
+      "id": 29,
+      "type": "stock",
+      "stock": "ancient Chinese imperial machinery bureaucracy",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đối với một người kế vị, Hoằng Lịch có một lợi thế rất lớn. Ông không phải xây dựng một đế quốc từ đầu. Ông thừa hưởng một cỗ máy quyền lực đã được hai thế hệ trước củng cố.",
+      "cap": "Đối với một người kế vị, Hoằng Lịch có một lợi thế rất lớn. Ông không phải xây dựng một đế quốc từ đầu. Ông thừa hưởng một cỗ máy quyền lực đã được hai thế hệ trước củng cố."
+    },
+    {
+      "id": 30,
+      "type": "stock",
+      "stock": "ancient Chinese young man burden thinking",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng đi cùng với lợi thế đó là một áp lực khổng lồ. Bởi nếu ông muốn được lịch sử ghi nhớ, ông phải làm điều gì đó lớn hơn. *Ông phải chứng minh mình xứng đáng với ngai vàng.*",
+      "cap": "Nhưng đi cùng với lợi thế đó là một áp lực khổng lồ. Bởi nếu ông muốn được lịch sử ghi nhớ, ông phải làm điều gì đó lớn hơn. Ông phải chứng minh mình xứng đáng với ngai vàng."
+    },
+    {
+      "id": 31,
+      "type": "stock",
+      "stock": "ancient Chinese coronation ceremony hall",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và cơ hội ấy đến vào năm 1735. // Ung Chính qua đời. Hoằng Lịch trở thành hoàng đế. Ông lấy niên hiệu là Càn Long.",
+      "cap": "Và cơ hội ấy đến vào năm 1735. Ung Chính qua đời. Hoằng Lịch trở thành hoàng đế. Ông lấy niên hiệu là Càn Long."
+    },
+    {
+      "id": 32,
+      "type": "stock",
+      "stock": "ancient Chinese young emperor throne",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Lúc ấy, ông mới 24 tuổi. // Một người đàn ông trẻ tuổi… /// nhưng đã trở thành người có quyền lực lớn nhất trong đế quốc. ////",
+      "cap": "Lúc ấy, ông mới 24 tuổi. Một người đàn ông trẻ tuổi… nhưng đã trở thành người có quyền lực lớn nhất trong đế quốc."
+    },
+    {
+      "id": 33,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần hai. // Ngày Càn Long bước lên ngôi.",
+      "cap": "Phần hai. Ngày Càn Long bước lên ngôi."
+    },
+    {
+      "id": 34,
+      "type": "stock",
+      "stock": "ancient Chinese golden throne empty hall",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có một điều rất đặc biệt về ngai vàng. Nhìn từ xa, nó giống như biểu tượng của vinh quang. // Nhưng khi ngồi lên đó, người ta mới hiểu rằng ngai vàng cũng là một chiếc ghế cô độc.",
+      "cap": "Có một điều rất đặc biệt về ngai vàng. Nhìn từ xa, nó giống như biểu tượng của vinh quang. Nhưng khi ngồi lên đó, người ta mới hiểu rằng ngai vàng cũng là một chiếc ghế cô độc."
+    },
+    {
+      "id": 35,
+      "type": "stock",
+      "stock": "ancient Chinese emperor solitary figure",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long từ giây phút lên ngôi đã không còn là một người bình thường. Ông không thể tùy tiện nói những gì mình nghĩ. Không thể tùy tiện kết bạn. Không thể tin tưởng tất cả mọi người.",
+      "cap": "Càn Long từ giây phút lên ngôi đã không còn là một người bình thường. Ông không thể tùy tiện nói những gì mình nghĩ. Không thể tùy tiện kết bạn. Không thể tin tưởng tất cả mọi người."
+    },
+    {
+      "id": 36,
+      "type": "stock",
+      "stock": "ancient Chinese court officials bowing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mỗi người bước vào triều đình đều có thể mang theo một mục đích khác nhau. Có người trung thành. Có người tham vọng. Có người muốn được thăng chức. Có người muốn bảo vệ gia đình. Có người chỉ chờ thời cơ.",
+      "cap": "Mỗi người bước vào triều đình đều có thể mang theo một mục đích khác nhau. Có người trung thành. Có người tham vọng. Có người muốn được thăng chức. Có người muốn bảo vệ gia đình. Có người chỉ chờ thời cơ."
+    },
+    {
+      "id": 37,
+      "type": "stock",
+      "stock": "ancient Chinese imperial seal power",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vì vậy, nhiệm vụ đầu tiên của Càn Long là duy trì quyền lực. /// Những năm đầu trị vì cho thấy ông là một vị hoàng đế có năng lực.",
+      "cap": "Vì vậy, nhiệm vụ đầu tiên của Càn Long là duy trì quyền lực. Những năm đầu trị vì cho thấy ông là một vị hoàng đế có năng lực."
+    },
+    {
+      "id": 38,
+      "type": "stock",
+      "stock": "ancient Chinese accounting ledger office",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông tiếp tục nhiều chính sách của Ung Chính. Triều đình chú trọng tài chính. Quan lại bị giám sát. Hoàng đế giữ vai trò trung tâm trong việc đưa ra các quyết định quan trọng.",
+      "cap": "Ông tiếp tục nhiều chính sách của Ung Chính. Triều đình chú trọng tài chính. Quan lại bị giám sát. Hoàng đế giữ vai trò trung tâm trong việc đưa ra các quyết định quan trọng."
+    },
+    {
+      "id": 39,
+      "type": "stock",
+      "stock": "ancient Chinese cavalry troops frontier",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long cũng đặc biệt quan tâm đến quân đội. Ông hiểu rằng một đế quốc rộng lớn không thể chỉ được duy trì bằng giấy tờ.",
+      "cap": "Càn Long cũng đặc biệt quan tâm đến quân đội. Ông hiểu rằng một đế quốc rộng lớn không thể chỉ được duy trì bằng giấy tờ."
+    },
+    {
+      "id": 40,
+      "type": "stock",
+      "stock": "ancient Chinese border watchtower desert",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ở những vùng biên giới xa xôi, quyền lực của triều đình phải được chứng minh bằng khả năng quân sự. // Và đây là lúc tham vọng của Càn Long bắt đầu thể hiện rõ.",
+      "cap": "Ở những vùng biên giới xa xôi, quyền lực của triều đình phải được chứng minh bằng khả năng quân sự. Và đây là lúc tham vọng của Càn Long bắt đầu thể hiện rõ."
+    },
+    {
+      "id": 41,
+      "type": "stock",
+      "stock": "ancient Chinese emperor ambition map",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông không muốn chỉ bảo vệ những gì cha và ông nội để lại. Ông muốn mở rộng và củng cố nó. *Càn Long muốn lịch sử nhìn thấy ông như một vị hoàng đế đã đưa Đại Thanh đến đỉnh cao.*",
+      "cap": "Ông không muốn chỉ bảo vệ những gì cha và ông nội để lại. Ông muốn mở rộng và củng cố nó. Càn Long muốn lịch sử nhìn thấy ông như một vị hoàng đế đã đưa Đại Thanh đến đỉnh cao."
+    },
+    {
+      "id": 42,
+      "type": "stock",
+      "stock": "ancient Chinese war campaign banners",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những chiến dịch quân sự lớn bắt đầu xuất hiện. Và trong nhiều năm, quân đội nhà Thanh liên tục giành được những thắng lợi quan trọng. ////",
+      "cap": "Những chiến dịch quân sự lớn bắt đầu xuất hiện. Và trong nhiều năm, quân đội nhà Thanh liên tục giành được những thắng lợi quan trọng."
+    },
+    {
+      "id": 43,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần ba. // Những chiến dịch đưa Đại Thanh đến đỉnh cao.",
+      "cap": "Phần ba. Những chiến dịch đưa Đại Thanh đến đỉnh cao."
+    },
+    {
+      "id": 44,
+      "type": "stock",
+      "stock": "Central Asia steppe mountains landscape",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long đặc biệt chú ý đến khu vực phía Tây. Đây là nơi tồn tại nhiều thế lực có khả năng đe dọa biên giới nhà Thanh. Trong đó, Dzungaria là một trong những đối thủ quan trọng nhất.",
+      "cap": "Càn Long đặc biệt chú ý đến khu vực phía Tây. Đây là nơi tồn tại nhiều thế lực có khả năng đe dọa biên giới nhà Thanh. Trong đó, Dzungaria là một trong những đối thủ quan trọng nhất."
+    },
+    {
+      "id": 45,
+      "type": "stock",
+      "stock": "ancient Chinese battle cavalry charge",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Các cuộc chiến kéo dài và vô cùng khốc liệt. Cuối cùng, nhà Thanh đánh bại Dzungaria và mở rộng quyền kiểm soát sang một vùng lãnh thổ rộng lớn ở Trung Á.",
+      "cap": "Các cuộc chiến kéo dài và vô cùng khốc liệt. Cuối cùng, nhà Thanh đánh bại Dzungaria và mở rộng quyền kiểm soát sang một vùng lãnh thổ rộng lớn ở Trung Á."
+    },
+    {
+      "id": 46,
+      "type": "stock",
+      "stock": "Xinjiang desert landscape China",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Sau đó, triều đình gọi vùng đất này là Tân Cương. // Tên gọi ấy có nghĩa là biên cương mới. /// Đối với Càn Long, đây là một thành tựu cực kỳ lớn.",
+      "cap": "Sau đó, triều đình gọi vùng đất này là Tân Cương. Tên gọi ấy có nghĩa là biên cương mới. Đối với Càn Long, đây là một thành tựu cực kỳ lớn."
+    },
+    {
+      "id": 47,
+      "type": "stock",
+      "stock": "ancient Chinese stone monument inscription",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông muốn lưu lại những chiến thắng của mình. Ông cho xây dựng các công trình tưởng niệm. Cho ghi chép chiến công.",
+      "cap": "Ông muốn lưu lại những chiến thắng của mình. Ông cho xây dựng các công trình tưởng niệm. Cho ghi chép chiến công."
+    },
+    {
+      "id": 48,
+      "type": "stock",
+      "stock": "ancient Chinese military scroll painting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và đặc biệt, ông rất tự hào về những gì mình gọi là Thập toàn võ công. // Mười chiến công lớn. /// Trong mắt Càn Long, đó là bằng chứng cho thấy triều đại của ông không chỉ giàu có mà còn mạnh mẽ.",
+      "cap": "Và đặc biệt, ông rất tự hào về những gì mình gọi là Thập toàn võ công. Mười chiến công lớn. Trong mắt Càn Long, đó là bằng chứng cho thấy triều đại của ông không chỉ giàu có mà còn mạnh mẽ."
+    },
+    {
+      "id": 49,
+      "type": "stock",
+      "stock": "ancient Chinese supply wagons grain",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng chiến tranh chưa bao giờ chỉ có chiến thắng. Mỗi đạo quân cần lương thực. Mỗi chiến dịch cần tiền. Mỗi vùng đất mới chiếm được lại cần quan lại, quân đội và hệ thống hành chính để quản lý.",
+      "cap": "Nhưng chiến tranh chưa bao giờ chỉ có chiến thắng. Mỗi đạo quân cần lương thực. Mỗi chiến dịch cần tiền. Mỗi vùng đất mới chiếm được lại cần quan lại, quân đội và hệ thống hành chính để quản lý."
+    },
+    {
+      "id": 50,
+      "type": "stock",
+      "stock": "ancient Chinese treasury coins counting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một đế quốc càng mở rộng thì chi phí duy trì càng cao. // Và đây chính là một trong những nghịch lý của Càn Long.",
+      "cap": "Một đế quốc càng mở rộng thì chi phí duy trì càng cao. Và đây chính là một trong những nghịch lý của Càn Long."
+    },
+    {
+      "id": 51,
+      "type": "stock",
+      "stock": "ancient Chinese vast empire landscape",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những chiến thắng làm lãnh thổ nhà Thanh lớn hơn. /// Nhưng cũng khiến gánh nặng của đế quốc lớn hơn.",
+      "cap": "Những chiến thắng làm lãnh thổ nhà Thanh lớn hơn. Nhưng cũng khiến gánh nặng của đế quốc lớn hơn."
+    },
+    {
+      "id": 52,
+      "type": "stock",
+      "stock": "ancient Chinese rice fields harvest abundance",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Trong những năm đỉnh cao, điều đó chưa phải vấn đề quá nghiêm trọng. Kho bạc vẫn tương đối dồi dào. Nông nghiệp phát triển. Dân số tăng. Thương mại phát triển.",
+      "cap": "Trong những năm đỉnh cao, điều đó chưa phải vấn đề quá nghiêm trọng. Kho bạc vẫn tương đối dồi dào. Nông nghiệp phát triển. Dân số tăng. Thương mại phát triển."
+    },
+    {
+      "id": 53,
+      "type": "stock",
+      "stock": "ancient Chinese trade merchants prosperity",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhà Thanh dường như có đủ sức để duy trì mọi thứ. Càn Long vì thế càng tự tin. // Và chính sự tự tin đó sẽ trở thành một phần quan trọng trong câu chuyện về những năm cuối triều đại của ông. ////",
+      "cap": "Nhà Thanh dường như có đủ sức để duy trì mọi thứ. Càn Long vì thế càng tự tin. Và chính sự tự tin đó sẽ trở thành một phần quan trọng trong câu chuyện về những năm cuối triều đại của ông."
+    },
+    {
+      "id": 54,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần bốn. // Một Càn Long khác. Nhà thơ và người sưu tập.",
+      "cap": "Phần bốn. Một Càn Long khác. Nhà thơ và người sưu tập."
+    },
+    {
+      "id": 55,
+      "type": "stock",
+      "stock": "ancient Chinese calligraphy brush ink",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nếu chỉ nhìn Càn Long như một chiến binh, chúng ta sẽ bỏ qua một phần rất lớn trong con người ông. // Càn Long yêu văn hóa.",
+      "cap": "Nếu chỉ nhìn Càn Long như một chiến binh, chúng ta sẽ bỏ qua một phần rất lớn trong con người ông. Càn Long yêu văn hóa."
+    },
+    {
+      "id": 56,
+      "type": "stock",
+      "stock": "ancient Chinese poetry scroll writing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông viết thơ với số lượng khổng lồ. Ông thích thư pháp. Thích hội họa. Thích đồ cổ. Thích ngọc quý. Thích những món đồ có lịch sử lâu đời.",
+      "cap": "Ông viết thơ với số lượng khổng lồ. Ông thích thư pháp. Thích hội họa. Thích đồ cổ. Thích ngọc quý. Thích những món đồ có lịch sử lâu đời."
+    },
+    {
+      "id": 57,
+      "type": "stock",
+      "stock": "ancient Chinese jade artifact collection",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông muốn mình được nhớ đến không chỉ như một hoàng đế chiến thắng ngoài chiến trường mà còn là một người bảo trợ văn hóa.",
+      "cap": "Ông muốn mình được nhớ đến không chỉ như một hoàng đế chiến thắng ngoài chiến trường mà còn là một người bảo trợ văn hóa."
+    },
+    {
+      "id": 58,
+      "type": "stock",
+      "stock": "ancient Chinese library books shelves",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long đặc biệt quan tâm đến sách. Triều đình tổ chức một dự án thư tịch quy mô chưa từng có. Đó là việc biên soạn Tứ Khố Toàn Thư.",
+      "cap": "Càn Long đặc biệt quan tâm đến sách. Triều đình tổ chức một dự án thư tịch quy mô chưa từng có. Đó là việc biên soạn Tứ Khố Toàn Thư."
+    },
+    {
+      "id": 59,
+      "type": "stock",
+      "stock": "ancient Chinese scholars copying manuscripts",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Các học giả được huy động để thu thập, phân loại, chỉnh lý và sao chép một lượng sách khổng lồ. Nếu chỉ nhìn vào quy mô, đây thực sự là một công trình đáng kinh ngạc. Nó giúp bảo tồn một lượng lớn tri thức cổ.",
+      "cap": "Các học giả được huy động để thu thập, phân loại, chỉnh lý và sao chép một lượng sách khổng lồ. Nếu chỉ nhìn vào quy mô, đây thực sự là một công trình đáng kinh ngạc. Nó giúp bảo tồn một lượng lớn tri thức cổ."
+    },
+    {
+      "id": 60,
+      "type": "stock",
+      "stock": "ancient Chinese burning documents censorship",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng đằng sau công trình ấy cũng tồn tại một mặt khác. Nhà Thanh kiểm soát rất chặt chẽ những gì được coi là phù hợp với chính thống.",
+      "cap": "Nhưng đằng sau công trình ấy cũng tồn tại một mặt khác. Nhà Thanh kiểm soát rất chặt chẽ những gì được coi là phù hợp với chính thống."
+    },
+    {
+      "id": 61,
+      "type": "stock",
+      "stock": "ancient Chinese banned books destroyed",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những tác phẩm bị xem là chống đối triều đình có thể bị cấm. Một số sách bị tiêu hủy. Một số tác giả bị trừng phạt.",
+      "cap": "Những tác phẩm bị xem là chống đối triều đình có thể bị cấm. Một số sách bị tiêu hủy. Một số tác giả bị trừng phạt."
+    },
+    {
+      "id": 62,
+      "type": "stock",
+      "stock": "ancient Chinese emperor reading scroll",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Điều này phản ánh một đặc điểm quan trọng trong cách Càn Long cai trị. Ông vừa muốn bảo tồn văn hóa… // vừa muốn kiểm soát cách văn hóa được truyền lại.",
+      "cap": "Điều này phản ánh một đặc điểm quan trọng trong cách Càn Long cai trị. Ông vừa muốn bảo tồn văn hóa… vừa muốn kiểm soát cách văn hóa được truyền lại."
+    },
+    {
+      "id": 63,
+      "type": "stock",
+      "stock": "ancient Chinese history annals writing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông muốn lịch sử được lưu giữ. /// Nhưng ông cũng muốn lịch sử được kể từ góc nhìn của triều đình.",
+      "cap": "Ông muốn lịch sử được lưu giữ. Nhưng ông cũng muốn lịch sử được kể từ góc nhìn của triều đình."
+    },
+    {
+      "id": 64,
+      "type": "stock",
+      "stock": "ancient Chinese scholar fear censorship",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đó là sự mâu thuẫn giữa một vị vua yêu văn hóa và một nhà cai trị lo sợ tư tưởng có thể trở thành mối đe dọa chính trị. ////",
+      "cap": "Đó là sự mâu thuẫn giữa một vị vua yêu văn hóa và một nhà cai trị lo sợ tư tưởng có thể trở thành mối đe dọa chính trị."
+    },
+    {
+      "id": 65,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần năm. // Những cung điện và cuộc sống xa hoa.",
+      "cap": "Phần năm. Những cung điện và cuộc sống xa hoa."
+    },
+    {
+      "id": 66,
+      "type": "stock",
+      "stock": "ancient Chinese luxurious palace interior",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long sống trong một thế giới mà sự xa hoa gần như không có giới hạn. Những cung điện được xây dựng với quy mô khổng lồ. Những khu vườn được chăm sóc tỉ mỉ.",
+      "cap": "Càn Long sống trong một thế giới mà sự xa hoa gần như không có giới hạn. Những cung điện được xây dựng với quy mô khổng lồ. Những khu vườn được chăm sóc tỉ mỉ."
+    },
+    {
+      "id": 67,
+      "type": "stock",
+      "stock": "ancient Chinese banquet feast imperial",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những món đồ quý giá được đưa về cung. Những buổi yến tiệc được tổ chức.",
+      "cap": "Những món đồ quý giá được đưa về cung. Những buổi yến tiệc được tổ chức."
+    },
+    {
+      "id": 68,
+      "type": "stock",
+      "stock": "Chinese classical garden pavilion lake",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một trong những nơi gắn liền với văn hóa cung đình nhà Thanh là Viên Minh Viên. Quần thể này được xây dựng và mở rộng qua nhiều đời. Đối với hoàng gia, đó không chỉ là một khu vườn.",
+      "cap": "Một trong những nơi gắn liền với văn hóa cung đình nhà Thanh là Viên Minh Viên. Quần thể này được xây dựng và mở rộng qua nhiều đời. Đối với hoàng gia, đó không chỉ là một khu vườn."
+    },
+    {
+      "id": 69,
+      "type": "stock",
+      "stock": "Chinese garden bridge water reflection",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nó là một thế giới riêng. Có hồ nước. Có cầu. Có điện. Có đình. Có cảnh quan được thiết kế theo những vùng đất khác nhau.",
+      "cap": "Nó là một thế giới riêng. Có hồ nước. Có cầu. Có điện. Có đình. Có cảnh quan được thiết kế theo những vùng đất khác nhau."
+    },
+    {
+      "id": 70,
+      "type": "stock",
+      "stock": "Jiangnan water town canal China",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long cũng đặc biệt yêu thích Giang Nam. Ông thực hiện nhiều chuyến tuần du về phía Nam. Những chuyến đi ấy vừa là chuyến du ngoạn, vừa là cách để hoàng đế thị sát địa phương.",
+      "cap": "Càn Long cũng đặc biệt yêu thích Giang Nam. Ông thực hiện nhiều chuyến tuần du về phía Nam. Những chuyến đi ấy vừa là chuyến du ngoạn, vừa là cách để hoàng đế thị sát địa phương."
+    },
+    {
+      "id": 71,
+      "type": "stock",
+      "stock": "ancient Chinese imperial procession boats",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng một đoàn tùy tùng của hoàng đế không thể di chuyển giống một người bình thường. Có hàng nghìn người. Có quan viên. Có quân lính. Có người phục vụ.",
+      "cap": "Nhưng một đoàn tùy tùng của hoàng đế không thể di chuyển giống một người bình thường. Có hàng nghìn người. Có quan viên. Có quân lính. Có người phục vụ."
+    },
+    {
+      "id": 72,
+      "type": "stock",
+      "stock": "ancient Chinese caravan horses supplies",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có lương thực. Có ngựa. Có thuyền. Có nơi nghỉ. // Mỗi chuyến đi đều tiêu tốn một khoản tiền lớn.",
+      "cap": "Có lương thực. Có ngựa. Có thuyền. Có nơi nghỉ. Mỗi chuyến đi đều tiêu tốn một khoản tiền lớn."
+    },
+    {
+      "id": 73,
+      "type": "stock",
+      "stock": "ancient Chinese silver ingots treasure",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Với một đế quốc giàu có, những khoản chi ấy có thể được xem là chấp nhận được. Nhưng khi cộng dồn qua nhiều năm, nó trở thành một gánh nặng.",
+      "cap": "Với một đế quốc giàu có, những khoản chi ấy có thể được xem là chấp nhận được. Nhưng khi cộng dồn qua nhiều năm, nó trở thành một gánh nặng."
+    },
+    {
+      "id": 74,
+      "type": "stock",
+      "stock": "ancient Chinese cracked wall decay",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và đây chính là một trong những điểm quan trọng nhất khi nhìn vào cuối triều Càn Long. // Sự xa hoa không lập tức khiến một đế quốc sụp đổ. /// Nhưng nó có thể làm cho một hệ thống vốn đang có những vấn đề trở nên dễ tổn thương hơn. ////",
+      "cap": "Và đây chính là một trong những điểm quan trọng nhất khi nhìn vào cuối triều Càn Long. Sự xa hoa không lập tức khiến một đế quốc sụp đổ. Nhưng nó có thể làm cho một hệ thống vốn đang có những vấn đề trở nên dễ tổn thương hơn."
+    },
+    {
+      "id": 75,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần sáu. // Càn Long và những người phụ nữ trong đời ông.",
+      "cap": "Phần sáu. Càn Long và những người phụ nữ trong đời ông."
+    },
+    {
+      "id": 76,
+      "type": "stock",
+      "stock": "Forbidden City red walls corridor",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Sau những bức tường đỏ của Tử Cấm Thành là một thế giới khác. // Đó là hậu cung.",
+      "cap": "Sau những bức tường đỏ của Tử Cấm Thành là một thế giới khác. Đó là hậu cung."
+    },
+    {
+      "id": 77,
+      "type": "stock",
+      "stock": "ancient Chinese noble women court dress",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long có nhiều phi tần. Nhưng người phụ nữ được nhắc đến nhiều nhất trong cuộc đời ông là Phú Sát Hoàng hậu.",
+      "cap": "Càn Long có nhiều phi tần. Nhưng người phụ nữ được nhắc đến nhiều nhất trong cuộc đời ông là Phú Sát Hoàng hậu."
+    },
+    {
+      "id": 78,
+      "type": "stock",
+      "stock": "ancient Chinese empress portrait Qing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bà trở thành Hoàng hậu khi Càn Long còn trẻ. Trong nhiều ghi chép, bà được mô tả là người có tính cách điềm đạm và được Càn Long rất yêu quý.",
+      "cap": "Bà trở thành Hoàng hậu khi Càn Long còn trẻ. Trong nhiều ghi chép, bà được mô tả là người có tính cách điềm đạm và được Càn Long rất yêu quý."
+    },
+    {
+      "id": 79,
+      "type": "stock",
+      "stock": "ancient Chinese emperor and consort",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một vị hoàng đế có thể có nhiều phụ nữ bên cạnh. Nhưng điều đó không có nghĩa là ông không thể mất đi một người đặc biệt. // Và Càn Long đã phải đối mặt với mất mát ấy.",
+      "cap": "Một vị hoàng đế có thể có nhiều phụ nữ bên cạnh. Nhưng điều đó không có nghĩa là ông không thể mất đi một người đặc biệt. Và Càn Long đã phải đối mặt với mất mát ấy."
+    },
+    {
+      "id": 80,
+      "type": "stock",
+      "stock": "ancient Chinese funeral white mourning",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hoàng hậu Phú Sát qua đời khi còn tương đối trẻ. Cái chết của bà khiến Càn Long đau buồn.",
+      "cap": "Hoàng hậu Phú Sát qua đời khi còn tương đối trẻ. Cái chết của bà khiến Càn Long đau buồn."
+    },
+    {
+      "id": 81,
+      "type": "stock",
+      "stock": "ancient Chinese poem written grief",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những bài thơ ông viết sau cái chết của Hoàng hậu cho thấy đây không phải một sự kiện bình thường đối với ông.",
+      "cap": "Những bài thơ ông viết sau cái chết của Hoàng hậu cho thấy đây không phải một sự kiện bình thường đối với ông."
+    },
+    {
+      "id": 82,
+      "type": "stock",
+      "stock": "ancient Chinese emperor sorrow alone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đây cũng là một trong những nghịch lý của cuộc sống hoàng đế. Một người có thể sở hữu gần như mọi thứ… /// nhưng không thể dùng quyền lực để giữ người mình yêu thương sống mãi.",
+      "cap": "Đây cũng là một trong những nghịch lý của cuộc sống hoàng đế. Một người có thể sở hữu gần như mọi thứ… nhưng không thể dùng quyền lực để giữ người mình yêu thương sống mãi."
+    },
+    {
+      "id": 83,
+      "type": "stock",
+      "stock": "ancient Chinese palace women walking",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Sau cái chết của Phú Sát Hoàng hậu, hậu cung tiếp tục biến động. Những người phụ nữ mới xuất hiện. Những người cũ thay đổi vị trí. Các hoàng tử và công chúa được sinh ra.",
+      "cap": "Sau cái chết của Phú Sát Hoàng hậu, hậu cung tiếp tục biến động. Những người phụ nữ mới xuất hiện. Những người cũ thay đổi vị trí. Các hoàng tử và công chúa được sinh ra."
+    },
+    {
+      "id": 84,
+      "type": "stock",
+      "stock": "ancient Chinese court intrigue whispers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và cùng với đó là những cuộc đấu tranh âm thầm. Trong hoàng cung, tình cảm và quyền lực đôi khi không thể tách rời.",
+      "cap": "Và cùng với đó là những cuộc đấu tranh âm thầm. Trong hoàng cung, tình cảm và quyền lực đôi khi không thể tách rời."
+    },
+    {
+      "id": 85,
+      "type": "stock",
+      "stock": "ancient Chinese favored concubine jewels",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một người được hoàng đế sủng ái có thể có ảnh hưởng lớn. Một người thất sủng có thể mất vị trí. Một đứa con được yêu quý có thể trở thành người thừa kế.",
+      "cap": "Một người được hoàng đế sủng ái có thể có ảnh hưởng lớn. Một người thất sủng có thể mất vị trí. Một đứa con được yêu quý có thể trở thành người thừa kế."
+    },
+    {
+      "id": 86,
+      "type": "stock",
+      "stock": "ancient Chinese palace night lanterns",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và vì vậy, hậu cung không chỉ là nơi của tình yêu. /// Nó cũng là một phần của chính trị. ////",
+      "cap": "Và vì vậy, hậu cung không chỉ là nơi của tình yêu. Nó cũng là một phần của chính trị."
+    },
+    {
+      "id": 87,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần bảy. // Hòa Thân, người đứng sát ngai vàng.",
+      "cap": "Phần bảy. Hòa Thân, người đứng sát ngai vàng."
+    },
+    {
+      "id": 88,
+      "type": "stock",
+      "stock": "ancient Chinese official rising career",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và rồi xuất hiện Hòa Thân. // Tên tuổi Hòa Thân gắn liền với những năm cuối đời Càn Long. Ông xuất thân từ một gia đình thuộc tầng lớp quan lại.",
+      "cap": "Và rồi xuất hiện Hòa Thân. Tên tuổi Hòa Thân gắn liền với những năm cuối đời Càn Long. Ông xuất thân từ một gia đình thuộc tầng lớp quan lại."
+    },
+    {
+      "id": 89,
+      "type": "stock",
+      "stock": "ancient Chinese young official court",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng bằng khả năng và sự khéo léo, Hòa Thân nhanh chóng lọt vào mắt xanh của hoàng đế. Ông thông minh. Có khả năng xử lý công việc. Biết cách nói chuyện.",
+      "cap": "Nhưng bằng khả năng và sự khéo léo, Hòa Thân nhanh chóng lọt vào mắt xanh của hoàng đế. Ông thông minh. Có khả năng xử lý công việc. Biết cách nói chuyện."
+    },
+    {
+      "id": 90,
+      "type": "stock",
+      "stock": "ancient Chinese advisor emperor conversation",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và đặc biệt, ông rất giỏi nắm bắt tâm lý Càn Long. Hòa Thân biết Càn Long thích gì. Biết cách trình bày vấn đề. Biết cách khiến hoàng đế cảm thấy mình đang kiểm soát mọi thứ.",
+      "cap": "Và đặc biệt, ông rất giỏi nắm bắt tâm lý Càn Long. Hòa Thân biết Càn Long thích gì. Biết cách trình bày vấn đề. Biết cách khiến hoàng đế cảm thấy mình đang kiểm soát mọi thứ."
+    },
+    {
+      "id": 91,
+      "type": "stock",
+      "stock": "ancient Chinese official seals authority",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Quyền lực của Hòa Thân vì vậy tăng lên nhanh chóng. Ông nắm giữ nhiều chức vụ. Tham gia nhiều công việc quan trọng. Và dần trở thành một trong những người quyền lực nhất triều đình.",
+      "cap": "Quyền lực của Hòa Thân vì vậy tăng lên nhanh chóng. Ông nắm giữ nhiều chức vụ. Tham gia nhiều công việc quan trọng. Và dần trở thành một trong những người quyền lực nhất triều đình."
+    },
+    {
+      "id": 92,
+      "type": "stock",
+      "stock": "ancient Chinese gold treasure hoard",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng cùng với quyền lực là sự giàu có. Hòa Thân bị cáo buộc tham nhũng và tích lũy tài sản khổng lồ. Những câu chuyện về tài sản của ông sau này trở thành một trong những giai thoại nổi tiếng nhất về quan lại cuối thời Càn Long.",
+      "cap": "Nhưng cùng với quyền lực là sự giàu có. Hòa Thân bị cáo buộc tham nhũng và tích lũy tài sản khổng lồ. Những câu chuyện về tài sản của ông sau này trở thành một trong những giai thoại nổi tiếng nhất về quan lại cuối thời Càn Long."
+    },
+    {
+      "id": 93,
+      "type": "stock",
+      "stock": "ancient Chinese corrupt official bribe",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Điều đáng suy nghĩ không chỉ là Hòa Thân tham nhũng đến đâu. // Mà là tại sao một người như vậy có thể tồn tại trong thời gian dài dưới triều Càn Long.",
+      "cap": "Điều đáng suy nghĩ không chỉ là Hòa Thân tham nhũng đến đâu. Mà là tại sao một người như vậy có thể tồn tại trong thời gian dài dưới triều Càn Long."
+    },
+    {
+      "id": 94,
+      "type": "stock",
+      "stock": "ancient Chinese emperor inspecting officials",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long không phải một vị vua hoàn toàn buông bỏ việc quản lý triều đình. Trong nhiều năm, ông rất chú trọng kiểm soát quan lại. /// Nhưng tuổi tác thay đổi con người.",
+      "cap": "Càn Long không phải một vị vua hoàn toàn buông bỏ việc quản lý triều đình. Trong nhiều năm, ông rất chú trọng kiểm soát quan lại. Nhưng tuổi tác thay đổi con người."
+    },
+    {
+      "id": 95,
+      "type": "stock",
+      "stock": "ancient Chinese elderly emperor tired",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Khi Càn Long ngày càng già, Hòa Thân trở thành một trong những người có khả năng xử lý nhiều công việc thay cho ông. Sự phụ thuộc ấy ngày càng lớn. // Và đó là một rủi ro.",
+      "cap": "Khi Càn Long ngày càng già, Hòa Thân trở thành một trong những người có khả năng xử lý nhiều công việc thay cho ông. Sự phụ thuộc ấy ngày càng lớn. Và đó là một rủi ro."
+    },
+    {
+      "id": 96,
+      "type": "stock",
+      "stock": "ancient Chinese power behind throne",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bởi khi một nhà cai trị phụ thuộc quá nhiều vào một cá nhân, quyền lực của người đó có thể trở nên nguy hiểm.",
+      "cap": "Bởi khi một nhà cai trị phụ thuộc quá nhiều vào một cá nhân, quyền lực của người đó có thể trở nên nguy hiểm."
+    },
+    {
+      "id": 97,
+      "type": "stock",
+      "stock": "ancient Chinese cracked foundation stone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hòa Thân cuối cùng trở thành biểu tượng của tham nhũng cuối triều Càn Long. Nhưng cũng cần nhớ rằng ông không phải nguyên nhân duy nhất khiến nhà Thanh gặp vấn đề. *Ông chỉ là một biểu hiện rõ ràng nhất của một hệ thống đang bắt đầu xuất hiện những vết nứt.* ////",
+      "cap": "Hòa Thân cuối cùng trở thành biểu tượng của tham nhũng cuối triều Càn Long. Nhưng cũng cần nhớ rằng ông không phải nguyên nhân duy nhất khiến nhà Thanh gặp vấn đề. Ông chỉ là một biểu hiện rõ ràng nhất của một hệ thống đang bắt đầu xuất hiện những vết nứt."
+    },
+    {
+      "id": 98,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần tám. // Khi đế quốc bắt đầu già.",
+      "cap": "Phần tám. Khi đế quốc bắt đầu già."
+    },
+    {
+      "id": 99,
+      "type": "stock",
+      "stock": "ancient Chinese old emperor reflection",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có lẽ thời điểm đáng chú ý nhất trong cuộc đời Càn Long không phải khi ông chiến thắng. /// Mà là khi ông bắt đầu già.",
+      "cap": "Có lẽ thời điểm đáng chú ý nhất trong cuộc đời Càn Long không phải khi ông chiến thắng. Mà là khi ông bắt đầu già."
+    },
+    {
+      "id": 100,
+      "type": "stock",
+      "stock": "ancient Chinese elder wisdom face",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bởi tuổi trẻ cho người ta năng lượng. Tuổi già mang đến kinh nghiệm. // Nhưng tuổi già cũng có thể khiến con người khó thay đổi.",
+      "cap": "Bởi tuổi trẻ cho người ta năng lượng. Tuổi già mang đến kinh nghiệm. Nhưng tuổi già cũng có thể khiến con người khó thay đổi."
+    },
+    {
+      "id": 101,
+      "type": "stock",
+      "stock": "ancient Chinese throne long reign",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long đã trị vì quá lâu. Ông quen với quyền lực. Quen với việc các quan viên tuân lệnh. Quen với cách vận hành của triều đình.",
+      "cap": "Càn Long đã trị vì quá lâu. Ông quen với quyền lực. Quen với việc các quan viên tuân lệnh. Quen với cách vận hành của triều đình."
+    },
+    {
+      "id": 102,
+      "type": "stock",
+      "stock": "ancient Chinese crowded village people",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng bên ngoài Tử Cấm Thành, xã hội đang thay đổi. Dân số tăng mạnh. Đất đai ngày càng chịu áp lực. Nhiều người không có đủ đất để canh tác.",
+      "cap": "Nhưng bên ngoài Tử Cấm Thành, xã hội đang thay đổi. Dân số tăng mạnh. Đất đai ngày càng chịu áp lực. Nhiều người không có đủ đất để canh tác."
+    },
+    {
+      "id": 103,
+      "type": "stock",
+      "stock": "ancient Chinese poor beggars street",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một số vùng xuất hiện tình trạng nghèo đói. Quan lại ở địa phương có thể lợi dụng quyền lực để trục lợi. // Các cuộc nổi dậy bắt đầu xuất hiện.",
+      "cap": "Một số vùng xuất hiện tình trạng nghèo đói. Quan lại ở địa phương có thể lợi dụng quyền lực để trục lợi. Các cuộc nổi dậy bắt đầu xuất hiện."
+    },
+    {
+      "id": 104,
+      "type": "stock",
+      "stock": "ancient Chinese peasant rebellion weapons",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một trong những cuộc nổi dậy đáng chú ý cuối triều Càn Long là cuộc nổi dậy Bạch Liên giáo, bắt đầu vào những năm cuối thế kỷ 18 và kéo dài sang thời Gia Khánh.",
+      "cap": "Một trong những cuộc nổi dậy đáng chú ý cuối triều Càn Long là cuộc nổi dậy Bạch Liên giáo, bắt đầu vào những năm cuối thế kỷ 18 và kéo dài sang thời Gia Khánh."
+    },
+    {
+      "id": 105,
+      "type": "stock",
+      "stock": "ancient Chinese warning signs unrest",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đây là một dấu hiệu quan trọng. Nó cho thấy sức mạnh quân sự của nhà Thanh không đồng nghĩa với việc mọi vấn đề bên trong đều đã được giải quyết.",
+      "cap": "Đây là một dấu hiệu quan trọng. Nó cho thấy sức mạnh quân sự của nhà Thanh không đồng nghĩa với việc mọi vấn đề bên trong đều đã được giải quyết."
+    },
+    {
+      "id": 106,
+      "type": "stock",
+      "stock": "ancient Chinese empire internal problems",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một đế quốc có thể đánh bại kẻ thù bên ngoài… /// nhưng vẫn gặp khó khăn khi đối mặt với những bất mãn bên trong.",
+      "cap": "Một đế quốc có thể đánh bại kẻ thù bên ngoài… nhưng vẫn gặp khó khăn khi đối mặt với những bất mãn bên trong."
+    },
+    {
+      "id": 107,
+      "type": "stock",
+      "stock": "ancient Chinese emperor difficult question",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long đã từng nhìn thấy những chiến thắng quân sự của mình. Nhưng đến cuối đời, ông phải đối mặt với một câu hỏi khó hơn.",
+      "cap": "Càn Long đã từng nhìn thấy những chiến thắng quân sự của mình. Nhưng đến cuối đời, ông phải đối mặt với một câu hỏi khó hơn."
+    },
+    {
+      "id": 108,
+      "type": "stock",
+      "stock": "ancient Chinese population growth crowd",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Làm thế nào để duy trì một đế quốc khổng lồ khi dân số tăng nhanh, bộ máy quan lại ngày càng phức tạp và chi phí cai trị ngày càng lớn?",
+      "cap": "Làm thế nào để duy trì một đế quốc khổng lồ khi dân số tăng nhanh, bộ máy quan lại ngày càng phức tạp và chi phí cai trị ngày càng lớn?"
+    },
+    {
+      "id": 109,
+      "type": "stock",
+      "stock": "ancient Chinese hourglass time passing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Không có câu trả lời đơn giản. /// Và thời gian của Càn Long cũng không còn nhiều. ////",
+      "cap": "Không có câu trả lời đơn giản. Và thời gian của Càn Long cũng không còn nhiều."
+    },
+    {
+      "id": 110,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần chín. // Macartney và một thế giới đang đổi khác.",
+      "cap": "Phần chín. Macartney và một thế giới đang đổi khác."
+    },
+    {
+      "id": 111,
+      "type": "stock",
+      "stock": "18th century British sailing ship",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Năm 1793. // Một phái đoàn Anh đến Trung Quốc. Đứng đầu là George Macartney. Đây là một sự kiện thường được nhắc đến khi nói về quan hệ giữa nhà Thanh và phương Tây.",
+      "cap": "Năm 1793. Một phái đoàn Anh đến Trung Quốc. Đứng đầu là George Macartney. Đây là một sự kiện thường được nhắc đến khi nói về quan hệ giữa nhà Thanh và phương Tây."
+    },
+    {
+      "id": 112,
+      "type": "stock",
+      "stock": "industrial revolution machinery England",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Macartney mang theo những sản phẩm thể hiện sức mạnh kỹ thuật và công nghiệp đang phát triển của nước Anh. Ông muốn mở rộng quan hệ thương mại. Muốn có thêm quyền tiếp cận thị trường. Muốn thiết lập một quan hệ ngoại giao thuận lợi hơn.",
+      "cap": "Macartney mang theo những sản phẩm thể hiện sức mạnh kỹ thuật và công nghiệp đang phát triển của nước Anh. Ông muốn mở rộng quan hệ thương mại. Muốn có thêm quyền tiếp cận thị trường. Muốn thiết lập một quan hệ ngoại giao thuận lợi hơn."
+    },
+    {
+      "id": 113,
+      "type": "stock",
+      "stock": "ancient Chinese court foreign envoy",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng triều đình nhà Thanh nhìn sự việc từ một hệ thống tư duy khác. Đối với Càn Long, Đại Thanh vẫn là một đế quốc lớn. Một nền văn minh lâu đời. Một quốc gia có nền kinh tế khổng lồ.",
+      "cap": "Nhưng triều đình nhà Thanh nhìn sự việc từ một hệ thống tư duy khác. Đối với Càn Long, Đại Thanh vẫn là một đế quốc lớn. Một nền văn minh lâu đời. Một quốc gia có nền kinh tế khổng lồ."
+    },
+    {
+      "id": 114,
+      "type": "stock",
+      "stock": "ancient Chinese emperor dismissive gesture",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông không nhìn nước Anh như một quốc gia mà vài thập niên sau sẽ trở thành đối thủ có khả năng gây sức ép cực lớn lên Trung Quốc. // Và cuộc gặp không tạo ra bước ngoặt mà người Anh mong muốn.",
+      "cap": "Ông không nhìn nước Anh như một quốc gia mà vài thập niên sau sẽ trở thành đối thủ có khả năng gây sức ép cực lớn lên Trung Quốc. Và cuộc gặp không tạo ra bước ngoặt mà người Anh mong muốn."
+    },
+    {
+      "id": 115,
+      "type": "stock",
+      "stock": "ancient Chinese wall barrier distance",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ngày nay, người ta thường nhìn lại sự kiện này như một biểu tượng của khoảng cách giữa nhà Thanh và phương Tây. /// Nhưng cần cẩn thận.",
+      "cap": "Ngày nay, người ta thường nhìn lại sự kiện này như một biểu tượng của khoảng cách giữa nhà Thanh và phương Tây. Nhưng cần cẩn thận."
+    },
+    {
+      "id": 116,
+      "type": "stock",
+      "stock": "ancient Chinese history complex layers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Không thể nói rằng chỉ vì Càn Long từ chối những yêu cầu của Macartney mà nhà Thanh sau này suy yếu. Lịch sử phức tạp hơn. Sự suy yếu của nhà Thanh có rất nhiều nguyên nhân.",
+      "cap": "Không thể nói rằng chỉ vì Càn Long từ chối những yêu cầu của Macartney mà nhà Thanh sau này suy yếu. Lịch sử phức tạp hơn. Sự suy yếu của nhà Thanh có rất nhiều nguyên nhân."
+    },
+    {
+      "id": 117,
+      "type": "stock",
+      "stock": "steam engine factory smoke 19th century",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng cuộc gặp ấy vẫn cho thấy một điều quan trọng. // Thế giới bên ngoài đang bước sang một thời kỳ mới. Cách mạng công nghiệp đang thay đổi nước Anh. Công nghệ quân sự thay đổi. Thương mại quốc tế mở rộng.",
+      "cap": "Nhưng cuộc gặp ấy vẫn cho thấy một điều quan trọng. Thế giới bên ngoài đang bước sang một thời kỳ mới. Cách mạng công nghiệp đang thay đổi nước Anh. Công nghệ quân sự thay đổi. Thương mại quốc tế mở rộng."
+    },
+    {
+      "id": 118,
+      "type": "stock",
+      "stock": "European colonial ships global trade",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Các quốc gia châu Âu ngày càng có khả năng tiến hành những hoạt động ở quy mô toàn cầu. Trong khi đó, Đại Thanh vẫn vận hành chủ yếu theo một trật tự chính trị truyền thống.",
+      "cap": "Các quốc gia châu Âu ngày càng có khả năng tiến hành những hoạt động ở quy mô toàn cầu. Trong khi đó, Đại Thanh vẫn vận hành chủ yếu theo một trật tự chính trị truyền thống."
+    },
+    {
+      "id": 119,
+      "type": "stock",
+      "stock": "ancient Chinese widening gap horizon",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Khoảng cách ấy lúc đầu rất khó nhìn thấy. /// Nhưng theo thời gian, nó sẽ trở nên ngày càng lớn. ////",
+      "cap": "Khoảng cách ấy lúc đầu rất khó nhìn thấy. Nhưng theo thời gian, nó sẽ trở nên ngày càng lớn."
+    },
+    {
+      "id": 120,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần mười. // Người không muốn vượt kỷ lục của ông nội.",
+      "cap": "Phần mười. Người không muốn vượt kỷ lục của ông nội."
+    },
+    {
+      "id": 121,
+      "type": "stock",
+      "stock": "ancient Chinese ancestor portrait respect",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có một câu chuyện rất thú vị về việc Càn Long quyết định nhường ngôi. Ông nội ông, Khang Hy, đã trị vì hơn sáu mươi năm. Càn Long rất kính trọng ông.",
+      "cap": "Có một câu chuyện rất thú vị về việc Càn Long quyết định nhường ngôi. Ông nội ông, Khang Hy, đã trị vì hơn sáu mươi năm. Càn Long rất kính trọng ông."
+    },
+    {
+      "id": 122,
+      "type": "stock",
+      "stock": "ancient Chinese emperor declaration edict",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và ông từng tuyên bố rằng mình không muốn trị vì lâu hơn Khang Hy. // Bởi vậy, năm 1795, sau sáu mươi năm làm hoàng đế, Càn Long tuyên bố thoái vị.",
+      "cap": "Và ông từng tuyên bố rằng mình không muốn trị vì lâu hơn Khang Hy. Bởi vậy, năm 1795, sau sáu mươi năm làm hoàng đế, Càn Long tuyên bố thoái vị."
+    },
+    {
+      "id": 123,
+      "type": "stock",
+      "stock": "ancient Chinese new emperor ceremony",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Con trai ông trở thành Hoàng đế Gia Khánh. Trên giấy tờ, quyền lực đã chuyển giao. /// Nhưng thực tế phức tạp hơn.",
+      "cap": "Con trai ông trở thành Hoàng đế Gia Khánh. Trên giấy tờ, quyền lực đã chuyển giao. Nhưng thực tế phức tạp hơn."
+    },
+    {
+      "id": 124,
+      "type": "stock",
+      "stock": "ancient Chinese retired emperor influence",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long trở thành Thái thượng hoàng. Ông vẫn có ảnh hưởng. Những người từng phục vụ ông vẫn còn đó. Hòa Thân vẫn còn đó. Những quyết định lớn vẫn chịu ảnh hưởng từ thế hệ cũ.",
+      "cap": "Càn Long trở thành Thái thượng hoàng. Ông vẫn có ảnh hưởng. Những người từng phục vụ ông vẫn còn đó. Hòa Thân vẫn còn đó. Những quyết định lớn vẫn chịu ảnh hưởng từ thế hệ cũ."
+    },
+    {
+      "id": 125,
+      "type": "stock",
+      "stock": "ancient Chinese two emperors court",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Điều này tạo ra một tình huống đặc biệt. Gia Khánh là hoàng đế. Nhưng người cha vẫn còn sống. Và người cha ấy đã trị vì quá lâu.",
+      "cap": "Điều này tạo ra một tình huống đặc biệt. Gia Khánh là hoàng đế. Nhưng người cha vẫn còn sống. Và người cha ấy đã trị vì quá lâu."
+    },
+    {
+      "id": 126,
+      "type": "stock",
+      "stock": "ancient Chinese emperor full authority",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Chỉ đến khi Càn Long qua đời vào năm 1799, Gia Khánh mới thực sự có toàn quyền. // Và một trong những việc đầu tiên ông làm là xử lý Hòa Thân.",
+      "cap": "Chỉ đến khi Càn Long qua đời vào năm 1799, Gia Khánh mới thực sự có toàn quyền. Và một trong những việc đầu tiên ông làm là xử lý Hòa Thân."
+    },
+    {
+      "id": 127,
+      "type": "stock",
+      "stock": "ancient Chinese arrest official guards",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hòa Thân bị bắt. Tài sản bị tịch thu. Quyền lực của ông kết thúc rất nhanh chóng.",
+      "cap": "Hòa Thân bị bắt. Tài sản bị tịch thu. Quyền lực của ông kết thúc rất nhanh chóng."
+    },
+    {
+      "id": 128,
+      "type": "stock",
+      "stock": "ancient Chinese fallen official empty room",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Điều này cho thấy một nghịch lý. Khi Càn Long còn sống, Hòa Thân có thể gần như không thể bị động đến. /// Nhưng chỉ vài ngày sau khi Càn Long qua đời, ông ta mất tất cả.",
+      "cap": "Điều này cho thấy một nghịch lý. Khi Càn Long còn sống, Hòa Thân có thể gần như không thể bị động đến. Nhưng chỉ vài ngày sau khi Càn Long qua đời, ông ta mất tất cả."
+    },
+    {
+      "id": 129,
+      "type": "stock",
+      "stock": "ancient Chinese throne surrounded courtiers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "*Quyền lực đôi khi không nằm trong tay người tưởng như quyền lực nhất.* // Nó nằm trong mối quan hệ giữa những người đứng xung quanh ngai vàng. ////",
+      "cap": "Quyền lực đôi khi không nằm trong tay người tưởng như quyền lực nhất. Nó nằm trong mối quan hệ giữa những người đứng xung quanh ngai vàng."
+    },
+    {
+      "id": 130,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần mười một. // Những năm cuối cùng.",
+      "cap": "Phần mười một. Những năm cuối cùng."
+    },
+    {
+      "id": 131,
+      "type": "stock",
+      "stock": "ancient Chinese emperor young riding horse",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những năm cuối đời của Càn Long có lẽ rất khác với những năm đầu. Khi còn trẻ, ông cưỡi ngựa. Đi săn. Đi tuần du. Chỉ huy chiến dịch. Xem xét tấu chương. Tổ chức những dự án văn hóa lớn.",
+      "cap": "Những năm cuối đời của Càn Long có lẽ rất khác với những năm đầu. Khi còn trẻ, ông cưỡi ngựa. Đi săn. Đi tuần du. Chỉ huy chiến dịch. Xem xét tấu chương. Tổ chức những dự án văn hóa lớn."
+    },
+    {
+      "id": 132,
+      "type": "stock",
+      "stock": "ancient Chinese old man frail hands",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng khi tuổi tác tăng lên, cơ thể bắt đầu không còn phục vụ ông như trước. // Ông đã sống quá lâu để chứng kiến nhiều người mình từng biết qua đời.",
+      "cap": "Nhưng khi tuổi tác tăng lên, cơ thể bắt đầu không còn phục vụ ông như trước. Ông đã sống quá lâu để chứng kiến nhiều người mình từng biết qua đời."
+    },
+    {
+      "id": 133,
+      "type": "stock",
+      "stock": "ancient Chinese empty chairs memory",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những người từng là bạn bè không còn. Những quan viên từng phục vụ từ thời ông còn trẻ đã già hoặc mất. Những người phụ nữ từng ở bên ông cũng lần lượt rời khỏi thế gian.",
+      "cap": "Những người từng là bạn bè không còn. Những quan viên từng phục vụ từ thời ông còn trẻ đã già hoặc mất. Những người phụ nữ từng ở bên ông cũng lần lượt rời khỏi thế gian."
+    },
+    {
+      "id": 134,
+      "type": "stock",
+      "stock": "ancient Chinese generations family",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những đứa con lớn lên. Thế hệ mới xuất hiện. // Còn ông… /// vẫn ở đó.",
+      "cap": "Những đứa con lớn lên. Thế hệ mới xuất hiện. Còn ông… vẫn ở đó."
+    },
+    {
+      "id": 135,
+      "type": "stock",
+      "stock": "ancient Chinese emperor throne decades",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một vị hoàng đế đã cai trị sáu mươi năm. Đó là một khoảng thời gian dài đến mức gần như cả một đời người.",
+      "cap": "Một vị hoàng đế đã cai trị sáu mươi năm. Đó là một khoảng thời gian dài đến mức gần như cả một đời người."
+    },
+    {
+      "id": 136,
+      "type": "stock",
+      "stock": "ancient Chinese old and young people",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có những người sinh ra khi Càn Long lên ngôi. Đến khi họ chết, ông vẫn còn ngồi trên ngai vàng.",
+      "cap": "Có những người sinh ra khi Càn Long lên ngôi. Đến khi họ chết, ông vẫn còn ngồi trên ngai vàng."
+    },
+    {
+      "id": 137,
+      "type": "stock",
+      "stock": "ancient Chinese era symbol permanence",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Điều đó tạo ra một cảm giác đặc biệt về quyền lực. Một thế hệ lớn lên trong thế giới mà họ không biết đến một hoàng đế nào khác. Càn Long trở thành một phần của chính thời đại.",
+      "cap": "Điều đó tạo ra một cảm giác đặc biệt về quyền lực. Một thế hệ lớn lên trong thế giới mà họ không biết đến một hoàng đế nào khác. Càn Long trở thành một phần của chính thời đại."
+    },
+    {
+      "id": 138,
+      "type": "stock",
+      "stock": "ancient Chinese sand falling time",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng không ai có thể vượt qua thời gian. ////",
+      "cap": "Nhưng không ai có thể vượt qua thời gian."
+    },
+    {
+      "id": 139,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần mười hai. // Ngày Càn Long qua đời.",
+      "cap": "Phần mười hai. Ngày Càn Long qua đời."
+    },
+    {
+      "id": 140,
+      "type": "stock",
+      "stock": "ancient Chinese palace winter snow",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ngày 7 tháng 2 năm 1799. // Càn Long qua đời. Ông hưởng thọ 87 tuổi. Sáu mươi năm trị vì. Gần như cả cuộc đời trưởng thành của ông gắn với ngai vàng.",
+      "cap": "Ngày 7 tháng 2 năm 1799. Càn Long qua đời. Ông hưởng thọ 87 tuổi. Sáu mươi năm trị vì. Gần như cả cuộc đời trưởng thành của ông gắn với ngai vàng."
+    },
+    {
+      "id": 141,
+      "type": "stock",
+      "stock": "ancient Chinese circle life journey",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nếu nhìn lại, cuộc đời Càn Long giống như một vòng tròn khổng lồ. Ông sinh ra trong một gia đình quyền lực. Được giáo dục để trở thành hoàng đế. Lên ngôi khi còn trẻ.",
+      "cap": "Nếu nhìn lại, cuộc đời Càn Long giống như một vòng tròn khổng lồ. Ông sinh ra trong một gia đình quyền lực. Được giáo dục để trở thành hoàng đế. Lên ngôi khi còn trẻ."
+    },
+    {
+      "id": 142,
+      "type": "stock",
+      "stock": "ancient Chinese empire peak glory",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đưa đế quốc đến thời kỳ cực thịnh. Mở rộng lãnh thổ. Bảo trợ văn hóa. Xây dựng cung điện. Chứng kiến những chiến thắng. Chứng kiến những mất mát.",
+      "cap": "Đưa đế quốc đến thời kỳ cực thịnh. Mở rộng lãnh thổ. Bảo trợ văn hóa. Xây dựng cung điện. Chứng kiến những chiến thắng. Chứng kiến những mất mát."
+    },
+    {
+      "id": 143,
+      "type": "stock",
+      "stock": "ancient Chinese aging emperor sunset",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Già đi. Nhường ngôi. // Và cuối cùng qua đời.",
+      "cap": "Già đi. Nhường ngôi. Và cuối cùng qua đời."
+    },
+    {
+      "id": 144,
+      "type": "stock",
+      "stock": "ancient Chinese dynasty continuing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng khi Càn Long nhắm mắt, câu chuyện của nhà Thanh chưa kết thúc. Thực ra, nó còn gần một thế kỷ nữa. /// Nhưng một giai đoạn quan trọng đã kết thúc.",
+      "cap": "Nhưng khi Càn Long nhắm mắt, câu chuyện của nhà Thanh chưa kết thúc. Thực ra, nó còn gần một thế kỷ nữa. Nhưng một giai đoạn quan trọng đã kết thúc."
+    },
+    {
+      "id": 145,
+      "type": "stock",
+      "stock": "ancient Chinese golden age ending",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long là vị hoàng đế cuối cùng của thời kỳ được xem là cực thịnh của nhà Thanh. Sau ông, những vấn đề ngày càng rõ ràng.",
+      "cap": "Càn Long là vị hoàng đế cuối cùng của thời kỳ được xem là cực thịnh của nhà Thanh. Sau ông, những vấn đề ngày càng rõ ràng."
+    },
+    {
+      "id": 146,
+      "type": "stock",
+      "stock": "19th century China conflict war",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Các cuộc nổi dậy. Áp lực tài chính. Tham nhũng. Sức ép từ phương Tây. Xung đột thương mại. Chiến tranh. Những phong trào cải cách. // Cuối cùng là sự sụp đổ của nhà Thanh vào năm 1912. ////",
+      "cap": "Các cuộc nổi dậy. Áp lực tài chính. Tham nhũng. Sức ép từ phương Tây. Xung đột thương mại. Chiến tranh. Những phong trào cải cách. Cuối cùng là sự sụp đổ của nhà Thanh vào năm 1912."
+    },
+    {
+      "id": 147,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần mười ba. // Di sản.",
+      "cap": "Phần mười ba. Di sản."
+    },
+    {
+      "id": 148,
+      "type": "stock",
+      "stock": "ancient Chinese vast territory map",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy cuối cùng, Càn Long để lại điều gì? // Một đế quốc rộng lớn. Một kho tàng văn hóa đồ sộ. Những bộ sách khổng lồ. Những công trình kiến trúc. Những bài thơ. Những chiến công.",
+      "cap": "Vậy cuối cùng, Càn Long để lại điều gì? Một đế quốc rộng lớn. Một kho tàng văn hóa đồ sộ. Những bộ sách khổng lồ. Những công trình kiến trúc. Những bài thơ. Những chiến công."
+    },
+    {
+      "id": 149,
+      "type": "stock",
+      "stock": "ancient Chinese bureaucracy paperwork heavy",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng ông cũng để lại những vấn đề. Một bộ máy hành chính ngày càng cồng kềnh. Tham nhũng. Chi phí quân sự. Sự xa hoa. Những mâu thuẫn xã hội.",
+      "cap": "Nhưng ông cũng để lại những vấn đề. Một bộ máy hành chính ngày càng cồng kềnh. Tham nhũng. Chi phí quân sự. Sự xa hoa. Những mâu thuẫn xã hội."
+    },
+    {
+      "id": 150,
+      "type": "stock",
+      "stock": "ancient Chinese court resisting change",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và một triều đình chưa thực sự thích nghi với thế giới đang thay đổi. // Đó là lý do cuộc đời Càn Long rất khó đánh giá chỉ bằng hai chữ thành công hay thất bại.",
+      "cap": "Và một triều đình chưa thực sự thích nghi với thế giới đang thay đổi. Đó là lý do cuộc đời Càn Long rất khó đánh giá chỉ bằng hai chữ thành công hay thất bại."
+    },
+    {
+      "id": 151,
+      "type": "stock",
+      "stock": "ancient Chinese three generations emperors",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông không phải người duy nhất tạo ra sự thịnh vượng của Đại Thanh. Và cũng không phải người duy nhất chịu trách nhiệm cho những khủng hoảng về sau.",
+      "cap": "Ông không phải người duy nhất tạo ra sự thịnh vượng của Đại Thanh. Và cũng không phải người duy nhất chịu trách nhiệm cho những khủng hoảng về sau."
+    },
+    {
+      "id": 152,
+      "type": "stock",
+      "stock": "ancient Chinese long history timeline",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông là một phần của một quá trình lịch sử dài hơn. Một vị vua thừa hưởng thành quả từ hai thế hệ trước. Đưa đế quốc đến một đỉnh cao mới. Nhưng đồng thời cũng để lại những vấn đề mà thế hệ sau phải giải quyết.",
+      "cap": "Ông là một phần của một quá trình lịch sử dài hơn. Một vị vua thừa hưởng thành quả từ hai thế hệ trước. Đưa đế quốc đến một đỉnh cao mới. Nhưng đồng thời cũng để lại những vấn đề mà thế hệ sau phải giải quyết."
+    },
+    {
+      "id": 153,
+      "type": "stock",
+      "stock": "ancient Chinese generations building",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đó là điều thường xảy ra trong lịch sử. Một thế hệ xây dựng. Một thế hệ mở rộng. Một thế hệ hưởng thành quả. /// Và rồi một thế hệ khác phải trả giá cho những vấn đề đã tích tụ từ trước. ////",
+      "cap": "Đó là điều thường xảy ra trong lịch sử. Một thế hệ xây dựng. Một thế hệ mở rộng. Một thế hệ hưởng thành quả. Và rồi một thế hệ khác phải trả giá cho những vấn đề đã tích tụ từ trước."
+    },
+    {
+      "id": 154,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Phần mười bốn. // Điều đáng nhớ nhất không phải là chiến thắng.",
+      "cap": "Phần mười bốn. Điều đáng nhớ nhất không phải là chiến thắng."
+    },
+    {
+      "id": 155,
+      "type": "stock",
+      "stock": "ancient Chinese numbers records archive",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Khi nhắc đến Càn Long, người ta thường nhớ đến những con số. Sáu mươi năm trị vì. 87 năm tuổi. Một đế quốc rộng lớn. Mười chiến công.",
+      "cap": "Khi nhắc đến Càn Long, người ta thường nhớ đến những con số. Sáu mươi năm trị vì. 87 năm tuổi. Một đế quốc rộng lớn. Mười chiến công."
+    },
+    {
+      "id": 156,
+      "type": "stock",
+      "stock": "ancient Chinese paradox mirror reflection",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng có lẽ điều đáng nhớ nhất không nằm ở những con số. /// Mà nằm ở một nghịch lý.",
+      "cap": "Nhưng có lẽ điều đáng nhớ nhất không nằm ở những con số. Mà nằm ở một nghịch lý."
+    },
+    {
+      "id": 157,
+      "type": "stock",
+      "stock": "ancient Chinese emperor commanding millions",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long có thể ra lệnh cho hàng triệu người. // Nhưng không thể ngăn thời gian.",
+      "cap": "Càn Long có thể ra lệnh cho hàng triệu người. Nhưng không thể ngăn thời gian."
+    },
+    {
+      "id": 158,
+      "type": "stock",
+      "stock": "ancient Chinese border expansion map",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông có thể mở rộng biên giới. // Nhưng không thể mở rộng tuổi thọ.",
+      "cap": "Ông có thể mở rộng biên giới. Nhưng không thể mở rộng tuổi thọ."
+    },
+    {
+      "id": 159,
+      "type": "stock",
+      "stock": "Chinese imperial garden beautiful",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông có thể xây những khu vườn tuyệt đẹp. // Nhưng không thể xây một nơi để trốn khỏi cái chết.",
+      "cap": "Ông có thể xây những khu vườn tuyệt đẹp. Nhưng không thể xây một nơi để trốn khỏi cái chết."
+    },
+    {
+      "id": 160,
+      "type": "stock",
+      "stock": "ancient Chinese thousands books library",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông có thể thu thập hàng nghìn cuốn sách. // Nhưng không thể đọc hết những gì lịch sử sẽ viết về mình.",
+      "cap": "Ông có thể thu thập hàng nghìn cuốn sách. Nhưng không thể đọc hết những gì lịch sử sẽ viết về mình."
+    },
+    {
+      "id": 161,
+      "type": "stock",
+      "stock": "ancient Chinese world changing outside",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông có thể kiểm soát triều đình. // Nhưng không thể kiểm soát những thay đổi đang diễn ra bên ngoài biên giới.",
+      "cap": "Ông có thể kiểm soát triều đình. Nhưng không thể kiểm soát những thay đổi đang diễn ra bên ngoài biên giới."
+    },
+    {
+      "id": 162,
+      "type": "stock",
+      "stock": "ancient Chinese wisdom lesson scroll",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đây có lẽ là bài học sâu sắc nhất từ cuộc đời ông. Quyền lực khiến con người có cảm giác rằng mình có thể kiểm soát mọi thứ. /// Nhưng thực tế, quyền lực chỉ có giới hạn.",
+      "cap": "Đây có lẽ là bài học sâu sắc nhất từ cuộc đời ông. Quyền lực khiến con người có cảm giác rằng mình có thể kiểm soát mọi thứ. Nhưng thực tế, quyền lực chỉ có giới hạn."
+    },
+    {
+      "id": 163,
+      "type": "stock",
+      "stock": "ancient Chinese era passing clouds",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "*Càn Long có thể điều khiển con người. // Nhưng không thể điều khiển thời đại.* ////",
+      "cap": "Càn Long có thể điều khiển con người. Nhưng không thể điều khiển thời đại."
+    },
+    {
+      "id": 164,
+      "type": "black",
+      "music": "drop",
+      "pause_after": 2.5,
+      "fx": null,
+      "vo": "Người đứng trên đỉnh cao rồi cũng phải bước xuống.",
+      "cap": "Người đứng trên đỉnh cao rồi cũng phải bước xuống."
+    },
+    {
+      "id": 165,
+      "type": "stock",
+      "stock": "Forbidden City morning gate opening",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hãy quay trở lại hình ảnh ở đầu câu chuyện. // Một buổi sáng trong Tử Cấm Thành. Những cánh cửa mở ra. Quan lại đứng chờ. Một vị hoàng đế bước vào điện. Tất cả cúi đầu.",
+      "cap": "Hãy quay trở lại hình ảnh ở đầu câu chuyện. Một buổi sáng trong Tử Cấm Thành. Những cánh cửa mở ra. Quan lại đứng chờ. Một vị hoàng đế bước vào điện. Tất cả cúi đầu."
+    },
+    {
+      "id": 166,
+      "type": "stock",
+      "stock": "ancient Chinese emperor entering hall",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đó là Càn Long. /// Một người đàn ông mà trong suốt nhiều thập kỷ, gần như cả đế quốc phải ngước nhìn.",
+      "cap": "Đó là Càn Long. Một người đàn ông mà trong suốt nhiều thập kỷ, gần như cả đế quốc phải ngước nhìn."
+    },
+    {
+      "id": 167,
+      "type": "stock",
+      "stock": "ancient Chinese imperial glory procession",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông từng là trung tâm của Đại Thanh. Ông từng nhìn thấy những đoàn quân chiến thắng. Từng nhận những lời ca tụng. Từng sống giữa vàng bạc và ngọc quý. Từng đi qua những khu vườn đẹp nhất. Từng được hàng nghìn người phục vụ.",
+      "cap": "Ông từng là trung tâm của Đại Thanh. Ông từng nhìn thấy những đoàn quân chiến thắng. Từng nhận những lời ca tụng. Từng sống giữa vàng bạc và ngọc quý. Từng đi qua những khu vườn đẹp nhất. Từng được hàng nghìn người phục vụ."
+    },
+    {
+      "id": 168,
+      "type": "stock",
+      "stock": "ancient Chinese empty palace abandoned",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng rồi thời gian trôi qua. Những người từng cúi đầu trước ông lần lượt biến mất. Những người ông yêu thương cũng rời khỏi thế gian. Những công trình ông xây dựng thay đổi. Những thế hệ mới xuất hiện.",
+      "cap": "Nhưng rồi thời gian trôi qua. Những người từng cúi đầu trước ông lần lượt biến mất. Những người ông yêu thương cũng rời khỏi thế gian. Những công trình ông xây dựng thay đổi. Những thế hệ mới xuất hiện."
+    },
+    {
+      "id": 169,
+      "type": "stock",
+      "stock": "ancient Chinese tomb quiet resting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và cuối cùng… // chính ông cũng ra đi. /// Năm 1799. Càn Long chết.",
+      "cap": "Và cuối cùng… chính ông cũng ra đi. Năm 1799. Càn Long chết."
+    },
+    {
+      "id": 170,
+      "type": "stock",
+      "stock": "ancient Chinese history continuing river",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng lịch sử không chết theo ông. // Lịch sử tiếp tục bước đi.",
+      "cap": "Nhưng lịch sử không chết theo ông. Lịch sử tiếp tục bước đi."
+    },
+    {
+      "id": 171,
+      "type": "stock",
+      "stock": "Opium War ships cannons 19th century",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bốn mươi năm sau, nhà Thanh phải đối mặt với Chiến tranh Nha phiến. Sau đó là những cuộc khủng hoảng liên tiếp. Những thành phố bị tấn công. Những hiệp ước bất bình đẳng được ký kết.",
+      "cap": "Bốn mươi năm sau, nhà Thanh phải đối mặt với Chiến tranh Nha phiến. Sau đó là những cuộc khủng hoảng liên tiếp. Những thành phố bị tấn công. Những hiệp ước bất bình đẳng được ký kết."
+    },
+    {
+      "id": 172,
+      "type": "stock",
+      "stock": "19th century China rebellion chaos",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những cuộc nổi dậy làm rung chuyển đế quốc. Những nỗ lực cải cách diễn ra trong tuyệt vọng. // Và cuối cùng, hơn một thế kỷ sau ngày Càn Long lên ngôi, triều đại nhà Thanh sụp đổ.",
+      "cap": "Những cuộc nổi dậy làm rung chuyển đế quốc. Những nỗ lực cải cách diễn ra trong tuyệt vọng. Và cuối cùng, hơn một thế kỷ sau ngày Càn Long lên ngôi, triều đại nhà Thanh sụp đổ."
+    },
+    {
+      "id": 173,
+      "type": "stock",
+      "stock": "ancient Chinese empty throne dust",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ngai vàng từng khiến hàng triệu người cúi đầu không còn nữa. Những nghi lễ từng được coi là bất biến cũng biến mất. Một đế quốc từng tồn tại hàng trăm năm trở thành lịch sử.",
+      "cap": "Ngai vàng từng khiến hàng triệu người cúi đầu không còn nữa. Những nghi lễ từng được coi là bất biến cũng biến mất. Một đế quốc từng tồn tại hàng trăm năm trở thành lịch sử."
+    },
+    {
+      "id": 174,
+      "type": "stock",
+      "stock": "ancient Chinese portrait museum looking",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng Càn Long vẫn còn đó. // Không phải như một vị vua sống mãi. /// Mà như một nhân vật để hậu thế nhìn lại và đặt câu hỏi.",
+      "cap": "Nhưng Càn Long vẫn còn đó. Không phải như một vị vua sống mãi. Mà như một nhân vật để hậu thế nhìn lại và đặt câu hỏi."
+    },
+    {
+      "id": 175,
+      "type": "stock",
+      "stock": "ancient Chinese questions history book",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một người có thể quyền lực đến đâu? Một đế chế có thể giàu mạnh đến mức nào? Một vị vua có thể cai trị bao lâu? Và liệu con người có thể nhận ra thời đại của mình đang thay đổi trước khi quá muộn hay không?",
+      "cap": "Một người có thể quyền lực đến đâu? Một đế chế có thể giàu mạnh đến mức nào? Một vị vua có thể cai trị bao lâu? Và liệu con người có thể nhận ra thời đại của mình đang thay đổi trước khi quá muộn hay không?"
+    },
+    {
+      "id": 176,
+      "type": "stock",
+      "stock": "ancient Chinese emperor thoughtful window",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có lẽ Càn Long không có câu trả lời. // Bởi ông cũng giống như tất cả chúng ta.",
+      "cap": "Có lẽ Càn Long không có câu trả lời. Bởi ông cũng giống như tất cả chúng ta."
+    },
+    {
+      "id": 177,
+      "type": "stock",
+      "stock": "ancient Chinese life ordinary moments",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ông sống trong thời đại của mình. Tin vào những điều mà thế hệ của ông tin. Đưa ra những quyết định mà ông cho là đúng. Yêu những người ông yêu. Theo đuổi những tham vọng của mình.",
+      "cap": "Ông sống trong thời đại của mình. Tin vào những điều mà thế hệ của ông tin. Đưa ra những quyết định mà ông cho là đúng. Yêu những người ông yêu. Theo đuổi những tham vọng của mình."
+    },
+    {
+      "id": 178,
+      "type": "stock",
+      "stock": "ancient Chinese death inevitable candle",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và cuối cùng, ông cũng phải đối mặt với điều mà không một vị hoàng đế nào có thể tránh khỏi. /// Cái chết.",
+      "cap": "Và cuối cùng, ông cũng phải đối mặt với điều mà không một vị hoàng đế nào có thể tránh khỏi. Cái chết."
+    },
+    {
+      "id": 179,
+      "type": "stock",
+      "stock": "ancient Chinese story power ambition",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Câu chuyện của Càn Long vì thế không chỉ là câu chuyện về một vị vua. Nó là câu chuyện về quyền lực. Về tham vọng. Về vinh quang. Về sự xa hoa. Về những giới hạn của con người.",
+      "cap": "Câu chuyện của Càn Long vì thế không chỉ là câu chuyện về một vị vua. Nó là câu chuyện về quyền lực. Về tham vọng. Về vinh quang. Về sự xa hoa. Về những giới hạn của con người."
+    },
+    {
+      "id": 180,
+      "type": "stock",
+      "stock": "ancient Chinese time flowing water",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và trên hết… /// là câu chuyện về thời gian.",
+      "cap": "Và trên hết… là câu chuyện về thời gian."
+    },
+    {
+      "id": 181,
+      "type": "stock",
+      "stock": "ancient Chinese mountain peak clouds",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bởi khi đứng trên đỉnh cao, người ta thường nghĩ mình sẽ ở đó mãi mãi. // Nhưng lịch sử không đứng yên. Đế chế thay đổi. Con người thay đổi. Thế giới thay đổi.",
+      "cap": "Bởi khi đứng trên đỉnh cao, người ta thường nghĩ mình sẽ ở đó mãi mãi. Nhưng lịch sử không đứng yên. Đế chế thay đổi. Con người thay đổi. Thế giới thay đổi."
+    },
+    {
+      "id": 182,
+      "type": "stock",
+      "stock": "ancient Chinese name carved stone fading",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và rồi một ngày, ngay cả ngai vàng tưởng như bất tử cũng chỉ còn lại một cái tên trong sách sử.",
+      "cap": "Và rồi một ngày, ngay cả ngai vàng tưởng như bất tử cũng chỉ còn lại một cái tên trong sách sử."
+    },
+    {
+      "id": 183,
+      "type": "stock",
+      "stock": "ancient Chinese emperor everything wanted",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Càn Long từng đứng trên đỉnh cao của Đại Thanh. Ông có gần như mọi thứ mà một con người có thể mong muốn. // Nhưng cuối cùng, thứ ông không thể có… /// là thêm một ngày.",
+      "cap": "Càn Long từng đứng trên đỉnh cao của Đại Thanh. Ông có gần như mọi thứ mà một con người có thể mong muốn. Nhưng cuối cùng, thứ ông không thể có… là thêm một ngày."
+    },
+    {
+      "id": 184,
+      "type": "stock",
+      "stock": "ancient Chinese kneeling subjects power",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "*Bởi quyền lực có thể khiến cả thiên hạ cúi đầu.* /// *Nhưng trước thời gian, mọi vị hoàng đế đều bình đẳng.* ////",
+      "cap": "Bởi quyền lực có thể khiến cả thiên hạ cúi đầu. Nhưng trước thời gian, mọi vị hoàng đế đều bình đẳng."
+    },
+    {
+      "id": 185,
+      "type": "stock",
+      "stock": "ancient Chinese imperial portrait final",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và đó chính là câu chuyện về Càn Long. // Một đứa trẻ sinh ra trong hoàng gia. Một người đàn ông trở thành hoàng đế. Một vị vua đưa Đại Thanh đến đỉnh cao.",
+      "cap": "Và đó chính là câu chuyện về Càn Long. Một đứa trẻ sinh ra trong hoàng gia. Một người đàn ông trở thành hoàng đế. Một vị vua đưa Đại Thanh đến đỉnh cao."
+    },
+    {
+      "id": 186,
+      "type": "stock",
+      "stock": "ancient Chinese stage curtain history",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và một con người, giống như tất cả chúng ta… /// cuối cùng cũng phải bước xuống khỏi sân khấu của lịch sử.",
+      "cap": "Và một con người, giống như tất cả chúng ta… cuối cùng cũng phải bước xuống khỏi sân khấu của lịch sử."
+    }
+  ]
+}
