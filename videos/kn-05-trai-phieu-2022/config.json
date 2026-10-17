@@ -1,0 +1,827 @@
+{
+  "name": "kn-05-trai-phieu-2022",
+  "out": "build/final/video-1.mp4",
+  "fps": 24,
+  "w": 1920,
+  "h": 1080,
+  "style": {
+    "ink": "#14110F",
+    "paper": "#F2EDE4",
+    "amber": "#E0A82E",
+    "font_reg": "tool/fonts/arial.ttf",
+    "font_bold": "tool/fonts/arialbd.ttf"
+  },
+  "music": {
+    "file": "assets/music/bed.wav",
+    "level": 0.16,
+    "fade_in": 1.5,
+    "fade_out": 3.0
+  },
+  "caption": {
+    "on": true,
+    "font": "tool/fonts/arialbd.ttf",
+    "size": 46,
+    "color": "#FFFFFF",
+    "y": 920
+  },
+  "cells": [
+    {
+      "id": 1,
+      "type": "stock",
+      "stock": "elderly vietnamese woman bank counter",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một tỷ đồng. | Đó là tiền bán mảnh đất ở quê của cô Tư, một cô giáo về hưu ở Sài Gòn. | Năm 2020, cô mang số tiền đó ra ngân hàng, để gửi tiết kiệm như mọi năm.",
+      "cap": "Một tỷ đồng. Đó là tiền bán mảnh đất ở quê của cô Tư, một cô giáo về hưu ở Sài Gòn. Năm 2020, cô mang số tiền đó ra ngân hàng, để gửi tiết kiệm như mọi năm."
+    },
+    {
+      "id": 2,
+      "type": "stock",
+      "stock": "signing document pen bank desk",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cô ra về với một tờ giấy khác. | Hai năm sau, tờ giấy ấy không rút ra được một đồng nào. // Mà cô Tư không hề đi lướt sóng, | cô chỉ muốn được thêm vài đồng lãi.",
+      "cap": "Cô ra về với một tờ giấy khác. Hai năm sau, tờ giấy ấy không rút ra được một đồng nào. Mà cô Tư không hề đi lướt sóng, cô chỉ muốn được thêm vài đồng lãi."
+    },
+    {
+      "id": 3,
+      "type": "card",
+      "text": "Trái phiếu Vạn Thịnh Phát bị chiếm đoạt: 30.081 tỷ đồng",
+      "src": "Bản án vụ Vạn Thịnh Phát giai đoạn 2",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Và cô không đứng một mình. Riêng vụ Vạn Thịnh Phát, toà xác định hơn 30 nghìn tỷ đồng tiền trái phiếu đã bị chiếm đoạt.",
+      "cap": "Và cô không đứng một mình. Riêng vụ Vạn Thịnh Phát, toà xác định hơn 30 nghìn tỷ đồng tiền trái phiếu đã bị chiếm đoạt."
+    },
+    {
+      "id": 4,
+      "type": "card",
+      "text": "Số người mua trái phiếu: 35.824 người",
+      "src": "Cáo trạng vụ Vạn Thịnh Phát giai đoạn 2",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Của 35.824 người. Phần lớn họ giống cô Tư: không phải dân đầu tư, chỉ là người có chút tiền để dành.",
+      "cap": "Của 35.824 người. Phần lớn họ giống cô Tư: không phải dân đầu tư, chỉ là người có chút tiền để dành."
+    },
+    {
+      "id": 5,
+      "type": "stock",
+      "stock": "vietnamese bank branch interior customers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy tại sao một người chỉ định gửi tiết kiệm, | lại thành người cho một tập đoàn bất động sản vay tiền? | Tiền của họ giờ đã về được bao nhiêu? | Và nếu trong két nhà bạn cũng đang có một tờ giấy lãi cao, bạn cần hỏi gì?",
+      "cap": "Vậy tại sao một người chỉ định gửi tiết kiệm, lại thành người cho một tập đoàn bất động sản vay tiền? Tiền của họ giờ đã về được bao nhiêu? Và nếu trong két nhà bạn cũng đang có một tờ giấy lãi cao, bạn cần hỏi gì?"
+    },
+    {
+      "id": 6,
+      "type": "stock",
+      "stock": "vietnamese man reading newspaper cafe",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cô Tư là nhân vật tôi ghép lại, từ những câu chuyện mà rất nhiều người mua trái phiếu đã kể với báo chí. | Còn số liệu thì lấy từ bản án và báo chính thống, | không phải lời khuyên đầu tư. // Ok, vào việc.",
+      "cap": "Cô Tư là nhân vật tôi ghép lại, từ những câu chuyện mà rất nhiều người mua trái phiếu đã kể với báo chí. Còn số liệu thì lấy từ bản án và báo chính thống, không phải lời khuyên đầu tư. Ok, vào việc."
+    },
+    {
+      "id": 7,
+      "type": "stock",
+      "stock": "vietnamese grocery shop owner counting money",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Trước hết, trái phiếu là gì? | Hình dung thế này. | Chị Lan bán tạp hoá đầu ngõ muốn mở thêm một quầy, mà thiếu 100 triệu.",
+      "cap": "Trước hết, trái phiếu là gì? Hình dung thế này. Chị Lan bán tạp hoá đầu ngõ muốn mở thêm một quầy, mà thiếu 100 triệu."
+    },
+    {
+      "id": 8,
+      "type": "stock",
+      "stock": "neighbors talking alley vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Chị đi hỏi vay mấy nhà hàng xóm. | Viết cho mỗi người một tờ giấy: | tôi vay của anh chừng này, mỗi năm trả lãi chừng này, ba năm sau trả đủ gốc.",
+      "cap": "Chị đi hỏi vay mấy nhà hàng xóm. Viết cho mỗi người một tờ giấy: tôi vay của anh chừng này, mỗi năm trả lãi chừng này, ba năm sau trả đủ gốc."
+    },
+    {
+      "id": 9,
+      "type": "stock",
+      "stock": "handwritten paper note promise",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cái tờ giấy đó, | nếu người viết là một công ty, và được làm theo đúng luật, | thì gọi là trái phiếu doanh nghiệp. // Nói gọn: | mua trái phiếu, là bạn cho công ty đó vay tiền.",
+      "cap": "Cái tờ giấy đó, nếu người viết là một công ty, và được làm theo đúng luật, thì gọi là trái phiếu doanh nghiệp. Nói gọn: mua trái phiếu, là bạn cho công ty đó vay tiền."
+    },
+    {
+      "id": 10,
+      "type": "stock",
+      "stock": "bank passbook savings vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn sổ tiết kiệm thì khác. | Bạn cho ngân hàng vay. | Ngân hàng chịu trách nhiệm trả bạn, | và tiền gửi còn có bảo hiểm tiền gửi đứng phía sau.",
+      "cap": "Còn sổ tiết kiệm thì khác. Bạn cho ngân hàng vay. Ngân hàng chịu trách nhiệm trả bạn, và tiền gửi còn có bảo hiểm tiền gửi đứng phía sau."
+    },
+    {
+      "id": 11,
+      "type": "stock",
+      "stock": "bus station ticket counter asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nghe thì đơn giản. | Nhưng chỗ rắc rối là, | có những tờ trái phiếu được bán ngay tại quầy ngân hàng.",
+      "cap": "Nghe thì đơn giản. Nhưng chỗ rắc rối là, có những tờ trái phiếu được bán ngay tại quầy ngân hàng."
+    },
+    {
+      "id": 12,
+      "type": "stock",
+      "stock": "bus terminal vietnam passengers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nó giống như bạn mua vé ở quầy bến xe, | nhưng chiếc xe thì của một nhà xe khác. | Xe hỏng giữa đường, bến xe không đền vé cho bạn. // Họ chỉ là chỗ bán vé thôi.",
+      "cap": "Nó giống như bạn mua vé ở quầy bến xe, nhưng chiếc xe thì của một nhà xe khác. Xe hỏng giữa đường, bến xe không đền vé cho bạn. Họ chỉ là chỗ bán vé thôi."
+    },
+    {
+      "id": 13,
+      "type": "stock",
+      "stock": "bank teller smiling customer asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Thế thì vì sao người ta lại chịu mua? | Câu trả lời ngắn nhất: | vì lãi cao hơn. | Tính thử đi.",
+      "cap": "Thế thì vì sao người ta lại chịu mua? Câu trả lời ngắn nhất: vì lãi cao hơn. Tính thử đi."
+    },
+    {
+      "id": 14,
+      "type": "card",
+      "text": "Lãi một năm trên 1 tỷ: Gửi tiết kiệm = 60 triệu; Trái phiếu = 110 triệu",
+      "src": "Ví dụ giả định: tiết kiệm 6%/năm, trái phiếu 11%/năm",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Giả sử cô Tư gửi một tỷ, lãi tiết kiệm khoảng 6% một năm. Cuối năm được 60 triệu. Nếu chuyển sang trái phiếu lãi 11%, thì được 110 triệu.",
+      "cap": "Giả sử cô Tư gửi một tỷ, lãi tiết kiệm khoảng 6% một năm. Cuối năm được 60 triệu. Nếu chuyển sang trái phiếu lãi 11%, thì được 110 triệu."
+    },
+    {
+      "id": 15,
+      "type": "stock",
+      "stock": "retired couple vietnam home",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Năm mươi triệu chênh lệch. | Với một người về hưu, | đó là tiền điện nước, tiền thuốc men của cả năm. | Ai mà không muốn?",
+      "cap": "Năm mươi triệu chênh lệch. Với một người về hưu, đó là tiền điện nước, tiền thuốc men của cả năm. Ai mà không muốn?"
+    },
+    {
+      "id": 16,
+      "type": "stock",
+      "stock": "empty street lockdown vietnam 2020",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mà năm 2020 là năm dịch bệnh. | Ngân hàng hạ lãi tiết kiệm hết lần này đến lần khác. | Người sống bằng tiền lãi như cô Tư, | tháng nào cũng thấy phong bì mỏng đi một chút.",
+      "cap": "Mà năm 2020 là năm dịch bệnh. Ngân hàng hạ lãi tiết kiệm hết lần này đến lần khác. Người sống bằng tiền lãi như cô Tư, tháng nào cũng thấy phong bì mỏng đi một chút."
+    },
+    {
+      "id": 17,
+      "type": "stock",
+      "stock": "elderly woman counting cash at home",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nên khi có ai đó bảo, | có một chỗ lãi gần gấp đôi, | mà lại nằm ngay trong cái ngân hàng quen, | thì nghe không giống một canh bạc. // Nghe giống một tin vui.",
+      "cap": "Nên khi có ai đó bảo, có một chỗ lãi gần gấp đôi, mà lại nằm ngay trong cái ngân hàng quen, thì nghe không giống một canh bạc. Nghe giống một tin vui."
+    },
+    {
+      "id": 18,
+      "type": "stock",
+      "stock": "construction site high rise asia crane",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng câu hỏi ngược lại mới là câu quan trọng: | sao công ty kia lại chịu trả lãi cao hơn ngân hàng tới vậy?",
+      "cap": "Nhưng câu hỏi ngược lại mới là câu quan trọng: sao công ty kia lại chịu trả lãi cao hơn ngân hàng tới vậy?"
+    },
+    {
+      "id": 19,
+      "type": "stock",
+      "stock": "real estate project billboard vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Giai đoạn 2020, 2021, bất động sản đang sốt. | Các tập đoàn cần rất nhiều tiền để mua đất, làm dự án. | Mà vay ngân hàng thì có giới hạn, | phải thế chấp, phải thẩm định.",
+      "cap": "Giai đoạn 2020, 2021, bất động sản đang sốt. Các tập đoàn cần rất nhiều tiền để mua đất, làm dự án. Mà vay ngân hàng thì có giới hạn, phải thế chấp, phải thẩm định."
+    },
+    {
+      "id": 20,
+      "type": "stock",
+      "stock": "stack of documents office desk",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Phát hành trái phiếu riêng lẻ thì nhanh hơn nhiều. | Không cần ai bảo lãnh, | không cần tài sản đảm bảo, | chỉ cần có người chịu mua.",
+      "cap": "Phát hành trái phiếu riêng lẻ thì nhanh hơn nhiều. Không cần ai bảo lãnh, không cần tài sản đảm bảo, chỉ cần có người chịu mua."
+    },
+    {
+      "id": 21,
+      "type": "stock",
+      "stock": "money transfer laptop banking",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Lãi cao, | là cái giá họ trả cho sự dễ dàng đó. // Và cũng là cái giá cho rủi ro, | mà lẽ ra người mua phải được nghe kể rõ.",
+      "cap": "Lãi cao, là cái giá họ trả cho sự dễ dàng đó. Và cũng là cái giá cho rủi ro, mà lẽ ra người mua phải được nghe kể rõ."
+    },
+    {
+      "id": 22,
+      "type": "stock",
+      "stock": "wealthy investor office city view",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Thật ra luật cũng đã tính trước chuyện này. | Trái phiếu riêng lẻ chỉ được bán cho nhà đầu tư chuyên nghiệp. | Tức là người được coi là đủ hiểu, và đủ tiền để chịu mất.",
+      "cap": "Thật ra luật cũng đã tính trước chuyện này. Trái phiếu riêng lẻ chỉ được bán cho nhà đầu tư chuyên nghiệp. Tức là người được coi là đủ hiểu, và đủ tiền để chịu mất."
+    },
+    {
+      "id": 23,
+      "type": "stock",
+      "stock": "stock portfolio screen smartphone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một trong những cách để thành nhà đầu tư chuyên nghiệp, | là có danh mục chứng khoán từ 2 tỷ đồng trở lên. | Nghe thì chặt.",
+      "cap": "Một trong những cách để thành nhà đầu tư chuyên nghiệp, là có danh mục chứng khoán từ 2 tỷ đồng trở lên. Nghe thì chặt."
+    },
+    {
+      "id": 24,
+      "type": "stock",
+      "stock": "hand holding money borrowed cash",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng theo quy định lúc đó, | bạn chỉ cần có 2 tỷ vào đúng cái lúc được xác nhận. | Có tiền một hôm, | là thành chuyên nghiệp.",
+      "cap": "Nhưng theo quy định lúc đó, bạn chỉ cần có 2 tỷ vào đúng cái lúc được xác nhận. Có tiền một hôm, là thành chuyên nghiệp."
+    },
+    {
+      "id": 25,
+      "type": "stock",
+      "stock": "contract paper signature closeup",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có nơi còn đi đường vòng. | Không bán thẳng trái phiếu, | mà ký với khách một hợp đồng hợp tác, hay hợp đồng mua bán lại. // Tên gọi đổi đi, | nhưng tiền thì vẫn chảy về đúng chỗ đó.",
+      "cap": "Có nơi còn đi đường vòng. Không bán thẳng trái phiếu, mà ký với khách một hợp đồng hợp tác, hay hợp đồng mua bán lại. Tên gọi đổi đi, nhưng tiền thì vẫn chảy về đúng chỗ đó."
+    },
+    {
+      "id": 26,
+      "type": "stock",
+      "stock": "vietnamese bank teller counter",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Quay lại cô Tư. | Hôm cô ra ngân hàng, | nhân viên quen bảo có một sản phẩm lãi cao hơn, cũng do ngân hàng mình giới thiệu.",
+      "cap": "Quay lại cô Tư. Hôm cô ra ngân hàng, nhân viên quen bảo có một sản phẩm lãi cao hơn, cũng do ngân hàng mình giới thiệu."
+    },
+    {
+      "id": 27,
+      "type": "stock",
+      "stock": "brochure bank interest rate leaflet",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Theo lời kể của nhiều người mua trên báo, | tờ rơi ghi lãi cao hơn tiết kiệm, | ghi là sản phẩm được chọn lọc kỹ, | có thể rút cả gốc lẫn lãi sau một thời gian ngắn.",
+      "cap": "Theo lời kể của nhiều người mua trên báo, tờ rơi ghi lãi cao hơn tiết kiệm, ghi là sản phẩm được chọn lọc kỹ, có thể rút cả gốc lẫn lãi sau một thời gian ngắn."
+    },
+    {
+      "id": 28,
+      "type": "stock",
+      "stock": "old woman reading glasses document",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn chuyện công ty phát hành có thể không trả nổi, | chuyện bán lại không dễ như rút sổ, | thì gần như không ai nói kỹ.",
+      "cap": "Còn chuyện công ty phát hành có thể không trả nổi, chuyện bán lại không dễ như rút sổ, thì gần như không ai nói kỹ."
+    },
+    {
+      "id": 29,
+      "type": "stock",
+      "stock": "bank employee sales target meeting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Phía bên kia quầy, | nhân viên có chỉ tiêu bán hàng. | Bán thêm một sản phẩm là thêm hoa hồng. | Đây chính là cái mà người ta gọi là bán chéo.",
+      "cap": "Phía bên kia quầy, nhân viên có chỉ tiêu bán hàng. Bán thêm một sản phẩm là thêm hoa hồng. Đây chính là cái mà người ta gọi là bán chéo."
+    },
+    {
+      "id": 30,
+      "type": "stock",
+      "stock": "young vietnamese woman phone bank worried",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và không chỉ người già mới dính. | Báo chí từng kể chuyện một cô gái 25 tuổi ở Thành phố Hồ Chí Minh, | chuyển hơn 300 triệu từ sổ tiết kiệm sang trái phiếu, | vì được bảo là rủi ro rất thấp, có ngân hàng đứng sau. | Đến lúc muốn bán lại, cô mới biết câu đó không đúng.",
+      "cap": "Và không chỉ người già mới dính. Báo chí từng kể chuyện một cô gái 25 tuổi ở Thành phố Hồ Chí Minh, chuyển hơn 300 triệu từ sổ tiết kiệm sang trái phiếu, vì được bảo là rủi ro rất thấp, có ngân hàng đứng sau. Đến lúc muốn bán lại, cô mới biết câu đó không đúng."
+    },
+    {
+      "id": 31,
+      "type": "stock",
+      "stock": "asian woman thinking skeptical",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đến đây, chắc sẽ có người bảo: | ký thì phải đọc chứ, | cô Tư tự ký, thì cô tự chịu.",
+      "cap": "Đến đây, chắc sẽ có người bảo: ký thì phải đọc chứ, cô Tư tự ký, thì cô tự chịu."
+    },
+    {
+      "id": 32,
+      "type": "stock",
+      "stock": "long contract fine print",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đúng là chữ ký là của cô. | Nhưng thử đặt mình vào chỗ cô xem. | Một xấp hợp đồng mấy chục trang, | đặt trên quầy của chính cái ngân hàng mà cô đã gửi tiền suốt mười năm.",
+      "cap": "Đúng là chữ ký là của cô. Nhưng thử đặt mình vào chỗ cô xem. Một xấp hợp đồng mấy chục trang, đặt trên quầy của chính cái ngân hàng mà cô đã gửi tiền suốt mười năm."
+    },
+    {
+      "id": 33,
+      "type": "stock",
+      "stock": "elderly woman trust bank staff",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Người ta không mua trái phiếu. | Người ta mua sự tin tưởng vào cái quầy đó. // Và đó là lý do cú ngã năm 2022 đau đến vậy.",
+      "cap": "Người ta không mua trái phiếu. Người ta mua sự tin tưởng vào cái quầy đó. Và đó là lý do cú ngã năm 2022 đau đến vậy."
+    },
+    {
+      "id": 34,
+      "type": "card",
+      "text": "Tân Hoàng Minh bị huỷ 9 đợt trái phiếu: 10.030 tỷ đồng",
+      "src": "Uỷ ban Chứng khoán Nhà nước, 4/2022",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Tháng 4 năm 2022, cơn địa chấn đầu tiên. Uỷ ban Chứng khoán huỷ chín đợt phát hành trái phiếu của ba công ty thuộc nhóm Tân Hoàng Minh, tổng cộng hơn 10 nghìn tỷ đồng.",
+      "cap": "Tháng 4 năm 2022, cơn địa chấn đầu tiên. Uỷ ban Chứng khoán huỷ chín đợt phát hành trái phiếu của ba công ty thuộc nhóm Tân Hoàng Minh, tổng cộng hơn 10 nghìn tỷ đồng."
+    },
+    {
+      "id": 35,
+      "type": "stock",
+      "stock": "hanoi office worker laptop worried",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bây giờ đặt một người khác cạnh cô Tư. | Anh Minh, nhân viên văn phòng ở Hà Nội. | Năm 2021, anh mua 300 triệu trái phiếu, cũng vì lãi hơn 11% một năm.",
+      "cap": "Bây giờ đặt một người khác cạnh cô Tư. Anh Minh, nhân viên văn phòng ở Hà Nội. Năm 2021, anh mua 300 triệu trái phiếu, cũng vì lãi hơn 11% một năm."
+    },
+    {
+      "id": 36,
+      "type": "stock",
+      "stock": "news headline smartphone reading",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Sáng hôm ấy, anh mở điện thoại, | và thấy cái tên công ty mình cho vay trên mọi trang báo. | Lý do huỷ: | công bố thông tin sai sự thật, và che giấu thông tin.",
+      "cap": "Sáng hôm ấy, anh mở điện thoại, và thấy cái tên công ty mình cho vay trên mọi trang báo. Lý do huỷ: công bố thông tin sai sự thật, và che giấu thông tin."
+    },
+    {
+      "id": 37,
+      "type": "stock",
+      "stock": "courtroom vietnam trial",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Sau đó, chủ tịch tập đoàn bị xử về tội lừa đảo chiếm đoạt tài sản. | Toà xác định hơn 8.600 tỷ đồng của hơn sáu nghìn người mua đã bị chiếm đoạt.",
+      "cap": "Sau đó, chủ tịch tập đoàn bị xử về tội lừa đảo chiếm đoạt tài sản. Toà xác định hơn 8.600 tỷ đồng của hơn sáu nghìn người mua đã bị chiếm đoạt."
+    },
+    {
+      "id": 38,
+      "type": "stock",
+      "stock": "man relieved receiving money",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng anh Minh là người may mắn. | Gia đình bị cáo đã nộp lại hơn 5.000 tỷ, | cơ quan điều tra thu giữ thêm hơn 2.000 tỷ. | Đủ để khắc phục gần như toàn bộ thiệt hại. // Anh Minh mất hai năm thấp thỏm, nhưng không mất tiền gốc.",
+      "cap": "Nhưng anh Minh là người may mắn. Gia đình bị cáo đã nộp lại hơn 5.000 tỷ, cơ quan điều tra thu giữ thêm hơn 2.000 tỷ. Đủ để khắc phục gần như toàn bộ thiệt hại. Anh Minh mất hai năm thấp thỏm, nhưng không mất tiền gốc."
+    },
+    {
+      "id": 39,
+      "type": "stock",
+      "stock": "two paths road fork",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cùng một năm 2022, | cùng là trái phiếu lãi cao của tập đoàn bất động sản. | Vậy tại sao anh Minh lấy lại được, còn cô Tư thì không?",
+      "cap": "Cùng một năm 2022, cùng là trái phiếu lãi cao của tập đoàn bất động sản. Vậy tại sao anh Minh lấy lại được, còn cô Tư thì không?"
+    },
+    {
+      "id": 40,
+      "type": "stock",
+      "stock": "empty bank vault",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Khác nhau ở một chữ thôi: | tiền còn ở đâu. | Một bên, tiền và tài sản vẫn còn đủ để nộp lại. | Bên kia, tiền đã bị rút đi khắp nơi, | và số tiền thì lớn gấp mấy lần.",
+      "cap": "Khác nhau ở một chữ thôi: tiền còn ở đâu. Một bên, tiền và tài sản vẫn còn đủ để nộp lại. Bên kia, tiền đã bị rút đi khắp nơi, và số tiền thì lớn gấp mấy lần."
+    },
+    {
+      "id": 41,
+      "type": "stock",
+      "stock": "vietnamese bank queue night people waiting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cô Tư thì không may như vậy. | Đầu tháng 10 năm 2022, tin đồn về ngân hàng SCB lan ra, | rồi bà Trương Mỹ Lan bị bắt. | Người ta xếp hàng trước các chi nhánh SCB để rút tiền, | có nơi từ hai giờ sáng.",
+      "cap": "Cô Tư thì không may như vậy. Đầu tháng 10 năm 2022, tin đồn về ngân hàng SCB lan ra, rồi bà Trương Mỹ Lan bị bắt. Người ta xếp hàng trước các chi nhánh SCB để rút tiền, có nơi từ hai giờ sáng."
+    },
+    {
+      "id": 42,
+      "type": "stock",
+      "stock": "crowd bank branch saigon",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và đây là đoạn tàn nhẫn nhất. | Cùng một quầy, cùng một buổi sáng. | Người cầm sổ tiết kiệm, rồi vẫn rút được tiền, | vì nhà nước vào cuộc giữ cho ngân hàng không đổ.",
+      "cap": "Và đây là đoạn tàn nhẫn nhất. Cùng một quầy, cùng một buổi sáng. Người cầm sổ tiết kiệm, rồi vẫn rút được tiền, vì nhà nước vào cuộc giữ cho ngân hàng không đổ."
+    },
+    {
+      "id": 43,
+      "type": "stock",
+      "stock": "woman holding paper sad bank",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Người cầm tờ giấy trái phiếu, | thì được trả lời rằng ngân hàng chỉ là bên giới thiệu. | Người vay là công ty khác. // Cùng một cái quầy, | hai tờ giấy, hai số phận.",
+      "cap": "Người cầm tờ giấy trái phiếu, thì được trả lời rằng ngân hàng chỉ là bên giới thiệu. Người vay là công ty khác. Cùng một cái quầy, hai tờ giấy, hai số phận."
+    },
+    {
+      "id": 44,
+      "type": "stock",
+      "stock": "empty office building night",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Theo bản án, | 25 mã trái phiếu của bốn công ty trong nhóm Vạn Thịnh Phát đã được phát hành khống, | không có tài sản đảm bảo thật.",
+      "cap": "Theo bản án, 25 mã trái phiếu của bốn công ty trong nhóm Vạn Thịnh Phát đã được phát hành khống, không có tài sản đảm bảo thật."
+    },
+    {
+      "id": 45,
+      "type": "stock",
+      "stock": "money flying abroad airplane",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tiền thu về không dùng cho dự án như đã hứa. | Nó đi trả nợ ngân hàng, | trả lãi cho chính những lô trái phiếu trước, | chuyển ra nước ngoài, và chi cho mục đích cá nhân.",
+      "cap": "Tiền thu về không dùng cho dự án như đã hứa. Nó đi trả nợ ngân hàng, trả lãi cho chính những lô trái phiếu trước, chuyển ra nước ngoài, và chi cho mục đích cá nhân."
+    },
+    {
+      "id": 46,
+      "type": "stock",
+      "stock": "water bucket leaking",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Lấy tiền người sau, | trả lãi cho người trước. | Còn chạy được, | thì ai cũng thấy mình đang có lãi đều đặn.",
+      "cap": "Lấy tiền người sau, trả lãi cho người trước. Còn chạy được, thì ai cũng thấy mình đang có lãi đều đặn."
+    },
+    {
+      "id": 47,
+      "type": "stock",
+      "stock": "domino falling",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Rồi cú sốc lan ra cả thị trường. | Người đang cầm trái phiếu của những công ty chẳng liên quan gì, | cũng hoảng và đòi bán lại.",
+      "cap": "Rồi cú sốc lan ra cả thị trường. Người đang cầm trái phiếu của những công ty chẳng liên quan gì, cũng hoảng và đòi bán lại."
+    },
+    {
+      "id": 48,
+      "type": "stock",
+      "stock": "real estate developer empty construction site",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Doanh nghiệp bất động sản đang cần tiền, | giờ lại phải lo tiền trả nợ trước hạn. | Năm 2022, thị trường trái phiếu doanh nghiệp gần như đóng băng.",
+      "cap": "Doanh nghiệp bất động sản đang cần tiền, giờ lại phải lo tiền trả nợ trước hạn. Năm 2022, thị trường trái phiếu doanh nghiệp gần như đóng băng."
+    },
+    {
+      "id": 49,
+      "type": "stock",
+      "stock": "government meeting room vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy nhà nước đã làm gì? | Có hai văn bản mà bạn sẽ còn nghe nhắc rất lâu: | Nghị định 65 và Nghị định 08.",
+      "cap": "Vậy nhà nước đã làm gì? Có hai văn bản mà bạn sẽ còn nghe nhắc rất lâu: Nghị định 65 và Nghị định 08."
+    },
+    {
+      "id": 50,
+      "type": "card",
+      "text": "Nhà đầu tư chuyên nghiệp: Có 2 tỷ một ngày → Giữ 2 tỷ suốt 180 ngày",
+      "src": "Nghị định 65/2022/NĐ-CP, 9/2022",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Nghị định 65, ra tháng 9 năm 2022, bịt cái lỗ có tiền một hôm. Danh mục 2 tỷ phải được giữ bình quân trong 180 ngày, bằng tiền của chính mình, không tính tiền vay.",
+      "cap": "Nghị định 65, ra tháng 9 năm 2022, bịt cái lỗ có tiền một hôm. Danh mục 2 tỷ phải được giữ bình quân trong 180 ngày, bằng tiền của chính mình, không tính tiền vay."
+    },
+    {
+      "id": 51,
+      "type": "stock",
+      "stock": "door lock closing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nghị định này cũng chặn kiểu dùng hợp đồng hợp tác để bán vòng cho người không chuyên. | Nói gọn: | từ đây, cô Tư khó mà mua được trái phiếu riêng lẻ nữa. | Cửa đã khoá. // Và từ đây, người mua nhỏ lẻ được che chắn tốt hơn nhiều.",
+      "cap": "Nghị định này cũng chặn kiểu dùng hợp đồng hợp tác để bán vòng cho người không chuyên. Nói gọn: từ đây, cô Tư khó mà mua được trái phiếu riêng lẻ nữa. Cửa đã khoá. Và từ đây, người mua nhỏ lẻ được che chắn tốt hơn nhiều."
+    },
+    {
+      "id": 52,
+      "type": "stock",
+      "stock": "apartment keys hand over",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Rồi tháng 3 năm 2023, Nghị định 08 ra đời. | Nó cho doanh nghiệp được đàm phán với người mua để giãn thời hạn trả nợ, thêm tối đa hai năm. | Và được trả bằng tài sản khác, thay cho tiền.",
+      "cap": "Rồi tháng 3 năm 2023, Nghị định 08 ra đời. Nó cho doanh nghiệp được đàm phán với người mua để giãn thời hạn trả nợ, thêm tối đa hai năm. Và được trả bằng tài sản khác, thay cho tiền."
+    },
+    {
+      "id": 53,
+      "type": "stock",
+      "stock": "empty apartment unfinished building asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tức là sao? | Tức là đến hạn, | thay vì nhận lại 300 triệu tiền mặt, | bạn có thể được đề nghị nhận một phần căn hộ, | ở một dự án có khi còn chưa xây xong.",
+      "cap": "Tức là sao? Tức là đến hạn, thay vì nhận lại 300 triệu tiền mặt, bạn có thể được đề nghị nhận một phần căn hộ, ở một dự án có khi còn chưa xây xong."
+    },
+    {
+      "id": 54,
+      "type": "stock",
+      "stock": "businessman shaking hands deal",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhìn từ phía doanh nghiệp, đây là cái phao. | Không có nó, nhiều công ty sẽ vỡ nợ hàng loạt, | và người mua trái phiếu còn mất nhiều hơn.",
+      "cap": "Nhìn từ phía doanh nghiệp, đây là cái phao. Không có nó, nhiều công ty sẽ vỡ nợ hàng loạt, và người mua trái phiếu còn mất nhiều hơn."
+    },
+    {
+      "id": 55,
+      "type": "stock",
+      "stock": "elderly man waiting window",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng nhìn từ phía người mua, | thì ai thiệt? | Người cần tiền mặt để chữa bệnh, để cho con đi học, | thì không thể chờ thêm hai năm. | Và một căn hộ dở dang thì không trả được tiền viện phí.",
+      "cap": "Nhưng nhìn từ phía người mua, thì ai thiệt? Người cần tiền mặt để chữa bệnh, để cho con đi học, thì không thể chờ thêm hai năm. Và một căn hộ dở dang thì không trả được tiền viện phí."
+    },
+    {
+      "id": 56,
+      "type": "stock",
+      "stock": "scales justice balance",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn một bài học nữa. | Rủi ro không chỉ nằm ở người mua, | mà còn ở khâu bán, nơi cái quầy đứng giữa. | Vì thế các quy định sau này siết cả cách tư vấn và bán trái phiếu.",
+      "cap": "Còn một bài học nữa. Rủi ro không chỉ nằm ở người mua, mà còn ở khâu bán, nơi cái quầy đứng giữa. Vì thế các quy định sau này siết cả cách tư vấn và bán trái phiếu."
+    },
+    {
+      "id": 57,
+      "type": "stock",
+      "stock": "hong kong bank street",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có một nơi đã xử chuyện này khác hẳn. | Hồng Kông, năm 2008. | Ngân hàng Mỹ Lehman Brothers sụp đổ, | kéo theo một loại giấy tờ mà ở đó gọi là trái phiếu mini.",
+      "cap": "Có một nơi đã xử chuyện này khác hẳn. Hồng Kông, năm 2008. Ngân hàng Mỹ Lehman Brothers sụp đổ, kéo theo một loại giấy tờ mà ở đó gọi là trái phiếu mini."
+    },
+    {
+      "id": 58,
+      "type": "stock",
+      "stock": "hong kong elderly people bank counter",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và câu chuyện nghe quen đến lạ. | Khoảng 43 nghìn người đã mua, | rất nhiều trong số đó là người già, người về hưu. | Họ mua ngay tại quầy ngân hàng, | vì tin đó là một kiểu gửi tiền an toàn.",
+      "cap": "Và câu chuyện nghe quen đến lạ. Khoảng 43 nghìn người đã mua, rất nhiều trong số đó là người già, người về hưu. Họ mua ngay tại quầy ngân hàng, vì tin đó là một kiểu gửi tiền an toàn."
+    },
+    {
+      "id": 59,
+      "type": "stock",
+      "stock": "hong kong financial district",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng khác ở đoạn kết. | Chưa đầy một năm sau, cơ quan quản lý ngồi lại với 16 ngân hàng đã bán. | Và các ngân hàng đồng ý mua lại trái phiếu từ khách, | bằng 60% số tiền gốc. | Khách từ 65 tuổi trở lên thì được 70%.",
+      "cap": "Nhưng khác ở đoạn kết. Chưa đầy một năm sau, cơ quan quản lý ngồi lại với 16 ngân hàng đã bán. Và các ngân hàng đồng ý mua lại trái phiếu từ khách, bằng 60% số tiền gốc. Khách từ 65 tuổi trở lên thì được 70%."
+    },
+    {
+      "id": 60,
+      "type": "stock",
+      "stock": "bank counter glass window",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ý nghĩa của chuyện đó là gì? | Là cái quầy bán hàng cũng được coi là có một phần trách nhiệm. | Đó là kinh nghiệm mà nhiều thị trường đã rút ra, | sau những cú vỡ như thế này.",
+      "cap": "Ý nghĩa của chuyện đó là gì? Là cái quầy bán hàng cũng được coi là có một phần trách nhiệm. Đó là kinh nghiệm mà nhiều thị trường đã rút ra, sau những cú vỡ như thế này."
+    },
+    {
+      "id": 61,
+      "type": "stock",
+      "stock": "vietnamese court building",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Giờ đến câu mà chắc bạn đang chờ: | những người như cô Tư, | bây giờ ra sao?",
+      "cap": "Giờ đến câu mà chắc bạn đang chờ: những người như cô Tư, bây giờ ra sao?"
+    },
+    {
+      "id": 62,
+      "type": "card",
+      "text": "Tiền trả lại trái chủ Vạn Thịnh Phát: Phải trả = 30.081 tỷ đồng; Đã trả = 12.358 tỷ đồng",
+      "src": "Thi hành án dân sự TP.HCM, 8/2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Toà buộc phải bồi thường hơn 30 nghìn tỷ đồng cho người mua trái phiếu. Đến đầu tháng 8 năm nay, sau 10 đợt chi trả, cơ quan thi hành án đã trả được hơn 12 nghìn tỷ.",
+      "cap": "Toà buộc phải bồi thường hơn 30 nghìn tỷ đồng cho người mua trái phiếu. Đến đầu tháng 8 năm nay, sau 10 đợt chi trả, cơ quan thi hành án đã trả được hơn 12 nghìn tỷ."
+    },
+    {
+      "id": 63,
+      "type": "card",
+      "text": "Một tỷ của cô Tư: 1 tỷ → 410 triệu",
+      "src": "Tự tính theo tỷ lệ đã chi trả, khoảng 41%",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Tức là khoảng 41%. Một tỷ của cô Tư, sau bốn năm, mới về được khoảng 410 triệu.",
+      "cap": "Tức là khoảng 41%. Một tỷ của cô Tư, sau bốn năm, mới về được khoảng 410 triệu."
+    },
+    {
+      "id": 64,
+      "type": "stock",
+      "stock": "vietnamese pho bowl street",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và đó là bốn năm không có đồng lãi nào. | Trong bốn năm ấy, | bát phở đã đắt lên, tiền thuốc đã đắt lên. | Bốn trăm mười triệu hôm nay mua được ít hơn bốn trăm mười triệu năm 2020 rất nhiều.",
+      "cap": "Và đó là bốn năm không có đồng lãi nào. Trong bốn năm ấy, bát phở đã đắt lên, tiền thuốc đã đắt lên. Bốn trăm mười triệu hôm nay mua được ít hơn bốn trăm mười triệu năm 2020 rất nhiều."
+    },
+    {
+      "id": 65,
+      "type": "stock",
+      "stock": "hands holding coins tax money asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Sẽ có người hỏi: | sao nhà nước không đứng ra trả hết cho họ? | Vì nếu lấy ngân sách, tức tiền thuế của tất cả mọi người, ra đền cho trái phiếu, | thì lần sau ai cũng dám mua liều, vì nghĩ kiểu gì cũng có người đỡ.",
+      "cap": "Sẽ có người hỏi: sao nhà nước không đứng ra trả hết cho họ? Vì nếu lấy ngân sách, tức tiền thuế của tất cả mọi người, ra đền cho trái phiếu, thì lần sau ai cũng dám mua liều, vì nghĩ kiểu gì cũng có người đỡ."
+    },
+    {
+      "id": 66,
+      "type": "stock",
+      "stock": "government officials auction property",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tiền vẫn sẽ về thêm, | theo từng đợt, mỗi khi cơ quan thi hành án bán được tài sản. | Cơ quan thi hành án vẫn đang tiếp tục xử lý tài sản, | để chi trả thêm các đợt sau.",
+      "cap": "Tiền vẫn sẽ về thêm, theo từng đợt, mỗi khi cơ quan thi hành án bán được tài sản. Cơ quan thi hành án vẫn đang tiếp tục xử lý tài sản, để chi trả thêm các đợt sau."
+    },
+    {
+      "id": 67,
+      "type": "stock",
+      "stock": "elderly asian woman looking window",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Với nhiều người lớn tuổi, chờ đợi là phần khó nhất. | Đây là phần mà các con số không kể ra.",
+      "cap": "Với nhiều người lớn tuổi, chờ đợi là phần khó nhất. Đây là phần mà các con số không kể ra."
+    },
+    {
+      "id": 68,
+      "type": "stock",
+      "stock": "smartphone group chat elderly",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bốn năm qua, cô Tư học được nhiều thứ mà cô chưa bao giờ muốn học. | Cô vào nhóm chat của người mua trái phiếu. | Cô biết thế nào là tố giác, thế nào là thi hành án, | thế nào là một tỷ lệ chi trả.",
+      "cap": "Bốn năm qua, cô Tư học được nhiều thứ mà cô chưa bao giờ muốn học. Cô vào nhóm chat của người mua trái phiếu. Cô biết thế nào là tố giác, thế nào là thi hành án, thế nào là một tỷ lệ chi trả."
+    },
+    {
+      "id": 69,
+      "type": "stock",
+      "stock": "elderly woman checking bank app phone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mỗi lần nghe tin có đợt chi trả mới, | cô lại mở điện thoại xem tài khoản. | Có đợt được vài chục triệu, | có đợt chỉ được vài triệu. // Cô bảo, giờ cô không mong lấy đủ nữa. | Chỉ mong lấy được phần nào, trước khi mình già hẳn.",
+      "cap": "Mỗi lần nghe tin có đợt chi trả mới, cô lại mở điện thoại xem tài khoản. Có đợt được vài chục triệu, có đợt chỉ được vài triệu. Cô bảo, giờ cô không mong lấy đủ nữa. Chỉ mong lấy được phần nào, trước khi mình già hẳn."
+    },
+    {
+      "id": 70,
+      "type": "stock",
+      "stock": "vietnamese family dinner table",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy bài học ở đây là gì? | Tôi không phải chuyên gia, | nên sẽ không bảo bạn đừng bao giờ mua trái phiếu. | Có những trái phiếu tốt, của những công ty làm ăn tử tế.",
+      "cap": "Vậy bài học ở đây là gì? Tôi không phải chuyên gia, nên sẽ không bảo bạn đừng bao giờ mua trái phiếu. Có những trái phiếu tốt, của những công ty làm ăn tử tế."
+    },
+    {
+      "id": 71,
+      "type": "stock",
+      "stock": "question mark paper notebook",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng trước khi ký bất cứ tờ giấy lãi cao nào, | hãy hỏi đúng ba câu. | Câu thứ nhất: | thật ra, mình đang cho ai vay tiền?",
+      "cap": "Nhưng trước khi ký bất cứ tờ giấy lãi cao nào, hãy hỏi đúng ba câu. Câu thứ nhất: thật ra, mình đang cho ai vay tiền?"
+    },
+    {
+      "id": 72,
+      "type": "stock",
+      "stock": "bank logo building facade",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Không phải ai đang ngồi trước mặt bạn. | Mà là ai sẽ phải trả tiền cho bạn. | Ngân hàng, hay một công ty mà bạn chưa nghe tên bao giờ?",
+      "cap": "Không phải ai đang ngồi trước mặt bạn. Mà là ai sẽ phải trả tiền cho bạn. Ngân hàng, hay một công ty mà bạn chưa nghe tên bao giờ?"
+    },
+    {
+      "id": 73,
+      "type": "stock",
+      "stock": "umbrella rain protection",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Câu thứ hai: | nếu họ không trả, thì ai trả? | Có tài sản đảm bảo không, có ai bảo lãnh không, | hay chỉ có một lời hứa?",
+      "cap": "Câu thứ hai: nếu họ không trả, thì ai trả? Có tài sản đảm bảo không, có ai bảo lãnh không, hay chỉ có một lời hứa?"
+    },
+    {
+      "id": 74,
+      "type": "stock",
+      "stock": "exit door sign",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Câu thứ ba: | khi cần tiền gấp, mình lấy tiền ra bằng cách nào? | Bán cho ai, | và nếu không ai mua thì sao?",
+      "cap": "Câu thứ ba: khi cần tiền gấp, mình lấy tiền ra bằng cách nào? Bán cho ai, và nếu không ai mua thì sao?"
+    },
+    {
+      "id": 75,
+      "type": "stock",
+      "stock": "laptop financial website research asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nếu bạn đang cầm một tờ trái phiếu, | thì việc đầu tiên là tìm đúng tên công ty phát hành trên giấy. | Rồi tra xem họ có công bố thông tin đầy đủ trên chuyên trang trái phiếu của Sở Giao dịch chứng khoán Hà Nội không. | Doanh nghiệp im lặng lâu, là một tín hiệu đáng lo.",
+      "cap": "Nếu bạn đang cầm một tờ trái phiếu, thì việc đầu tiên là tìm đúng tên công ty phát hành trên giấy. Rồi tra xem họ có công bố thông tin đầy đủ trên chuyên trang trái phiếu của Sở Giao dịch chứng khoán Hà Nội không. Doanh nghiệp im lặng lâu, là một tín hiệu đáng lo."
+    },
+    {
+      "id": 76,
+      "type": "stock",
+      "stock": "calculator interest rate paper",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và một mẹo nhỏ để nhớ. | Lãi cao hơn tiết kiệm bao nhiêu, | thì bạn đang gánh thêm chừng đó rủi ro. | Không có bữa trưa nào miễn phí, kể cả ở quầy ngân hàng.",
+      "cap": "Và một mẹo nhỏ để nhớ. Lãi cao hơn tiết kiệm bao nhiêu, thì bạn đang gánh thêm chừng đó rủi ro. Không có bữa trưa nào miễn phí, kể cả ở quầy ngân hàng."
+    },
+    {
+      "id": 77,
+      "type": "card",
+      "text": "Trái phiếu không phải sổ tiết kiệm",
+      "src": "Nghị định 65/2022; Nghị định 08/2023",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Câu này nghe hiển nhiên. Nhưng năm 2022, hàng vạn người đã phải trả rất đắt để học nó.",
+      "cap": "Câu này nghe hiển nhiên. Nhưng năm 2022, hàng vạn người đã phải trả rất đắt để học nó."
+    },
+    {
+      "id": 78,
+      "type": "stock",
+      "stock": "saigon street evening traffic",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cô Tư không tham. | Cô chỉ tin nhầm một cái quầy. // Và cái giá của niềm tin đặt sai chỗ, | là bốn năm chờ, để lấy lại chưa được một nửa.",
+      "cap": "Cô Tư không tham. Cô chỉ tin nhầm một cái quầy. Và cái giá của niềm tin đặt sai chỗ, là bốn năm chờ, để lấy lại chưa được một nửa."
+    },
+    {
+      "id": 79,
+      "type": "stock",
+      "stock": "vietnamese elderly woman hands holding paper",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn bạn, | lần gần nhất ký một tờ giấy ở ngân hàng, | bạn có biết chắc mình đang cho ai vay tiền không?",
+      "cap": "Còn bạn, lần gần nhất ký một tờ giấy ở ngân hàng, bạn có biết chắc mình đang cho ai vay tiền không?"
+    }
+  ]
+}

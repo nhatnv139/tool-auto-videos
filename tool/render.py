@@ -104,6 +104,54 @@ def venc(crf=None):
             "-threads", SHOT_THREADS, "-pix_fmt", "yuv420p"]
 
 
+# ---------------------------------------------------------------- kieu the
+# Co theo kenh (queue.yml `kieu_the: long` -> steps truyen --kieu-the cho
+# run.py -> cfg["kieu_the"]; hoac env KIEU_THE). Rong = hanh vi cu.
+#   long  card so kieu kenh Long (motion.render_long), [[black]] thanh nen
+#         chuyen dong cung tong, card/black dai DUNG bang cell that (+ du cho
+#         crossfade) thay vi 3s roi stage1 dong bang frame cuoi.
+#   info  nhu long nhung the kieu infographic (tool/info_card.py): panel kem
+#         bo goc, so dem, cot moc, truoc/sau, trich dan; nen navy diu.
+XF_TAIL = 0.6     # du cho crossfade cua assemble (0.33s) + an toan lam tron
+
+
+KIEU_DONG = ("long", "info")
+SHOT_MAX = float(os.environ.get("SHOT_MAX", "7.5"))   # chuyen_canh: tran do dai 1 shot   # cac kieu dung the chuyen dong + crossfade
+
+
+def kieu_the(cfg):
+    return str(os.environ.get("KIEU_THE") or (cfg or {}).get("kieu_the")
+               or "").strip().lower()
+
+
+def _cell_len(root, cell):
+    """Do dai cell tren timeline nhu assemble.plan tinh (vo + pause_after)."""
+    pause = float(cell.get("pause_after", 0.0) or 0.0)
+    if cell.get("vo"):
+        vp = os.path.join(root, "build", "voice", f"cell-{cell['id']}.mp3")
+        if os.path.exists(vp):
+            try:
+                return duration(vp) + pause
+            except (SystemExit, Exception):
+                pass
+    return float(cell.get("dur", 3.0) or 3.0) + pause
+
+
+def emit_motion(spec, root, cell_id, name="motion"):
+    """Ghi spec JSON + emit lenh `python tool/motion.py spec` vao run_render.sh
+    (chay song song cung cac lenh ffmpeg)."""
+    import json
+    import sys
+    fdir = os.path.join(root, "build", "tmp", "cell-" + str(cell_id))
+    os.makedirs(fdir, exist_ok=True)
+    sp = os.path.join(fdir, f"{name}.json")
+    with open(sp, "w", encoding="utf-8") as f:
+        json.dump(spec, f, ensure_ascii=False)
+    py = sys.executable.replace("\\", "/")
+    mo = os.path.join(KIT_ROOT, "tool", "motion.py").replace("\\", "/")
+    emit(["env", "PYTHONUTF8=1", py, mo, sp.replace("\\", "/")], root)
+
+
 # ---------------------------------------------------------------- helpers
 def hex_rgb(s):
     s = s.lstrip("#")
@@ -280,12 +328,29 @@ def _draw_box_text(d, base, lines, fnt, lh, max_w, y_start, color=("paper",)):
     return y
 
 
-def render_pil(cell, style, out, root):
+def render_long_card(cell, out, root, text=None, kieu="long"):
+    """Kieu 'long'/'info': card so / nen chuyen dong (thay black). Dai bang
+    cell that + XF_TAIL de assemble khong phai dong bang frame cuoi."""
+    dur = round(_cell_len(root, cell) + XF_TAIL, 3)
+    emit_motion({"kind": "info" if kieu == "info" else "long", "out": os.path.join(root, out).replace("\\", "/"),
+                 "dur": dur, "text": text, "src": cell.get("src", "") or "",
+                 "seed": int(cell["id"]), "fps": FPS, "venc": venc()},
+                root, cell["id"])
+    return float(_cell_len(root, cell))
+
+
+def render_pil(cell, style, out, root, kieu=""):
     """card / quote: ve text 1 lan thanh PNG, zoom nhe thanh video.
 
     Auto-shrink font theo do dai text (khong nhon dong), line-height 1.7,
     max 3 dong cho card. Quote: chu ngoac kep + attribution.
+    kieu='long' + card -> render_long_card (the so kieu kenh Long).
     """
+    if kieu in KIEU_DONG and cell.get("type") == "card":
+        # card khong co chu -> chi nen chuyen dong (khong de CardLong vo)
+        return render_long_card(cell, out, root,
+                                (cell.get("text", "") or cell.get("cap", "")
+                                 or "").strip() or None, kieu)
     dur = cell.get("dur", 5.0)
     ink = hex_rgb(style["ink"])
     paper = hex_rgb(style["paper"])
@@ -362,28 +427,18 @@ def render_pil(cell, style, out, root):
 
     base = base.resize((W, H), Image.LANCZOS)
     base.save(png_path, quality=95)
-    # ffmpeg zoompan tren PNG (nhanh hon ve tung frame bang PIL)
-    png_rel = os.path.relpath(png_path, root).replace("\\", "/")
+    # Zoom nhe PNG bang motion.zoom_png (cv2.warpAffine toa do thuc). Ban cu
+    # dung ffmpeg zoompan: zoompan lam tron x/y ve pixel nguyen moi frame nen
+    # chu nhay 1px khong deu (ca khi chay o 2x) — card dung yen ma "rung".
     zoom_to = cell.get("zoom_end", 1.05)
-    # Bien do: d=1 nghia la moi frame mot buoc -> chia cho dur*FPS. Ban cu chia
-    # cho dur*60 nen zoom that chi dat 24/60 = 40% muc dat ra (1.05 -> 1.02).
-    zstep = (zoom_to - 1.0) / max(1.0, dur * FPS)
     # card/quote: khong fade-in o render (tranh den 0.4s truoc khi text hien;
-    # stage1 xu ly fade nhanh 0.2s). Giu zoompan nhe.
+    # stage1 xu ly fade nhanh 0.2s).
     fade = cell.get("fade_in", 0.0)
-    # Chong giat: zoompan lam tron x/y ve pixel nguyen moi frame, voi buoc zoom
-    # rat nho thi text nhay 1px khong deu. Chay o 2x roi ha xuong -> sai so chia doi.
-    vf = (f"scale={W * 2}:{H * 2}:flags=lanczos,setsar=1,"
-          f"zoompan=z='min(zoom+{zstep:.7f},{zoom_to})':"
-          f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
-          f"d=1:fps={FPS}:s={W * 2}x{H * 2},"
-          f"scale={W}:{H}:flags=lanczos,format=yuv420p")
-    if fade:
-        vf += f",fade=t=in:st=0:d={fade}"
-    cmd = ["ffmpeg", "-y", "-v", "error",
-           "-loop", "1", "-t", f"{dur:.3f}", "-i", png_rel,
-           "-vf", vf, *venc(), os.path.join(root, out)]
-    emit(cmd, root)
+    emit_motion({"kind": "zoom_png", "png": png_path.replace("\\", "/"),
+                 "out": os.path.join(root, out).replace("\\", "/"),
+                 "dur": float(dur), "zoom_to": float(zoom_to), "fps": FPS,
+                 "fade": float(fade or 0.0), "venc": venc()},
+                root, cell["id"])
     # Tra ve GIAY nhu moi loai cell khac. Ban cu tra ve duong dan -> render_all
     # chi cong t_cursor khi ret la so, nen moi card/quote/outro lam timeline
     # dedup stock lech som dung bang do dai cua no (lech cong don ca video).
@@ -585,7 +640,10 @@ def render_clip(cell, out, root, style=None):
     return dur
 
 
-def render_black(cell, out, root):
+def render_black(cell, out, root, kieu=""):
+    if kieu in KIEU_DONG:
+        # khong con man den tron: nen chuyen dong cung tong voi card so
+        return render_long_card(cell, out, root, None, kieu)
     dur = cell.get("dur", 3.0)
     cmd = ["ffmpeg", "-y", "-v", "error", "-f", "lavfi",
            "-i", f"color=c=0x000000:s={W}x{H}:r={FPS}:d={dur}",
@@ -725,7 +783,7 @@ def render_stock(cell, out, root, style=None, stock_idx=0, avail=None,
         if h:
             used_at.setdefault(h, rec.get("end", 0))
 
-    if dur <= SEG + 1.5:
+    if dur <= min(SEG + 1.5, float(cell.get("_shot_max") or 1e9)):
         _render_stock_segment(src, 0.0, dur, reframe, clip_cell, f_reg, f_bold, root, out)
         timeline.append({"cell": cell["id"], "file": src,
                          "content": _content_hash(src),
@@ -733,6 +791,10 @@ def render_stock(cell, out, root, style=None, stock_idx=0, avail=None,
         return dur
     # Cell dai: chia deu thanh n_seg doan (khong con doan thua 0.1s o cuoi).
     n_seg = max(1, round(dur / SEG))
+    if cell.get("_shot_max"):
+        # chuyen_canh: khong shot nao dai qua _shot_max giay (mac dinh 7,5)
+        import math
+        n_seg = max(n_seg, math.ceil(dur / float(cell["_shot_max"])))
     seg_len = dur / n_seg
     seg_files = []
     tdir = os.path.join(root, "build", "tmp")
@@ -758,6 +820,12 @@ def render_stock(cell, out, root, style=None, stock_idx=0, avail=None,
             h = _content_hash(f)
             if h and cell_start - used_at.get(h, -1e9) < REUSE_COOLDOWN:
                 continue
+            if ADJ_WIN > 0:
+                from stock import near_dup
+                gan = [r["file"] for r in timeline
+                       if r.get("file") and cell_start - r.get("end", -1e9) < ADJ_WIN]
+                if any(near_dup(f, g) for g in set(gan + [src]) if g != f):
+                    continue
         (stills if is_still(root, f) else movings).append(f)
     mov_off, flen_cache = {}, {}
 
@@ -806,10 +874,20 @@ def render_stock(cell, out, root, style=None, stock_idx=0, avail=None,
     # PTS sai khi segment co B-frame.
     inputs, chains, labels = [], [], ""
     for i, (f, off) in enumerate(seg_plan):
+        cut_in = ""
+        if cell.get("_shot_max") and i > 0 and f == seg_plan[i - 1][0]:
+            # Kho mong -> doan sau lap lai CUNG file: tiep noi chuyen dong (offset
+            # chay tiep) va cat vao khung chat hon (1,22x, lech goc xen ke) — mot
+            # "cut-in" bien tap, de khong co shot nao dung yen qua _shot_max giay.
+            off = off + i * seg_len
+            ax, ay = ((0.30, 0.35), (0.70, 0.40))[i % 2]
+            z = 1.22
+            cut_in = (f",crop=iw/{z}:ih/{z}:(iw-iw/{z})*{ax}:(ih-ih/{z})*{ay},"
+                      f"scale=1920:1080:flags=lanczos,setsar=1")
         inputs += [*IN_THREADS, "-stream_loop", "-1", "-ss", f"{off:.2f}",
                    "-t", f"{seg_len:.3f}", "-i", f]
         chains.append(f"[{i}:v]" + _stock_scale_chain(f, reframe, clip_cell)
-                      + f"[s{i}]")
+                      + cut_in + f"[s{i}]")
         labels += f"[s{i}]"
     # fx theo thoi gian ap SAU concat: luc nay `t` la thoi gian cua ca cell,
     # khong phai cua tung doan 6s.
@@ -843,9 +921,22 @@ def _stock_scale_chain(src, reframe, clip_cell):
     if sw < 1920:
         fit += ",unsharp=5:5:0.7:5:5:0.0"
     chain = (reframe + "," if reframe else "")
+    # Doi nhip ve FPS. Nguon 30/29.97/60fps qua fps=24 bi roi 1 trong 5 khung
+    # -> cu 4 khung co 1 buoc nhay gap doi: "video nen giat" (do 13/10, clip
+    # 3472887c877f/334e18bd22d6 goc muot, qua fps=24 diem giat 0.05-0.17). Nay
+    # tron khung (framerate, khong tron qua cat canh): diem giat 0.00, render
+    # cham them ~5-15% moi doan. Nguon 24/25/48/50 giu fps= nhu cu.
+    # STOCK_FPS_BLEND=0 de tat.
+    rate = f"fps={FPS}"
+    try:
+        from stock import src_fps, fps_blend_can
+        if fps_blend_can(src_fps(src), FPS):
+            rate = f"framerate=fps={FPS}"
+    except Exception:
+        pass
     # time_fx=False: chuoi nay chay cho TUNG doan 6s, `t` reset moi doan. fx
     # theo thoi gian duoc ap mot lan o cap cell (sau concat).
-    return (chain + fit + f",setsar=1,format=yuv420p,fps={FPS}"
+    return (chain + fit + f",setsar=1,format=yuv420p,{rate}"
             + _cinema(clip_cell, time_fx=False))
 
 
@@ -874,17 +965,24 @@ def render_cell(cfg, cell, root, prev_shot=None, stock_idx=0, stock_avail=None,
     os.makedirs(os.path.join(root, "build", "shots"), exist_ok=True)
     t = cell["type"]
     style = cfg.get("style", {})
+    kieu = kieu_the(cfg)
     if t == "outro":
         return render_outro(cell, style, out, root)
     if t in ("card", "quote"):
-        return render_pil(cell, style, out, root)
+        return render_pil(cell, style, out, root, kieu)
     if t in ("clip", "clip-mute"):
         return render_clip(cell, out, root, style)
     if t == "stock":
+        if (cfg or {}).get("dung", {}).get("chuyen_canh"):
+            # chuyen canh co chu dich: shot dai them XF_TAIL de phan cell truoc
+            # nam duoi cell sau trong luc xfade la hinh DONG, khong phai frame
+            # cuoi dong bang. Timeline van tinh theo config (assemble.plan).
+            cell = dict(cell, pause_after=float(cell.get("pause_after", 0) or 0) + XF_TAIL,
+                        _shot_max=SHOT_MAX)
         return render_stock(cell, out, root, style, stock_idx, stock_avail,
                             src_override, segment_pool, timeline, cell_start)
     if t == "black":
-        return render_black(cell, out, root)
+        return render_black(cell, out, root, kieu)
     if t == "sfx":
         return render_sfx(cell, out, root)
     if t == "hold":
@@ -938,6 +1036,10 @@ def _build_global_pool(root, stock_avail, kw_of_key=None):
 
 # Duoi nguong nay (giay) thi mot content coi nhu "vua dung xong".
 REUSE_COOLDOWN = 150.0
+# Cua so chong gan-trung (giay): file vua dung trong khoang nay thi ung vien
+# cung canh (khac nguon/encode) khong duoc chon — tranh lap mot canh o hai cell
+# lien nhau. Tat bang ADJ_WIN=0.
+ADJ_WIN = float(os.environ.get("ADJ_WIN", "45"))
 # Trong so cham diem: LIEN QUAN quan trong hon MOI.
 W_REL, W_FRESH, W_COLOR, W_STICKY = 0.45, 0.20, 0.20, 0.15
 
@@ -972,8 +1074,45 @@ def _pick_cell_file(global_pool, avail, timeline, now, kw,
     my_theme, _ = theme_index(kw)
     kw_of_file = kw_of_file or {}
 
+    # file dung trong ADJ_WIN giay gan nhat: ung vien gan-trung (cung canh, khac
+    # nguon/encode) voi chung bi loai — xem stock.near_dup
+    recent = []
+    for rec in timeline:
+        if rec.get("file") and now - rec.get("end", -1e9) < ADJ_WIN:
+            if rec["file"] not in recent:
+                recent.append(rec["file"])
+    banned = set()
+    for _vong in range(6):
+        best = _score_pick(cand, banned, last_use, now, in_avail, ent_files,
+                           kw_of_file, my_theme, prev_sig, prev_theme)
+        if not best or not recent:
+            break
+        from stock import near_dup
+        if any(near_dup(best[1], g) for g in recent if g != best[1]):
+            banned.add(best[1])
+            continue
+        break
+    if best:
+        return best[1], best[2]
+    # moi ung vien deu vua dung xong -> lay content dung lau nhat
+    oldest = None
+    for f in cand:
+        h = _content_hash(f)
+        if not h:
+            continue
+        last = last_use.get(h, -1e9)
+        if oldest is None or last < oldest[0]:
+            oldest = (last, f, h)
+    return (oldest[1], oldest[2]) if oldest else (None, None)
+
+
+def _score_pick(cand, banned, last_use, now, in_avail, ent_files, kw_of_file,
+                my_theme, prev_sig, prev_theme):
+    from stock import _content_hash, color_sig, color_dist, _THEME_OF
     best = None
     for f in cand:
+        if f in banned:
+            continue
         h = _content_hash(f)
         if not h:
             continue
@@ -995,18 +1134,7 @@ def _pick_cell_file(global_pool, avail, timeline, now, kw,
         sc = W_REL * rel + W_FRESH * fresh + W_COLOR * cont + W_STICKY * sticky
         if best is None or sc > best[0]:
             best = (sc, f, h)
-    if best:
-        return best[1], best[2]
-    # moi ung vien deu vua dung xong -> lay content dung lau nhat
-    oldest = None
-    for f in cand:
-        h = _content_hash(f)
-        if not h:
-            continue
-        last = last_use.get(h, -1e9)
-        if oldest is None or last < oldest[0]:
-            oldest = (last, f, h)
-    return (oldest[1], oldest[2]) if oldest else (None, None)
+    return best
 
 
 def render_all(cfg, root, only=None):

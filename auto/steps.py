@@ -137,7 +137,17 @@ def step_duyet(R, v):
 
 
 def step_config(R, v):
-    R.kit("script2config", timeout=300, step="script2config")
+    # queue.yml (16/10/2026, mac dinh = kieu cu):
+    #   chuong: cat        [[black]] + "Phan mot." -> chuyen chuong khong man den,
+    #                      khong doc "Phan mot", tieu de nho tren hinh ke tiep
+    #   chuyen_canh: nhe   crossfade/dip/flash/whip o cho chuyen y (///) va
+    #                      thua dan o cac cat khac; whoosh nho o chuyen chuong
+    args = []
+    if v.get("chuong"):
+        args += ["--chuong", str(v["chuong"])]
+    if v.get("chuyen_canh"):
+        args += ["--chuyen-canh", str(v["chuyen_canh"])]
+    R.kit("script2config", *args, timeout=300, step="script2config")
 
 
 def _co_ent(case):
@@ -231,9 +241,24 @@ def step_tts(R, v):
     """
     prov = str(v.get("provider", "vbee"))
     # nhip: he so nhan moi khoang lang. 1.0 = spec kenh, 0.7 = go bot im lang.
+    # Bien moi truong song suot ca tien trinh runner -> case sau KHONG dat nhip
+    # thi phai xoa, khong thi an ke nhip cua case truoc.
     if v.get("nhip") is not None:
         os.environ["TTS_GAP_MUL"] = str(v["nhip"])
         R.log(f"    nhip nghi x{v['nhip']}")
+    else:
+        os.environ.pop("TTS_GAP_MUL", None)
+    # ngat: "0.45,0.7,1.0" = do dai lang cua // /// //// (mac dinh 0.8,1.5,2.4)
+    # ngat_cuoi_cell: lang cuoi moi cell (mac dinh 0.55). Preset kenh su nhanh.
+    # lang_noi_min: lang noi tai (engine tu dat sau dau phay/cham) duoc rut toi
+    # ti le nay khi can it im lang (mac dinh 0.55)
+    for key, env in (("ngat", "TTS_NGAT"), ("ngat_cuoi_cell", "TTS_GAP_CELL_END"),
+                     ("lang_noi_min", "TTS_SHRINK_MIN")):
+        if v.get(key) is not None and str(v.get(key)).strip():
+            os.environ[env] = str(v[key])
+            R.log(f"    {key}: {v[key]}")
+        else:
+            os.environ.pop(env, None)
     # kieu dung giong: doan (mac dinh tu 01/10/2026, doc ca doan mot lan goi)
     # | cau (kieu cu, goi tung cau). Nam trong hash cache nen doi la sinh lai.
     if v.get("tts_mode"):
@@ -270,8 +295,25 @@ def step_tts(R, v):
         R.log(f"    (bo qua) khong do duoc nhip: {e}")
 
 
+def _kieu_the_args(v):
+    """queue.yml `kieu_the: long` -> --kieu-the long cho render + assemble
+    (the so kieu kenh Long, nen chuyen dong thay [[black]], crossfade)."""
+    k = str(v.get("kieu_the") or "").strip()
+    return [f"--kieu-the={k}"] if k else []
+
+
+def _lufs(v):
+    """Dich loudness: queue `loudness:` (hoac `lufs:` cu). Kenh tai-chinh mac
+    dinh -14 LUFS (chuan YouTube, kenh Long); con lai -19,7 (Viet Su Ky Su)."""
+    if v.get("loudness") is not None:
+        return float(v["loudness"])
+    if v.get("lufs") is not None:
+        return float(v["lufs"])
+    return -14.0 if str(v.get("dang", "")).strip() == "tai-chinh" else -19.7
+
+
 def step_render(R, v):
-    R.kit("render", timeout=10800, step="render")
+    R.kit("render", *_kieu_the_args(v), timeout=10800, step="render")
 
 
 def step_music(R, v):
@@ -295,7 +337,22 @@ def step_music(R, v):
     #   <duong dan file>    = nhac that cua ban (mp3/wav), lap cho du dai
     # Video Can Long 03/10 ra voi sine: nghe la tieng u u cua may, khong phai nhac.
     nhac = str(v.get("nhac", "ambience")).strip()
-    if nhac == "sine":
+    if nhac == "lib" or nhac.startswith("lib:"):
+        # Nhac THAT tu assets/music_lib (16/10/2026): xoay bai theo chuong,
+        # duck theo duong bao giong (assemble doc bed.json canh bed.wav).
+        tags = nhac.split(":", 1)[1] if ":" in nhac else ""
+        rel = os.path.relpath(R.case, KIT).replace("\\", "/")
+        cmd = [sys.executable, "tool/music_lib.py", rel,
+               "--dur", f"{dur:.0f}", "--seed", R.slug]
+        if tags:
+            cmd += ["--tags", tags]
+        if v.get("nhac_duoi_giong") is not None:
+            cmd += ["--duoi-giong", str(v["nhac_duoi_giong"])]
+        R.log(f"    nen: nhac that music_lib ({tags or 'moi the'})")
+        out = R.sh(cmd, timeout=900, step="music-lib")
+        for line in out.strip().splitlines()[-4:]:
+            R.log(f"    {line.strip()}")
+    elif nhac == "sine":
         R.kit("music", "--dur", f"{dur:.0f}", timeout=900, step="music")
     elif nhac == "ambience":
         cmd = [sys.executable, "tool/ambience_bed.py",
@@ -320,9 +377,9 @@ def step_assemble(R, v):
     # Dich loudness cua kenh di thang vao assemble: chuan MOT LAN o stage4.
     # Ban cu assemble chuan ve -14 + AAC 256k roi chuan_tieng lai loudnorm ve
     # -19,7 va encode AAC lan hai (video 20 phut mat 100s).
-    out = R.kit("assemble", f"--lufs={v.get('lufs', -19.7)}",
+    out = R.kit("assemble", f"--lufs={_lufs(v)}",
                 f"--lra={v.get('lra', 3)}", f"--tp={v.get('tp', -2.5)}",
-                timeout=14400, step="assemble")
+                *_kieu_the_args(v), timeout=14400, step="assemble")
     final = os.path.join(R.case, "build", "final", "video-1.mp4")
     if not os.path.exists(final):
         raise RuntimeError("assemble xong nhung khong thay build/final/video-1.mp4")
@@ -351,7 +408,7 @@ def step_chuan_tieng(R, v):
     if not os.path.exists(final):
         raise RuntimeError("chua co video de chuan tieng")
     tmp = final.replace(".mp4", "-norm.mp4")
-    I = v.get("lufs", -19.7)
+    I = _lufs(v)
     LRA = v.get("lra", 3)
     TP = v.get("tp", -2.5)
     # assemble moi da chuan dung dich va ghi marker -> khong encode AAC lan hai.
@@ -433,10 +490,15 @@ def step_outbox(R, v):
 
 
 def step_cleanup(R, v):
-    """Xong roi thi chi giu dau vao + video cuoi. Luat o auto/don_dep.py."""
+    """Xong roi thi chi giu dau vao + video cuoi. Luat o auto/don_dep.py.
+    Da dang YouTube (ke ca hen gio) thi xoa luon video + build."""
+    import don_dep
+    freed, _ = don_dep.xoa_da_dang(R.case, that=True, im=True)
+    if freed:
+        R.log(f"    da dang YouTube -> xoa {freed / 1e9:.2f} GB video/build")
+        return
     if v.get("giu_build"):
         return
-    import don_dep
     freed, ghi_chu = don_dep.don_mot_case(R.case, that=True, im=True)
     if ghi_chu:
         R.log(f"    khong don ({ghi_chu})")

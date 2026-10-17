@@ -1,0 +1,675 @@
+{
+  "name": "kn-15-hormuz-gia-xang",
+  "out": "build/final/video-1.mp4",
+  "fps": 24,
+  "w": 1920,
+  "h": 1080,
+  "style": {
+    "ink": "#14110F",
+    "paper": "#F2EDE4",
+    "amber": "#E0A82E",
+    "font_reg": "tool/fonts/arial.ttf",
+    "font_bold": "tool/fonts/arialbd.ttf"
+  },
+  "music": {
+    "file": "assets/music/bed.wav",
+    "level": 0.16,
+    "fade_in": 1.5,
+    "fade_out": 3.0
+  },
+  "caption": {
+    "on": true,
+    "font": "tool/fonts/arialbd.ttf",
+    "size": 46,
+    "color": "#FFFFFF",
+    "y": 920
+  },
+  "cells": [
+    {
+      "id": 1,
+      "type": "card",
+      "text": "Giá một lít xăng 95 ở Việt Nam: 20.151đ → 28.254đ",
+      "src": "Bộ Công Thương, giá điều hành ngày 26/2/2026 và 8/10/2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Hơn hai mươi nghìn đồng. Đó là giá một lít xăng 95 vào ngày 26 tháng 2 năm nay. Còn từ chiều thứ Năm tuần trước, cũng lít xăng đó, bạn phải trả hơn hai mươi tám nghìn.",
+      "cap": "Hơn hai mươi nghìn đồng. Đó là giá một lít xăng 95 vào ngày 26 tháng 2 năm nay. Còn từ chiều thứ Năm tuần trước, cũng lít xăng đó, bạn phải trả hơn hai mươi tám nghìn."
+    },
+    {
+      "id": 2,
+      "type": "stock",
+      "stock": "vietnam gas station motorbikes queue",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đắt thêm tám nghìn đồng một lít. | Tức là gần bốn mươi phần trăm, chỉ trong bảy tháng. // Và điều lạ là, | trong bảy tháng đó, | nhà nước Việt Nam đã gần như bỏ hẳn thuế môi trường trên xăng.",
+      "cap": "Đắt thêm tám nghìn đồng một lít. Tức là gần bốn mươi phần trăm, chỉ trong bảy tháng. Và điều lạ là, trong bảy tháng đó, nhà nước Việt Nam đã gần như bỏ hẳn thuế môi trường trên xăng."
+    },
+    {
+      "id": 3,
+      "type": "stock",
+      "stock": "strait of hormuz oil tanker",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tất cả bắt đầu từ một eo biển mà chắc bạn đã nghe trên báo cả năm nay: | eo Hormuz. // Nó nằm giữa Iran và Oman, cách Việt Nam mấy nghìn cây số.",
+      "cap": "Tất cả bắt đầu từ một eo biển mà chắc bạn đã nghe trên báo cả năm nay: eo Hormuz. Nó nằm giữa Iran và Oman, cách Việt Nam mấy nghìn cây số."
+    },
+    {
+      "id": 4,
+      "type": "stock",
+      "stock": "vietnamese man refuel scooter gas pump",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bạn chưa từng đến Hormuz. | Tôi cũng chưa. | Nhưng tuần nào, ví tiền của chúng ta cũng đang trả tiền cho nó.",
+      "cap": "Bạn chưa từng đến Hormuz. Tôi cũng chưa. Nhưng tuần nào, ví tiền của chúng ta cũng đang trả tiền cho nó."
+    },
+    {
+      "id": 5,
+      "type": "stock",
+      "stock": "hanoi street gas station evening",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy một chuyện xa tít như thế, | đi bằng đường nào để vào tới bình xăng xe máy của bạn? | Trong tám nghìn đồng đắt thêm kia, | bao nhiêu là của dầu, bao nhiêu là của thuế? | Và cái quỹ bình ổn mà báo hay nhắc, | rốt cuộc là tiền của ai?",
+      "cap": "Vậy một chuyện xa tít như thế, đi bằng đường nào để vào tới bình xăng xe máy của bạn? Trong tám nghìn đồng đắt thêm kia, bao nhiêu là của dầu, bao nhiêu là của thuế? Và cái quỹ bình ổn mà báo hay nhắc, rốt cuộc là tiền của ai?"
+    },
+    {
+      "id": 6,
+      "type": "stock",
+      "stock": "vietnamese woman reading news smartphone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Video này sẽ đi theo một thùng dầu, | từ giếng dầu bên vịnh Ba Tư, đến cây xăng đầu ngõ nhà bạn. | Số liệu lấy từ Bộ Công Thương và báo chí, phép tính là ước lượng của tôi, không phải lời khuyên đầu tư. // Ok, vào việc thôi.",
+      "cap": "Video này sẽ đi theo một thùng dầu, từ giếng dầu bên vịnh Ba Tư, đến cây xăng đầu ngõ nhà bạn. Số liệu lấy từ Bộ Công Thương và báo chí, phép tính là ước lượng của tôi, không phải lời khuyên đầu tư. Ok, vào việc thôi."
+    },
+    {
+      "id": 7,
+      "type": "stock",
+      "stock": "persian gulf oil field flare",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bắt đầu từ cái giếng. | Quanh vịnh Ba Tư là những nước bán dầu lớn nhất thế giới: | Ả Rập Xê Út, Iraq, Kuwait, Qatar, Các Tiểu vương quốc Ả Rập.",
+      "cap": "Bắt đầu từ cái giếng. Quanh vịnh Ba Tư là những nước bán dầu lớn nhất thế giới: Ả Rập Xê Út, Iraq, Kuwait, Qatar, Các Tiểu vương quốc Ả Rập."
+    },
+    {
+      "id": 8,
+      "type": "stock",
+      "stock": "strait of hormuz satellite map",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vịnh Ba Tư giống một cái ao rất lớn, | mà lối ra biển chỉ có đúng một cái cổng hẹp. | Cái cổng đó tên là Hormuz.",
+      "cap": "Vịnh Ba Tư giống một cái ao rất lớn, mà lối ra biển chỉ có đúng một cái cổng hẹp. Cái cổng đó tên là Hormuz."
+    },
+    {
+      "id": 9,
+      "type": "stock",
+      "stock": "oil tanker narrow strait aerial",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ngày thường, mỗi ngày có gần một trăm lượt tàu đi qua Hormuz. | Khoảng một phần năm lượng dầu cả thế giới dùng, | phải chui qua đúng khe hẹp đó.",
+      "cap": "Ngày thường, mỗi ngày có gần một trăm lượt tàu đi qua Hormuz. Khoảng một phần năm lượng dầu cả thế giới dùng, phải chui qua đúng khe hẹp đó."
+    },
+    {
+      "id": 10,
+      "type": "stock",
+      "stock": "navy warship persian gulf",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cuối tháng 2 năm nay, chiến sự giữa Mỹ, Israel và Iran nổ ra. | Tàu chở dầu bị tấn công. | Đến đầu tháng 10, theo dữ liệu theo dõi tàu biển, | có ngày chỉ còn vài chiếc dám đi qua Hormuz.",
+      "cap": "Cuối tháng 2 năm nay, chiến sự giữa Mỹ, Israel và Iran nổ ra. Tàu chở dầu bị tấn công. Đến đầu tháng 10, theo dữ liệu theo dõi tàu biển, có ngày chỉ còn vài chiếc dám đi qua Hormuz."
+    },
+    {
+      "id": 11,
+      "type": "stock",
+      "stock": "oil tankers anchored waiting sea",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cái cổng chưa bị xây tường. | Nhưng gần như không ai dám bước qua. | Hơn một trăm con tàu cứ thế thả neo chờ, | mà không biết chờ tới bao giờ.",
+      "cap": "Cái cổng chưa bị xây tường. Nhưng gần như không ai dám bước qua. Hơn một trăm con tàu cứ thế thả neo chờ, mà không biết chờ tới bao giờ."
+    },
+    {
+      "id": 12,
+      "type": "stock",
+      "stock": "vietnamese wet market narrow alley",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bạn hình dung thế này. | Một khu chợ ở Hà Nội chỉ có một con hẻm để chở hàng vào. | Hẻm bị chặn, | thì không chỉ mấy sạp đầu hẻm lên giá. | Cả chợ lên giá. // Vì người mua ở khắp nơi đều đổ xô đi tìm hàng ở chỗ khác, | mà hàng ở chỗ khác thì có hạn.",
+      "cap": "Bạn hình dung thế này. Một khu chợ ở Hà Nội chỉ có một con hẻm để chở hàng vào. Hẻm bị chặn, thì không chỉ mấy sạp đầu hẻm lên giá. Cả chợ lên giá. Vì người mua ở khắp nơi đều đổ xô đi tìm hàng ở chỗ khác, mà hàng ở chỗ khác thì có hạn."
+    },
+    {
+      "id": 13,
+      "type": "stock",
+      "stock": "nghi son refinery vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Việt Nam nằm ngay trong khu chợ đó. | Nhà máy lọc dầu Nghi Sơn ở Thanh Hóa, | nơi làm ra khoảng một phần ba xăng dầu cả nước dùng, | được thiết kế để chạy chủ yếu bằng dầu thô Kuwait. // Mà dầu Kuwait muốn ra biển lớn, | thì chỉ có một đường: | đi qua cái cổng Hormuz.",
+      "cap": "Việt Nam nằm ngay trong khu chợ đó. Nhà máy lọc dầu Nghi Sơn ở Thanh Hóa, nơi làm ra khoảng một phần ba xăng dầu cả nước dùng, được thiết kế để chạy chủ yếu bằng dầu thô Kuwait. Mà dầu Kuwait muốn ra biển lớn, thì chỉ có một đường: đi qua cái cổng Hormuz."
+    },
+    {
+      "id": 14,
+      "type": "stock",
+      "stock": "crude oil tanker docking port asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Chuyến dầu Kuwait gần nhất về tới Nghi Sơn vào giữa tháng 3. | Sau đó, các chuyến tiếp theo bị kẹt lại. | Nhà máy phải chạy đi mua dầu ở chỗ khác, | lần đầu tiên thử lọc cả dầu của Các Tiểu vương quốc Ả Rập.",
+      "cap": "Chuyến dầu Kuwait gần nhất về tới Nghi Sơn vào giữa tháng 3. Sau đó, các chuyến tiếp theo bị kẹt lại. Nhà máy phải chạy đi mua dầu ở chỗ khác, lần đầu tiên thử lọc cả dầu của Các Tiểu vương quốc Ả Rập."
+    },
+    {
+      "id": 15,
+      "type": "stock",
+      "stock": "japanese oil tanker ship",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có lúc, một tập đoàn dầu khí Nhật Bản thu xếp gần 4 triệu thùng dầu cho Việt Nam, | đi theo đường vòng không qua Hormuz. | Nghe thì nhiều. | Nhưng chỉ đủ cho các nhà máy lọc dầu trong nước chạy khoảng mười ngày.",
+      "cap": "Có lúc, một tập đoàn dầu khí Nhật Bản thu xếp gần 4 triệu thùng dầu cho Việt Nam, đi theo đường vòng không qua Hormuz. Nghe thì nhiều. Nhưng chỉ đủ cho các nhà máy lọc dầu trong nước chạy khoảng mười ngày."
+    },
+    {
+      "id": 16,
+      "type": "stock",
+      "stock": "oil storage tanks vietnam port",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đến đây chắc bạn hỏi: | vậy là Việt Nam thiếu xăng à? // Không hẳn. | Cây xăng vẫn bán. | Nhưng có một chuyện quan trọng hơn chuyện thiếu hay đủ, | đó là giá. | Và giá xăng ở Việt Nam, không tính theo chuyện mình có đủ dầu hay không.",
+      "cap": "Đến đây chắc bạn hỏi: vậy là Việt Nam thiếu xăng à? Không hẳn. Cây xăng vẫn bán. Nhưng có một chuyện quan trọng hơn chuyện thiếu hay đủ, đó là giá. Và giá xăng ở Việt Nam, không tính theo chuyện mình có đủ dầu hay không."
+    },
+    {
+      "id": 17,
+      "type": "stock",
+      "stock": "singapore jurong island refinery",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nó tính theo giá ở Singapore. // Singapore là chợ đầu mối xăng dầu của châu Á. | Mỗi ngày, ở đó có một mức giá cho xăng đã lọc xong, | và cả khu vực nhìn vào đó để mua bán.",
+      "cap": "Nó tính theo giá ở Singapore. Singapore là chợ đầu mối xăng dầu của châu Á. Mỗi ngày, ở đó có một mức giá cho xăng đã lọc xong, và cả khu vực nhìn vào đó để mua bán."
+    },
+    {
+      "id": 18,
+      "type": "stock",
+      "stock": "dung quat refinery quang ngai",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Việt Nam cũng vậy. | Kể cả xăng lọc ngay ở Nghi Sơn hay Dung Quất, | cũng được bán theo mặt bằng giá Singapore.",
+      "cap": "Việt Nam cũng vậy. Kể cả xăng lọc ngay ở Nghi Sơn hay Dung Quất, cũng được bán theo mặt bằng giá Singapore."
+    },
+    {
+      "id": 19,
+      "type": "stock",
+      "stock": "vietnamese farmer selling vegetables market",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nghe hơi vô lý đúng không? | Xăng làm ở nhà, sao lại tính giá như hàng nhập? // Nghĩ thế này. | Bạn trồng rau ở quê. | Rau ngoài chợ đang bán năm mươi nghìn một ký. | Bạn có bán cho người lạ hai mươi nghìn không?",
+      "cap": "Nghe hơi vô lý đúng không? Xăng làm ở nhà, sao lại tính giá như hàng nhập? Nghĩ thế này. Bạn trồng rau ở quê. Rau ngoài chợ đang bán năm mươi nghìn một ký. Bạn có bán cho người lạ hai mươi nghìn không?"
+    },
+    {
+      "id": 20,
+      "type": "stock",
+      "stock": "refinery workers helmet asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhà máy lọc dầu cũng vậy. | Họ mua dầu thô theo giá thế giới, | thì cũng bán xăng theo giá thế giới. | Bán rẻ hơn thì lỗ, | mà lỗ thì nhà máy không chạy được lâu.",
+      "cap": "Nhà máy lọc dầu cũng vậy. Họ mua dầu thô theo giá thế giới, thì cũng bán xăng theo giá thế giới. Bán rẻ hơn thì lỗ, mà lỗ thì nhà máy không chạy được lâu."
+    },
+    {
+      "id": 21,
+      "type": "card",
+      "text": "Giá xăng 95 ở chợ Singapore, USD/thùng: 82 → 154",
+      "src": "Bộ Công Thương, giá bình quân kỳ điều hành; mốc 27/2 tự tính từ thông cáo ngày 5/3/2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Và đây là con số kéo mọi thứ lên. Ngay trước chiến sự, một thùng xăng 95 ở chợ Singapore giá khoảng 82 đô. Tuần trước, đã hơn 150 đô. Gần gấp đôi.",
+      "cap": "Và đây là con số kéo mọi thứ lên. Ngay trước chiến sự, một thùng xăng 95 ở chợ Singapore giá khoảng 82 đô. Tuần trước, đã hơn 150 đô. Gần gấp đôi."
+    },
+    {
+      "id": 22,
+      "type": "stock",
+      "stock": "oil price chart screen trader asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Để ý một chi tiết. | Dầu thô Brent bây giờ khoảng 105 đô một thùng. | Nhưng xăng đã lọc xong ở Singapore thì tận hơn 150 đô. // Tức là không chỉ dầu thô đắt lên. | Khoảng cách giữa dầu thô và xăng thành phẩm cũng giãn ra rất rộng. | Cả châu Á đang thiếu dầu để lọc, | nên ai có sẵn xăng trong tay, người đó ra giá.",
+      "cap": "Để ý một chi tiết. Dầu thô Brent bây giờ khoảng 105 đô một thùng. Nhưng xăng đã lọc xong ở Singapore thì tận hơn 150 đô. Tức là không chỉ dầu thô đắt lên. Khoảng cách giữa dầu thô và xăng thành phẩm cũng giãn ra rất rộng. Cả châu Á đang thiếu dầu để lọc, nên ai có sẵn xăng trong tay, người đó ra giá."
+    },
+    {
+      "id": 23,
+      "type": "stock",
+      "stock": "oil tanker rough sea",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Rồi còn tiền chở. | Tàu phải đi đường vòng xa hơn. | Chủ tàu đòi thêm tiền vì rủi ro. | Hãng bảo hiểm thu thêm phí chiến tranh. // Mỗi khoản cộng vào một ít, | và tất cả đều đổ vào giá xăng nhập về Việt Nam.",
+      "cap": "Rồi còn tiền chở. Tàu phải đi đường vòng xa hơn. Chủ tàu đòi thêm tiền vì rủi ro. Hãng bảo hiểm thu thêm phí chiến tranh. Mỗi khoản cộng vào một ít, và tất cả đều đổ vào giá xăng nhập về Việt Nam."
+    },
+    {
+      "id": 24,
+      "type": "stock",
+      "stock": "vietnam ministry office meeting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Xăng về tới Việt Nam rồi, | thì giá bán lẻ cũng không do cây xăng tự đặt. | Cứ mỗi tuần, thường vào chiều thứ Năm, | Bộ Công Thương và Bộ Tài chính lại tính một lần.",
+      "cap": "Xăng về tới Việt Nam rồi, thì giá bán lẻ cũng không do cây xăng tự đặt. Cứ mỗi tuần, thường vào chiều thứ Năm, Bộ Công Thương và Bộ Tài chính lại tính một lần."
+    },
+    {
+      "id": 25,
+      "type": "stock",
+      "stock": "spreadsheet calculator office desk",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Họ lấy giá trung bình ở Singapore trong tuần, | cộng tiền chở, tiền bảo hiểm, | cộng thuế, cộng chi phí và tiền lãi định mức cho doanh nghiệp, | ra một con số gọi là giá cơ sở. | Cây xăng không được bán cao hơn mức đó.",
+      "cap": "Họ lấy giá trung bình ở Singapore trong tuần, cộng tiền chở, tiền bảo hiểm, cộng thuế, cộng chi phí và tiền lãi định mức cho doanh nghiệp, ra một con số gọi là giá cơ sở. Cây xăng không được bán cao hơn mức đó."
+    },
+    {
+      "id": 26,
+      "type": "stock",
+      "stock": "gas station attendant vietnam uniform",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy trong một lít xăng, bao nhiêu là thuế? | Thử lấy lít xăng hơn hai mươi nghìn hồi tháng 2, | lúc thuế vẫn còn thu bình thường, | và bóc nó ra.",
+      "cap": "Vậy trong một lít xăng, bao nhiêu là thuế? Thử lấy lít xăng hơn hai mươi nghìn hồi tháng 2, lúc thuế vẫn còn thu bình thường, và bóc nó ra."
+    },
+    {
+      "id": 27,
+      "type": "card",
+      "text": "Một lít xăng 95 ngày 26/2/2026, ước tính: Xăng thế giới và tiền chở = 13.300đ; Thuế = 5.200đ; Chi phí, lãi kinh doanh = 1.600đ",
+      "src": "Tự tính ước từ giá điều hành 26/2/2026 và mức thuế áp dụng đầu năm 2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Theo phép tính ước của tôi, khoảng mười ba nghìn là tiền xăng thế giới cộng tiền chở. Khoảng năm nghìn là thuế. Còn hơn một nghìn rưỡi là chi phí và tiền lãi của doanh nghiệp xăng dầu, và của đại lý.",
+      "cap": "Theo phép tính ước của tôi, khoảng mười ba nghìn là tiền xăng thế giới cộng tiền chở. Khoảng năm nghìn là thuế. Còn hơn một nghìn rưỡi là chi phí và tiền lãi của doanh nghiệp xăng dầu, và của đại lý."
+    },
+    {
+      "id": 28,
+      "type": "stock",
+      "stock": "hanoi traffic smog morning",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Năm nghìn tiền thuế đó gồm ba món chính. | Món thứ nhất là thuế bảo vệ môi trường, | hồi tháng 2 là hai nghìn đồng một lít, cố định. | Giá xăng lên hay xuống, món này vẫn vậy. | Lý do là xăng cháy ra khói, | ai đốt nhiều thì góp nhiều.",
+      "cap": "Năm nghìn tiền thuế đó gồm ba món chính. Món thứ nhất là thuế bảo vệ môi trường, hồi tháng 2 là hai nghìn đồng một lít, cố định. Giá xăng lên hay xuống, món này vẫn vậy. Lý do là xăng cháy ra khói, ai đốt nhiều thì góp nhiều."
+    },
+    {
+      "id": 29,
+      "type": "stock",
+      "stock": "beer cigarettes shop shelf vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Món thứ hai là thuế tiêu thụ đặc biệt. | Nó cùng họ với thuế đánh lên bia, thuốc lá và ô tô. | Mục đích là để người ta dùng cho tiết kiệm.",
+      "cap": "Món thứ hai là thuế tiêu thụ đặc biệt. Nó cùng họ với thuế đánh lên bia, thuốc lá và ô tô. Mục đích là để người ta dùng cho tiết kiệm."
+    },
+    {
+      "id": 30,
+      "type": "stock",
+      "stock": "vietnamese pho bowl restaurant",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Món thứ ba là thuế giá trị gia tăng, mười phần trăm. | Cái này thì bạn trả cho gần như mọi thứ mình mua, | từ bát phở đến cái điện thoại.",
+      "cap": "Món thứ ba là thuế giá trị gia tăng, mười phần trăm. Cái này thì bạn trả cho gần như mọi thứ mình mua, từ bát phở đến cái điện thoại."
+    },
+    {
+      "id": 31,
+      "type": "stock",
+      "stock": "vietnamese dong banknotes counting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng có một chỗ đáng để ý. | Thuế giá trị gia tăng tính theo phần trăm. | Xăng hai mươi nghìn thì thuế khoảng một nghìn tám. | Xăng ba mươi nghìn thì thuế khoảng hai nghìn bảy. // Tức là lúc giá xăng lên, | tiền thuế cũng tự lên theo, | mà không cần ai ra luật mới.",
+      "cap": "Nhưng có một chỗ đáng để ý. Thuế giá trị gia tăng tính theo phần trăm. Xăng hai mươi nghìn thì thuế khoảng một nghìn tám. Xăng ba mươi nghìn thì thuế khoảng hai nghìn bảy. Tức là lúc giá xăng lên, tiền thuế cũng tự lên theo, mà không cần ai ra luật mới."
+    },
+    {
+      "id": 32,
+      "type": "stock",
+      "stock": "piggy bank coins table",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn một món nữa không phải thuế, nhưng cũng nằm trong giá: | quỹ bình ổn giá xăng dầu. // Hiểu đơn giản, nó giống cái heo đất. | Lúc xăng rẻ, mỗi lít bạn mua, | doanh nghiệp xăng dầu bỏ vào heo vài trăm đồng. | Lúc xăng đắt, đập heo ra, bù vào cho giá đỡ sốc.",
+      "cap": "Còn một món nữa không phải thuế, nhưng cũng nằm trong giá: quỹ bình ổn giá xăng dầu. Hiểu đơn giản, nó giống cái heo đất. Lúc xăng rẻ, mỗi lít bạn mua, doanh nghiệp xăng dầu bỏ vào heo vài trăm đồng. Lúc xăng đắt, đập heo ra, bù vào cho giá đỡ sốc."
+    },
+    {
+      "id": 33,
+      "type": "stock",
+      "stock": "vietnam gas station night crowd",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Năm nay, cái heo đã bị đập. | Ngày 19 tháng 3, xăng 95 lên tới hơn ba mươi nghìn sáu trăm một lít. | Và đó là sau khi quỹ bình ổn đã bù ba nghìn đồng cho mỗi lít. // Nếu không có quỹ, | hôm đó xăng đã vượt ba mươi ba nghìn.",
+      "cap": "Năm nay, cái heo đã bị đập. Ngày 19 tháng 3, xăng 95 lên tới hơn ba mươi nghìn sáu trăm một lít. Và đó là sau khi quỹ bình ổn đã bù ba nghìn đồng cho mỗi lít. Nếu không có quỹ, hôm đó xăng đã vượt ba mươi ba nghìn."
+    },
+    {
+      "id": 34,
+      "type": "stock",
+      "stock": "broken piggy bank coins",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng heo đất thì có đáy. | Cả nước Việt Nam mỗi ngày dùng khoảng năm mươi mấy triệu lít xăng dầu. | Bù ba nghìn mỗi lít, | thì mỗi ngày quỹ chảy ra hơn một trăm năm mươi tỷ đồng.",
+      "cap": "Nhưng heo đất thì có đáy. Cả nước Việt Nam mỗi ngày dùng khoảng năm mươi mấy triệu lít xăng dầu. Bù ba nghìn mỗi lít, thì mỗi ngày quỹ chảy ra hơn một trăm năm mươi tỷ đồng."
+    },
+    {
+      "id": 35,
+      "type": "stock",
+      "stock": "umbrella heavy rain street vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tức là quỹ bình ổn giống cái ô. | Che được một cơn mưa rào. | Không che được cả mùa bão.",
+      "cap": "Tức là quỹ bình ổn giống cái ô. Che được một cơn mưa rào. Không che được cả mùa bão."
+    },
+    {
+      "id": 36,
+      "type": "stock",
+      "stock": "vietnam national assembly hall hanoi",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Khi cái ô không đủ, | nhà nước dùng đến cái mái nhà: | thuế. // Từ cuối tháng 3, thuế bảo vệ môi trường trên xăng được hạ về không. | Doanh nghiệp bán xăng không phải tính thuế giá trị gia tăng nữa. | Thuế nhập khẩu xăng dầu cũng được giảm về không.",
+      "cap": "Khi cái ô không đủ, nhà nước dùng đến cái mái nhà: thuế. Từ cuối tháng 3, thuế bảo vệ môi trường trên xăng được hạ về không. Doanh nghiệp bán xăng không phải tính thuế giá trị gia tăng nữa. Thuế nhập khẩu xăng dầu cũng được giảm về không."
+    },
+    {
+      "id": 37,
+      "type": "stock",
+      "stock": "government decree document stamp",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Lúc đầu, Chính phủ chỉ định làm vài tuần. | Rồi Quốc hội kéo dài đến cuối tháng 6. | Rồi kéo dài nữa. | Và bây giờ là đến hết ngày 31 tháng 12.",
+      "cap": "Lúc đầu, Chính phủ chỉ định làm vài tuần. Rồi Quốc hội kéo dài đến cuối tháng 6. Rồi kéo dài nữa. Và bây giờ là đến hết ngày 31 tháng 12."
+    },
+    {
+      "id": 38,
+      "type": "stock",
+      "stock": "vietnam finance ministry building hanoi",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Sẽ có người hỏi: | vậy sao không bỏ hẳn thuế xăng luôn cho rồi? // Vì thuế môi trường trên xăng dầu là một trong những khoản thu lớn của ngân sách Việt Nam. | Bỏ khoản đó, | thì hoặc phải thu bù ở chỗ khác, | hoặc phải bớt chi cho đường sá, trường học, bệnh viện. | Giảm thuế hôm nay, giống như mượn tiền của chính mình ở năm sau.",
+      "cap": "Sẽ có người hỏi: vậy sao không bỏ hẳn thuế xăng luôn cho rồi? Vì thuế môi trường trên xăng dầu là một trong những khoản thu lớn của ngân sách Việt Nam. Bỏ khoản đó, thì hoặc phải thu bù ở chỗ khác, hoặc phải bớt chi cho đường sá, trường học, bệnh viện. Giảm thuế hôm nay, giống như mượn tiền của chính mình ở năm sau."
+    },
+    {
+      "id": 39,
+      "type": "card",
+      "text": "Thuế bảo vệ môi trường trên 1 lít xăng: 2.000đ → 0đ",
+      "src": "Quyết định 482/QĐ-TTg; Nghị quyết 19/2026/QH16; Nghị quyết của Chính phủ ngày 30/9/2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Riêng thuế môi trường, mỗi lít xăng đã bớt đi hai nghìn đồng. Cộng thêm phần thuế giá trị gia tăng không phải tính, thì với giá xăng bây giờ, mỗi lít nhẹ đi khoảng năm nghìn.",
+      "cap": "Riêng thuế môi trường, mỗi lít xăng đã bớt đi hai nghìn đồng. Cộng thêm phần thuế giá trị gia tăng không phải tính, thì với giá xăng bây giờ, mỗi lít nhẹ đi khoảng năm nghìn."
+    },
+    {
+      "id": 40,
+      "type": "stock",
+      "stock": "vietnamese woman calculator household bills",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy tám nghìn đồng đắt thêm của bạn, | thật ra là con số đã được giảm xóc rồi. // Hôm nay, trong lít xăng hai mươi tám nghìn, | phần thuế còn lại rất mỏng. | Gần như cả lít, là tiền xăng thế giới cộng tiền chở.",
+      "cap": "Vậy tám nghìn đồng đắt thêm của bạn, thật ra là con số đã được giảm xóc rồi. Hôm nay, trong lít xăng hai mươi tám nghìn, phần thuế còn lại rất mỏng. Gần như cả lít, là tiền xăng thế giới cộng tiền chở."
+    },
+    {
+      "id": 41,
+      "type": "stock",
+      "stock": "oil tanker sunset strait",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nói cách khác, lần này chúng ta không trả nhiều cho thuế nữa. | Chúng ta đang trả gần như trực tiếp cho cái eo biển Hormuz kia.",
+      "cap": "Nói cách khác, lần này chúng ta không trả nhiều cho thuế nữa. Chúng ta đang trả gần như trực tiếp cho cái eo biển Hormuz kia."
+    },
+    {
+      "id": 42,
+      "type": "stock",
+      "stock": "vietnamese delivery rider motorbike street",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tính thử đi. | Anh Tâm chạy giao hàng ở Sài Gòn, | mỗi ngày đổ khoảng hai lít xăng. | Mỗi lít đắt hơn hồi tháng 2 khoảng tám nghìn. | Thì mỗi ngày mất thêm mười sáu nghìn. | Một tháng chạy hai mươi sáu ngày, | là hơn bốn trăm nghìn đồng.",
+      "cap": "Tính thử đi. Anh Tâm chạy giao hàng ở Sài Gòn, mỗi ngày đổ khoảng hai lít xăng. Mỗi lít đắt hơn hồi tháng 2 khoảng tám nghìn. Thì mỗi ngày mất thêm mười sáu nghìn. Một tháng chạy hai mươi sáu ngày, là hơn bốn trăm nghìn đồng."
+    },
+    {
+      "id": 43,
+      "type": "card",
+      "text": "Tiền xăng thêm mỗi tháng của một shipper: 416.000đ",
+      "src": "Phép tính ví dụ: 2 lít/ngày, đắt thêm 8.000đ/lít, 26 ngày",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Bốn trăm mười sáu nghìn đồng một tháng. Với anh Tâm, đó là gần hai ngày công. Và anh không tự tăng giá ship được, vì giá cước do cái app quyết định, chứ không phải anh.",
+      "cap": "Bốn trăm mười sáu nghìn đồng một tháng. Với anh Tâm, đó là gần hai ngày công. Và anh không tự tăng giá ship được, vì giá cước do cái app quyết định, chứ không phải anh."
+    },
+    {
+      "id": 44,
+      "type": "stock",
+      "stock": "man walking sneakers city sidewalk",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tôi cũng đã nghĩ ra cách đối phó: | đi bộ. | Được ba hôm thì tôi phát hiện ra, | đế giày cũng làm từ dầu mỏ. // Đùa thôi. | Nhưng người thiệt nặng hơn anh Tâm còn có.",
+      "cap": "Tôi cũng đã nghĩ ra cách đối phó: đi bộ. Được ba hôm thì tôi phát hiện ra, đế giày cũng làm từ dầu mỏ. Đùa thôi. Nhưng người thiệt nặng hơn anh Tâm còn có."
+    },
+    {
+      "id": 45,
+      "type": "stock",
+      "stock": "vietnamese fishing boats harbor",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đó là ngư dân. | Tàu cá chạy bằng dầu diesel, | mà giá diesel ở Việt Nam năm nay tăng còn mạnh hơn xăng: | từ khoảng mười chín nghìn, lên hơn hai mươi chín nghìn một lít.",
+      "cap": "Đó là ngư dân. Tàu cá chạy bằng dầu diesel, mà giá diesel ở Việt Nam năm nay tăng còn mạnh hơn xăng: từ khoảng mười chín nghìn, lên hơn hai mươi chín nghìn một lít."
+    },
+    {
+      "id": 46,
+      "type": "stock",
+      "stock": "vietnamese fisherman nets boat deck",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Với một chuyến biển, tiền dầu là khoản chi lớn nhất. | Dầu đắt thêm một nửa, | thì có chuyến ra khơi về chỉ đủ hòa vốn. | Có người chọn nằm bờ, | vì đi càng xa thì lỗ càng nhiều.",
+      "cap": "Với một chuyến biển, tiền dầu là khoản chi lớn nhất. Dầu đắt thêm một nửa, thì có chuyến ra khơi về chỉ đủ hòa vốn. Có người chọn nằm bờ, vì đi càng xa thì lỗ càng nhiều."
+    },
+    {
+      "id": 47,
+      "type": "stock",
+      "stock": "airplane refueling airport asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn máy bay thì sao? | Đầu tháng 3, chỉ trong vài ngày, giá nhiên liệu bay ở Singapore đã tăng hơn bảy mươi phần trăm. | Nên nếu năm nay bạn thấy vé máy bay đắt, | thì một phần lý do cũng nằm ở eo Hormuz.",
+      "cap": "Còn máy bay thì sao? Đầu tháng 3, chỉ trong vài ngày, giá nhiên liệu bay ở Singapore đã tăng hơn bảy mươi phần trăm. Nên nếu năm nay bạn thấy vé máy bay đắt, thì một phần lý do cũng nằm ở eo Hormuz."
+    },
+    {
+      "id": 48,
+      "type": "stock",
+      "stock": "luxury suv car vietnam street",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đến đây chắc có người bảo: | giảm thuế thì quá tốt, còn gì phải bàn? // Có đấy. | Tiền giảm thuế là tiền ngân sách, tức là tiền chung, | nhưng được chia theo số lít bạn đổ.",
+      "cap": "Đến đây chắc có người bảo: giảm thuế thì quá tốt, còn gì phải bàn? Có đấy. Tiền giảm thuế là tiền ngân sách, tức là tiền chung, nhưng được chia theo số lít bạn đổ."
+    },
+    {
+      "id": 49,
+      "type": "stock",
+      "stock": "motorbike and car traffic hanoi",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Người đi xe máy, mỗi tuần đổ ba lít, được bớt khoảng mười lăm nghìn. | Người đi chiếc xe gầm cao máy lớn, mỗi tuần đổ năm mươi lít, | được bớt khoảng hai trăm rưỡi nghìn. // Ai càng đốt nhiều xăng, | càng được tiền chung giúp nhiều.",
+      "cap": "Người đi xe máy, mỗi tuần đổ ba lít, được bớt khoảng mười lăm nghìn. Người đi chiếc xe gầm cao máy lớn, mỗi tuần đổ năm mươi lít, được bớt khoảng hai trăm rưỡi nghìn. Ai càng đốt nhiều xăng, càng được tiền chung giúp nhiều."
+    },
+    {
+      "id": 50,
+      "type": "stock",
+      "stock": "kuala lumpur petrol station",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Malaysia thì đi một đường khác hẳn. | Người Malaysia đủ điều kiện mua xăng 95 với giá một ringgit chín mươi chín xu một lít, | tính ra khoảng mười ba nghìn đồng, | chưa bằng một nửa giá ở mình.",
+      "cap": "Malaysia thì đi một đường khác hẳn. Người Malaysia đủ điều kiện mua xăng 95 với giá một ringgit chín mươi chín xu một lít, tính ra khoảng mười ba nghìn đồng, chưa bằng một nửa giá ở mình."
+    },
+    {
+      "id": 51,
+      "type": "stock",
+      "stock": "malaysia parliament building kuala lumpur",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nghe thì sướng. | Nhưng mỗi lít đó, nhà nước Malaysia phải bù khoảng một nửa giá thật. | Đến tháng 4, tiền bù đã lên khoảng bốn tỷ ringgit một tháng, | và họ phải cắt hạn mức mỗi người từ ba trăm xuống hai trăm lít.",
+      "cap": "Nghe thì sướng. Nhưng mỗi lít đó, nhà nước Malaysia phải bù khoảng một nửa giá thật. Đến tháng 4, tiền bù đã lên khoảng bốn tỷ ringgit một tháng, và họ phải cắt hạn mức mỗi người từ ba trăm xuống hai trăm lít."
+    },
+    {
+      "id": 52,
+      "type": "stock",
+      "stock": "school hospital construction asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tức là xăng rẻ không có nghĩa là xăng miễn phí. | Hoặc bạn trả ở cây xăng. | Hoặc bạn trả bằng tiền thuế, | tiền mà lẽ ra để xây trường, xây bệnh viện. // Không có cách thứ ba.",
+      "cap": "Tức là xăng rẻ không có nghĩa là xăng miễn phí. Hoặc bạn trả ở cây xăng. Hoặc bạn trả bằng tiền thuế, tiền mà lẽ ra để xây trường, xây bệnh viện. Không có cách thứ ba."
+    },
+    {
+      "id": 53,
+      "type": "stock",
+      "stock": "courtroom vietnam trial",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn cái heo đất kia, cũng từng bị đục trộm. | Trong vụ án Xuyên Việt Oil, | công ty này báo cáo trong quỹ bình ổn có hơn hai trăm tỷ đồng. | Nhưng khi kiểm tra, ba tài khoản của quỹ chỉ còn khoảng hai triệu.",
+      "cap": "Còn cái heo đất kia, cũng từng bị đục trộm. Trong vụ án Xuyên Việt Oil, công ty này báo cáo trong quỹ bình ổn có hơn hai trăm tỷ đồng. Nhưng khi kiểm tra, ba tài khoản của quỹ chỉ còn khoảng hai triệu."
+    },
+    {
+      "id": 54,
+      "type": "stock",
+      "stock": "handcuffs court gavel",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Chưa hết. | Hơn một nghìn hai trăm tỷ tiền thuế môi trường thu từ người mua xăng, | cũng không được nộp vào ngân sách. | Bà chủ Xuyên Việt Oil nhận tổng cộng ba mươi năm tù.",
+      "cap": "Chưa hết. Hơn một nghìn hai trăm tỷ tiền thuế môi trường thu từ người mua xăng, cũng không được nộp vào ngân sách. Bà chủ Xuyên Việt Oil nhận tổng cộng ba mươi năm tù."
+    },
+    {
+      "id": 55,
+      "type": "stock",
+      "stock": "gasoline receipt hand closeup",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bài học ở đây không phải là quỹ bình ổn xấu. | Mà là mỗi lít xăng bạn đổ, | có một phần tiền đi qua tay doanh nghiệp, rồi mới về quỹ, về ngân sách. | Chỗ nào tiền nằm lâu trong tay người khác, | chỗ đó cần người canh.",
+      "cap": "Bài học ở đây không phải là quỹ bình ổn xấu. Mà là mỗi lít xăng bạn đổ, có một phần tiền đi qua tay doanh nghiệp, rồi mới về quỹ, về ngân sách. Chỗ nào tiền nằm lâu trong tay người khác, chỗ đó cần người canh."
+    },
+    {
+      "id": 56,
+      "type": "stock",
+      "stock": "gas price sign changing numbers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một lỗ hổng nữa thì người đi xe nào cũng cảm thấy: | giá xăng lên như tên lửa, xuống như lông vịt. // Không chỉ ở Việt Nam đâu. | Các nhà kinh tế ở nhiều nước đã đo hiện tượng này, | và gọi nó bằng đúng cái tên đó: tên lửa và lông vũ.",
+      "cap": "Một lỗ hổng nữa thì người đi xe nào cũng cảm thấy: giá xăng lên như tên lửa, xuống như lông vịt. Không chỉ ở Việt Nam đâu. Các nhà kinh tế ở nhiều nước đã đo hiện tượng này, và gọi nó bằng đúng cái tên đó: tên lửa và lông vũ."
+    },
+    {
+      "id": 57,
+      "type": "stock",
+      "stock": "piggy bank coins saving",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Kỳ điều hành mỗi tuần đã giúp giá ở Việt Nam đi sát thế giới hơn trước. | Nhưng khi heo đất cần được nuôi lại cho đầy, | thì lúc giá thế giới giảm, | bạn sẽ không thấy giá trong nước giảm hết theo. | Một phần tiền giảm đó, sẽ đi vào lại quỹ bình ổn.",
+      "cap": "Kỳ điều hành mỗi tuần đã giúp giá ở Việt Nam đi sát thế giới hơn trước. Nhưng khi heo đất cần được nuôi lại cho đầy, thì lúc giá thế giới giảm, bạn sẽ không thấy giá trong nước giảm hết theo. Một phần tiền giảm đó, sẽ đi vào lại quỹ bình ổn."
+    },
+    {
+      "id": 58,
+      "type": "stock",
+      "stock": "desk calendar december page",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và có một ngày bạn nên khoanh lại: | ngày 1 tháng 1 năm 2027. // Nếu không gia hạn nữa, | thuế môi trường và thuế giá trị gia tăng sẽ quay lại. | Giả sử giá thế giới đứng yên như hôm nay, | thì mỗi lít có thể đắt thêm khoảng năm nghìn, chỉ sau một đêm.",
+      "cap": "Và có một ngày bạn nên khoanh lại: ngày 1 tháng 1 năm 2027. Nếu không gia hạn nữa, thuế môi trường và thuế giá trị gia tăng sẽ quay lại. Giả sử giá thế giới đứng yên như hôm nay, thì mỗi lít có thể đắt thêm khoảng năm nghìn, chỉ sau một đêm."
+    },
+    {
+      "id": 59,
+      "type": "stock",
+      "stock": "oil tanker strait sunrise",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nghĩa là eo Hormuz có thông, | xăng cũng chưa chắc về lại hai mươi nghìn ngay. | Giá thế giới sẽ cần thời gian để hạ, | còn thuế thì có ngày quay lại cụ thể.",
+      "cap": "Nghĩa là eo Hormuz có thông, xăng cũng chưa chắc về lại hai mươi nghìn ngay. Giá thế giới sẽ cần thời gian để hạ, còn thuế thì có ngày quay lại cụ thể."
+    },
+    {
+      "id": 60,
+      "type": "stock",
+      "stock": "vietnamese family budget notebook",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy bạn làm được gì? | Tôi không phải chuyên gia, nên chỉ có ba việc nhỏ. // Một, để ý chiều thứ Năm. | Giá xăng đổi theo tuần. | Nếu tin tức báo giá thế giới cả tuần đang lên, | thì đổ đầy bình trước giờ điều chỉnh, | cũng là một khoản tiết kiệm nhỏ.",
+      "cap": "Vậy bạn làm được gì? Tôi không phải chuyên gia, nên chỉ có ba việc nhỏ. Một, để ý chiều thứ Năm. Giá xăng đổi theo tuần. Nếu tin tức báo giá thế giới cả tuần đang lên, thì đổ đầy bình trước giờ điều chỉnh, cũng là một khoản tiết kiệm nhỏ."
+    },
+    {
+      "id": 61,
+      "type": "stock",
+      "stock": "young vietnamese man planning budget laptop",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hai, khi lập ngân sách cho năm sau, | đừng tính tiền xăng theo giá hôm nay. | Hãy cộng thêm phần thuế có thể quay lại. | Nếu nhà bạn đổ ba mươi lít một tháng, | thì cứ để sẵn thêm khoảng một trăm rưỡi nghìn.",
+      "cap": "Hai, khi lập ngân sách cho năm sau, đừng tính tiền xăng theo giá hôm nay. Hãy cộng thêm phần thuế có thể quay lại. Nếu nhà bạn đổ ba mươi lít một tháng, thì cứ để sẵn thêm khoảng một trăm rưỡi nghìn."
+    },
+    {
+      "id": 62,
+      "type": "stock",
+      "stock": "vietnamese small business owner shop counter",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ba, nếu bạn làm nghề phải chạy xe, | hay buôn bán có giao hàng, | thì tính lại giá bán theo giá xăng hôm nay, | chứ không phải giá đầu năm. | Nhiều người lỗ không phải vì bán ít, | mà vì vẫn đang tính chi phí theo một thế giới đã qua.",
+      "cap": "Ba, nếu bạn làm nghề phải chạy xe, hay buôn bán có giao hàng, thì tính lại giá bán theo giá xăng hôm nay, chứ không phải giá đầu năm. Nhiều người lỗ không phải vì bán ít, mà vì vẫn đang tính chi phí theo một thế giới đã qua."
+    },
+    {
+      "id": 63,
+      "type": "card",
+      "text": "Xăng rẻ hay đắt, người trả cuối cùng vẫn là bạn",
+      "src": "Tóm tắt video",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Tóm lại, một lít xăng là một sợi dây rất dài. Giếng dầu, cái cổng hẹp tên Hormuz, chợ Singapore, nhà máy lọc dầu, rồi đến thuế và cái heo đất bình ổn. Nhà nước có thể dời khoản trả từ cây xăng sang ngân sách, hay từ năm nay sang năm sau. Nhưng không xóa được nó.",
+      "cap": "Tóm lại, một lít xăng là một sợi dây rất dài. Giếng dầu, cái cổng hẹp tên Hormuz, chợ Singapore, nhà máy lọc dầu, rồi đến thuế và cái heo đất bình ổn. Nhà nước có thể dời khoản trả từ cây xăng sang ngân sách, hay từ năm nay sang năm sau. Nhưng không xóa được nó."
+    },
+    {
+      "id": 64,
+      "type": "stock",
+      "stock": "saigon motorbike traffic evening",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn bạn, | mỗi tháng bạn đang tốn thêm bao nhiêu tiền xăng so với đầu năm? | Và nếu tôi bóc sai chỗ nào trong lít xăng kia, | cứ để lại bình luận, tôi sẽ sửa.",
+      "cap": "Còn bạn, mỗi tháng bạn đang tốn thêm bao nhiêu tiền xăng so với đầu năm? Và nếu tôi bóc sai chỗ nào trong lít xăng kia, cứ để lại bình luận, tôi sẽ sửa."
+    }
+  ]
+}

@@ -219,6 +219,13 @@ _MODERN = {
     "jumpsuit", "handcuffed", "handcuffs", "police", "officer", "prison",
     "jail", "jeans", "tshirt", "sneakers", "plastic", "modern", "contemporary",
     "business", "businessman", "meeting", "desk", "chair", "glasses",
+    # 05/10/2026 — loat sai tren tran-thu-do / ho-quy-ly-mat-nuoc:
+    "politician", "president", "flag", "flags", "dollar", "dollars", "coin",
+    "penny", "cent", "tax", "form", "football", "soccer", "stadium", "swimmer",
+    "swimmers", "swimming", "beach", "cowboy", "church", "cathedral", "chapel",
+    "baroque", "mosque", "christmas", "chess", "cruise", "yacht", "headphones",
+    "earphones", "coffee", "teenager", "girl", "woman", "women", "man", "men",
+    "people", "crowd", "family", "kids", "children", "suit", "tie",
 }
 
 # Danh tu CANH hop voi video ke su phuong Dong. Trung mot tu o day la tin hieu

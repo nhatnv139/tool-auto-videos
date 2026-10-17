@@ -55,6 +55,40 @@ FX_RE = re.compile(r"\|fx=([a-z-]+)")
 LOW_RE = re.compile(r"\|low\b")
 DUR_RE = re.compile(r"\|dur=([\d.]+)")
 
+# --- chuong: cat (16/10/2026) ------------------------------------------------
+# Kieu cu: [[black|pause=2.5]] + "Phan mot. // <cau hoi>" -> 2,5s man den roi
+# nguoi doc xuong giong "Phan mot" — nguoi xem goi la "sao chuyen lai chuong 1
+# chuong 2 cai gi", mat da ke. Kieu `cat`: marker [[black]] thanh DIEM CHUYEN
+# CHUONG (flash + whoosh + nhac day len + tieu de nho tren hinh ke tiep), cau
+# "Phan <so>." bi boc khoi loi doc, cau hoi chuong duoc noi vao dau cell hinh
+# ngay sau. Script cu khong phai sua.
+CHUONG_NGHI = 0.9   # giay lang truoc diem chuyen chuong (kieu cat)
+_SO_CHU = {"một": 1, "hai": 2, "ba": 3, "bốn": 4, "tư": 4, "năm": 5, "sáu": 6,
+           "bảy": 7, "tám": 8, "chín": 9, "mười": 10}
+CHUONG_RE = re.compile(
+    r"^\s*\^?\s*(?:phần|chương|hồi)\s+(\d+|cuối|mười\s+\w+|"
+    + "|".join(sorted(_SO_CHU, key=len, reverse=True))
+    + r")\s*[.:!\-–—]?\s*(?:/{2,4}|\|)?\s*", re.IGNORECASE)
+
+
+def tach_chuong(text):
+    """'Phần một. // Vì sao ...?' -> ('1', 'Vì sao ...?'). Khong khop -> (None, text)."""
+    m = CHUONG_RE.match(text or "")
+    if not m:
+        return None, text
+    w = m.group(1).lower()
+    if w.isdigit():
+        so = w
+    elif w == "cuối":
+        so = "cuối"
+    elif w.startswith("mười") and w != "mười":
+        tail = w.split()[-1]
+        so = str(10 + {"một": 1, "mốt": 1, "lăm": 5, "tư": 4}.get(tail, _SO_CHU.get(tail, 0)))
+    else:
+        so = str(_SO_CHU.get(w, w))
+    rest = text[m.end():].strip()
+    return so, rest
+
 
 class ParseError(Exception):
     pass
@@ -149,14 +183,60 @@ def _strip_opts(marker):
                    "low": low, "dur": dur}
 
 
-def parse_script(path):
+def parse_script(path, chuong=None):
     cells = []
     vo_buf = []
     pending = None       # marker dang cho VO de gan vao
     pending_sfx = []     # sfx cho cell ke tiep (khong tao cell rieng)
+    chuong_cat = str(chuong or "").strip().lower() == "cat"
+    chap = {"n": 0, "cho": None}   # chuong dang cho gan vao cell hinh ke tiep
+
+    def _gan_chuong(cell):
+        """chuong: cat — gan diem chuyen chuong vao cell sap them."""
+        c = chap["cho"]
+        if c is None:
+            return
+        chap["cho"] = None
+        if cell["type"] not in VO_TYPES or cell["type"] == "card" and not cell.get("vo"):
+            # khong co hinh de de cau hoi len (clip co tieng, quote...) -> giu
+            # mot cell den ngan mang cau hoi nhu cu, chi bo "Phan mot".
+            if c["vo"]:
+                cells.append({"type": "black", "vo": c["vo"], "music": "swell",
+                              "pause_after": 0.3, "chuong": c["meta"]})
+            return
+        if c["vo"]:
+            cell["vo"] = (c["vo"].rstrip() + " // " + (cell.get("vo") or "")).strip()
+            if cell.get("cap"):
+                cell["cap"] = cell["vo"]
+        cell["chuong"] = c["meta"]
+        cell["music"] = "swell"
+
+    def _mo_chuong(vo_text, tieu_de=None):
+        chap["n"] += 1
+        so, rest = tach_chuong(vo_text or "")
+        so = so or str(chap["n"])
+        from tts import strip_marks
+        if tieu_de is None:
+            tieu_de = strip_marks(rest).strip()
+        else:
+            tieu_de = strip_marks(tieu_de).strip()
+        # Mot nhip ngan truoc diem chuyen chuong cho whoosh + nhac day len
+        # (<= ~1s, thay cho 2,5-3s man den/the im lang). Cell truoc da ket bang
+        # /// hoac //// thi da co san khoang lang, khong cong them.
+        if cells:
+            last = cells[-1]
+            if not (last.get("vo") or "").rstrip().endswith("///"):
+                last["pause_after"] = max(float(last.get("pause_after") or 0.0),
+                                          CHUONG_NGHI)
+        chap["cho"] = {"vo": rest.strip(),
+                       "meta": {"so": so, "tieu_de": tieu_de}}
+        print(f"  chuong {so}: cat (khong man den)"
+              + (f" — '{tieu_de[:50]}'" if tieu_de else ""))
 
     def add_cell(cell):
         """Gan pending_sfx vao cell roi append."""
+        if chuong_cat:
+            _gan_chuong(cell)
         if pending_sfx:
             cell["sfx"] = pending_sfx[0]["name"]
             cell["sfx_at"] = pending_sfx[0].get("at", 0.0)
@@ -176,6 +256,10 @@ def parse_script(path):
         nonlocal pending
         if pending is None:
             return
+        if chuong_cat and pending["type"] == "black":
+            pending = None
+            _mo_chuong("")
+            return
         extra = dict(pending["extra"])
         dur = extra.pop("pause_after", 0.0) or 0.0
         if dur > 0:
@@ -194,6 +278,9 @@ def parse_script(path):
             # tao cell card moi, text = dong dau lam caption
             add_cell({"type": "card", "vo": text, "cap": text,
                       "pause_after": 0.15})
+        elif chuong_cat and pending["type"] == "black":
+            pending = None
+            _mo_chuong(text)
         else:
             # gan vo vao cell pending (clip-mute/black/hold/card)
             extra = dict(pending["extra"])
@@ -207,9 +294,14 @@ def parse_script(path):
     with open(path, encoding="utf-8") as f:
         lines = f.read().splitlines()
 
+    heading = None          # dong '## ...' ngay truoc (tieu de chuong kieu v3)
     for raw in lines:
         line = raw.strip()
-        if not line or line.startswith("#"):
+        if not line:
+            continue
+        if line.startswith("#"):
+            if line.startswith("##"):
+                heading = line.lstrip("#").strip()
             continue
         m = MARKER_RE.match(line)
         if m:
@@ -239,6 +331,15 @@ def parse_script(path):
                 if ent:
                     extra["ent"] = ent
                 pending = {"type": "stock", "consumed": False, "extra": extra}
+            elif (chuong_cat and clean.startswith("card:")
+                  and not _parse_card(clean[len("card:"):])[1].get("vo")
+                  and not _parse_card(clean[len("card:"):])[1].get("src")
+                  and (opts["music"] == "swell" or heading)):
+                # Kieu v3: '## <cau hoi>' + [[card:"<cau hoi>"|music=swell]] =
+                # the tieu de im lang 3s. Kieu cat: khong dung the, tieu de nho
+                # de len hinh ke tiep + chuyen canh chuong.
+                body, _kv = _parse_card(clean[len("card:"):])
+                _mo_chuong("", tieu_de=body or heading or "")
             elif clean.startswith("card:"):
                 body, kv = _parse_card(clean[len("card:"):])
                 cell = {"type": "card", "text": body, "src": kv.get("src", ""),
@@ -280,23 +381,31 @@ def parse_script(path):
                           "music": opts["music"] or "in"})
             else:
                 raise ParseError(f"marker khong hieu: {marker}")
+            heading = None
             continue
         # dong text thuong -> VO
         vo_buf.append(line)
     flush_vo()
     flush_pending_silent()
+    if chuong_cat and chap["cho"] is not None and chap["cho"]["vo"]:
+        cells.append({"type": "black", "vo": chap["cho"]["vo"], "music": "swell",
+                      "pause_after": 0.3, "chuong": chap["cho"]["meta"]})
     if pending_sfx:
         # sfx treo cuoi script: bo qua (khong co cell de gan)
         print(f"  WARN {len(pending_sfx)} sfx treo cuoi script (khong co cell ke) — bo qua")
     return cells
 
 
-def build(video_root):
+def build(video_root, chuong=None, chuyen_canh=None):
+    """chuong: None/'den' = kieu cu | 'cat' = chuyen chuong khong man den.
+    chuyen_canh: None = cat thang (cu) | 'nhe' = chuyen canh co chu dich (xem
+    assemble.chon_chuyen_canh). Ca hai ghi vao cfg["dung"] de render/assemble
+    doc — config cu khong co khoa nay nen chay y nhu truoc."""
     _load_clip_attr(video_root)
     script = os.path.join(video_root, "script", "script.md")
     if not os.path.exists(script):
         raise ParseError(f"thieu {script}")
-    cells = parse_script(script)
+    cells = parse_script(script, chuong=chuong)
     if not cells:
         raise ParseError("script.md khong co noi dung")
 
@@ -336,6 +445,13 @@ def build(video_root):
                     "size": 46, "color": "#FFFFFF", "y": 920},
         "cells": cells_out,
     }
+    dung = {}
+    if str(chuong or "").strip().lower() == "cat":
+        dung["chuong"] = "cat"
+    if chuyen_canh and str(chuyen_canh).strip().lower() not in ("", "off", "cat-thang"):
+        dung["chuyen_canh"] = str(chuyen_canh).strip().lower()
+    if dung:
+        cfg["dung"] = dung
     out = os.path.join(video_root, "config.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump(cfg, f, ensure_ascii=False, indent=2)
@@ -346,5 +462,10 @@ def build(video_root):
 
 
 if __name__ == "__main__":
-    root = sys.argv[1] if len(sys.argv) > 1 else "videos/test-60s"
-    build(root)
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("root", nargs="?", default="videos/test-60s")
+    ap.add_argument("--chuong", default=None)
+    ap.add_argument("--chuyen-canh", default=None, dest="chuyen_canh")
+    a = ap.parse_args()
+    build(a.root, chuong=a.chuong, chuyen_canh=a.chuyen_canh)

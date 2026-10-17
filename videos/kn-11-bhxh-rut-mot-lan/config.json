@@ -1,0 +1,685 @@
+{
+  "name": "kn-11-bhxh-rut-mot-lan",
+  "out": "build/final/video-1.mp4",
+  "fps": 24,
+  "w": 1920,
+  "h": 1080,
+  "style": {
+    "ink": "#14110F",
+    "paper": "#F2EDE4",
+    "amber": "#E0A82E",
+    "font_reg": "tool/fonts/arial.ttf",
+    "font_bold": "tool/fonts/arialbd.ttf"
+  },
+  "music": {
+    "file": "assets/music/bed.wav",
+    "level": 0.16,
+    "fade_in": 1.5,
+    "fade_out": 3.0
+  },
+  "caption": {
+    "on": true,
+    "font": "tool/fonts/arialbd.ttf",
+    "size": 46,
+    "color": "#FFFFFF",
+    "y": 920
+  },
+  "cells": [
+    {
+      "id": 1,
+      "type": "card",
+      "text": "Người rút BHXH một lần năm 2024: GẦN 1,1 TRIỆU",
+      "src": "Bảo hiểm xã hội Việt Nam, họp báo 14/1/2025",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Năm 2024, gần một triệu một trăm nghìn người Việt Nam làm cùng một việc. Họ nghỉ việc, chờ đủ một năm, rồi ra cơ quan bảo hiểm xã hội rút sạch những năm mình đã đóng.",
+      "cap": "Năm 2024, gần một triệu một trăm nghìn người Việt Nam làm cùng một việc. Họ nghỉ việc, chờ đủ một năm, rồi ra cơ quan bảo hiểm xã hội rút sạch những năm mình đã đóng."
+    },
+    {
+      "id": 2,
+      "type": "stock",
+      "stock": "vietnamese factory workers leaving shift",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tính ra, | cứ mỗi ngày có khoảng ba nghìn người đứng trước cùng một ngã ba. | Cầm một cục tiền ngay bây giờ, | hay chờ một khoản lương mỗi tháng khi về già.",
+      "cap": "Tính ra, cứ mỗi ngày có khoảng ba nghìn người đứng trước cùng một ngã ba. Cầm một cục tiền ngay bây giờ, hay chờ một khoản lương mỗi tháng khi về già."
+    },
+    {
+      "id": 3,
+      "type": "stock",
+      "stock": "vietnamese worker motorbike industrial zone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Từ tháng 7 năm ngoái, luật bảo hiểm xã hội mới có hiệu lực. | Ai bắt đầu đóng từ sau mốc đó, gần như không còn được rút một lần nữa. | Ai đóng từ trước, thì vẫn được rút, nhưng phải đủ điều kiện.",
+      "cap": "Từ tháng 7 năm ngoái, luật bảo hiểm xã hội mới có hiệu lực. Ai bắt đầu đóng từ sau mốc đó, gần như không còn được rút một lần nữa. Ai đóng từ trước, thì vẫn được rút, nhưng phải đủ điều kiện."
+    },
+    {
+      "id": 4,
+      "type": "stock",
+      "stock": "vietnamese people chatting street cafe",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và chắc bạn đã nghe vài lời đồn: | nào là sắp cấm rút hẳn, rút sớm kẻo mất, | nào là để lại thì chẳng biết bao giờ mới thấy tiền.",
+      "cap": "Và chắc bạn đã nghe vài lời đồn: nào là sắp cấm rút hẳn, rút sớm kẻo mất, nào là để lại thì chẳng biết bao giờ mới thấy tiền."
+    },
+    {
+      "id": 5,
+      "type": "stock",
+      "stock": "asian man calculator bills table",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy rút hay không rút, | cái nào cho bạn nhiều tiền hơn? // Câu này mà cãi bằng cảm xúc thì cãi mãi không xong. | Nên hôm nay mình tính bằng tiền. | Hai người, cùng tuổi, cùng lương, cùng số năm đóng. | Một người rút, một người không.",
+      "cap": "Vậy rút hay không rút, cái nào cho bạn nhiều tiền hơn? Câu này mà cãi bằng cảm xúc thì cãi mãi không xong. Nên hôm nay mình tính bằng tiền. Hai người, cùng tuổi, cùng lương, cùng số năm đóng. Một người rút, một người không."
+    },
+    {
+      "id": 6,
+      "type": "stock",
+      "stock": "vietnamese man reading phone coffee shop",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Video này chỉ nói bảo hiểm xã hội bắt buộc và tự nguyện, | không nói bảo hiểm nhân thọ, cũng không nói bảo hiểm thất nghiệp. | Điều kiện lấy từ luật, phép tính là ví dụ làm tròn, không phải lời khuyên tài chính. // Ok, vào việc.",
+      "cap": "Video này chỉ nói bảo hiểm xã hội bắt buộc và tự nguyện, không nói bảo hiểm nhân thọ, cũng không nói bảo hiểm thất nghiệp. Điều kiện lấy từ luật, phép tính là ví dụ làm tròn, không phải lời khuyên tài chính. Ok, vào việc."
+    },
+    {
+      "id": 7,
+      "type": "stock",
+      "stock": "binh duong industrial park workers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Gặp anh Minh và anh Tuấn. | Hai người cùng quê, cùng vào làm một xưởng gỗ ở Bình Dương năm 2016. | Cùng ba mươi lăm tuổi. | Cùng mức lương đóng bảo hiểm là 10 triệu một tháng. // Tới năm nay, mỗi người đã đóng đủ mười năm.",
+      "cap": "Gặp anh Minh và anh Tuấn. Hai người cùng quê, cùng vào làm một xưởng gỗ ở Bình Dương năm 2016. Cùng ba mươi lăm tuổi. Cùng mức lương đóng bảo hiểm là 10 triệu một tháng. Tới năm nay, mỗi người đã đóng đủ mười năm."
+    },
+    {
+      "id": 8,
+      "type": "stock",
+      "stock": "vietnam furniture factory workers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Rồi xưởng cắt đơn. | Cả hai nghỉ việc, về chạy xe công nghệ. | Và cả hai cùng nghe một câu quen thuộc từ đồng nghiệp cũ: | ê, đi rút bảo hiểm đi, được cả trăm triệu đấy.",
+      "cap": "Rồi xưởng cắt đơn. Cả hai nghỉ việc, về chạy xe công nghệ. Và cả hai cùng nghe một câu quen thuộc từ đồng nghiệp cũ: ê, đi rút bảo hiểm đi, được cả trăm triệu đấy."
+    },
+    {
+      "id": 9,
+      "type": "stock",
+      "stock": "vietnamese grandparents grandchildren countryside",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng khoan, | hỏi một câu ngây thơ trước đã. | Tại sao nhà nước lại bắt anh Minh, anh Tuấn đóng bảo hiểm? // Thử tưởng tượng không có nó. | Về già, bạn sống bằng gì? | Bằng tiền con cái gửi về, | hoặc đi làm tiếp tới khi không đứng nổi.",
+      "cap": "Nhưng khoan, hỏi một câu ngây thơ trước đã. Tại sao nhà nước lại bắt anh Minh, anh Tuấn đóng bảo hiểm? Thử tưởng tượng không có nó. Về già, bạn sống bằng gì? Bằng tiền con cái gửi về, hoặc đi làm tiếp tới khi không đứng nổi."
+    },
+    {
+      "id": 10,
+      "type": "stock",
+      "stock": "vietnamese women savings group meeting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bảo hiểm xã hội, nói đơn giản, | giống một cái hụi rất dài. | Lúc trẻ thì góp, | lúc già thì lĩnh. // Chỉ khác cái hụi ở đầu ngõ ở chỗ, | chủ hụi là nhà nước, | và luật ghi rõ nhà nước đứng ra bảo hộ cái quỹ đó.",
+      "cap": "Bảo hiểm xã hội, nói đơn giản, giống một cái hụi rất dài. Lúc trẻ thì góp, lúc già thì lĩnh. Chỉ khác cái hụi ở đầu ngõ ở chỗ, chủ hụi là nhà nước, và luật ghi rõ nhà nước đứng ra bảo hộ cái quỹ đó."
+    },
+    {
+      "id": 11,
+      "type": "stock",
+      "stock": "vietnamese payslip salary money",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Trước khi tính, phải biết tiền của mình đã chạy đi đâu. | Phần hưu trí trong bảo hiểm xã hội là 22% tiền lương mỗi tháng. | Người lao động đóng 8 phần, | công ty đóng thêm 14 phần. // Với lương 10 triệu, | mỗi tháng có 2 triệu 2 chảy vào quỹ cho tuổi già của anh Minh.",
+      "cap": "Trước khi tính, phải biết tiền của mình đã chạy đi đâu. Phần hưu trí trong bảo hiểm xã hội là 22% tiền lương mỗi tháng. Người lao động đóng 8 phần, công ty đóng thêm 14 phần. Với lương 10 triệu, mỗi tháng có 2 triệu 2 chảy vào quỹ cho tuổi già của anh Minh."
+    },
+    {
+      "id": 12,
+      "type": "stock",
+      "stock": "piggy bank coins asian hand",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mười năm, | cộng lại khoảng 264 triệu. | Trong đó chỉ khoảng 96 triệu là tiền trừ thẳng vào lương của anh. | Phần còn lại là công ty bỏ ra.",
+      "cap": "Mười năm, cộng lại khoảng 264 triệu. Trong đó chỉ khoảng 96 triệu là tiền trừ thẳng vào lương của anh. Phần còn lại là công ty bỏ ra."
+    },
+    {
+      "id": 13,
+      "type": "stock",
+      "stock": "vietnam social insurance office people waiting",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Anh Minh chọn rút. | Vì anh bắt đầu đóng trước tháng 7 năm 2025, | nên anh được rút nếu đủ ba điều kiện: | nghỉ đủ mười hai tháng, | không đóng tiếp, | và tổng thời gian đóng chưa tới hai mươi năm. // Anh thỏa cả ba.",
+      "cap": "Anh Minh chọn rút. Vì anh bắt đầu đóng trước tháng 7 năm 2025, nên anh được rút nếu đủ ba điều kiện: nghỉ đủ mười hai tháng, không đóng tiếp, và tổng thời gian đóng chưa tới hai mươi năm. Anh thỏa cả ba."
+    },
+    {
+      "id": 14,
+      "type": "card",
+      "text": "Mỗi năm đóng từ 2014 trở đi, rút một lần được: 2 THÁNG LƯƠNG",
+      "src": "Luật Bảo hiểm xã hội 2024, hiệu lực 1/7/2025",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Cách tính thì đơn giản. Mỗi năm đóng từ năm 2014 trở đi, được hai tháng lương bình quân. Những năm đóng trước 2014, mỗi năm được một tháng rưỡi.",
+      "cap": "Cách tính thì đơn giản. Mỗi năm đóng từ năm 2014 trở đi, được hai tháng lương bình quân. Những năm đóng trước 2014, mỗi năm được một tháng rưỡi."
+    },
+    {
+      "id": 15,
+      "type": "stock",
+      "stock": "counting vietnamese dong banknotes",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mười năm, mỗi năm hai tháng, | là hai mươi tháng lương. | Tức khoảng 200 triệu đồng. // Thật ra con số thật sẽ nhích hơn một chút, | vì lương những năm cũ được nhân thêm hệ số trượt giá. | Nhưng cứ làm tròn 200 triệu cho dễ tính đi.",
+      "cap": "Mười năm, mỗi năm hai tháng, là hai mươi tháng lương. Tức khoảng 200 triệu đồng. Thật ra con số thật sẽ nhích hơn một chút, vì lương những năm cũ được nhân thêm hệ số trượt giá. Nhưng cứ làm tròn 200 triệu cho dễ tính đi."
+    },
+    {
+      "id": 16,
+      "type": "stock",
+      "stock": "vietnamese old banknotes 2016",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hệ số trượt giá là gì? | Năm 2016, 10 triệu mua được nhiều thứ hơn 10 triệu bây giờ. | Nên khi tính tiền cho anh Minh, | lương những năm cũ được nhân lên một chút, | để bù phần đồng tiền đã mất giá. // Phần này thì luật khá sòng phẳng.",
+      "cap": "Hệ số trượt giá là gì? Năm 2016, 10 triệu mua được nhiều thứ hơn 10 triệu bây giờ. Nên khi tính tiền cho anh Minh, lương những năm cũ được nhân lên một chút, để bù phần đồng tiền đã mất giá. Phần này thì luật khá sòng phẳng."
+    },
+    {
+      "id": 17,
+      "type": "stock",
+      "stock": "vietnamese man smiling holding cash",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hai trăm triệu. | Với một người vừa mất việc, | đó là một cục tiền rất thật. // Nó bằng tiền thuê phòng trọ ba triệu một tháng, | trong hơn năm năm.",
+      "cap": "Hai trăm triệu. Với một người vừa mất việc, đó là một cục tiền rất thật. Nó bằng tiền thuê phòng trọ ba triệu một tháng, trong hơn năm năm."
+    },
+    {
+      "id": 18,
+      "type": "stock",
+      "stock": "vietnamese worker thinking window",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhìn theo kiểu này thì anh Minh lời. | Anh bị trừ lương 96 triệu, giờ nhận về 200. // Nhưng nhìn theo kiểu khác, | quỹ đã nhận 264 triệu cho tuổi già của anh, | và anh lấy về khoảng ba phần tư. | Phần còn lại, | là cái giá của việc lấy trước.",
+      "cap": "Nhìn theo kiểu này thì anh Minh lời. Anh bị trừ lương 96 triệu, giờ nhận về 200. Nhưng nhìn theo kiểu khác, quỹ đã nhận 264 triệu cho tuổi già của anh, và anh lấy về khoảng ba phần tư. Phần còn lại, là cái giá của việc lấy trước."
+    },
+    {
+      "id": 19,
+      "type": "stock",
+      "stock": "paper documents shredder office",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và có một thứ anh Minh mất theo, | mà tờ giấy nhận tiền không ghi. | Mười năm đóng đó bị xoá sạch. // Sau này anh đi làm lại, | thì đếm lại từ con số không.",
+      "cap": "Và có một thứ anh Minh mất theo, mà tờ giấy nhận tiền không ghi. Mười năm đóng đó bị xoá sạch. Sau này anh đi làm lại, thì đếm lại từ con số không."
+    },
+    {
+      "id": 20,
+      "type": "stock",
+      "stock": "middle aged vietnamese man construction work",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Giả sử năm bốn mươi bảy tuổi, anh Minh vào làm cho một công ty mới. | Muốn có lương hưu, anh phải đóng lại đủ mười lăm năm. | Tức là phải tới sáu mươi hai tuổi mới đủ. // Mười năm ở xưởng gỗ Bình Dương, | coi như chưa từng có.",
+      "cap": "Giả sử năm bốn mươi bảy tuổi, anh Minh vào làm cho một công ty mới. Muốn có lương hưu, anh phải đóng lại đủ mười lăm năm. Tức là phải tới sáu mươi hai tuổi mới đủ. Mười năm ở xưởng gỗ Bình Dương, coi như chưa từng có."
+    },
+    {
+      "id": 21,
+      "type": "stock",
+      "stock": "vietnamese delivery driver motorbike rain",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Anh Tuấn thì không rút. | Không phải vì anh hiểu luật hơn. | Mà vì vợ anh bảo: | để đấy, tiền đó là tiền già.",
+      "cap": "Anh Tuấn thì không rút. Không phải vì anh hiểu luật hơn. Mà vì vợ anh bảo: để đấy, tiền đó là tiền già."
+    },
+    {
+      "id": 22,
+      "type": "stock",
+      "stock": "vietnamese couple talking at home",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mười năm của anh được bảo lưu. | Nó nằm im đó, không mất đi đâu. // Nhưng mười năm thì chưa đủ để có lương hưu.",
+      "cap": "Mười năm của anh được bảo lưu. Nó nằm im đó, không mất đi đâu. Nhưng mười năm thì chưa đủ để có lương hưu."
+    },
+    {
+      "id": 23,
+      "type": "stock",
+      "stock": "vietnamese man worried looking at papers",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mà bảo lưu thì có thiệt không? | Đây là chỗ nhiều người hiểu nhầm nhất.",
+      "cap": "Mà bảo lưu thì có thiệt không? Đây là chỗ nhiều người hiểu nhầm nhất."
+    },
+    {
+      "id": 24,
+      "type": "stock",
+      "stock": "vietnam social insurance book document",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Kể cả anh Tuấn không đóng thêm đồng nào, | tới tuổi về hưu mà chưa đủ năm, | anh vẫn được nhận một lần như anh Minh, | cũng hai tháng lương cho mỗi năm, cũng được nhân trượt giá. | Luật mới còn cho thêm lựa chọn nhận dần hằng tháng từ chính số đã đóng.",
+      "cap": "Kể cả anh Tuấn không đóng thêm đồng nào, tới tuổi về hưu mà chưa đủ năm, anh vẫn được nhận một lần như anh Minh, cũng hai tháng lương cho mỗi năm, cũng được nhân trượt giá. Luật mới còn cho thêm lựa chọn nhận dần hằng tháng từ chính số đã đóng."
+    },
+    {
+      "id": 25,
+      "type": "stock",
+      "stock": "vietnamese man shrugging smiling",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tức là anh Tuấn, trong trường hợp tệ nhất, | cũng chỉ nhận đúng số tiền anh Minh nhận, | có điều nhận muộn hơn. // Còn trong trường hợp tốt, | anh có một thứ mà anh Minh không còn cửa: | lương hưu.",
+      "cap": "Tức là anh Tuấn, trong trường hợp tệ nhất, cũng chỉ nhận đúng số tiền anh Minh nhận, có điều nhận muộn hơn. Còn trong trường hợp tốt, anh có một thứ mà anh Minh không còn cửa: lương hưu."
+    },
+    {
+      "id": 26,
+      "type": "card",
+      "text": "Số năm đóng tối thiểu để có lương hưu: 20 năm → 15 năm",
+      "src": "Luật Bảo hiểm xã hội 2024, hiệu lực 1/7/2025",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Tin tốt là luật mới đã hạ cái mốc này. Trước đây phải đóng đủ hai mươi năm mới có lương hưu. Từ tháng 7 năm ngoái, chỉ cần mười lăm năm.",
+      "cap": "Tin tốt là luật mới đã hạ cái mốc này. Trước đây phải đóng đủ hai mươi năm mới có lương hưu. Từ tháng 7 năm ngoái, chỉ cần mười lăm năm."
+    },
+    {
+      "id": 27,
+      "type": "stock",
+      "stock": "vietnamese man mobile banking app",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tức là anh Tuấn chỉ cần thêm năm năm. | Không đi làm công ty, | thì anh đóng bảo hiểm xã hội tự nguyện. | Mức đóng cũng là 22%.",
+      "cap": "Tức là anh Tuấn chỉ cần thêm năm năm. Không đi làm công ty, thì anh đóng bảo hiểm xã hội tự nguyện. Mức đóng cũng là 22%."
+    },
+    {
+      "id": 28,
+      "type": "stock",
+      "stock": "vietnamese man paying bills phone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Muốn giữ mức 10 triệu như cũ, | mỗi tháng anh đóng 2 triệu 2. | Năm năm là khoảng 132 triệu. | Nhà nước có hỗ trợ một phần nhỏ, | nhưng tôi bỏ qua cho phép tính chặt tay.",
+      "cap": "Muốn giữ mức 10 triệu như cũ, mỗi tháng anh đóng 2 triệu 2. Năm năm là khoảng 132 triệu. Nhà nước có hỗ trợ một phần nhỏ, nhưng tôi bỏ qua cho phép tính chặt tay."
+    },
+    {
+      "id": 29,
+      "type": "stock",
+      "stock": "vietnamese street coffee plastic stools",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hai triệu hai mỗi tháng, với một anh chạy xe, | là cắt bớt cà phê, cắt bớt nhậu, | và thỉnh thoảng nghe vợ nhắc. // Không dễ. | Nhưng làm được.",
+      "cap": "Hai triệu hai mỗi tháng, với một anh chạy xe, là cắt bớt cà phê, cắt bớt nhậu, và thỉnh thoảng nghe vợ nhắc. Không dễ. Nhưng làm được."
+    },
+    {
+      "id": 30,
+      "type": "stock",
+      "stock": "vietnamese man counting small money wallet",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn nếu anh Tuấn không kham nổi 2 triệu 2? | Anh có thể chọn mức thấp hơn, | ví dụ khai 5 triệu, đóng 1 triệu 1 mỗi tháng. // Lương hưu tính trên bình quân cả mười lăm năm, | nên anh vẫn được khoảng 3 triệu 3. | Thấp hơn một chút, | nhưng vẫn là một đồng lương đến đều mỗi tháng.",
+      "cap": "Còn nếu anh Tuấn không kham nổi 2 triệu 2? Anh có thể chọn mức thấp hơn, ví dụ khai 5 triệu, đóng 1 triệu 1 mỗi tháng. Lương hưu tính trên bình quân cả mười lăm năm, nên anh vẫn được khoảng 3 triệu 3. Thấp hơn một chút, nhưng vẫn là một đồng lương đến đều mỗi tháng."
+    },
+    {
+      "id": 31,
+      "type": "stock",
+      "stock": "vietnamese friends drinking beer street",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nói công bằng, | mười năm đầu, nhìn kiểu gì anh Minh cũng sướng hơn. | Anh có 200 triệu, trả xong nợ xe, gửi về quê một ít. | Anh Tuấn thì tháng nào cũng móc ví đóng tiền, | bị bạn bè trêu là nuôi quỹ hộ nhà nước. // Cuộc đua này chỉ lật lại, | sau tuổi sáu mươi.",
+      "cap": "Nói công bằng, mười năm đầu, nhìn kiểu gì anh Minh cũng sướng hơn. Anh có 200 triệu, trả xong nợ xe, gửi về quê một ít. Anh Tuấn thì tháng nào cũng móc ví đóng tiền, bị bạn bè trêu là nuôi quỹ hộ nhà nước. Cuộc đua này chỉ lật lại, sau tuổi sáu mươi."
+    },
+    {
+      "id": 32,
+      "type": "stock",
+      "stock": "elderly vietnamese man park morning exercise",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Năm sáu mươi hai tuổi, anh Tuấn về hưu. | Với lao động nam đóng mười lăm năm, | lương hưu bằng 40% lương bình quân. | Tức khoảng 4 triệu một tháng, tính theo tiền hôm nay. // Kèm theo đó là thẻ bảo hiểm y tế do quỹ đóng hộ, | đúng cái tuổi mà tiền thuốc bắt đầu thành khoản chi lớn.",
+      "cap": "Năm sáu mươi hai tuổi, anh Tuấn về hưu. Với lao động nam đóng mười lăm năm, lương hưu bằng 40% lương bình quân. Tức khoảng 4 triệu một tháng, tính theo tiền hôm nay. Kèm theo đó là thẻ bảo hiểm y tế do quỹ đóng hộ, đúng cái tuổi mà tiền thuốc bắt đầu thành khoản chi lớn."
+    },
+    {
+      "id": 33,
+      "type": "stock",
+      "stock": "elderly asian people receiving money post office",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và 4 triệu này không đứng yên. | Lương hưu được điều chỉnh theo giá cả và tiền lương. | Như từ tháng 7 năm nay, lương hưu vừa tăng thêm 8%.",
+      "cap": "Và 4 triệu này không đứng yên. Lương hưu được điều chỉnh theo giá cả và tiền lương. Như từ tháng 7 năm nay, lương hưu vừa tăng thêm 8%."
+    },
+    {
+      "id": 34,
+      "type": "stock",
+      "stock": "vietnamese countryside elderly couple house",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Bốn triệu một tháng nghe thì không nhiều. | Nhưng với hai ông bà ở quê, | đó là tiền chợ, tiền điện, tiền đám hiếu đám hỷ. | Là không phải mở miệng xin con. // Ai từng phải xin tiền con cái, | sẽ hiểu cái đó đáng giá hơn con số.",
+      "cap": "Bốn triệu một tháng nghe thì không nhiều. Nhưng với hai ông bà ở quê, đó là tiền chợ, tiền điện, tiền đám hiếu đám hỷ. Là không phải mở miệng xin con. Ai từng phải xin tiền con cái, sẽ hiểu cái đó đáng giá hơn con số."
+    },
+    {
+      "id": 35,
+      "type": "stock",
+      "stock": "calculator notebook asian hand writing",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Giờ đặt hai người cạnh nhau. | Anh Minh cầm 200 triệu ngay năm ba mươi sáu tuổi. | Anh Tuấn thì bỏ ra thêm 132 triệu, | và chịu không cầm 200 triệu kia. // Tổng cái giá anh Tuấn trả là hơn 330 triệu. | Mỗi năm lương hưu trả lại 48 triệu. | Khoảng bảy năm thì hoà vốn, | tức là năm sáu mươi chín tuổi.",
+      "cap": "Giờ đặt hai người cạnh nhau. Anh Minh cầm 200 triệu ngay năm ba mươi sáu tuổi. Anh Tuấn thì bỏ ra thêm 132 triệu, và chịu không cầm 200 triệu kia. Tổng cái giá anh Tuấn trả là hơn 330 triệu. Mỗi năm lương hưu trả lại 48 triệu. Khoảng bảy năm thì hoà vốn, tức là năm sáu mươi chín tuổi."
+    },
+    {
+      "id": 36,
+      "type": "card",
+      "text": "Tiền nhận về, triệu đồng theo giá hôm nay: Minh rút một lần = 200; Tuấn tới 70 tuổi = 384; Tuấn tới 75 tuổi = 624; Tuấn tới 80 tuổi = 864",
+      "src": "Ví dụ giả định: lương đóng 10 triệu, lương hưu 4 triệu/tháng từ 62 tuổi",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Qua mốc đó, mỗi năm anh Tuấn sống thêm là thêm 48 triệu. Tới bảy mươi lăm tuổi, anh đã nhận hơn sáu trăm triệu. Tới tám mươi, gần chín trăm triệu. Gấp hơn bốn lần cục tiền của anh Minh.",
+      "cap": "Qua mốc đó, mỗi năm anh Tuấn sống thêm là thêm 48 triệu. Tới bảy mươi lăm tuổi, anh đã nhận hơn sáu trăm triệu. Tới tám mươi, gần chín trăm triệu. Gấp hơn bốn lần cục tiền của anh Minh."
+    },
+    {
+      "id": 37,
+      "type": "stock",
+      "stock": "stock trading app phone vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đến đây chắc có người bảo: | anh Minh đâu có dại. | 200 triệu đó đem đi đầu tư, | biết đâu còn hơn lương hưu?",
+      "cap": "Đến đây chắc có người bảo: anh Minh đâu có dại. 200 triệu đó đem đi đầu tư, biết đâu còn hơn lương hưu?"
+    },
+    {
+      "id": 38,
+      "type": "stock",
+      "stock": "vietnam bank counter savings",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ừ, thử đi. | Giả sử anh Minh kỷ luật như một cái máy. | Không tiêu đồng nào, gửi tiết kiệm suốt hai mươi sáu năm, | lãi sau khi trừ trượt giá còn khoảng 2% một năm.",
+      "cap": "Ừ, thử đi. Giả sử anh Minh kỷ luật như một cái máy. Không tiêu đồng nào, gửi tiết kiệm suốt hai mươi sáu năm, lãi sau khi trừ trượt giá còn khoảng 2% một năm."
+    },
+    {
+      "id": 39,
+      "type": "stock",
+      "stock": "savings passbook vietnam bank",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Năm sáu mươi hai tuổi, anh có hơn 330 triệu theo giá hôm nay. | Cộng thêm 132 triệu anh không phải đóng tự nguyện, | là chừng 460 triệu.",
+      "cap": "Năm sáu mươi hai tuổi, anh có hơn 330 triệu theo giá hôm nay. Cộng thêm 132 triệu anh không phải đóng tự nguyện, là chừng 460 triệu."
+    },
+    {
+      "id": 40,
+      "type": "stock",
+      "stock": "elderly asian man counting money worried",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Rồi anh tự trả lương hưu cho mình, cũng 4 triệu một tháng. | Tiền đó cạn vào khoảng năm bảy mươi mốt, bảy mươi hai tuổi. // Còn anh Tuấn thì sống tới năm nào, | nhận tới năm đó.",
+      "cap": "Rồi anh tự trả lương hưu cho mình, cũng 4 triệu một tháng. Tiền đó cạn vào khoảng năm bảy mươi mốt, bảy mươi hai tuổi. Còn anh Tuấn thì sống tới năm nào, nhận tới năm đó."
+    },
+    {
+      "id": 41,
+      "type": "stock",
+      "stock": "vietnamese family motorbike daily life",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mà đó là anh Minh phiên bản kỷ luật. | Ngoài đời, 200 triệu thường đi đường khác. | Trả nợ, sửa nhà, đám cưới em trai, | hoặc một chiếc xe mới vì xe cũ hỏng đúng tháng nhận tiền. // Tôi không trách. | Tiền đến tay lúc đang khó, | thì nó chảy vào đúng chỗ khó.",
+      "cap": "Mà đó là anh Minh phiên bản kỷ luật. Ngoài đời, 200 triệu thường đi đường khác. Trả nợ, sửa nhà, đám cưới em trai, hoặc một chiếc xe mới vì xe cũ hỏng đúng tháng nhận tiền. Tôi không trách. Tiền đến tay lúc đang khó, thì nó chảy vào đúng chỗ khó."
+    },
+    {
+      "id": 42,
+      "type": "stock",
+      "stock": "man eating snack sofa asian",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nói thật, nếu tôi ba mươi lăm tuổi cầm 200 triệu, | tôi cũng không dám chắc mình gửi ngân hàng nổi hai mươi sáu năm. | Một gói bánh tôi còn không giữ được quá hai ngày.",
+      "cap": "Nói thật, nếu tôi ba mươi lăm tuổi cầm 200 triệu, tôi cũng không dám chắc mình gửi ngân hàng nổi hai mươi sáu năm. Một gói bánh tôi còn không giữ được quá hai ngày."
+    },
+    {
+      "id": 43,
+      "type": "stock",
+      "stock": "elderly vietnamese couple drinking tea",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cái lương hưu làm được, mà tự để dành rất khó làm, | là bảo hiểm cho việc sống lâu. | Người sống ngắn và người sống dài góp chung một quỹ. // Bạn không biết mình sống tới bao nhiêu tuổi. | Tự để dành thì sợ hết tiền trước khi hết đời. | Còn lương hưu, | hết đời mới hết tiền.",
+      "cap": "Cái lương hưu làm được, mà tự để dành rất khó làm, là bảo hiểm cho việc sống lâu. Người sống ngắn và người sống dài góp chung một quỹ. Bạn không biết mình sống tới bao nhiêu tuổi. Tự để dành thì sợ hết tiền trước khi hết đời. Còn lương hưu, hết đời mới hết tiền."
+    },
+    {
+      "id": 44,
+      "type": "stock",
+      "stock": "vietnamese woman factory worker portrait",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nếu anh Tuấn là chị Tuấn, | phép tính còn nghiêng hơn nữa. | Lao động nữ đóng mười lăm năm được tới 45%, | và về hưu sớm hơn nam.",
+      "cap": "Nếu anh Tuấn là chị Tuấn, phép tính còn nghiêng hơn nữa. Lao động nữ đóng mười lăm năm được tới 45%, và về hưu sớm hơn nam."
+    },
+    {
+      "id": 45,
+      "type": "stock",
+      "stock": "santiago chile city street",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có một nước đã thử cho dân rút tiền hưu hàng loạt. | Năm 2020, giữa đại dịch, Chile cho người lao động rút tiền trong tài khoản hưu trí. | Rồi rút lần hai. | Rồi rút lần ba.",
+      "cap": "Có một nước đã thử cho dân rút tiền hưu hàng loạt. Năm 2020, giữa đại dịch, Chile cho người lao động rút tiền trong tài khoản hưu trí. Rồi rút lần hai. Rồi rút lần ba."
+    },
+    {
+      "id": 46,
+      "type": "card",
+      "text": "Người Chile có tài khoản hưu trí về số 0: KHOẢNG 4 TRIỆU",
+      "src": "SUERF Policy Brief, 3/2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Ba đợt rút cộng lại, bằng khoảng một phần năm GDP của Chile. Và khoảng bốn triệu người lao động có tài khoản hưu trí về con số không.",
+      "cap": "Ba đợt rút cộng lại, bằng khoảng một phần năm GDP của Chile. Và khoảng bốn triệu người lao động có tài khoản hưu trí về con số không."
+    },
+    {
+      "id": 47,
+      "type": "stock",
+      "stock": "elderly woman street vendor latin america",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cứu được cái đói lúc dịch, là thật. | Nhưng những người rút sạch, phần nhiều là phụ nữ, người trẻ, người lương thấp. | Tức là đúng những người sẽ khó nhất khi về già. // Và Chile đã phải sửa luật hưu trí, | để vá lại cái lỗ đó.",
+      "cap": "Cứu được cái đói lúc dịch, là thật. Nhưng những người rút sạch, phần nhiều là phụ nữ, người trẻ, người lương thấp. Tức là đúng những người sẽ khó nhất khi về già. Và Chile đã phải sửa luật hưu trí, để vá lại cái lỗ đó."
+    },
+    {
+      "id": 48,
+      "type": "stock",
+      "stock": "vietnamese elderly population park",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Việt Nam cũng đang già đi rất nhanh. | Đó là lý do luật mới siết chuyện rút một lần, | và hạ mốc lương hưu xuống mười lăm năm. // Một tay đóng cửa, một tay mở cửa. | Mục đích là giữ anh Minh lại trong quỹ, | trước khi anh thành một ông cụ không có đồng lương hưu nào.",
+      "cap": "Việt Nam cũng đang già đi rất nhanh. Đó là lý do luật mới siết chuyện rút một lần, và hạ mốc lương hưu xuống mười lăm năm. Một tay đóng cửa, một tay mở cửa. Mục đích là giữ anh Minh lại trong quỹ, trước khi anh thành một ông cụ không có đồng lương hưu nào."
+    },
+    {
+      "id": 49,
+      "type": "stock",
+      "stock": "vietnamese news reading phone worried",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có người sẽ hỏi tiếp: | lỡ sau này quỹ hết tiền thì sao?",
+      "cap": "Có người sẽ hỏi tiếp: lỡ sau này quỹ hết tiền thì sao?"
+    },
+    {
+      "id": 50,
+      "type": "stock",
+      "stock": "vietnam social insurance building",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Câu hỏi hợp lý. | Quỹ nào cũng chịu áp lực khi dân số già. | Nhưng nếu quỹ gặp khó, thứ thường đổi là tuổi nghỉ hưu, mức đóng, cách tính. | Còn những năm bạn đã đóng thì vẫn được tính. | Rút ra để né rủi ro đó, | là tự cắt chân vì sợ đau chân.",
+      "cap": "Câu hỏi hợp lý. Quỹ nào cũng chịu áp lực khi dân số già. Nhưng nếu quỹ gặp khó, thứ thường đổi là tuổi nghỉ hưu, mức đóng, cách tính. Còn những năm bạn đã đóng thì vẫn được tính. Rút ra để né rủi ro đó, là tự cắt chân vì sợ đau chân."
+    },
+    {
+      "id": 51,
+      "type": "stock",
+      "stock": "hospital corridor vietnam patients",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy có khi nào rút là đúng không? | Có chứ. // Nếu bạn sắp ra nước ngoài định cư. | Nếu bạn mắc bệnh hiểm nghèo và cần tiền chữa ngay. | Luật để sẵn cửa cho những trường hợp này, | kể cả với người mới đóng sau tháng 7 năm 2025.",
+      "cap": "Vậy có khi nào rút là đúng không? Có chứ. Nếu bạn sắp ra nước ngoài định cư. Nếu bạn mắc bệnh hiểm nghèo và cần tiền chữa ngay. Luật để sẵn cửa cho những trường hợp này, kể cả với người mới đóng sau tháng 7 năm 2025."
+    },
+    {
+      "id": 52,
+      "type": "stock",
+      "stock": "stressed asian man debt phone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hoặc nếu bạn đang ôm một khoản nợ lãi cắt cổ, | kiểu vay qua app ba mươi, năm mươi phần trăm một năm. | Trả dứt khoản đó, | nhiều khi đáng hơn giữ lại mười năm bảo hiểm.",
+      "cap": "Hoặc nếu bạn đang ôm một khoản nợ lãi cắt cổ, kiểu vay qua app ba mươi, năm mươi phần trăm một năm. Trả dứt khoản đó, nhiều khi đáng hơn giữ lại mười năm bảo hiểm."
+    },
+    {
+      "id": 53,
+      "type": "stock",
+      "stock": "vietnamese man handing money",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng rút để trả nợ thì còn hiểu được. | Rút để đầu tư theo lời rủ của ai đó, | là bạn đang đổi một thứ chắc chắn lấy một lời hứa.",
+      "cap": "Nhưng rút để trả nợ thì còn hiểu được. Rút để đầu tư theo lời rủ của ai đó, là bạn đang đổi một thứ chắc chắn lấy một lời hứa."
+    },
+    {
+      "id": 54,
+      "type": "stock",
+      "stock": "vietnamese workers leaving factory gate evening",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Giờ nói đến chỗ không đẹp lắm. | Luật bắt nghỉ đủ mười hai tháng, | để người ta không rút vội. // Nhưng có người nghỉ việc chỉ để đủ điều kiện rút. | Doanh nghiệp mất thợ lành nghề. | Người lao động mất mười năm. | Chỉ vì cần một cục tiền.",
+      "cap": "Giờ nói đến chỗ không đẹp lắm. Luật bắt nghỉ đủ mười hai tháng, để người ta không rút vội. Nhưng có người nghỉ việc chỉ để đủ điều kiện rút. Doanh nghiệp mất thợ lành nghề. Người lao động mất mười năm. Chỉ vì cần một cục tiền."
+    },
+    {
+      "id": 55,
+      "type": "stock",
+      "stock": "vietnamese office payroll documents desk",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Chỗ thứ hai nằm ngay trên tờ lương. | Nhiều nơi khai lương đóng bảo hiểm thấp hơn lương thật. | Nhận 12 triệu, mà chỉ đóng trên 6 triệu.",
+      "cap": "Chỗ thứ hai nằm ngay trên tờ lương. Nhiều nơi khai lương đóng bảo hiểm thấp hơn lương thật. Nhận 12 triệu, mà chỉ đóng trên 6 triệu."
+    },
+    {
+      "id": 56,
+      "type": "stock",
+      "stock": "elderly vietnamese man small money",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Lúc đi làm thì thấy nhẹ ví. | Đến lúc về hưu, | lương hưu cũng chỉ tính trên đúng 6 triệu đó. | Bạn có thể xem mức đóng của mình trên ứng dụng VssID, | mất chừng năm phút.",
+      "cap": "Lúc đi làm thì thấy nhẹ ví. Đến lúc về hưu, lương hưu cũng chỉ tính trên đúng 6 triệu đó. Bạn có thể xem mức đóng của mình trên ứng dụng VssID, mất chừng năm phút."
+    },
+    {
+      "id": 57,
+      "type": "stock",
+      "stock": "vietnamese workers protest unpaid wages factory",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có người mở VssID ra, | mới biết công ty cũ chậm đóng, nợ đóng mấy tháng liền. | Tiền vẫn bị trừ trên phiếu lương, | mà sổ thì không ghi.",
+      "cap": "Có người mở VssID ra, mới biết công ty cũ chậm đóng, nợ đóng mấy tháng liền. Tiền vẫn bị trừ trên phiếu lương, mà sổ thì không ghi."
+    },
+    {
+      "id": 58,
+      "type": "stock",
+      "stock": "closed factory gate vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Những tháng đó, nếu không đòi, | là những tháng lặng lẽ biến mất khỏi lương hưu của bạn. | Đòi sớm thì còn dễ, | để mười năm sau, công ty giải thể rồi, thì khó lắm.",
+      "cap": "Những tháng đó, nếu không đòi, là những tháng lặng lẽ biến mất khỏi lương hưu của bạn. Đòi sớm thì còn dễ, để mười năm sau, công ty giải thể rồi, thì khó lắm."
+    },
+    {
+      "id": 59,
+      "type": "stock",
+      "stock": "smartphone scam warning asian",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và chỗ thứ ba, | là cả một dịch vụ mọc lên quanh chuyện rút. | Cầm sổ bảo hiểm, ứng trước tiền rút. | Họ đưa trước cho bạn một phần, giữ hồ sơ của bạn, | rồi ăn phần chênh. // Bạn mất mười năm, | và còn mất thêm một khoản cho người khác.",
+      "cap": "Và chỗ thứ ba, là cả một dịch vụ mọc lên quanh chuyện rút. Cầm sổ bảo hiểm, ứng trước tiền rút. Họ đưa trước cho bạn một phần, giữ hồ sơ của bạn, rồi ăn phần chênh. Bạn mất mười năm, và còn mất thêm một khoản cho người khác."
+    },
+    {
+      "id": 60,
+      "type": "stock",
+      "stock": "elderly vietnamese woman selling vegetables market",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn người thiệt nhất, | là người rút hết rồi bước vào tuổi già tay trắng. | Từ bảy mươi lăm tuổi, nếu không có lương hưu, | nhà nước trả trợ cấp hưu trí xã hội, 500 nghìn một tháng. // Năm trăm nghìn. | Chừng mười bát phở. | Cho cả một tháng.",
+      "cap": "Còn người thiệt nhất, là người rút hết rồi bước vào tuổi già tay trắng. Từ bảy mươi lăm tuổi, nếu không có lương hưu, nhà nước trả trợ cấp hưu trí xã hội, 500 nghìn một tháng. Năm trăm nghìn. Chừng mười bát phở. Cho cả một tháng."
+    },
+    {
+      "id": 61,
+      "type": "card",
+      "text": "Để đó thì không mất. Rút rồi thì không mua lại được.",
+      "src": "Tóm tắt từ Luật Bảo hiểm xã hội 2024",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Nên nếu chỉ nhớ một câu từ video này, thì là câu này. Bảo lưu thì không mất gì. Còn rút ra rồi, những năm đã đóng không mua lại được.",
+      "cap": "Nên nếu chỉ nhớ một câu từ video này, thì là câu này. Bảo lưu thì không mất gì. Còn rút ra rồi, những năm đã đóng không mua lại được."
+    },
+    {
+      "id": 62,
+      "type": "stock",
+      "stock": "young vietnamese woman using phone app",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy nếu bạn đang phân vân, làm ba việc. | Một, mở VssID ra, xem mình đã đóng bao nhiêu năm, trên mức lương bao nhiêu. | Hai, tính xem còn thiếu mấy năm tới mốc mười lăm. | Ba, nếu đang cần tiền, | tìm hết các đường khác trước khi đụng vào khoản này.",
+      "cap": "Vậy nếu bạn đang phân vân, làm ba việc. Một, mở VssID ra, xem mình đã đóng bao nhiêu năm, trên mức lương bao nhiêu. Hai, tính xem còn thiếu mấy năm tới mốc mười lăm. Ba, nếu đang cần tiền, tìm hết các đường khác trước khi đụng vào khoản này."
+    },
+    {
+      "id": 63,
+      "type": "stock",
+      "stock": "vietnamese job interview office",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và nhớ một chi tiết. | Nếu sau này đi làm lại, những năm đã bảo lưu được cộng nối vào. | Mười năm của anh Tuấn không đi đâu cả. | Nó chỉ đợi anh quay lại.",
+      "cap": "Và nhớ một chi tiết. Nếu sau này đi làm lại, những năm đã bảo lưu được cộng nối vào. Mười năm của anh Tuấn không đi đâu cả. Nó chỉ đợi anh quay lại."
+    },
+    {
+      "id": 64,
+      "type": "stock",
+      "stock": "elderly vietnamese couple morning tea porch",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tóm lại, rút một lần là bán tuổi già của mình, | với giá khoảng hai tháng lương cho mỗi năm đã đóng. // Có lúc phải bán, vì cái khó trước mắt quá lớn. | Nhưng nếu không bắt buộc, | thì người trả giá cao nhất cho món đó, | thường là chính bạn của ba mươi năm sau.",
+      "cap": "Tóm lại, rút một lần là bán tuổi già của mình, với giá khoảng hai tháng lương cho mỗi năm đã đóng. Có lúc phải bán, vì cái khó trước mắt quá lớn. Nhưng nếu không bắt buộc, thì người trả giá cao nhất cho món đó, thường là chính bạn của ba mươi năm sau."
+    },
+    {
+      "id": 65,
+      "type": "stock",
+      "stock": "ho chi minh city street evening motorbikes",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn bạn, | nếu là anh Minh, bạn có rút không? | Và nếu tôi tính sai chỗ nào, | cứ để lại bình luận, tôi sẽ đính chính.",
+      "cap": "Còn bạn, nếu là anh Minh, bạn có rút không? Và nếu tôi tính sai chỗ nào, cứ để lại bình luận, tôi sẽ đính chính."
+    }
+  ]
+}

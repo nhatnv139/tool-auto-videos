@@ -139,6 +139,60 @@ def don_mot_case(case, that=False, im=False, ke_ca_hong=False, giu=()):
     return tong, ""
 
 
+def da_dang_youtube(slug):
+    """Thu muc OUTBOX cua slug neu video da len YouTube (co youtube_result.json
+    mang id), nguoc lai None."""
+    import json
+    if not os.path.isdir(OUTBOX):
+        return None
+    for d in sorted(os.listdir(OUTBOX)):
+        if not d.endswith("-" + slug):
+            continue
+        p = os.path.join(OUTBOX, d, "youtube_result.json")
+        try:
+            with open(p, encoding="utf-8") as f:
+                if json.load(f).get("id"):
+                    return os.path.join(OUTBOX, d)
+        except (OSError, ValueError):
+            pass
+    return None
+
+
+def xoa_da_dang(case, that=False, im=False):
+    """Luat nguoi dung 08/10/2026: video DA DANG len YouTube (ke ca dang hen
+    gio) thi xoa sach phan nang tren may — video.mp4 o OUTBOX, ca build/ va
+    assets/ cua case. Giu script/, json, thumbnail, publish.md (vai KB).
+    Bo qua giu_build: da dang roi thi khong con gi de soi lai."""
+    slug = os.path.basename(case.rstrip("\\/"))
+    ob = da_dang_youtube(slug)
+    if not ob:
+        return 0, "chua dang YouTube — de nguyen"
+    muc = []
+    v = os.path.join(ob, "video.mp4")
+    # 08/10/2026: user sap mo Page Facebook -> con co (auto/state/cho_facebook)
+    # thi giu video.mp4 toi khi da dang FB (facebook_result.json), build van xoa.
+    cho_fb = (os.path.isfile(os.path.join(KIT, "auto", "state", "cho_facebook"))
+              and not os.path.isfile(os.path.join(ob, "facebook_result.json")))
+    if os.path.isfile(v) and not cho_fb:
+        muc.append((v, False, co_kich_thuoc(v)))
+    for sub in ("build", "assets"):
+        d = os.path.join(case, sub)
+        if os.path.isdir(d):
+            muc.append((d, True, nang(d)))
+    for p, la_dir, n in muc:
+        if not im:
+            print(f"  - {os.path.relpath(p, KIT)}  ({n / 1e6:.1f} MB)")
+        if that:
+            if la_dir:
+                shutil.rmtree(p, ignore_errors=True)
+            else:
+                try:
+                    os.remove(p)
+                except OSError as e:
+                    print(f"      (khong xoa duoc: {e})")
+    return sum(m[2] for m in muc), ""
+
+
 def byte_trong(duong_dan=KIT):
     """So byte con trong tren o chua duong_dan."""
     try:
@@ -153,6 +207,8 @@ def main():
     ap.add_argument("--slug", default=None)
     ap.add_argument("--hong", action="store_true",
                     help="don ca case chua ra video (case chay hong bo lai build)")
+    ap.add_argument("--da-dang", action="store_true",
+                    help="xoa video + build cua case DA dang YouTube")
     a = ap.parse_args()
 
     cases = []
@@ -168,7 +224,10 @@ def main():
     tong = 0
     for c in cases:
         slug = os.path.basename(c)
-        n, ghi_chu = don_mot_case(c, that=a.that, ke_ca_hong=a.hong)
+        if a.da_dang:
+            n, ghi_chu = xoa_da_dang(c, that=a.that)
+        else:
+            n, ghi_chu = don_mot_case(c, that=a.that, ke_ca_hong=a.hong)
         if ghi_chu:
             print(f"[bo qua] {slug}: {ghi_chu}")
         else:

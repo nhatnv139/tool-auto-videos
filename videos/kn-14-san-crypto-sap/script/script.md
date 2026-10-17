@@ -1,0 +1,172 @@
+# SÀN CRYPTO SẬP: TIỀN CỦA BẠN ĐI ĐÂU?
+
+[[stock:"young asian man looking at phone shocked night"]]
+Tháng 11 năm 2022, | anh Tùng, một nhân viên văn phòng ở Hà Nội, | mở ứng dụng sàn tiền mã hoá như mọi tối. | Số dư vẫn còn đó: | một Bitcoin.
+
+[[stock:"loading spinner phone screen"]]
+Anh bấm rút. | Ứng dụng báo đang xử lý. | Và nó xử lý mãi, không bao giờ xong.
+
+[[stock:"cryptocurrency exchange app screen"]]
+Sàn đó tên là FTX. | Mấy ngày trước, nó vẫn là một trong những sàn lớn nhất thế giới, | có tên trên cả một sân vận động ở Mỹ. | Chỉ trong khoảng một tuần, nó nộp đơn phá sản.
+
+[[stock:"calendar pages flipping"]]
+Mấy năm sau, anh Tùng được trả tiền. | Và tin vui là: | anh nhận lại nhiều hơn một trăm phần trăm. // Nghe như một cái kết có hậu. | Cho đến khi anh tính lại bằng Bitcoin.
+
+[[card:"Giá FTX chốt cho mỗi Bitcoin của khách: 16.871 USD"|src=Hồ sơ phá sản FTX tại toà phá sản Delaware, Mỹ|vo="Vì số dư của khách được tính theo giá ngày sàn phá sản. Mỗi Bitcoin được chốt ở khoảng mười sáu nghìn tám trăm đô. Trong khi mấy năm sau, giá một Bitcoin đã gấp mấy lần con số đó."]]
+
+[[stock:"man sitting alone dark room laptop"]]
+Tức là anh Tùng gửi vào một Bitcoin, | và nhận về số đô la chỉ đủ mua lại chừng một phần ba Bitcoin, có khi ít hơn. | Trên giấy tờ, không ai lấy của anh đồng nào. | Nhưng hai phần ba của cải thì cứ thế bốc hơi.
+
+[[stock:"young asian man phone app interest earn"]]
+Mà vì sao anh Tùng lại để Bitcoin trên sàn, chứ không rút về? | Vì tiện. | Muốn bán lúc nào thì bấm lúc đó. | Và vì sàn còn trả thêm một chút lãi, | cho ai để coin nằm yên trên đó. // Một chút lãi, | đổi lấy việc trao chìa khoá cho người khác.
+
+[[stock:"vietnamese young people cafe phones"]]
+Ở Việt Nam, hàng triệu người đang để tiền trên các sàn tiền mã hoá, | phần lớn là sàn nước ngoài. | Vậy câu hỏi của video này là: | nếu sàn của bạn sập, | thì tiền của bạn đi đâu, bạn lấy lại được bao nhiêu, | và luật Việt Nam bây giờ bảo vệ bạn tới đâu?
+
+[[stock:"vietnamese man reading news laptop"]]
+Tôi không khuyên bạn mua hay bán đồng nào. | Số liệu lấy từ hồ sơ toà án, văn bản pháp luật và báo chí, không phải lời khuyên đầu tư.
+
+[[stock:"motorbike parking lot vietnam ticket"]]
+Bắt đầu từ một câu hỏi tưởng ngớ ngẩn. | Khi bạn thấy chữ một Bitcoin trên ứng dụng sàn, | thì bạn có thật sự có một Bitcoin không?
+
+[[stock:"motorbike parking ticket hand vietnam"]]
+Hình dung bạn gửi xe máy ở bãi. | Người ta đưa bạn một tấm vé. | Tấm vé ghi biển số xe của bạn, | nhưng tấm vé không phải cái xe.
+
+[[stock:"crypto wallet balance smartphone"]]
+Con số trên sàn cũng vậy. | Nó là lời hứa của sàn, rằng họ đang giữ hộ bạn. | Còn đồng tiền thật, | nằm trong ví của sàn, dưới chìa khoá của sàn. // Dân trong nghề có một câu: | không giữ chìa khoá, | thì không phải tiền của bạn.
+
+[[stock:"parking attendant motorbikes vietnam"]]
+Một bãi xe tử tế thì giữ đủ xe cho mọi tấm vé. | Nhưng nếu ông chủ bãi lén đem xe của khách đi cho thuê, | thì ngày nào mọi người cùng đến lấy xe, | bãi sẽ thiếu xe.
+
+[[stock:"gold shop ledger book vietnam"]]
+Mà phần lớn sàn không để mỗi khách một ví riêng. | Tiền của hàng triệu người được gom chung vào mấy cái ví lớn, | sàn chỉ ghi sổ ai có bao nhiêu. // Giống như tiệm vàng không cất riêng mấy chỉ vàng của bạn vào một cái hộp có tên, | mà chỉ ghi vào sổ: | chị này gửi năm chỉ.
+
+[[stock:"courtroom gavel judge"]]
+Đó chính là chuyện đã xảy ra ở FTX. | Toà án Mỹ kết luận, | tiền của khách đã bị chuyển sang một công ty đầu tư anh em, | để đầu tư, cho vay và chi tiêu.
+
+[[stock:"handcuffs court justice"]]
+Người sáng lập, Sam Bankman-Fried, | bị kết tội gian lận năm 2023, | và lĩnh hai mươi lăm năm tù.
+
+[[card:"Khoản hụt tiền của khách khi FTX sập: khoảng 8 tỷ USD"|src=Hồ sơ vụ án Hoa Kỳ kiện Bankman-Fried|vo="Khi sàn sập, khoản hụt tiền của khách được ước khoảng tám tỷ đô. Tức là hơn hai trăm nghìn tỷ đồng, đủ để chia cho mỗi người dân Việt Nam khoảng hai triệu."]]
+
+[[stock:"people panic queue asia"]]
+Và cách nó sập, thì giống hệt một vụ rút tiền ngân hàng. | Một bài báo đặt câu hỏi về sức khoẻ tài chính của sàn. | Một sàn đối thủ tuyên bố bán đồng token của FTX. | Khách hoảng, cùng bấm rút. | Chỉ trong vài ngày, sàn khoá cửa rút tiền.
+
+[[stock:"lawyers meeting documents table asia"]]
+Vậy khi một sàn phá sản, | chuyện gì xảy ra với tấm vé của bạn? | Tấm vé không còn là vé xe nữa. | Nó trở thành một tờ giấy nợ. | Bạn chuyển từ người có tài sản, | sang người đứng trong hàng chủ nợ.
+
+[[stock:"waiting room people asia"]]
+Và hàng chủ nợ thì có ba đặc điểm. | Một, rất dài. | Hai, rất chậm. | Ba, đồng hồ của bạn bị dừng lại ở ngày sàn sập.
+
+[[stock:"clock stopped wall"]]
+Giá đồng tiền sau đó lên trời hay xuống đất, | thì phần của bạn vẫn được tính theo giá hôm ấy.
+
+[[stock:"bitcoin chart rising screen"]]
+FTX còn được coi là một vụ may mắn. | Người quản lý phá sản thu hồi được nhiều tài sản, | nên khách được trả hơn số đô la đã ghi. | Nhưng nếu bạn gửi Bitcoin lên sàn vì tin nó sẽ lên giá, | thì may mắn kiểu này vẫn là một cú lỗ to.
+
+[[stock:"locked smartphone screen frustrated user"]]
+Cũng trong năm 2022, | Celsius, một nền tảng nhận gửi coin và trả lãi rất cao, | khoá rút tiền của khách, rồi nộp đơn phá sản. | Người sáng lập sau đó nhận tội gian lận, | và lĩnh mười hai năm tù. // Lãi cao cho coin nằm yên, | hoá ra là cái lãi được trả bằng chính rủi ro của khách.
+
+[[stock:"tokyo street night"]]
+Còn có những vụ kém may mắn hơn nhiều. | Năm 2014, Mt. Gox, | sàn Bitcoin lớn nhất thế giới thời đó, đặt ở Tokyo, | sập sau khi làm mất một lượng Bitcoin khổng lồ của khách.
+
+[[card:"Khách Mt. Gox chờ lấy lại tiền: sập năm 2014 → bắt đầu trả năm 2024"|src=Người quản lý phá sản Mt. Gox|vo="Khách hàng của Mt. Gox phải chờ mười năm, đến năm 2024 mới bắt đầu được trả. Mười năm, đủ để một đứa trẻ vào lớp một rồi lên tới cấp ba."]]
+
+[[stock:"vietnamese man reading english documents"]]
+Giờ đến phần dính trực tiếp tới người Việt. | Khi anh Tùng muốn đòi tiền FTX, | anh phải đăng ký vào một quy trình phá sản ở Mỹ, | điền hồ sơ tiếng Anh, xác minh danh tính, | theo dõi các mốc chi trả mà chẳng tờ báo Việt nào đưa tin. // Lỡ một hạn chót, | là có khi mất luôn quyền đòi.
+
+[[stock:"screenshot phone transaction history"]]
+Nên nếu bạn đang để tiền trên một sàn nước ngoài, | có mấy việc nhỏ nên làm ngay hôm nay. | Xác minh danh tính đầy đủ. | Bật bảo mật hai lớp. | Và thỉnh thoảng tải lịch sử giao dịch, chụp lại số dư. // Ngày bình thường thì chẳng để làm gì. | Ngày sàn sập, đó là tờ giấy chứng minh bạn là chủ nợ.
+
+[[stock:"southeast asia scam call center night"]]
+Đó còn là sàn thật. | Ở Việt Nam, nhiều người gặp phải thứ tệ hơn: | sàn giả. // Một ứng dụng trông y như sàn, | biểu đồ nhảy lên xuống y như thật, | nhưng phía sau chỉ là một nhóm người ngồi đâu đó bên kia biên giới, | tự gõ con số lãi vào màn hình của bạn.
+
+[[stock:"proof of reserves chart screen"]]
+Sau vụ FTX, nhiều sàn lớn bắt đầu công bố cái gọi là bằng chứng dự trữ, | để chứng minh họ giữ đủ tiền cho khách. | Đó là một bước tiến. | Nhưng nó chỉ là ảnh chụp ở một thời điểm. // Giống như chụp ảnh tủ lạnh đầy ắp, | ngay trước khi khách tới nhà ăn cơm.
+
+[[stock:"courtroom trial vietnam"]]
+Ngay trong tuần này, | một phiên toà ở Điện Biên đang xét xử sáu mươi bị cáo trong một đường dây như vậy. | Theo cáo trạng, họ dựng sàn vàng ảo, | dụ hàng chục người nạp tiền, | và chiếm đoạt hơn mười sáu tỷ đồng.
+
+[[stock:"empty wallet hands asian"]]
+Với sàn giả, câu hỏi lấy lại bao nhiêu phần trăm gần như vô nghĩa. | Vì ngay từ đầu, chưa có đồng tiền nào được mua thật.
+
+[[stock:"three young asian people different expressions"]]
+Thử đặt ba người cạnh nhau. | Chị Mai nạp một trăm triệu vào một sàn giả. | Anh Tùng để một trăm triệu trên một sàn lớn, rồi sàn sập. | Còn anh Khoa, | tự giữ một trăm triệu trong ví của chính mình.
+
+[[stock:"woman reading chat message phone night asia"]]
+Chị Mai vào sàn qua một người bạn quen trên mạng, | nói chuyện rất lịch sự, gửi ảnh lợi nhuận mỗi ngày. | Chị nạp thử mười triệu, rút được thật. | Rồi nạp tiếp. | Đến lúc muốn rút cả trăm triệu, | thì sàn đòi nộp thêm phí, nộp thêm thuế, | và người bạn kia biến mất.
+
+[[card:"Một trăm triệu, mấy năm sau còn bao nhiêu triệu, tính theo giá Bitcoin: Sàn giả = 0; Sàn thật sập = 30; Ví tự giữ = 100"|src=Ví dụ minh hoạ, dựa trên cách chi trả của vụ FTX|vo="Chị Mai gần như mất trắng. Anh Tùng được trả bằng đô la theo giá ngày sập, tính ra chỉ còn chừng một phần ba. Còn anh Khoa, nếu vẫn giữ được chìa khoá, thì vẫn còn nguyên."]]
+
+[[stock:"man searching drawers panic home"]]
+Nhưng chữ nếu ấy rất quan trọng. | Ví tự giữ đi kèm một chuỗi mười hai hoặc hai mươi tư từ khoá khôi phục. | Mất chuỗi đó, | thì không có tổng đài nào, không có toà án nào lấy lại giúp bạn. // Đã có người mất cả gia tài, | chỉ vì vứt nhầm một cái ổ cứng cũ.
+
+[[stock:"hardware wallet device hand"]]
+Có người dùng ví lạnh, | một thiết bị nhỏ giá vài triệu đồng, giữ chìa khoá ngoài mạng. | Với khoản cất lâu từ vài chục triệu trở lên, | đó giống như tiền mua một cái két.
+
+[[stock:"phishing message phone scam asian hand"]]
+Và có những kẻ chuyên đi xin chuỗi từ đó. | Họ đóng vai nhân viên hỗ trợ của sàn, | nhắn rằng ví của bạn đang gặp lỗi, cần xác minh. | Bạn gửi đi mười hai từ, | là bạn vừa trao cho họ chìa khoá két sắt.
+
+[[stock:"gold jewelry shop vietnam counter"]]
+Nên chọn sàn hay ví tự giữ, | giống như chọn gửi vàng ở tiệm, hay cất két ở nhà. | Gửi tiệm thì tiện, mua bán nhanh, | nhưng bạn phụ thuộc vào ông chủ tiệm. | Cất ở nhà thì không ai ôm được của bạn, | nhưng mất chìa, thì là bạn tự chịu.
+
+[[stock:"vietnamese family generations home"]]
+Và có một chuyện ít ai nghĩ tới. | Nếu bạn tự giữ, mà trong nhà không ai biết ví ở đâu, chìa khoá cất chỗ nào, | thì khi bạn có chuyện, | tài sản ấy cũng biến mất theo. // Luật có thể công nhận đó là tài sản. | Nhưng luật thì không mở được ví.
+
+[[stock:"vietnam national assembly hall"]]
+Vậy luật Việt Nam bây giờ đứng ở đâu trong chuyện này? | Đây là phần thay đổi nhiều nhất trong hai năm qua.
+
+[[stock:"state bank of vietnam building hanoi"]]
+Trước đây, tiền mã hoá ở Việt Nam nằm trong một vùng xám. | Dùng nó để thanh toán thì bị cấm. | Còn mua bán, nắm giữ, | thì luật không cấm, mà cũng không gọi tên. // Nên khi bị lừa, nhiều người đi trình báo, | rồi lúng túng ngay ở câu hỏi đầu tiên: | thứ tôi bị mất, trong mắt luật, là cái gì?
+
+[[stock:"hanoi government building"]]
+Từ ngày 1 tháng 1 năm nay, | Luật Công nghiệp công nghệ số có hiệu lực. | Lần đầu tiên, tài sản số, | trong đó có tài sản mã hoá, | được luật Việt Nam gọi đúng tên là tài sản.
+
+[[stock:"police station report vietnam"]]
+Nghe thì khô, nhưng nghĩa là: | nếu bị lừa, bị chiếm đoạt, | bạn có cơ sở rõ ràng hơn để trình báo, để khởi kiện.
+
+[[stock:"modern office building ho chi minh city"]]
+Song song là một đợt thí điểm năm năm, | cho phép mở sàn giao dịch tài sản mã hoá ngay tại Việt Nam, | do Bộ Tài chính cấp phép. | Và điều kiện để mở sàn rất nặng.
+
+[[card:"Vốn tối thiểu để mở sàn tài sản mã hoá ở Việt Nam: 10.000 tỷ đồng"|src=Nghị quyết 05/2025/NQ-CP của Chính phủ|vo="Muốn làm sàn, doanh nghiệp phải có vốn ít nhất mười nghìn tỷ đồng. Trong cổ đông phải có các tổ chức như ngân hàng, công ty chứng khoán, bảo hiểm. Và giao dịch phải bằng tiền đồng."]]
+
+[[stock:"bank vault security door"]]
+Vốn lớn như vậy để làm gì? | Để nếu có chuyện, | thì phía sau sàn còn một tấm đệm đủ dày, | và người giữ đệm là những tổ chức đã quen bị thanh tra.
+
+[[stock:"hacker dark room computer screens"]]
+Tấm đệm này quan trọng thế nào, nhìn một vụ năm 2025 là thấy. | Sàn Bybit bị tin tặc lấy mất khoảng một tỷ rưỡi đô tiền mã hoá, | một trong những vụ trộm lớn nhất lịch sử ngành. // Nhưng sàn không sập. | Vì họ đủ vốn và vay được để bù ngay phần bị mất, | khách vẫn rút tiền bình thường. | Cùng một cú đánh, | sàn mỏng thì chết, sàn dày thì đau rồi đứng dậy.
+
+[[stock:"ministry of finance vietnam building"]]
+Còn ai không có giấy phép mà vẫn cung cấp dịch vụ, | thì từ ngày 1 tháng 9 năm nay, | theo một nghị định mới, | có thể bị phạt tới hai trăm triệu đồng.
+
+[[stock:"trading app phone close up asian hand"]]
+Còn người dùng như bạn thì sao? | Luật cho một khoảng chuyển tiếp. | Sáu tháng sau khi sàn trong nước đầu tiên được cấp phép, | người Việt giao dịch qua nền tảng không có phép có thể bị xử phạt. // Và đến đầu tháng 10 năm nay, | chưa có sàn nào được cấp phép. | Tức là đồng hồ sáu tháng đó, | vẫn chưa bắt đầu chạy.
+
+[[stock:"asian man thinking window city"]]
+Đến đây chắc có người bảo: | vậy chờ sàn trong nước có phép rồi chuyển sang, là yên tâm tuyệt đối?
+
+[[stock:"license document stamp official"]]
+Không hẳn. | Có phép, nghĩa là có người giám sát, có luật để kiện. | Nhưng giấy phép không phải bảo hiểm. | Tiền mã hoá không có thứ gì giống bảo hiểm tiền gửi ở ngân hàng. | Và giá của đồng tiền, | thì không giấy phép nào giữ được.
+
+[[stock:"stock chart falling red screen asia"]]
+Nói cho dễ hiểu. | Luật mới bảo vệ bạn khỏi chuyện sàn ôm tiền, | tốt hơn trước rất nhiều. | Nhưng không bảo vệ bạn khỏi chuyện bạn mua đúng đỉnh. | Cái đó thì, thú thật, | tôi cũng chưa tìm được luật nào bảo vệ.
+
+[[stock:"warning notification phone screen"]]
+Vậy làm sao biết một sàn sắp có chuyện? | Có mấy dấu hiệu mà vụ nào cũng lặp lại. | Rút tiền chậm dần, với lý do bảo trì. | Sàn bỗng trả lãi rất cao cho ai gửi coin nằm yên. | Đồng token của chính sàn rơi mạnh. | Và trên mạng xã hội, bắt đầu có người hỏi: | có ai rút được không?
+
+[[stock:"young vietnamese woman planning finances notebook"]]
+Còn việc nên làm, | tôi gói lại thành ba câu. // Câu thứ nhất: | trên sàn, chỉ để số tiền bạn đang định giao dịch. | Phần định cất lâu, | thì hoặc tự giữ cho cẩn thận, | hoặc tự hỏi lại xem mình có thật cần giữ nó không.
+
+[[stock:"writing on paper notebook desk"]]
+Câu thứ hai: | nếu tự giữ, thì chép chuỗi từ khoá ra giấy, | cất ở hai nơi, | không chụp ảnh, không lưu trên điện thoại, | và không gửi cho bất kỳ ai, | kể cả người xưng là nhân viên sàn.
+
+[[stock:"vietnamese family elders talking living room"]]
+Câu thứ ba: | ứng dụng nào hứa lãi đều đặn mỗi ngày, | khoe lợi nhuận mà bạn không kiểm chứng được, | thì xem lại video về app đầu tư lãi ba mươi phần trăm mà tôi đã làm, | trước khi nạp đồng nào.
+
+[[card:"Trên sàn là lời hứa. Trong ví là tài sản."|src=Bài học từ các vụ sàn sập|vo="Tóm lại, con số trên sàn là một lời hứa. Đồng tiền trong ví của bạn mới là tài sản. Còn lời hứa ấy đáng tin tới đâu, thì phụ thuộc vào người hứa, và vào luật đứng sau họ."]]
+
+[[stock:"hanoi night city lights"]]
+Anh Tùng giờ vẫn còn mua Bitcoin. | Chỉ là anh không còn để nó ở chỗ người khác giữ chìa khoá. | Và mỗi lần nghe ai bảo, sàn này lớn lắm, không sập được đâu, | anh lại nhớ tới cái sân vận động từng mang tên FTX.
+
+[[stock:"vietnamese friends cafe evening talking"]]
+Còn bạn, | bạn đang để tài sản số trên sàn, hay tự giữ? | Và khi có sàn trong nước được cấp phép, bạn có chuyển sang không? | Cứ để lại bình luận. | Và nếu tôi nói sai chỗ nào, tôi sẽ đính chính.

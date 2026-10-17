@@ -465,3 +465,38 @@ phải dùng `ambience` hoặc nhạc thật.
 
 `check_script.py`: console Windows cp1252 làm nó văng `UnicodeEncodeError` khi in lỗi có
 dấu — đã `reconfigure(utf-8)` ở `main()`.
+
+## Nâng cấp dựng kênh Yêu Lịch sử (16/10/2026) — opt-in qua queue.yml
+
+Người xem chê "giọng đọc, chuyển cảnh, sao chuyển lại chương 1 chương 2". Mọi khoá
+dưới đây không đặt thì pipeline chạy y như cũ (config.json không có `dung`, lô
+stage1 chia như cũ, chữ ký lô không đổi). Mẫu đầy đủ nằm ở đầu `queue.yml`.
+
+| Khoá | Tác dụng | Code |
+|---|---|---|
+| `chuong: cat` | `[[black]]`+"Phần một. // câu hỏi" hoặc v3 `## câu hỏi`+`[[card:"…"\|music=swell]]` → không màn đen/thẻ im lặng; bóc "Phần <số>." khỏi lời đọc; câu hỏi (nếu có) nối vào đầu cell hình kế; flash 0,5s (xfade `fadewhite`) + whoosh + cinematic-hit; tiêu đề nhỏ "PHẦN n" + câu hỏi (Palatino) 0,4–3,45s trên hình; nghỉ 0,9s trước điểm chương | `script2config.tach_chuong/_mo_chuong`, `assemble.ap_chuyen_canh/_tieu_de_chuong` |
+| `chuyen_canh: nhe` | ô trước kết bằng `///` → crossfade/dip đen xen kẽ; cứ ≥3 cắt thẳng → fade/hblur(whip, swoosh nhỏ)/zoomin; cắt thẳng thứ 2 → punch-in 1,06→1,0 trong 10 frame; shot stock render dài thêm 0,6s cho đuôi xfade | `assemble._batches` (không để chuyển cảnh rơi đúng ranh giới lô), `render.render_cell` |
+| `nhac: lib` / `lib:epic,bi-an` | nhạc thật `assets/music_lib` (manifest.json + LICENSES.md), đổi bài mỗi chương, mỗi bài chuẩn −16 LUFS; ghi `music-credits.json` (dòng ghi công CC-BY cho mô tả) | `tool/music_lib.py` |
+| `nhac_duoi_giong: 10` | bed.json `env:true` → assemble bỏ sidechaincompress, dùng đường bao gain từ mốc từ (words.json): dưới giọng 10 dB LUFS (~12 dB RMS), 5s đầu thêm −3 dB + giọng +2 dB, khe ≥0,6s nhạc lên min(4, D−3) dB, 1,8s trước điểm chương lên min(10, D−2) dB (không vượt giọng −2 dB) | `assemble._build_music_env` |
+| `ngat: "0.3,0.55,0.8"`, `ngat_cuoi_cell: 0.25`, `lang_noi_min: 0.4` | độ dài lặng của `// /// ////` và cuối cell (mặc định 0.8/1.5/2.4, 0.55); env `TTS_NGAT`, `TTS_GAP_CELL_END`, nằm trong hash cache | `tts._ngat_env` |
+
+Vòng 2 (16/10, sau khi người dùng xem demo):
+- `nhac_duoi_giong` mặc định 10: đo trên bus nhạc, nhạc nằm ~12 dB (RMS) dưới giọng
+  khi đang nói (BLV Hải Thanh 13,4). **Đừng tin cột "dB nhạc trong pause" của
+  analyze_voice cho nhạc to**: ngưỡng pause của nó là p90−18 dB, nhạc to hơn ngưỡng
+  thì khung đó bị tính là giọng → số luôn ≤ ~−38 dBFS. Bài được chuẩn loudness theo
+  ĐOẠN dùng thật (intro bài epic nhỏ hơn cao trào). Bài nhạc kinh dị (Unseen
+  Horrors) gắn thẻ `kinh-di`, không vào xoay mặc định.
+- `lang_noi_min` (env `TTS_SHRINK_MIN`, trong hash): rút lặng do engine tự đặt tới tỉ lệ
+  này; `nhip` (TTS_GAP_MUL) giờ hạ được tới 0.2. Đo: im lặng giọng 13,9% (−40 dB) —
+  phần còn lại là khe < 0,3 s (17 s/23 s), rút nữa thì vỡ từ.
+- Chống lặp cảnh: `stock.ahash/near_dup` (average-hash 16×9 xám, 3 frame) — md5 của
+  `_content_hash` không bắt được cùng một clip tải từ hai nguồn. `_pick_cell_file`
+  và đoạn stock trong cell bỏ ứng viên gần-trùng với file dùng trong `ADJ_WIN`=45 s.
+  Áp cho MỌI kênh (chỉ loại thêm ứng viên trùng cảnh).
+- `chuyen_canh: nhe` giờ chuyển cảnh mềm ở mọi ranh giới cell xen kẽ (≈1/3 tổng số
+  cắt), punch-in ở mọi ranh giới cắt thẳng, shot tối đa `SHOT_MAX`=7,5 s; kho mỏng mà
+  đoạn sau lặp cùng file → cắt vào khung 1,22× (cut-in) + chạy tiếp chuyển động.
+
+`step_tts` giờ xoá `TTS_GAP_MUL`/`TTS_NGAT`/`TTS_GAP_CELL_END`/`TTS_SHRINK_MIN` khi mục queue không đặt
+(trước đây `nhip` của case trước rò sang case sau trong cùng tiến trình runner).

@@ -51,13 +51,15 @@ def cmd_fetch(root, force):
     fetch(root, force=force)
 
 
-def cmd_script2config(root):
+def cmd_script2config(root, chuong=None, chuyen_canh=None):
     from script2config import build
-    build(root)
+    build(root, chuong=chuong, chuyen_canh=chuyen_canh)
 
 
-def cmd_render(root, only):
+def cmd_render(root, only, kieu=None):
     cfg = CFG.load(root)
+    if kieu is not None:
+        cfg["kieu_the"] = kieu
     n, _ = R.render_all(cfg, root, only=only)
     print(f"\nrender xong {n} cell -> build/shots/")
 
@@ -191,20 +193,28 @@ def _warn_repeat_source(root):
             prev_vid = None
 
 
-def cmd_assemble(root, emit_only, loud=None):
+def cmd_assemble(root, emit_only, loud=None, kieu=None):
     cfg = CFG.load(root)
+    if kieu is not None:
+        cfg["kieu_the"] = kieu
     fps = cfg.get("fps", 24)
     rows, total, missing = AS.plan(root, cfg, strict=True)
     print(f"tong video: {total:.1f}s ({total/60:.1f} phut), {len(rows)} cell")
+    # cfg["dung"] (chuong: cat / chuyen_canh: nhe) -> gan chuyen canh + sfx
+    AS.ap_chuyen_canh(rows, cfg, root)
+    from render import kieu_the
+    xfade = kieu_the(cfg) in ("long", "info")
+    if xfade:
+        print(f"  kieu_the={kieu_the(cfg)}: crossfade {AS.XFADE_FRAMES} frame giua cac cell")
     if emit_only:
-        AS.stage1_trim(rows, root, fps)
+        AS.stage1_trim(rows, root, fps, xfade=xfade)
         AS.stage2_concat(rows, root, fps)
         AS.stage3_audio(rows, total, root, cfg)
         AS.stage4_mux(root, cfg, total, loud=loud)
         print("chay: source build/run_stage1.sh; stage3; stage4")
         return
     print("stage 1: trim + caption ...")
-    AS.stage1_trim(rows, root, fps)
+    AS.stage1_trim(rows, root, fps, xfade=xfade)
     AS.run_script(root, "run_stage1.sh")
     # stage 2 chi con ghi danh sach lo (list.txt); stage 4 doc thang cac lo,
     # khong con ban trim/video.mp4 day du nam giua.
@@ -282,6 +292,14 @@ def main():
     ap.add_argument("--lufs", type=float, default=None)
     ap.add_argument("--lra", type=float, default=3.0)
     ap.add_argument("--tp", type=float, default=-2.5)
+    # render/assemble: kieu hinh theo kenh (queue.yml `kieu_the:`). "long" = the
+    # so kieu kenh Long + nen chuyen dong thay [[black]] + crossfade giua cell.
+    # Bo trong -> hanh vi cu (hoac env KIEU_THE).
+    ap.add_argument("--kieu-the", default=None, dest="kieu_the")
+    # script2config: queue.yml `chuong: cat` (chuyen chuong khong man den, khong
+    # doc "Phan mot") va `chuyen_canh: nhe` (crossfade/flash/whip co chu dich).
+    ap.add_argument("--chuong", default=None)
+    ap.add_argument("--chuyen-canh", default=None, dest="chuyen_canh")
     args = ap.parse_args()
 
     root = case_root(args.case)
@@ -290,9 +308,9 @@ def main():
     elif args.command == "fetch":
         cmd_fetch(root, args.force)
     elif args.command == "script2config":
-        cmd_script2config(root)
+        cmd_script2config(root, args.chuong, args.chuyen_canh)
     elif args.command == "render":
-        cmd_render(root, args.only)
+        cmd_render(root, args.only, args.kieu_the)
     elif args.command == "stock":
         cmd_stock(root, args.all, args.prune, args.prune_yes)
     elif args.command == "wiki":
@@ -316,7 +334,7 @@ def main():
         loud = None
         if args.lufs is not None:
             loud = {"I": args.lufs, "LRA": args.lra, "TP": args.tp}
-        cmd_assemble(root, args.emit_only, loud=loud)
+        cmd_assemble(root, args.emit_only, loud=loud, kieu=args.kieu_the)
     elif args.command == "sources":
         cmd_sources(root)
     elif args.command == "search":

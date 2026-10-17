@@ -37,6 +37,39 @@ defaults:
   # anh_photo_per: 3        # so anh stock moi keyword (mac dinh = anh_per)
   duyet: auto               # auto = viet xong dung luon | tay = dung cho nguoi duyet
 
+# --- NANG CAP DUNG KENH YEU LICH SU (16/10/2026) — tat ca la OPT-IN ---
+# Nguoi xem: "giong doc, chuyen canh, sao chuyen lai chuong 1 chuong 2", "ke
+# chuyen khong hap dan". Khoa moi (khong dat = y nhu cu):
+#   chuong: cat            [[black]] + "Phan mot. // <cau hoi>" (hoac v3: '## ...'
+#                          + [[card:"<cau hoi>"|music=swell]]) KHONG con man den /
+#                          the im lang: flash 0,5s + whoosh + nhac day len + tieu
+#                          de chuong nho tren hinh ke tiep; khong doc "Phan mot"
+#   chuyen_canh: nhe       crossfade/dip o cho chuyen y (///), cu ~3 cat thang thi
+#                          1 lan fade/whip(hblur)/zoomin, punch-in nhe; tieng/phu
+#                          de khong lech (xfade nam trong lo, offset = moc cell)
+#   nhac: lib | lib:epic,bi-an   nhac that assets/music_lib (LICENSES.md), doi bai
+#                          moi chuong, duck theo duong bao giong
+#   nhac_duoi_giong: 10    dB (LUFS) nhac duoi giong khi dang noi -> do RMS ~12 dB
+#                          duoi giong (BLV Hai Thanh 13,4); 5s dau sau them 3 dB
+#   ngat: "0.3,0.55,0.8"   lang cua // /// //// (mac dinh 0.8,1.5,2.4)
+#   ngat_cuoi_cell: 0.25   lang cuoi cell (mac dinh 0.55)
+#   lang_noi_min: 0.4      lang engine tu dat (sau dau phay/cham) rut toi 40% (mac dinh 0.55)
+#   wpm: 225 + nhip: 0.25  ~221 a/p video, im lang giong 13,9% (-40 dB); phan con lai la
+#                          khe < 0,3s cua engine, rut nua thi vo tu
+# Mau day du (chep vao muc moi cua kenh):
+#     chuong: cat
+#     chuyen_canh: nhe
+#     nhac: lib
+#     nhac_duoi_giong: 10
+#     wpm: 225
+#     am_tiet_phut_video: 225
+#     nhip: 0.25
+#     ngat: "0.3,0.55,0.8"
+#     ngat_cuoi_cell: 0.25
+#     lang_noi_min: 0.4
+# Demo A/B: C:/Users/chinh/ls-demo/demo-cu.mp4 va demo-moi.mp4
+# Ghi chep: D:/dev/content/yeu-lich-su-nang-cap-dung-1610.md
+
 videos:
   - slug: t10-ong-cong-ong-tao
     de_tai: "Vi sao ong Cong ong Tao ve troi bang ca chep"
@@ -121,6 +154,16 @@ videos:
     no_ai: true
     anh: full
     # 3807 am tiet | 105 marker | 11,6s/anh | 8 ngat chuong
+    chuong: cat             # nang cap 16/10 (xem khoi tren dau file)
+    chuyen_canh: nhe
+    nhac: lib
+    nhac_duoi_giong: 10
+    wpm: 225
+    am_tiet_phut_video: 225
+    nhip: 0.25
+    ngat: "0.3,0.55,0.8"
+    ngat_cuoi_cell: 0.25
+    lang_noi_min: 0.4
 
   - slug: chu-nguyen-chuong-bat-com
     de_tai: "Chu Nguyen Chuong - tu dua tre di xin an den nguoi lap ra nha Minh"
@@ -129,6 +172,16 @@ videos:
     no_ai: true
     anh: full
     # 3495 am tiet | 100 marker | 11,2s/anh | 7 ngat chuong
+    chuong: cat             # nang cap 16/10 (xem khoi tren dau file)
+    chuyen_canh: nhe
+    nhac: lib
+    nhac_duoi_giong: 10
+    wpm: 225
+    am_tiet_phut_video: 225
+    nhip: 0.25
+    ngat: "0.3,0.55,0.8"
+    ngat_cuoi_cell: 0.25
+    lang_noi_min: 0.4
 
   # --- DEMO 03/10/2026: lich su Viet Nam 3 phut, thu nen ambience + ent= ---
   - slug: demo-bach-dang-938
@@ -157,3 +210,1105 @@ videos:
     nhac_lop: gio-trong,song-nuoc
     nhac_drone: Em
     giu_build: true
+
+  # --- 05/10/2026: loat su Viet 20 phut, script viet san 04/10 (no_ai) ---
+  - slug: hai-ba-trung
+    dang: nhan-vat
+    de_tai: "Hai Ba Trung - 65 thanh theo ve trong mot mua, vi sao tan sau ba nam"
+    goc_nhin: "Cuoc khoi nghia thang nhanh vi ca he thong lac tuong dung day cung luc, va thua cung vi chinh cau truc lien minh long leo ay truoc mot dao quan chuyen nghiep"
+    do_dai: 21
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    giu_build: true
+
+  - slug: ly-thuong-kiet
+    dang: nhan-vat
+    de_tai: "Ly Thuong Kiet - vi tuong danh sang dat Tong truoc khi Tong kip danh minh"
+    goc_nhin: "Tien phat che nhan: danh Ung, Kham, Liem de pha kho luong cua Tong, roi giu phong tuyen Nhu Nguyet"
+    do_dai: 21
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    giu_build: true
+
+  - slug: quang-trung-than-toc
+    dang: nhan-vat
+    de_tai: "Quang Trung - hai tran danh than toc va bai toan hau can dang sau"
+    goc_nhin: "Than toc khong phai phep la ma la hau can: cach nuoi va di chuyen ca dao quan nhanh hon moi tinh toan cua doi phuong"
+    do_dai: 22
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    giu_build: true
+
+  # --- 05/10/2026: loat su Viet dot 2 ---
+  - slug: le-loi-lam-son
+    dang: nhan-vat
+    de_tai: "Le Loi va muoi nam Lam Son, tu rung Chi Linh den Chi Lang, Xuong Giang"
+    goc_nhin: "Muoi nam khong thang bang mot tran ma bang suc ben: song sot o Chi Linh, doi dia ban vao Nghe An, roi chon dung noi dung dung luc o Chi Lang"
+    do_dai: 21
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    giu_build: true
+
+  - slug: ho-quy-ly-mat-nuoc
+    dang: nhan-vat
+    de_tai: "Ho Quy Ly - nha cai cach di truoc thoi dai, va vi sao mat nuoc chi sau 7 nam"
+    goc_nhin: "Cai cach dung huong nhung lam qua nhanh va bang cuong quyen, nen khi giac Minh toi thi long dan khong con dung ve phia trieu dinh"
+    do_dai: 22
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    giu_build: true
+
+  - slug: tran-thu-do
+    dang: nhan-vat
+    de_tai: "Tran Thu Do - nguoi dung nen nha Tran"
+    goc_nhin: "Nguoi ta nho ong qua cau 'Dau toi chua roi xuong dat' va nhung vu thanh trung ho Ly, nhung thu ong that su dung nen la mot bo may du vung de danh Mong Co nam 1258"
+    do_dai: 21
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    giu_build: true
+
+  # --- 08/10/2026: LOAT 10 BI AN SU VIET, 12-15 phut, script agent viet tay ---
+  # Dung + dang bang:  python auto\loat_su_viet.py <slug...>
+  # (cho RAM, tu xep lich 20:00 noi tiep, dang xong tu xoa video/build)
+  - slug: le-chi-vien-ai-giet-vua
+    dang: nhan-vat
+    de_tai: "Vu an Le Chi Vien 1442 - ai that su giet vua Le Thai Tong"
+    goc_nhin: "Su chep Thi Lo giet vua, nhung chi tiet trong chinh Toan thu chi ve mot cuoc dau quyen trong cung"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: bi-an-mo-quang-trung
+    dang: nhan-vat
+    de_tai: "Mo vua Quang Trung o dau - Gia Long qua mo nam 1802"
+    goc_nhin: "Khong ke chien tran; ke cai chet 1792, cuoc tra thu 1802 va cac gia thuyet noi chon"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: kho-vang-tan-so
+    dang: nhan-vat
+    de_tai: "Kho vang trieu Nguyen bien mat dem kinh thanh Hue that thu 1885"
+    goc_nhin: "Lan theo duong di cua kho bac tu Hue ra Tan So; phan biet ghi chep va loi don"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: vua-duy-tan-roi-may-bay
+    dang: nhan-vat
+    de_tai: "Vua Duy Tan - tu ong vua 16 tuoi khoi nghia den vu roi may bay 1945"
+    goc_nhin: "Phap chon cau be 7 tuoi lam vua bu nhin - va do la sai lam lon nhat cua ho"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: tu-duc-khong-con
+    dang: nhan-vat
+    de_tai: "Tu Duc - hon 100 ba vo ma khong mot nguoi con"
+    goc_nhin: "Chuyen khong con mo duong cho quyen than phe lap 3 vua trong 1 nam dung luc Phap danh"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: ly-cong-uan-dua-tre-khong-cha
+    dang: nhan-vat
+    de_tai: "Ly Cong Uan - dua tre khong cha lon len trong chua thanh vua doi do"
+    goc_nhin: "Than the bi an duoc su gia che bang huyen thoai; mang luoi nha su dua ong len ngai"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: le-long-dinh-ngoa-trieu
+    dang: nhan-vat
+    de_tai: "Le Long Dinh vua Ngoa Trieu - bao chua hay nan nhan cua su sach"
+    goc_nhin: "Toi ac duoc ke den tu su viet duoi trieu Ly, trieu dai thay the ong"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: y-lan-co-gai-hai-dau
+    dang: nhan-vat
+    de_tai: "Y Lan - co gai hai dau thanh nhiep chinh va vu cung nu bi buc tu 1073"
+    goc_nhin: "Hai mat cua mot con nguoi: cuu doi giu nuoc va mot vu thanh trung cung dinh"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: mac-dang-dung-trieu-dai-bi-xoa-ten
+    dang: nhan-vat
+    de_tai: "Mac Dang Dung - trieu dai bi su sach xoa ten"
+    goc_nhin: "Ke phan quoc hay nguoi tranh cho dat nuoc cuoc chien voi quan Minh"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: no-than-co-loa-co-that
+    dang: nhan-vat
+    de_tai: "No than Co Loa co that khong - van mui ten dong duoi long dat"
+    goc_nhin: "Truyen thuyet mong rua than che di mot su that ky thuat cua Au Lac"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+
+  # --- KHUON MOI 08/10/2026 (D:\dev\content\yeu-lich-su-phuong-an-toi-uu-hook-giong.md) ---
+  # Hook 40-55s khong chao, giong 215 a/p, im lang ~11% (nhip 0.45) thay 196/24%.
+  - slug: tran-ich-tac-a-tran
+    dang: nhan-vat
+    de_tai: "Tran Ich Tac - hoang tu tai hoa nhat nha Tran va lan dau hang quan Nguyen"
+    goc_nhin: "Nguoi gioi nhat hoang toc lai la nguoi duy nhat theo giac"
+    do_dai: 13.5
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+    wpm: 215
+    am_tiet_phut_video: 215
+    nhip: 0.45
+
+  # --- LOAT 10 BAI 08/10/2026: khuon moi 2 phut dau, GIU toc do doc mac dinh ---
+  - slug: huyen-tran-doi-hai-chau
+    dang: nhan-vat
+    de_tai: "Huyen Tran cong chua - doi than lay dat Chau O Chau Ly va cuoc giai cuu khoi gian hoa"
+    goc_nhin: "Mot cong chua bi gia cho vua Champa, roi duoc cuop ve tu gian hoa thieu"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: ly-chieu-hoang-nu-hoang-duy-nhat
+    dang: nhan-vat
+    de_tai: "Ly Chieu Hoang - nu hoang duy nhat cua Viet Nam mat ngoi nam 7 tuoi"
+    goc_nhin: "Ngai vang duy nhat cua mot nguoi dan ba Viet bi trao di nhu mot mon do"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: ly-long-tuong-sang-cao-ly
+    dang: nhan-vat
+    de_tai: "Ly Long Tuong - hoang tu nha Ly vuot bien sang Cao Ly"
+    goc_nhin: "Hau due nha Ly song o Han Quoc den tan hom nay"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: dinh-tien-hoang-bi-am-sat
+    dang: nhan-vat
+    de_tai: "Vu am sat Dinh Tien Hoang nam 979 - ai dung sau Do Thich"
+    goc_nhin: "Mot vien quan nho giet ca vua lan thai tu trong mot dem - va ai huong loi"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: duong-van-nga-hai-trieu-hoang-hau
+    dang: nhan-vat
+    de_tai: "Duong Van Nga - nguoi dan ba lam hoang hau hai trieu"
+    goc_nhin: "Trao ao long bao cho Le Hoan: phan boi hay cuu nuoc"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: tran-hung-dao-co-muon-cuop-ngoi
+    dang: nhan-vat
+    de_tai: "Tran Hung Dao co tung muon cuop ngoi nha Tran"
+    goc_nhin: "Loi tro tran cua cha: lay cho duoc thien ha"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: ho-nguyen-trung-than-sung-nha-minh
+    dang: nhan-vat
+    de_tai: "Ho Nguyen Trung - tu binh Dai Viet thanh than sung cua nha Minh"
+    goc_nhin: "Nguoi mat nuoc lai duoc ke thu tho cung"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: hoang-tu-canh-chet-bi-an
+    dang: nhan-vat
+    de_tai: "Hoang tu Canh - dua con Nguyen Anh gui sang Phap va cai chet bi an nam 21 tuoi"
+    goc_nhin: "Con tin, thanh nien theo dao, va nghi an dau doc"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: ham-nghi-hoa-si-o-algeria
+    dang: nhan-vat
+    de_tai: "Vua Ham Nghi - ong vua luu day thanh hoa si o Algeria"
+    goc_nhin: "Vi vua chong Phap song 55 nam tren dat Phap va khong bao gio ve"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+  - slug: nguyen-anh-cau-quan-xiem
+    dang: nhan-vat
+    de_tai: "Nguyen Anh cau quan Xiem - tran Rach Gam Xoai Mut"
+    goc_nhin: "5 van quan Xiem bi danh tan va cai gia cua viec cau vien"
+    do_dai: 14
+    no_ai: true
+    duyet: auto
+    anh: full
+    nhac: ambience
+    nhac_lop: gio-trong,song-nuoc
+    nhac_drone: Em
+
+  - slug: kn-01-ky-nguyen-vuon-minh
+    dang: tai-chinh
+    de_tai: "Ky nguyen vuon minh la gi va tien trong tui ban thay doi ra sao"
+    goc_nhin: "Kenh Ky Nguyen Moi - giai thich tien va chinh sach kieu Long"
+    do_dai: 13
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info         # the infographic (panel kem, so dem, cot moc) + nen chuyen dong thay [[black]] + crossfade
+    loudness: -14          # LUFS, chuan kenh tai chinh (ghi de lufs/-19.7)
+  - slug: kn-02-kinh-te-the-gioi-moi
+    dang: tai-chinh
+    de_tai: "Kinh te the gioi 2026: chien tranh, thue quan, AI, lai suat"
+    goc_nhin: "Kenh Ky Nguyen Moi - 4 luc moc vao vi tien cua ban"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info         # the infographic (panel kem, so dem, cot moc) + nen chuyen dong thay [[black]] + crossfade
+    loudness: -14          # LUFS, chuan kenh tai chinh (ghi de lufs/-19.7)
+  - slug: kn-03-vang-dat-hon-the-gioi
+    dang: tai-chinh
+    de_tai: "Vi sao vang o Viet Nam luon dat hon the gioi"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-04-luong-tang-van-ngheo
+    dang: tai-chinh
+    de_tai: "Vi sao luong tang ma van thay ngheo di"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-05-trai-phieu-2022
+    dang: tai-chinh
+    de_tai: "Vi sao trai phieu doanh nghiep 2022 lam hang van nguoi mac ket"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-06-app-dau-tu-ponzi
+    dang: tai-chinh
+    de_tai: "Giai phau mot app dau tu lai 30 phan tram thang sap"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-07-mua-truoc-tra-sau
+    dang: tai-chinh
+    de_tai: "Mua truoc tra sau kiem tien tu dau"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-08-dong-nam-a
+    dang: tai-chinh
+    de_tai: "Kinh te cac nuoc Dong Nam A: ai tang nhanh, vi sao, Viet Nam dung o dau"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-09-thue-tncn-moi
+    dang: tai-chinh
+    de_tai: "Luong 15/25/40 trieu: luat thue TNCN moi lay cua ban bao nhieu"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-10-bo-thue-khoan
+    dang: tai-chinh
+    de_tai: "Bo thue khoan: quan banh mi, shop online, nguoi ban TikTok nop thue the nao"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-17-ftse-nang-hang
+    dang: tai-chinh
+    de_tai: "FTSE nang hang chung khoan Viet Nam: tien ngoai vao, ai duoc loi ai bi lua"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-18-tien-mat-va-vang
+    dang: tai-chinh
+    de_tai: "Vi sao nguoi Viet thich giu tien mat va vang hon gui ngan hang"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-13-van-thinh-phat-scb
+    dang: tai-chinh
+    de_tai: "Vu Van Thinh Phat SCB: nguoi gui tiet kiem duoc gi mat gi"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-14-san-crypto-sap
+    dang: tai-chinh
+    de_tai: "San crypto sap: tien cua ban di dau khi san pha san"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-11-bhxh-rut-mot-lan
+    dang: tai-chinh
+    de_tai: "Bao hiem xa hoi: rut mot lan hay cho luong huu, tinh thu 2 nguoi cung luong"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-12-gop-tinh-gia-dat
+    dang: tai-chinh
+    de_tai: "Gop tinh, bo huyen: gia dat o tinh mat ten va tinh duoc chon di ve dau"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-15-hormuz-gia-xang
+    dang: tai-chinh
+    de_tai: "Eo Hormuz bi chan: vi sao xang Viet Nam dat them - chuoi dau tho, gia co so, thue phi, quy binh on"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-16-fed-lai-vay-nha
+    dang: tai-chinh
+    de_tai: "Fed tang lai suat: vi sao khoan vay mua nha o Viet Nam dat len, tinh thu vay 2 ty"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-21-malaysia-chip
+    dang: tai-chinh
+    de_tai: "Penang dong goi chip tu 1972, Malaysia muon tu thiet ke chip; Viet Nam dang o dau trong chuoi ban dan"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-22-thai-lan-xe-dien
+    dang: tai-chinh
+    de_tai: "Xe dien Trung Quoc tran vao Thai Lan, hang Nhat dong nha may; VinFast va bai hoc cho Viet Nam"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-23-philippines-kieu-hoi
+    dang: tai-chinh
+    de_tai: "Philippines song nho nguoi di xa: kieu hoi, y ta, thuyen vien, tong dai BPO va AI - bai hoc cho Viet Nam"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-24-singapore-tien-giau
+    dang: tai-chinh
+    de_tai: "Vi sao tien gioi sieu giau do ve Singapore: family office, ngan hang tu nhan, vu rua tien 3 ty SGD"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-19-fdi-dong-nam-a
+    dang: tai-chinh
+    de_tai: "FDI Dong Nam A 2025: tien dau tu nuoc ngoai chay ve dau, Trung Quoc+1, cai gia hut von, vi tien"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-20-indonesia-niken
+    dang: tai-chinh
+    de_tai: "Indonesia cam xuat quang niken: Morowali, von Trung Quoc, moi truong, bai hoc bo xit va dat hiem Viet Nam"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-25-lao-campuchia-no
+    dang: tai-chinh
+    de_tai: "Lao va Campuchia: duong sat Lao-Trung, kip mat gia, no cong, song bac Sihanoukville - nghia gi voi Viet Nam"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-26-data-center-johor
+    dang: tai-chinh
+    de_tai: "Big Tech do tien vao trung tam du lieu Johor: dien, nuoc, dat, AI - Viet Nam co co hoi khong"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-27-nha-may-trung-quoc-vn
+    dang: tai-chinh
+    de_tai: "Nha may Trung Quoc o at sang Viet Nam: cong nhan, chu dat, doanh nghiep Viet ai duoc ai mat"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-28-thue-quan-trung-chuyen
+    dang: tai-chinh
+    de_tai: "Thue quan My va hang doi lot trung chuyen qua Dong Nam A: ai bi va lay, don hang chay di dau"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-31-gia-dat-vi-sao-tang
+    dang: tai-chinh
+    de_tai: "Vi sao gia dat o Viet Nam chi thay len ma hiem khi xuong: cung co dinh, bang gia dat, dau gia bo coc, tin dung"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-32-ty-gia-do-la
+    dang: tai-chinh
+    de_tai: "Dong do la len gia thi ai o Viet Nam vui ai khoc: ty gia, xuat khau, du hoc, kieu hoi"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-35-luong-khoi-diem
+    dang: tai-chinh
+    de_tai: "Vi sao luong khoi diem cu nhan dung yen: cung cau lao dong, nganh thua thieu, AI, cach tang luong that"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-36-ly-ca-phe-25k
+    dang: tai-chinh
+    de_tai: "Boc tach ly ca phe sua da 25k: gia Robusta, mat bang, nhan cong, app giao hang, hoa von"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-37-kinh-te-tu-nhan
+    dang: tai-chinh
+    de_tai: "Kinh te tu nhan va Nghi quyet 68: ho kinh doanh, xuong nho duoc gi, von, thue"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-38-thue-hay-mua-nha
+    dang: tai-chinh
+    de_tai: "Thue nha hay vay mua nha: tinh thu 10 nam cung muc luong, chi phi co hoi, 3 kich ban gia nha"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-29-gdp-tang-vi-ban
+    dang: tai-chinh
+    de_tai: "GDP tang hon 9% sao vi ban khong day len: GDP la gi, GDP vs thu nhap that, FDI, lam phat"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-30-nguoi-tre-mua-nha
+    dang: tai-chinh
+    de_tai: "Nguoi tre Ha Noi TP.HCM can bao nhieu nam luong de mua chung cu: ty le gia nha/thu nhap, nha o xa hoi"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-33-ngan-hang-bom-tien
+    dang: tai-chinh
+    de_tai: "Ngan hang bom tien the nao: tin dung tao ra tien, room tin dung, M2, tien chay vao nha dat"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-34-no-cong-cao-toc
+    dang: tai-chinh
+    de_tai: "Ngan sach, trai phieu Chinh phu, no cong: tien lam cao toc, Long Thanh, duong sat toc do cao den tu dau"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-45-lam-phat-phi-ma
+    dang: tai-chinh
+    de_tai: "Khi tien thanh giay lon: lam phat phi ma o Duc 1923, Zimbabwe va Venezuela, bai hoc giu gia tri tien tiet kiem"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-46-chien-tranh-va-gia-vang
+    dang: tai-chinh
+    de_tai: "Vi sao the gioi co xung dot thi gia vang tang, mua vang theo tin chien su duoc hay mat"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-43-chien-tranh-thuong-mai-my-trung
+    dang: tai-chinh
+    de_tai: "Chien tranh thuong mai My-Trung 2018-2024: vi sao nha may keo ve Viet Nam, ai tra thue, tui tien ban"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-44-nhat-ban-thap-ky-mat-mat
+    dang: tai-chinh
+    de_tai: "Bong bong Nhat Ban 1989: dat Hoang cung dat hon California, thap ky mat mat, bai hoc cho nguoi vay mua nha"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-47-doi-moi-1986
+    dang: tai-chinh
+    de_tai: "Doi moi 1986: tu so gao tem phieu den xuat khau gao, khoan 10, ASEAN, WTO, ke qua mot gia dinh ba the he"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-48-kinh-te-trung-quoc-cham-lai
+    dang: tai-chinh
+    de_tai: "Kinh te Trung Quoc cham lai: Evergrande, thanh pho ma, tieu dung yeu, hang re xuat khau va tac dong toi Viet Nam"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-41-dai-suy-thoai-1929
+    dang: tai-chinh
+    de_tai: "Dai suy thoai 1929 ke bang 3 nguoi thuong: vay ky quy, ngan hang sup, thue quan, bao hiem tien gui"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-42-chien-tranh-nga-ukraine-gia-ca
+    dang: tai-chinh
+    de_tai: "Chien su Nga-Ukraine 2022 va gia ca Viet Nam: lua mi, thuc an chan nuoi, phan bon, xang, mi goi"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-39-khung-hoang-2008
+    dang: tai-chinh
+    de_tai: "Khung hoang 2008: no duoi chuan o My, Lehman sup, xuat khau va viec lam Viet Nam giam, bai hoc vay no"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14
+  - slug: kn-40-khung-hoang-chau-a-1997
+    dang: tai-chinh
+    de_tai: "Khung hoang chau A 1997: neo ty gia, no ngan han bang do, IMF, Han Quoc gop vang, vi sao Viet Nam dung ngoai"
+    goc_nhin: "Kenh Tai San So Hoa - giai thich tien kieu Long, it so lieu, ke chuyen"
+    do_dai: 12
+    no_ai: true
+    duyet: auto
+    provider: vbee
+    voice: n_hanoi_male_nhabaohoangnam_news_vc
+    rate: "0%"
+    wpm: 255
+    anh: photo,stock
+    nhac: D:/dev/song-cham-lai/assets/music/incompetech_Fresh_Air.mp3
+    giu_build: true
+    kieu_the: info
+    loudness: -14

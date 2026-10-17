@@ -379,7 +379,182 @@ def cham_tap_trung(raw, facts=None, dang=""):
     }
 
 
-def check(case_dir, phut, wpm=187.0, sec_per_img=None, tol=0.18, dang=""):
+# =========================================================================
+# KHUON KE CHUYEN v3 (16/10/2026) — D:\dev\content\yeu-lich-su-khuon-ke-chuyen-v3.md
+#
+# Do tren 3 bai cu (tran-hung-dao / dinh-tien-hoang / hoang-tu-canh):
+#   doc to "Phan mot" 4/4/4 | khoi co thoai 19%/5%/6% | khoang trong dai nhat
+#   khong co cau hoi 172/146/202 s | "su chep/ghi/Toan thu..." 14/17/2 |
+#   '///' 18/16/17 (+5-6 '////') | "vi the/vi vay" 0/0/0.
+# Cac phep do duoi day bat dung nhung benh do.
+# =========================================================================
+SO_DEM = r"(?:một|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười|\d+)"
+DOC_CHUONG = re.compile(r"(?:^|[.!?/]\s*)(?:Phần|Chương|Phần thứ|Chương thứ)\s+" + SO_DEM +
+                        r"\s*(?:[.:,!/]|$)", re.I | re.M)
+THOAI = re.compile(r"(?:nói|đáp|dặn|hỏi|quát|thưa|bảo|can|tâu|mắng|rằng|gọi sang|viết|"
+                   r"khuyên|hô|thề|kêu|than|nhắn|trêu|giữ ông lại|giữ bà lại|lệnh)"
+                   r"[^:.!?/]{0,25}:", re.I)
+MO_VONG = re.compile(r"\?|(?:\bnhưng (?:điều|thứ|có một|ai ngờ)|\bchưa (?:biết|ai|bao giờ)|"
+                     r"sẽ quay lại|lần cuối|\bsắp\b|còn một (?:nút|lá|điều|chi tiết)|"
+                     r"hãy nhớ|muốn hiểu|chờ (?:tới|đến) ngày|không khớp|"
+                     r"thứ đáng sợ|chuyện chưa (?:dừng|hết))", re.I)
+NGUON_DOC = re.compile(r"\bsử (?:chép|ghi|thêm|kể|nói|không chép|giải thích|dùng)|"
+                       r"toàn thư|cương mục|việt sử lược|thực lục|tống sử|"
+                       r"\bsử thần\b|\bđại ý\b", re.I)
+MO_NAM = re.compile(r"^(?:Năm|Mùa \S+ năm|Tháng \S+ năm|Đầu năm|Cuối năm|Cũng năm|"
+                    r"Đến năm|Tới năm|Ngày \d+ tháng)\b", re.I)
+MO_ROI = re.compile(r"^(?:Rồi|Sau đó|Tiếp đó|Tiếp theo|Từ đó)\b", re.I)
+VI_THE = re.compile(r"\b(?:vì thế|vì vậy|cho nên|thế là|đó là lý do|bởi vậy|nên)\b", re.I)
+
+
+def _cau_v3(t):
+    """Tach cau theo dau cau VA theo '//' (ranh cau cua TTS)."""
+    t = re.sub(r"[|^*]", " ", t)
+    return [c.strip(" /") for c in re.split(r"(?<=[.!?…])\s+|/{2,}", t) if c.strip(" /")]
+
+
+def cham_v3(raw, wpm=187.0, phan=None):
+    """Cham khuon ke chuyen v3. phan=None: ca bai; phan='hook'|'chuong'|
+    'chuong_cuoi': cham mot phan (write_script dung).
+
+    Tra ve {"so": {...}, "loi": [...], "canh_bao": [...]}.
+    """
+    loi, canh = [], []
+    lines = [l.strip() for l in raw.splitlines()]
+    khoi = []           # [(text_tho_co_ky_tu_ngat)]
+    for i, s in enumerate(lines):
+        if not s or s.startswith("#") or MARKER_LINE.match(s):
+            continue
+        khoi.append(s)
+    # [[black...]] ngay sau la dong loi doc = ten chuong doc thanh tieng
+    black_doc = 0
+    for i, s in enumerate(lines):
+        if re.match(r"^\[\[black\b", s):
+            for s2 in lines[i + 1:]:
+                if not s2 or s2.startswith("#"):
+                    continue
+                if not MARKER_LINE.match(s2):
+                    black_doc += 1
+                break
+    tho = " ".join(khoi)
+    vo = strip_marks(tho)
+    at = len(vo.split())
+    mins = at / wpm if wpm else 0
+    if not at:
+        return {"so": {}, "loi": ["khong co loi doc"], "canh_bao": []}
+
+    # 1. doc to "Phan mot / Chuong 2"
+    doc_ch = len(DOC_CHUONG.findall(tho))
+    if doc_ch:
+        loi.append(f"V3: doc to ten phan/chuong {doc_ch} lan (\"Phan mot...\") — bo han; "
+                   f"chuyen chuong = cau moc + '## <cau hoi>' + [[card:\"<cau hoi>\"|music=swell]]")
+    if black_doc:
+        loi.append(f"V3: {black_doc} [[black]] co dong loi doc ngay sau (ten chuong bi doc "
+                   f"thanh tieng) — doi sang the [[card:\"...\"]] im lang")
+
+    # 2. vong mo: vi tri (giay) cua moi '?' / cau bao truoc
+    pos, moc = 0, []
+    for k in khoi:
+        for c in _cau_v3(k):
+            n = len(strip_marks(c).split())
+            if MO_VONG.search(c):
+                moc.append((pos + n) / wpm * 60)
+            pos += n
+    tong_s = pos / wpm * 60
+    mocs = [0.0] + moc + [tong_s]
+    gaps = [b - a for a, b in zip(mocs, mocs[1:])]
+    gap_max = max(gaps) if gaps else tong_s
+    nguong_gap = 120 if phan is None else 150
+    if gap_max > nguong_gap and tong_s > nguong_gap:
+        loi.append(f"V3: {gap_max:.0f}s lien khong co vong mo nao (cau hoi '?' hoac cau "
+                   f"bao truoc) — dich <= 90s, toi da {nguong_gap}s. Dong mot cau hoi thi "
+                   f"mo ngay cau lon hon")
+    q_dau = next((m for m in moc), None)
+    if phan in (None, "hook") and (q_dau is None or q_dau > 40):
+        loi.append("V3: chua co cau hoi trung tam ('?') trong 40 giay dau")
+
+    # 3. thoai
+    n_thoai = len(THOAI.findall(vo))
+    thoai_pm = n_thoai / mins if mins else 0
+    if phan is None and thoai_pm < 1.5:
+        loi.append(f"V3: chi {thoai_pm:.1f} cau thoai/phut (dich >= 1,5): dung CANH — "
+                   f"nguoi noi + dong tu noi + ':' + loi su chep, khong ke tom tat")
+    elif phan == "chuong" and n_thoai < 2:
+        loi.append(f"V3: chuong chi co {n_thoai} cau thoai (dich >= 3): moi canh lon can "
+                   f"loi noi that cua nhan vat lay tu su")
+
+    # 4. cau mo bang nam / "Roi, Sau do"
+    cau = [c for k in khoi for c in _cau_v3(strip_marks(k).replace(" | ", " "))]
+    cau = [c for c in (strip_marks(k) for k in cau) if c]
+    mo_nam = sum(1 for c in cau if MO_NAM.match(c))
+    ty_nam = mo_nam / len(cau) if cau else 0
+    if phan is None and ty_nam > 0.08:
+        loi.append(f"V3: {ty_nam*100:.0f}% cau mo bang nam/thang (dich <= 8%) — ke kieu "
+                   f"bien nien. Dat nam vao giua cau, noi cac nhip bang nhung/vi the")
+    mo_roi = sum(1 for c in cau if MO_ROI.match(c))
+    if mo_roi > 2:
+        canh.append(f"V3: {mo_roi} cau mo bang 'Roi/Sau do/Tiep do/Tu do' (toi da 2) — "
+                    f"doi thanh 'Nhung...' hoac 'Vi the...'")
+    khoi_mo_nam = [bool(MO_NAM.match(strip_marks(k))) for k in khoi]
+    lien_nam = sum(1 for a, b in zip(khoi_mo_nam, khoi_mo_nam[1:]) if a and b)
+    if lien_nam:
+        canh.append(f"V3: {lien_nam} cap khoi lien nhau cung mo bang nam")
+    n_vithe = len(VI_THE.findall(vo))
+    if phan is None and mins and n_vithe / mins < 0.5:
+        canh.append(f"V3: chi {n_vithe} lan 'vi the/vi vay/nen/the la' (dich >= 0,5/phut) "
+                    f"— su kien dang xep hang, chua co nhan qua")
+
+    # 5. rao nguon / giong thu thu
+    n_nguon = len(NGUON_DOC.findall(vo))
+    if mins and n_nguon / mins > 0.5 and n_nguon > 2:
+        loi.append(f"V3: {n_nguon} lan 'su chep/su ghi/Toan thu/Cuong muc/dai y' "
+                   f"({n_nguon/mins:.1f}/phut, toi da 0,5) — doc loi su nhu thoai, gom ten "
+                   f"sach vao mot cau")
+
+    # 6. nhip '///'
+    n3 = len(re.findall(r"(?<!/)///(?!/)", tho))
+    n4 = len(re.findall(r"////", tho))
+    if mins and n3 / mins > 0.6 and n3 > 2:
+        loi.append(f"V3: {n3} dau '///' ({n3/mins:.1f}/phut, toi da 0,6) — nhip may dem; "
+                   f"chi dat sau cau lat / thoai dinh / cau hoi trung tam")
+    lien3 = sum(1 for a, b in zip(khoi, khoi[1:])
+                if a.rstrip().endswith("///") and b.rstrip().endswith("///"))
+    if lien3:
+        canh.append(f"V3: {lien3} cap khoi lien nhau cung ket bang '///'")
+    if n4:
+        canh.append(f"V3: {n4} dau '////' (v3 = 0; the chuong da co 3s im)")
+
+    # 7. ket: CTA cau hoi + callback hinh anh mo
+    if phan in (None, "chuong_cuoi"):
+        cuoi = " ".join(strip_marks(k) for k in khoi[-3:])
+        if not ("bình luận" in cuoi.lower() and "?" in cuoi):
+            loi.append("V3: 3 khoi cuoi thieu CTA = mot cau hoi cu the + 'phan binh luan'")
+    if phan is None and len(khoi) >= 6:
+        def bigram(t):
+            w = [x.lower().strip(".,?!:;") for x in strip_marks(t).split()]
+            return {(a, b) for a, b in zip(w, w[1:]) if len(a) > 1 and len(b) > 1}
+        dau = bigram(" ".join(khoi[:3]))
+        cuoi_bg = bigram(" ".join(khoi[-3:]))
+        chung = dau & cuoi_bg
+        if len(chung) < 2:
+            canh.append("V3: ket khong goi lai hinh anh mo dau (callback) — quay lai "
+                        "dung vat/canh o 10 giay dau")
+
+    so = {"phut": round(mins, 1), "doc_ten_chuong": doc_ch + black_doc,
+          "vong_mo": len(moc), "khoang_trong_max_s": round(gap_max),
+          "cau_hoi_dau_s": round(q_dau) if q_dau is not None else None,
+          "thoai": n_thoai, "thoai_phut": round(thoai_pm, 1),
+          "cau_mo_nam_pct": round(ty_nam * 100), "mo_roi_sau_do": mo_roi,
+          "vi_the": n_vithe, "rao_nguon": n_nguon, "ngat_3": n3, "ngat_4": n4}
+    return {"so": so, "loi": loi, "canh_bao": canh}
+
+
+def check(case_dir, phut, wpm=187.0, sec_per_img=None, tol=0.18, dang="",
+          khuon=None, path=None):
+    """khuon='v3' -> them luat ke chuyen v3 thanh LOI. khuon=None voi dang
+    nhan-vat -> luat v3 chi thanh CANH BAO (khong chan script viet tay cu dang
+    nam trong queue). path: cham file khac script/script.md (vd script-v3.md).
+    """
     """`wpm` o day la AM TIET MOI PHUT VIDEO, khong phai toc do doc.
 
     Do that 13/09/2026 tren ca ba video 20 phut vua dung (Vbee, rate -18%):
@@ -392,7 +567,7 @@ def check(case_dir, phut, wpm=187.0, sec_per_img=None, tol=0.18, dang=""):
         # Dang nhan vat giu hinh lau hon: do tren kenh BattleCry la ~18s mot lan
         # cat canh cung. Anh tinh nhay 4-5s/lan gay met mat ma van khong "song".
         sec_per_img = (10.0, 20.0) if nhan_vat else (5.0, 10.0)
-    path = os.path.join(case_dir, "script", "script.md")
+    path = path or os.path.join(case_dir, "script", "script.md")
     if not os.path.exists(path):
         return {"ok": False, "loi": [f"thieu {path}"], "so": {}}
 
@@ -490,11 +665,22 @@ def check(case_dir, phut, wpm=187.0, sec_per_img=None, tol=0.18, dang=""):
     loi += tt["loi"]
     canh_bao += tt["canh_bao"]
 
+    # --- khuon ke chuyen v3 (16/10/2026) ---
+    v3 = None
+    if khuon == "v3" or (khuon is None and nhan_vat):
+        v3 = cham_v3(raw, wpm)
+        if khuon == "v3":
+            loi += v3["loi"]
+        else:
+            canh_bao += ["(v3) " + e for e in v3["loi"]]
+        canh_bao += v3["canh_bao"]
+
     return {
         "ok": not loi,
         "loi": loi,
         "canh_bao": canh_bao,
         "tap_trung": tt["so"],
+        **({"v3": v3["so"]} if v3 else {}),
         "so": {"am_tiet": words, "phut_video": round(mins, 2), "marker_hinh": n_img,
                "s_moi_anh": round(words / n_img / wpm * 60.0, 1) if n_img else 0,
                "ngat_chuong": n_break,
@@ -536,10 +722,17 @@ def main():
     ap.add_argument("--dang", default=None,
                     help="nhan-vat | (trong) = van hoa. Bo trong = doc queue.yml")
     ap.add_argument("--json", action="store_true", help="in ca ket qua JSON")
+    ap.add_argument("--khuon", default=None,
+                    help="v3 = ap luat ke chuyen v3 thanh LOI (mac dinh: canh bao "
+                         "cho dang nhan-vat); v2 = tat")
+    ap.add_argument("--file", default=None,
+                    help="cham file khac script/script.md (vd script/script-v3.md)")
     a = ap.parse_args()
     case = os.path.abspath(a.case)
     dang = dang_tu_queue(case) if a.dang is None else a.dang
-    r = check(case, a.phut, a.wpm, dang=dang)
+    khuon = a.khuon if a.khuon != "v2" else "v2"
+    path = os.path.join(case, a.file) if a.file and not os.path.isabs(a.file) else a.file
+    r = check(case, a.phut, a.wpm, dang=dang, khuon=khuon, path=path)
     if a.json:
         print(json.dumps(r, ensure_ascii=False, indent=2))
     else:
@@ -550,6 +743,8 @@ def main():
             if k != "diem_tap_trung":
                 print(f"  {k:20s} {v}")
         print("  " + json.dumps(r["so"], ensure_ascii=False))
+        if r.get("v3"):
+            print("  v3: " + json.dumps(r["v3"], ensure_ascii=False))
         for e in r["loi"]:
             print("  LOI  " + e)
         for c in r.get("canh_bao", []):

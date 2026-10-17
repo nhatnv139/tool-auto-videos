@@ -101,6 +101,35 @@ def tts_mode():
 #   ^      hit mot hoi nghe thay ngay truoc cau do
 #   *      ca cau doc cham hon 8% va nghi sau dai gap 1,4 lan (cau can nhan)
 MARK_LANG = {"////": 2.40, "///": 1.50, "//": 0.80}
+
+
+def _ngat_env():
+    """TTS_NGAT="0.45,0.7,1.0" -> ghi de do dai lang cua // /// //// (giay).
+
+    Preset kenh su nhanh (16/10/2026): nguoi viet rac `///` va `////` theo
+    thoi quen 196 a/p, moi cai 1,5-2,4s lang chet. Kenh doi thu (BLV Hai Thanh
+    225 a/p, BattleCry 223) gan nhu khong co khe > 1,5s trong than bai. Bien nay
+    KHONG doi nghia ky tu trong script, chi kep do dai khi doc. Nam trong hash
+    cache (xem generate_for_case) nen doi la sinh lai giong.
+    """
+    raw = os.environ.get("TTS_NGAT", "").strip()
+    if not raw:
+        return None
+    try:
+        v = [max(0.0, float(x)) for x in raw.replace(";", ",").split(",") if x.strip()]
+    except ValueError:
+        return None
+    if len(v) != 3:
+        return None
+    return {"//": v[0], "///": v[1], "////": v[2]}
+
+
+if _ngat_env():
+    MARK_LANG = _ngat_env()
+try:
+    GAP_CELL_END = max(0.0, float(os.environ.get("TTS_GAP_CELL_END", GAP_CELL_END)))
+except ValueError:
+    pass
 MARK_MICRO = 0.16
 NHAN_DR = -8.0
 NHAN_GAP_MUL = 1.40
@@ -329,12 +358,12 @@ IM_LANG_DICH = max(0.05, min(0.45, float(os.environ.get("TTS_IM_LANG", "0.24")))
 
 
 def _gap_mul():
-    """He so nhan cho moi khoang lang, doc tu TTS_GAP_MUL. Chan trong [0.4, 2.0]."""
+    """He so nhan cho moi khoang lang, doc tu TTS_GAP_MUL. Chan trong [0.2, 2.0]."""
     try:
         v = float(os.environ.get("TTS_GAP_MUL", "1") or 1)
     except ValueError:
         return 1.0
-    return max(0.4, min(2.0, v))
+    return max(0.2, min(2.0, v))   # 16/10: san 0.4 -> 0.2 (preset kenh su nhanh)
 
 
 def plan_units(text, base_pct=0.0, base_pitch_hz=0.0, is_cell_start=True,
@@ -589,6 +618,10 @@ def _loudnorm_2pass(src, dst, lufs=-16.0, tp=-1.5, lra=11.0):
 DOAN_PAUSE_MIN = 0.14     # ngan hon = khe tac am (p,t,c) trong tu, do edge 0.07-0.10s; gian vao la vo tu
 DOAN_PAUSE_MAX = 1.20     # khong gian khoang lang noi tai qua muc nay
 DOAN_SHRINK_MIN = 0.55    # nhip nhanh (nhip < 1) duoc rut lang noi tai toi day
+try:   # preset kenh su nhanh: rut sau hon (env TTS_SHRINK_MIN, nam trong hash)
+    DOAN_SHRINK_MIN = max(0.2, min(1.0, float(os.environ.get("TTS_SHRINK_MIN", DOAN_SHRINK_MIN))))
+except ValueError:
+    pass
 DOAN_BREATH_GAP = 1.20    # hit hoi tu dong chi sau lang >= muc nay (///, ////)
 DOAN_BREATH_MIN_WORDS = 10
 NHAN_DR_DOAN = -5.0       # '*' trong kieu doan: ca manh cham 5%, khong nhay pitch
@@ -1190,6 +1223,13 @@ def generate_for_case(root, cfg, voice=DEFAULT_VOICE, model=DEFAULT_MODEL,
         sig = (f'{c["vo"]}|{provider}|{voice}|p{PROSODY_VERSION}'
                f'|r{base_pct0:g}|g{gs}|b{br}|m{_gap_mul():g}'
                f'|i{IM_LANG_DICH:g}|t{tts_mode()}')
+        # preset ngat nghi (TTS_NGAT / TTS_GAP_CELL_END): chi them vao chu ky khi
+        # dat, de cache giong cua moi case cu van khop nguyen.
+        ng = os.environ.get("TTS_NGAT", "").strip()
+        ce = os.environ.get("TTS_GAP_CELL_END", "").strip()
+        sm = os.environ.get("TTS_SHRINK_MIN", "").strip()
+        if ng or ce or sm:
+            sig += f'|n{ng}|e{ce}' + (f'|s{sm}' if sm else '')
         return hashlib.md5(sig.encode("utf-8")).hexdigest()[:12]
 
     def gen_one(c, base_pct):

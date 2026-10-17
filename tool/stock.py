@@ -424,13 +424,17 @@ def stock_pool(root, keyword, max_files=40):
     """
     import subprocess
     seen_path, seen_content, pool = set(), set(), []
+    giat = []     # clip giat (la_giat): chi dung khi khong con gi khac
     for kw in theme_keywords(keyword):
-        for f in stock_files(root, kw):
+        for f in stock_files(root, kw, bo_giat=False):
             if len(pool) >= max_files:
                 break
             if f in seen_path:
                 continue
             seen_path.add(f)
+            if la_giat(root, f):
+                giat.append(f)
+                continue
             try:
                 h = _content_hash(f)
                 if h is None:
@@ -441,6 +445,10 @@ def stock_pool(root, keyword, max_files=40):
             except Exception:
                 pass
             pool.append(f)
+    if not pool and giat:
+        # kho chi con clip giat -> van dung (giat con hon card trong), nhung bao
+        print(f"  WARN '{keyword}': chi co clip giat ({len(giat)}), van dung")
+        pool = giat[:max_files]
     return pool
 
 
@@ -455,6 +463,8 @@ def cell_pool(root, cell, max_files=40):
     if ent:
         seen = set()
         for f in stock_files(root, ent_key(ent)):
+            if la_giat(root, f):      # anh Ken Burns khong bao gio bi loai
+                continue
             h = _content_hash(f)
             if h and h in seen:
                 continue
@@ -567,6 +577,242 @@ def is_still(root, f):
     return os.path.basename(f) not in _VIDEO_FILES[d]
 
 
+# ---------------------------------------------------------------------------
+# DO MUOT clip (chong "video nen giat"). Do 13/10 tren 43 clip kn-02:
+#  - Giat that = buoc khung KHONG DEU: cu 4 khung lai 1 khung nhay gap doi
+#    (clip 30fps bi shrink_clip ep fps=24 -> roi 1/5 khung, vd 899b2899703d,
+#    0b6f6817c7b9) hoac nguon Pexels 25fps tu ban da lech nhip (be998586c2b7,
+#    de66512acfe8), hoac khung dung lap (dup).
+#  - scene_score cua ffmpeg la min(mafd, |mafd - mafd truoc|) tuc DAO HAM cua
+#    chuyen dong: chuoi "0.04 0.04 0 0" chinh la 1 khung nhay vot roi tro lai,
+#    khong han la khung dung.
+# Cach do: giai ma ~4s giua clip o fps GOC (khong ep fps), xam 192x108, lay
+# d_i = trung binh |khung i - khung i-1|. So voi trung vi truot 9 khung:
+#   dup = d_i < 0.35*trung_vi   (khung gan nhu trung khung truoc)
+#   jud = d_i > 1.6*trung_vi    (khung nhay coc)
+# diem = dup + jud (ti le khung bat thuong). Clip gan nhu dung yen (trung vi
+# < 0.25) khong danh gia duoc -> diem 0. Clip muot do duoc <= 0.06-0.08, clip
+# giat 0.12-0.52 -> NGUONG 0.11 (env STOCK_GIAT_NGUONG), KEM dieu kien lap deu
+# (chu_ky >= 0.3) hoac >= 5% khung dung lap (dup) — xem giat_theo_diem. Rung
+# tay / canh dong ngau nhien (chu_ky < 0.3, khong dup) KHONG tinh la giat.
+# ---------------------------------------------------------------------------
+MUOT_FILE = "_do_muot.json"      # cache diem do (ten -> {size, mtime, diem..})
+GIAT_FILE = "_giat_den.json"     # danh sach den do auto/quet_stock_giat.py ghi
+GIAT_NGUONG = float(os.environ.get("STOCK_GIAT_NGUONG", "0.11"))
+_MUOT_W, _MUOT_H = 192, 108
+_MUOT_LOCK = _th.Lock()
+_MUOT = {}        # stock_dir -> dict cache
+_GIAT = {}        # stock_dir -> dict blacklist
+_MUOT_DIRTY = {}  # stock_dir -> so ban ghi chua luu
+
+
+_FPS_CACHE = {}
+
+
+def src_fps(path):
+    """Frame rate goc (r_frame_rate) cua video, 0.0 neu khong doc duoc.
+    Cache theo (duong dan, mtime) — render goi moi doan 6s."""
+    try:
+        key = (path, os.path.getmtime(path))
+    except OSError:
+        return 0.0
+    if key not in _FPS_CACHE:
+        _FPS_CACHE[key] = _src_fps(path)
+    return _FPS_CACHE[key]
+
+
+def _src_fps(path):
+    try:
+        r = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
+             "stream=r_frame_rate", "-of", "csv=p=0", path],
+            capture_output=True, text=True, timeout=30)
+        a, _, b = r.stdout.strip().split("\n")[0].partition("/")
+        return float(a) / float(b or 1)
+    except Exception:
+        return 0.0
+
+
+def _dur_quick(path):
+    try:
+        r = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "csv=p=0", path], capture_output=True, text=True, timeout=30)
+        return float(r.stdout.strip() or 0)
+    except Exception:
+        return 0.0
+
+
+def do_muot(path, sample=4.0):
+    """Do do muot 1 clip. -> dict {diem, dup, jud, chuyen_dong, fps, n} hoac
+    None neu khong giai ma duoc. diem cang cao cang giat (xem ghi chu tren).
+    Chay ~0.3-0.6s/clip (chi giai ma `sample` giay, khung xam nho)."""
+    try:
+        import numpy as np
+    except ImportError:
+        return None
+    dur = _dur_quick(path)
+    if dur <= 0:
+        return None
+    ss = max(0.0, dur / 2 - sample / 2)
+    W, H = _MUOT_W, _MUOT_H
+    cmd = ["ffmpeg", "-v", "error", "-threads", "2", "-ss", f"{ss:.2f}",
+           "-i", path, "-t", f"{sample:.2f}", "-an",
+           "-vf", f"scale={W}:{H}:flags=area,format=gray",
+           "-f", "rawvideo", "-"]
+    try:
+        raw = subprocess.run(cmd, capture_output=True, timeout=120).stdout
+    except Exception:
+        return None
+    a = np.frombuffer(raw, np.uint8)
+    n = len(a) // (W * H)
+    if n < 12:
+        return None
+    a = a[:n * W * H].reshape(n, H, W).astype(np.int16)
+    d = np.abs(np.diff(a, axis=0)).mean(axis=(1, 2))
+    med = float(np.median(d))
+    out = {"fps": round(src_fps(path), 3), "n": int(len(d)),
+           "chuyen_dong": round(med, 3)}
+    if med < 0.25:                      # gan nhu dung yen -> khong co gi de giat
+        out.update(diem=0.0, dup=0.0, jud=0.0, chu_ky=0.0)
+        return out
+    k = 4
+    pad = np.pad(d, k, mode="edge")
+    loc = np.array([np.median(pad[i:i + 2 * k + 1]) for i in range(len(d))])
+    # san tuyet doi: clip chuyen dong cham (trung vi 0.3) thi nhieu nen/keyframe
+    # cung du lam ti le vuot 1.6 lan -> bat nham
+    dup = float(np.mean((d < 0.35 * loc) & (loc - d > 0.15)))
+    jud = float(np.mean((d > 1.6 * loc) & (d - loc > 0.2)))
+    # CHU KY: giat that lap deu (30->24: cu 4 khung; dup: cu 5 khung), con
+    # rung tay/canh dong thi ngau nhien. Tu tuong quan cua phan du d/loc o do
+    # tre 2..6 khung: clip giat 0.35-0.90, clip muot -0.05-0.26 (do 13/10).
+    r = np.clip(d / np.maximum(loc, 0.05) - 1, -1, 3)
+    r = r - r.mean()
+    v = float((r * r).mean())
+    ac = max(float((r[:-L] * r[L:]).mean()) / v for L in range(2, 7)) if v > 1e-9 else 0.0
+    out.update(diem=round(dup + jud, 4), dup=round(dup, 4), jud=round(jud, 4),
+               chu_ky=round(ac, 3))
+    return out
+
+
+GIAT_CHU_KY = 0.3      # tu tuong quan toi thieu de goi la giat lap deu
+GIAT_DUP = 0.05        # >=5% khung DUNG (trung khung truoc) = khung khung, giat
+                       # du khong deu (vd nguon 50fps ep 24: 00e12a265380)
+MUOT_VER = 2
+
+
+def giat_theo_diem(r, nguong=None):
+    """Quyet dinh giat tu ket qua do_muot."""
+    if not r:
+        return False
+    nguong = GIAT_NGUONG if nguong is None else nguong
+    diem = r.get("diem", 0.0)
+    return diem >= nguong and (r.get("chu_ky", 1.0) >= GIAT_CHU_KY
+                               or r.get("dup", 0.0) >= GIAT_DUP)
+
+
+def _sig_of(path):
+    st = os.stat(path)
+    return st.st_size, round(st.st_mtime, 2)
+
+
+def _muot_cache(d):
+    if d not in _MUOT:
+        try:
+            with open(os.path.join(d, MUOT_FILE), encoding="utf-8") as fh:
+                _MUOT[d] = json.load(fh)
+        except Exception:
+            _MUOT[d] = {}
+    return _MUOT[d]
+
+
+def _giat_list(d):
+    if d not in _GIAT:
+        try:
+            with open(os.path.join(d, GIAT_FILE), encoding="utf-8") as fh:
+                _GIAT[d] = json.load(fh).get("files", {})
+        except Exception:
+            _GIAT[d] = {}
+    return _GIAT[d]
+
+
+def save_muot(root=None, d=None):
+    """Ghi cache diem muot xuong assets/stock/_do_muot.json (atomic)."""
+    d = d or _stock_dir(root)
+    with _MUOT_LOCK:
+        if not _MUOT_DIRTY.get(d):
+            return
+        data = dict(_muot_cache(d))
+        _MUOT_DIRTY[d] = 0
+    p = os.path.join(d, MUOT_FILE)
+    tmp = p + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=False, indent=0, sort_keys=True)
+    os.replace(tmp, p)
+
+
+def muot_of(path, measure=True):
+    """Diem muot cua file (co cache theo size+mtime). measure=False: chi doc
+    cache, chua do thi None."""
+    d = os.path.dirname(os.path.abspath(path))
+    name = os.path.basename(path)
+    try:
+        size, mt = _sig_of(path)
+    except OSError:
+        return None
+    with _MUOT_LOCK:
+        rec = _muot_cache(d).get(name)
+    if (rec and rec.get("size") == size and rec.get("mtime") == mt
+            and rec.get("v") == MUOT_VER):
+        return rec
+    if not measure:
+        return None
+    r = do_muot(path)
+    if r is None:
+        return None
+    r.update(size=size, mtime=mt, v=MUOT_VER)
+    with _MUOT_LOCK:
+        _muot_cache(d)[name] = r
+        _MUOT_DIRTY[d] = _MUOT_DIRTY.get(d, 0) + 1
+        dirty = _MUOT_DIRTY[d]
+    if dirty >= 50:
+        try:
+            save_muot(d=d)
+        except Exception:
+            pass
+    return r
+
+
+def loc_giat_bat():
+    """Bo loc clip giat bat MAC DINH; STOCK_LOC_GIAT=0 de tat."""
+    return os.environ.get("STOCK_LOC_GIAT", "1") != "0"
+
+
+def la_giat(root, f, measure=True):
+    """True neu f la CLIP VIDEO giat (danh sach den hoac diem >= nguong).
+
+    Shot Ken Burns tu anh (is_still) KHONG bi loai o day: anh tu lieu cua thuc
+    the la noi dung khong thay duoc, giat cua no la do zoompan (wiki_images),
+    phai sua o buoc dung shot chu khong vut anh."""
+    if not loc_giat_bat() or not f or not os.path.exists(f):
+        return False
+    try:
+        if is_still(root, f):
+            return False
+    except Exception:
+        return False
+    d = os.path.dirname(os.path.abspath(f))
+    name = os.path.basename(f)
+    den = _giat_list(d).get(name)
+    if den:
+        try:
+            if den.get("size") in (None, os.path.getsize(f)):
+                return True
+        except OSError:
+            pass
+    return giat_theo_diem(muot_of(f, measure=measure))
+
+
 def prewarm_sigs(files, workers=None):
     """Tinh _content_hash + color_sig cho cac file CHUA co cache, song song.
 
@@ -586,12 +832,24 @@ def prewarm_sigs(files, workers=None):
                 return True
         return False
 
-    todo = [f for f in dict.fromkeys(files) if os.path.exists(f) and _need(f)]
+    def _need_muot(f):
+        # clip VIDEO chua co diem muot (anh Ken Burns khong can do)
+        if not loc_giat_bat():
+            return False
+        try:
+            root_f = os.path.dirname(os.path.dirname(os.path.dirname(
+                os.path.abspath(f))))
+            return (not is_still(root_f, f)) and muot_of(f, measure=False) is None
+        except Exception:
+            return False
+
+    todo = [f for f in dict.fromkeys(files)
+            if os.path.exists(f) and (_need(f) or _need_muot(f))]
     if not todo:
         return 0
     workers = workers or int(os.environ.get("SIG_JOBS")
                              or max(2, min(12, (os.cpu_count() or 8) - 2)))
-    print(f"  cache hash/mau: {len(todo)} file, {workers} luong song song")
+    print(f"  cache hash/mau/muot: {len(todo)} file, {workers} luong song song")
 
     def _one(f):
         try:
@@ -599,10 +857,68 @@ def prewarm_sigs(files, workers=None):
             color_sig(f)
         except Exception:
             pass
+        try:
+            if _need_muot(f):
+                muot_of(f)
+        except Exception:
+            pass
 
     with ThreadPoolExecutor(max_workers=workers) as ex:
         list(ex.map(_one, todo))
+    for d in list(_MUOT_DIRTY):
+        try:
+            save_muot(d=d)
+        except Exception:
+            pass
     return len(todo)
+
+
+def ahash(f):
+    """Hash cam nhan (average hash 16x9 xam tai 0s/2s/4s, 432 bit) — bat duoc
+    CUNG MOT CLIP tai tu hai nguon / hai do phan giai, thu _content_hash (md5
+    tung byte PNG) bo lot. Do 16/10/2026: demo Tran Hung Dao co hai cell lien
+    nhau (hai keyword "fisherman dugout canoe ...") cung mot canh thuyen, dung
+    ngay hai ben diem chuyen chuong. Cache .a canh file."""
+    cache = f + ".a"
+    try:
+        if os.path.exists(cache):
+            with open(cache, encoding="utf-8") as fh:
+                data = fh.read().split("\n")
+            if len(data) >= 2 and float(data[1]) == os.path.getmtime(f):
+                return data[0]
+    except Exception:
+        pass
+    import numpy as np
+    bits = ""
+    for ss in ("0", "2", "4"):
+        try:
+            r = subprocess.run(["ffmpeg", "-v", "error", "-ss", ss, "-i", f,
+                                "-frames:v", "1", "-vf", "scale=16:9,format=gray",
+                                "-f", "rawvideo", "-"], capture_output=True, timeout=30)
+        except subprocess.TimeoutExpired:
+            return None
+        a = np.frombuffer(r.stdout, dtype=np.uint8)
+        if a.size != 144:
+            if not bits:
+                return None
+            a = np.frombuffer(bytes.fromhex("00" * 144), dtype=np.uint8)
+        bits += "".join("1" if v > a.mean() else "0" for v in a)
+    try:
+        with open(cache, "w", encoding="utf-8") as fh:
+            fh.write(bits + "\n" + str(os.path.getmtime(f)))
+    except Exception:
+        pass
+    return bits
+
+
+def near_dup(f, g, thr=0.18):
+    """True neu f va g gan nhu cung mot canh (hamming < thr)."""
+    if f == g:
+        return True
+    a, b = ahash(f), ahash(g)
+    if not a or not b or len(a) != len(b):
+        return False
+    return sum(x != y for x, y in zip(a, b)) / len(a) < thr
 
 
 def color_dist(a, b):
@@ -790,7 +1106,10 @@ SEARCHERS = {
 # Xem stock_photo.TOP_TRUST: may ket qua dau moi nguon duoc tin du khong khop chu.
 # Video de hon anh mot bac (4 thay vi 6): mo ta video coc hon mo ta anh that,
 # nhung mot clip sai thoi hai hon mot anh sai thoi — no dong day 8 giay.
-VIDEO_TOP_TRUST = 4
+# 05/10/2026: ha 4 -> 0. Do tren tran-thu-do: 59/94 clip Pexels sai (anh Assad,
+# tran nha tho baroque, san bong...) deu la ket qua hang 0-2 KHONG khop chu nao.
+# Gio clip phai co it nhat 1 tu khoa khop moi duoc giu. Doi lai bang VIDEO_TOP_TRUST=4.
+VIDEO_TOP_TRUST = int(os.environ.get("VIDEO_TOP_TRUST", "0"))
 
 
 def _rel_filter(keyword, items, api):
@@ -1154,9 +1473,44 @@ def needs_shrink(path):
     return need, dur, h
 
 
+def fps_blend_can(r, out=24):
+    """True neu doi nhip r -> out bang fps= (roi/lap khung) se GIAT thay ro:
+    30/29.97/60/59.94 -> 24 roi 1 trong 5 khung (buoc 1-1-1-2). Nguon 24/48/
+    120 (boi so sach) va 25/50/100 (25->24 chi lech 1 khung/giay, do 13/10 diem
+    giat van 0.00-0.06) giu fps= nhu cu. STOCK_FPS_BLEND=0 de tat."""
+    if os.environ.get("STOCK_FPS_BLEND", "1") == "0" or r <= 0:
+        return False
+    for base in (out, 25):
+        q = r / base
+        if abs(q - round(q)) < 0.02 and round(q) >= 1:
+            return False
+    return r > out
+
+
+def _shrink_fps(r):
+    """Filter fps cho shrink_clip -> chuoi "fps=...," hoac "".
+
+    Ban cu ep fps=24 cho MOI nguon. Do 13/10: nguon Pexels 30fps (va 60fps chua
+    noi dung 30) ep xuong 24 bi roi 1/5 khung -> cu 4 khung co 1 khung nhay coc
+    (899b2899703d, 0b6f6817c7b9, 25529c68aded, 3bcc2f970d01, ca050c78c2c1:
+    diem giat 0.13-0.24), va hong VINH VIEN vi file goc bi ghi de. Nay giu
+    nhip goc; chi chia doi nguon >= 47fps (60->30, 50->25: roi deu 1/2 khung,
+    khong lech) va ha nguon >62fps ve boi so sach (120->24, 100->25). Doi ve 24
+    la viec cua render (_stock_scale_chain: tron khung, khong roi khung)."""
+    if r <= 0 or r <= 31:
+        return ""
+    if r <= 62:
+        return f"fps={r / 2:.5f},"
+    for base in (24, 25, 30):
+        if abs(r / base - round(r / base)) < 0.01:
+            return f"fps={base},"
+    return "fps=30,"
+
+
 def shrink_clip(path, max_sec=SHRINK_MAX_SEC, crf=SHRINK_CRF, force=False):
     """Cat con <= max_sec (doan GIUA — dau/cuoi clip stock hay la fade, logo),
-    dua ve 1920x1080 24fps, bo tieng, x264 veryfast crf22. Giu nguyen TEN file
+    dua ve 1920x1080 (giu nhip goc, xem _shrink_fps), bo tieng, x264 veryfast
+    crf22. Giu nguyen TEN file
     (hash) nen render/plan van tim thay. -> (byte cu, byte moi) hoac None."""
     need, dur, _h = needs_shrink(path)
     if not need and not force:
@@ -1165,7 +1519,7 @@ def shrink_clip(path, max_sec=SHRINK_MAX_SEC, crf=SHRINK_CRF, force=False):
     ss = max(0.0, (dur - max_sec) / 2) if dur > max_sec + 2 else 0.0
     tmp = path + ".shrink.mp4"
     vf = ("scale=1920:1080:force_original_aspect_ratio=increase:flags=lanczos,"
-          "crop=1920:1080,setsar=1,fps=24,format=yuv420p")
+          "crop=1920:1080,setsar=1," + _shrink_fps(src_fps(path)) + "format=yuv420p")
     cmd = ["ffmpeg", "-v", "error", "-y", "-ss", f"{ss:.2f}", "-i", path,
            "-t", f"{max_sec:.2f}", "-vf", vf, "-an", "-c:v", "libx264",
            "-preset", "veryfast", "-crf", str(crf),
@@ -1307,7 +1661,7 @@ def stock_file(root, keyword, idx=0):
     return None
 
 
-def stock_files(root, keyword, per=MAX_IDX):
+def stock_files(root, keyword, per=MAX_IDX, bo_giat=True):
     """MOI file da co cho keyword, tren CA BON kho (video + anh Ken Burns).
 
     stock_file() tra ve mot file cho moi idx (kho dau tien thang), nen neu cung
@@ -1318,12 +1672,20 @@ def stock_files(root, keyword, per=MAX_IDX):
     per phai phu HET dai idx ma _fetch_keyword ghi ra (xem MAX_IDX): ban cu quet
     range(8) trong khi Pexels ghi vao idx 6..11 -> bon file Pexels moi keyword
     tai ve roi nam im trong o cung, khong bao gio duoc dung.
+
+    bo_giat=True (mac dinh): bo clip VIDEO da biet la giat (danh sach den
+    _giat_den.json hoac diem trong _do_muot.json >= nguong). Chi doc cache,
+    khong do moi o day (do song song o prewarm_sigs / auto/quet_stock_giat.py).
+    Clip giat bi bo thi kw_demand thay keyword thieu va tai clip khac bu vao;
+    file KHONG bi xoa. STOCK_LOC_GIAT=0 de tat.
     """
     out = []
     for api in APIS:
         for i in range(per):
             path, _h = _cache_path(root, api, keyword, i)
             if os.path.exists(path):
+                if bo_giat and api in VIDEO_APIS and la_giat(root, path, measure=False):
+                    continue
                 out.append(path)
     return out
 

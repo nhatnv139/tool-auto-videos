@@ -36,7 +36,7 @@ KIT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from check_script import (check, cham_tap_trung, la_nhan_vat, bo_dau,  # noqa: E402
-                          strip_marks, MARKER_LINE, tach_cau)
+                          strip_marks, MARKER_LINE, tach_cau, cham_v3)
 
 
 def claude_bin():
@@ -239,14 +239,94 @@ LUAT = {
 }
 
 
+# ---- KHUON KE CHUYEN v3 (16/10/2026) -------------------------------------
+# D:\dev\content\yeu-lich-su-khuon-ke-chuyen-v3.md. User: "ke chuyen khong hap
+# dan gi ca" + ghet doc to "Phan mot/Chuong 1". Do 3 bai cu: khoi co thoai
+# 5-19%, 146-202s lien khong co cau hoi, 14-17 lan "su chep", '///' 1,2/phut.
+# Mac dinh cho dang nhan-vat; queue `khuon: v2` de quay ve luat cu.
+V3_CHUNG = (
+    "KHUON KE CHUYEN v3 — KE CHUYEN, KHONG DOC BIEN NIEN:\n"
+    "- CANH, KHONG TOM TAT: >= 60% loi doc la canh. Canh = (1) nam + noi + ai dang o "
+    "do; (2) nguoi ay MUON gi / SO gi; (3) mot chi tiet cam/thay/nghe duoc co trong su "
+    "(mui sat, 10 mam vang, mau chay); (4) THOAI: nguoi noi + dong tu noi + ':' + loi "
+    "su chep, doc nhu nguoi that noi (vd \"Thu Do xach guom toi, quat: giet thang giac "
+    "Lieu!\"); (5) mot cau 'nhung' lam canh doi huong.\n"
+    "- THOAI chi lay tu loi su chep/thu tu co that. KHONG bia loi, KHONG bia su kien, "
+    "thoi tiet, net mat. Muon dung suy nghi nhan vat thi dong khung: \"Thu dat minh vao "
+    "cho...\", \"Neu loi dan ay duoc lam theo, thi...\".\n"
+    "- VONG MO: cu 60-90 giay (~200-280 am tiet) phai co mot cau hoi '?' hoac mot cau "
+    "bao truoc (\"...chua biet rang...\", \"Do la lan cuoi...\", \"Hay nho 2 chu X, "
+    "cuoi video no se quay lai.\", \"Nhung co mot dieu khong khop.\"). Dong mot cau hoi "
+    "thi mo ngay cau lon hon. Dung tro treo kich tinh: nguoi xem biet, nhan vat chua biet.\n"
+    "- NHAN QUA 'NHUNG / VI THE': CAM mo cau bang \"Roi / Sau do / Tiep do / Tu do\". "
+    "Moi phut >= 1 'nhung' va >= 1 'vi the/vi vay/nen/the la/do la ly do'. Toi da 1/12 "
+    "so cau mo bang nam (\"Nam 1283, ...\") — dat nam vao giua cau.\n"
+    "- GIONG NGUOI KE, KHONG GIONG THU THU: toi da 1 lan \"su chep/su ghi/ten bo su\" "
+    "trong ca phan nay; loi trong su doc thang nhu thoai; KHONG \"dai y\".\n"
+    "- Nhan vat chinh khong vang mat qua ~280 am tiet; ke doi cha/ke thu thi noi ve "
+    "nhan vat chinh bang mot cau.\n"
+    "- KHONG BAO GIO doc \"Phan mot\", \"Chuong 2\", \"phan tiep theo\" — ten chuong do "
+    "may tu dat thanh the chu tren man hinh.\n"
+    "- An toan (luat cung): khong chong pha/phe phan Dang, Nha nuoc, khong an du chinh "
+    "tri hien dai; khong Bien Dong, ton giao, bieu tinh; khong nguon BBC/RFA/VOA.\n")
+LUAT_V3 = {
+    "hook": V3_CHUNG + (
+        "- HOOK ~45-55 giay: mo GIUA CAO TRAO bang mot canh co that (nam, noi, nguoi, dong "
+        "tac, mot chi tiet giac quan), cau dau <= 25 am tiet, giay 3 da co dong tu manh. "
+        "KHONG chao dau video. KHONG cau \"sai lam to lon\".\n"
+        "- CAU HOI TRUNG TAM (trung tieu de, co dau '?') truoc giay 35 (~110 am tiet), "
+        "ngay sau la \"Day la Yeu Lich su.\"\n"
+        "- Tung TOI DA 2 moi: moi thu hai la mot bi an chua tra loi. Khong ke truoc het "
+        "cac giai thoai cua bai.\n"
+        "- Cau cuoi hook la CAU MOC lui thoi gian: \"Muon hieu..., ta phai ve [nam], toi "
+        "[canh cu the]\" + mot cau bao truoc nguy hiem.\n"),
+    "chuong": V3_CHUNG + (
+        "- Cau dau tien: nam + noi + hanh dong DANG xay ra (canh), roi moi ho so.\n"
+        "- Phan nay can >= 3 cau thoai co ':' va >= 2 vong mo.\n"
+        "- Canh sau phai co cai gia lon hon canh truoc (leo thang), khong xep giai thoai "
+        "ngang hang.\n"
+        "- CAU CUOI PHAN = CLIFFHANGER: mot cau hoi, mot cau bao truoc, hoac mot cau "
+        "'Nhung...' bo lung. KHONG cau tong ket dong, KHONG doc ten chuong sau.\n"),
+    "chao_lai": (
+        "- Phan nay nam o GIUA video: chen ~20 giay CHAO LAI + MOC LAI: \"Neu ban vua vao "
+        "xem, day la Yeu Lich su, va ta dang hoi: <cau hoi trung tam>?\" + \"Toi day cau tra "
+        "loi tuong da ro. Nhung co mot dieu khong khop.\" + mot cau hoi moi lon hon. Dat "
+        "o giua phan, sau mot canh, khong mo dau phan.\n"),
+    "chuong_cuoi": V3_CHUNG + (
+        "- Day la CHUONG CUOI + KET. Canh cuoi doi/cao trao truoc, tung mot la bai cuoi "
+        "co that trong su (twist). KHONG viet bai luan nguyen nhan, KHONG \"khach quan / "
+        "chu quan\".\n"
+        "- KET: (1) tra loi THANG cau hoi trung tam trong 2 cau, bang cam xuc; (2) dong "
+        "het cac vong da mo; (3) CALLBACK: quay lai dung vat/canh cua 10 giay dau video, "
+        "nay mang nghia moi; (4) CTA: mot cau hoi CU THE chon mot trong hai cho nguoi xem "
+        "(\"Neu ban la X, ban se A hay B?\") + \"Hay viet cau tra loi o phan binh luan.\" + "
+        "noi sang mot video lien quan tren kenh.\n"),
+}
+
+
+def khuon_cua(dang, v=None):
+    """'v3' (mac dinh cho nhan-vat) | 'v2' (luat cu). Queue: `khuon: v2`."""
+    k = str((v or {}).get("khuon") or "").strip().lower()
+    if k in ("v2", "v3"):
+        return k
+    return "v3" if la_nhan_vat(dang) else "v2"
+
+
 def _dang(dang):
     return "nhan-vat" if la_nhan_vat(dang) else "van-hoa"
 
 
-def _loai_luat(f, idx, dang):
+def _loai_luat(f, idx, dang, khuon="v2"):
     phan = f["dan_y"]["phan"]
     p = phan[idx]
     d = _dang(dang)
+    if khuon == "v3" and p["loai"] != "ngan":
+        if p["loai"] == "hook":
+            return [("v3", "hook")]
+        keys = [("v3", "chuong_cuoi" if idx == len(phan) - 1 else "chuong")]
+        if p.get("chao_lai"):
+            keys.append(("v3", "chao_lai"))
+        return keys
     if p["loai"] == "ngan":
         return [("*", "ngan")]
     if p["loai"] == "hook":
@@ -285,7 +365,7 @@ def _doan_cfg(am_tiet, dang, wpm):
 
 
 def build_prompt_phan(f, idx, de_tai, goc_nhin, phut, wpm, dang,
-                      ban_cu="", loi_cu=None):
+                      ban_cu="", loi_cu=None, khuon="v2"):
     dy = f["dan_y"]
     phan = dy["phan"]
     p = phan[idx]
@@ -304,8 +384,12 @@ def build_prompt_phan(f, idx, de_tai, goc_nhin, phut, wpm, dang,
         dong_dy.append(f"  {i + 1}. [{q['loai']}] {q.get('ten') or '(hook)'} — "
                        f"{q.get('cau_hoi', '')}{mui}")
     n_doan, lo, hi = _doan_cfg(p["am_tiet"], dang, wpm)
-    luat = "".join(LUAT.get(k, "") for k in _loai_luat(f, idx, dang))
-    lieu = ("Dang nay ke lien tuc (im lang ~3,5%): ca phan chi 1-3 dau '//', "
+    luat = "".join((LUAT_V3.get(k[1], "") if k[0] == "v3" else LUAT.get(k, ""))
+                   for k in _loai_luat(f, idx, dang, khuon))
+    lieu = ("'|' giua y, '//' giua cau. '///' toi da 2 lan ca phan, chi sau cau lat / "
+            "thoai dinh / cau hoi trung tam; hai doan lien nhau khong cung ket '///'. "
+            "KHONG dung '////'." if khuon == "v3" else
+            "Dang nay ke lien tuc (im lang ~3,5%): ca phan chi 1-3 dau '//', "
             "toi da 1 dau '///'." if la_nhan_vat(dang) else
             "Moi 5 phut chi 3-5 dau '//' va 1-2 dau '///'.")
     vd_ent = thu_tu[0][0] if thu_tu else "Heshen"
@@ -361,7 +445,7 @@ def am_tiet(text):
     return len(strip_marks(" ".join(vo)).split())
 
 
-def cham_phan(text, f, idx, dang, wpm):
+def cham_phan(text, f, idx, dang, wpm, khuon="v2"):
     """-> (loi[], so{}) cho MOT phan. Luat giong check_script nhung o cap phan,
     de viet lai dung phan hong."""
     p = f["dan_y"]["phan"][idx]
@@ -434,7 +518,25 @@ def cham_phan(text, f, idx, dang, wpm):
             if not re.search(r"\d{3,4}", dau):
                 loi.append("chuong phai mo bang CANH co NAM (chu so) trong cau dau "
                            "tien: nam -> noi chon -> viec dang dien ra")
-    return loi, dict(tt["so"], am_tiet=at, facts_dung=f"{dung}/{len(facts)}")
+    v3so = {}
+    if khuon == "v3" and p["loai"] != "ngan":
+        kind = ("hook" if p["loai"] == "hook" else
+                "chuong_cuoi" if idx == len(f["dan_y"]["phan"]) - 1 else "chuong")
+        r3 = cham_v3(text, wpm, phan=kind)
+        loi += r3["loi"]
+        v3so = {"v3_" + k: r3["so"].get(k) for k in ("thoai", "khoang_trong_max_s",
+                                                      "rao_nguon", "ngat_3")}
+        vo_dong = [l for l in lines if not MARKER_LINE.match(l)]
+        if kind == "chuong" and vo_dong:
+            cuoi = strip_marks(vo_dong[-1])
+            cau_cuoi = (tach_cau(cuoi) or [cuoi])[-1]
+            if not re.search(r"\?|\bnhưng\b|chưa|sắp|\bsẽ\b|lần cuối|còn một|chờ",
+                             cau_cuoi, re.I):
+                loi.append("V3: cau cuoi phan phai la CLIFFHANGER (cau hoi / bao truoc / "
+                           f"'Nhung...' bo lung), dang la cau dong: \"{cau_cuoi[:70]}\"")
+        if kind == "hook" and re.search(r"sai lầm to lớn", strip_marks(text), re.I):
+            loi.append("V3: hook khong dung khuon \"sai lam to lon\"")
+    return loi, dict(tt["so"], am_tiet=at, facts_dung=f"{dung}/{len(facts)}", **v3so)
 
 
 # =========================================================================
@@ -443,9 +545,28 @@ def cham_phan(text, f, idx, dang, wpm):
 SO_CHU_VI = ["một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín", "mười"]
 
 
-def ghep(f, texts, dang):
+def _ten_the(p):
+    """Tieu de the chuong v3: cau hoi rieng cua chuong (ngan) hoac ten chuong."""
+    ch = (p.get("cau_hoi") or "").strip()
+    ten = (p.get("ten") or "").strip().rstrip(".")
+    t = ch if ch and len(ch.split()) <= 14 else ten
+    t = re.sub(r'["|\[\]]', "", t).strip()
+    return t[:1].upper() + t[1:] if t else "..."
+
+
+def ghep(f, texts, dang, khuon="v2"):
     dy = f["dan_y"]
     out = [f"# {dy.get('tieu_de', '').strip() or 'KICH BAN'}", ""]
+    if khuon == "v3":
+        # KHONG doc to "Chuong mot": '## <cau hoi>' (script2config bo qua, check
+        # dem chuong, publish lam moc chuong) + the card IM LANG 3s hien tieu de.
+        for p, t in zip(dy["phan"], texts):
+            if p["loai"] == "chuong":
+                ten = _ten_the(p)
+                out += [f"## {ten}", f'[[card:"{ten}"|music=swell]]', ""]
+            out.append(t.strip())
+            out.append("")
+        return "\n".join(out).rstrip() + "\n"
     pause = "2.5" if la_nhan_vat(dang) else "5.0"
     so = 0
     for p, t in zip(dy["phan"], texts):
@@ -481,8 +602,10 @@ def write(case, de_tai, goc_nhin, phut, wpm=187.0, max_vong=3, log=print,
     f = research.chuan_bi(case, de_tai, goc_nhin, phut, wpm, dang, v, log,
                           timeout=int(min(timeout, 1800)))
     phan = f["dan_y"]["phan"]
-    # chao lai giua video (skill su-nhan-vat, video > 20 phut)
-    if la_nhan_vat(dang) and phut > 20:
+    khuon = khuon_cua(dang, v)
+    log(f"    khuon ke chuyen: {khuon}")
+    # chao lai giua video (skill su-nhan-vat, video > 20 phut; v3: > 10 phut)
+    if la_nhan_vat(dang) and phut > (10 if khuon == "v3" else 20):
         chuong = [i for i, p in enumerate(phan) if p["loai"] == "chuong"]
         if len(chuong) >= 3:
             phan[chuong[len(chuong) // 2]]["chao_lai"] = True
@@ -498,17 +621,17 @@ def write(case, de_tai, goc_nhin, phut, wpm=187.0, max_vong=3, log=print,
     for i in range(n):
         if os.path.exists(file_phan(i)):
             texts[i] = open(file_phan(i), encoding="utf-8").read()
-            loi_phan[i], _ = cham_phan(texts[i], f, i, dang, wpm)
+            loi_phan[i], _ = cham_phan(texts[i], f, i, dang, wpm, khuon)
 
     def viet(i, vong):
         t1 = time.time()
         prompt = build_prompt_phan(f, i, de_tai, goc_nhin, phut, wpm, dang,
                                    ban_cu=texts[i] if loi_phan[i] else "",
-                                   loi_cu=loi_phan[i])
+                                   loi_cu=loi_phan[i], khuon=khuon)
         rc, out = goi_claude(prompt, timeout=han, tools=False, model=model,
                              log=lambda s: log(f"    | phan {i + 1}: {s}"))
         txt = lam_sach(out) if rc == 0 else ""
-        loi, so = cham_phan(txt, f, i, dang, wpm)
+        loi, so = cham_phan(txt, f, i, dang, wpm, khuon)
         return i, txt, loi, so, time.time() - t1, rc
 
     song_song = int(v.get("song_song", 3))
@@ -538,9 +661,9 @@ def write(case, de_tai, goc_nhin, phut, wpm=187.0, max_vong=3, log=print,
         raise RuntimeError("co phan khong viet duoc (het gio/loi claude): " +
                            ", ".join(str(i + 1) for i, t in enumerate(texts) if not t.strip()))
     open(os.path.join(sdir, "script.md"), "w", encoding="utf-8").write(
-        ghep(f, texts, dang))
+        ghep(f, texts, dang, khuon))
 
-    res = check(case, phut, wpm, dang=dang)
+    res = check(case, phut, wpm, dang=dang, khuon=khuon)
     log(f"    cham ca bai: {json.dumps(res['so'], ensure_ascii=False)}")
     log(f"    tap trung: {json.dumps(res.get('tap_trung', {}), ensure_ascii=False)}")
     for c in res.get("canh_bao", []):
@@ -579,9 +702,10 @@ def main():
     ap.add_argument("--wpm", type=float, default=187.0,
                     help="am tiet moi PHUT VIDEO (mac dinh 187, do thuc)")
     ap.add_argument("--dang", default="")
+    ap.add_argument("--khuon", default="", help="v3 (mac dinh nhan-vat) | v2 (luat cu)")
     a = ap.parse_args()
     r = write(os.path.abspath(a.case), a.de_tai, a.goc_nhin, a.phut, a.wpm,
-              dang=a.dang)
+              dang=a.dang, v={"khuon": a.khuon} if a.khuon else None)
     sys.exit(0 if r and r["ok"] else 1)
 
 

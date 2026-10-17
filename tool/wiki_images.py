@@ -221,48 +221,22 @@ def _ken_burns(img_path, out_path, idx, dur=SHOT_DUR, center=False):
     """1 anh tinh -> 1 shot 1920x1080 co pan/zoom cham. Huong doi theo idx.
 
     center=True: chi zoom giua (anh da duoc _prep_image dung khung san).
+
+    13/10/2026: bo zoompan. zoompan lam tron x/y ve PIXEL NGUYEN moi frame, ma
+    buoc zoom/pan that chi 0,3-0,6 px/frame -> hinh dung 1-2 frame roi nhay 1
+    px ("anh chay bi giat"). Do bang phaseCorrelate tren clip 6s: zoompan buoc
+    moi frame dao dong cv=0,41 (0,4 <-> 1,4 px), ban moi cv=0,09 (0,5-0,7 px).
+    Nay motion.kenburns dung cv2.warpAffine toa do thuc, GIU NGUYEN bo cuc cu
+    (nguon 2560x1440, zoom 1.02<->1.16 tuyen tinh theo frame, 4 huong pan),
+    grade eq va encode veryfast crf22 nhu cu.
     """
-    zoom_in = (idx % 2 == 0)
-    z0, z1 = (1.02, 1.16) if zoom_in else (1.16, 1.02)
-    n_fr = max(1, int(dur * FPS))
-    # Zoom tinh theo SO FRAME (on), khong cong don tu `zoom`: zoompan khoi tao
-    # zoom = 1 o frame dau, nen ban cu "max(zoom-step, 1.02)" cho zoom-out ra
-    # 1.02 ngay frame 1 va dung yen ca 9 giay — mot nua so shot (idx le) la anh
-    # chet. Bieu thuc tuyen tinh theo on cho ca hai chieu chay dung 1.02 <-> 1.16.
-    zexpr = f"{z0}+({z1 - z0:.4f})*on/{n_fr}"
-    # pan: 4 huong luan phien de cac shot lien tiep khong giong nhau
-    pans = [
-        ("iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"),                    # center
-        ("(iw-iw/zoom)*on/({n})".format(n=int(dur * FPS)), "ih/2-(ih/zoom/2)"),
-        ("iw/2-(iw/zoom/2)", "(ih-ih/zoom)*on/({n})".format(n=int(dur * FPS))),
-        ("(iw-iw/zoom)*(1-on/({n}))".format(n=int(dur * FPS)),
-         "ih/2-(ih/zoom/2)"),
-    ]
-    px, py = pans[0] if center else pans[idx % len(pans)]
-    # Scale nguon vua du dau zoom toi da (~1.16) roi moi zoompan: zoompan phai
-    # lam viec tren TUNG frame, nen cho no khung 4K la tu ban minh — 9s x 24fps
-    # = 216 lan lanczos 4K. 2560x1440 cho cung do net o dich 1080p.
-    SW, SH = 2560, 1440
-    vf = (
-        f"scale={SW}:{SH}:force_original_aspect_ratio=increase:flags=bicubic,"
-        f"crop={SW}:{SH},setsar=1,"
-        f"zoompan=z='{zexpr}':x='{px}':y='{py}':d=1:fps={FPS}:s={W}x{H},"
-        # grade nhe cho dong bo voi cinema look cua render.py
-        f"eq=contrast=1.04:saturation=0.96,format=yuv420p"
-    )
-    cmd = ["ffmpeg", "-v", "error", "-y", "-loop", "1", "-framerate", str(FPS),
-           "-i", img_path, "-t", f"{dur:.2f}", "-vf", vf,
-           # Do 01/10 tren 44 shot tu lieu: ultrafast crf20 ra 26-42 MB cho 9s
-           # (ultrafast tat gan het cong cu nen, anh zoom cham thanh bitrate
-           # ~30 Mbps). veryfast crf22 cung shot: 1,5 MB, render con encode lai
-           # crf14 nen khong ai thay khac biet.
-           "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
-           "-pix_fmt", "yuv420p", "-movflags", "+faststart", out_path]
-    r = subprocess.run(cmd, capture_output=True, text=True)
-    if r.returncode != 0 or not os.path.exists(out_path):
-        _p(f"  ERR ffmpeg: {r.stderr.strip()[:200]}")
+    import motion
+    try:
+        motion.kenburns(img_path, out_path, dur, idx=idx, center=center, fps=FPS)
+    except Exception as e:  # noqa: BLE001
+        _p(f"  ERR ken burns: {str(e)[:200]}")
         return False
-    return True
+    return os.path.exists(out_path)
 
 
 # ---------------------------------------------------------------------------

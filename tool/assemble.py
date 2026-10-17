@@ -316,11 +316,210 @@ def batch_size(n_rows):
     return max(3, min(BATCH, -(-n_rows // 6)))
 
 
-def _cell_chain(r, root, fps, rows, idx):
-    """Chuoi filter cho 1 cell trong filtergraph gop: pad/trim/scale/caption/fade."""
+# ---------------------------------------------------------------- chuyen canh
+# 16/10/2026 — config.json co cfg["dung"] (script2config --chuong cat /
+# --chuyen-canh nhe). Khong co khoa nay -> ap_chuyen_canh khong gan gi, stage1
+# chay dung duong cu (cat thang, lo chia nhu cu, chu ky lo khong doi).
+#
+# Nguoi xem phan nan "chuyen canh, sao chuyen lai chuong 1 chuong 2": video cu
+# cat thang moi cell + 2,5s man den o moi chuong. Nay:
+#   chuong     flash trang 0,5s (xfade fadewhite) + whoosh + tieng dong tram,
+#              tieu de chuong nho tren hinh moi, nhac day len (assemble env)
+#   chuyen y   cell truoc ket bang /// -> crossfade 0,4s hoac dip den 0,5s xen ke
+#   cat thuong cu >= 3 lan cat thang thi mot lan crossfade / whip (hblur) /
+#              zoomin; cac cat thang con lai: cu 2 lan thi 1 lan "punch-in"
+#              (cell moi vao o zoom 1,06 roi lui ve 1,0 trong 10 frame)
+# Moi chuyen canh deu la xfade TRONG mot lo: cell truoc keo dai them N frame duoi
+# cell sau, offset = moc bat dau cell sau -> timeline tieng/phu de khong doi.
+TR_CHUONG = {"kieu": "fadewhite", "frames": 12,
+             "sfx": [("whoosh", -0.55, 0.30), ("cinematic-hit", 0.10, 0.20)]}
+TR_Y = [{"kieu": "fade", "frames": 10, "sfx": []},
+        {"kieu": "fadeblack", "frames": 12, "sfx": []}]
+TR_THUONG = [{"kieu": "fade", "frames": 8, "sfx": []},
+             {"kieu": "hblur", "frames": 7, "sfx": [("swoosh", -0.18, 0.12)]},
+             {"kieu": "zoomin", "frames": 9, "sfx": []}]
+PUNCH_FRAMES = 10
+PUNCH_ZOOM = 1.06
+
+
+def _dung(cfg):
+    return (cfg or {}).get("dung") or {}
+
+
+def ap_chuyen_canh(rows, cfg, root=None):
+    """Gan r["tr"] (chuyen canh VAO row) + r["punch"] + sfx cho cell. Tra ve so
+    chuyen canh. Khong co cfg["dung"] -> khong lam gi (hanh vi cu)."""
+    d = _dung(cfg)
+    chuong = d.get("chuong") == "cat"
+    mode = d.get("chuyen_canh") or ""
+    if not chuong and not mode:
+        return 0
+    n_tr, n_cut, i_y, i_th, n_punch = 0, 0, 0, 0, 0
+    names = set()
+    for k, r in enumerate(rows):
+        r.pop("tr", None)
+        r.pop("punch", None)
+        if k == 0:
+            continue
+        prev = rows[k - 1]
+        c, pc = r["cell"], prev["cell"]
+        tr = None
+        ngan = r["dur"] < 1.6 or prev["dur"] < 1.6
+        if chuong and c.get("chuong"):
+            tr = dict(TR_CHUONG)
+        elif mode and not ngan and c.get("type") != "clip" and pc.get("type") != "clip":
+            vo_prev = (pc.get("vo") or "").rstrip()
+            if vo_prev.endswith("///"):
+                tr = dict(TR_Y[i_y % len(TR_Y)])
+                i_y += 1
+            elif n_cut >= 1:
+                # ranh gioi cell xen ke: chuyen canh / cat thang (+ punch). Cat
+                # BEN TRONG cell (doan stock 6-7,5s) van la cat thang -> tong
+                # cong ~1/3 so lan cat la chuyen canh mem.
+                tr = dict(TR_THUONG[i_th % len(TR_THUONG)])
+                i_th += 1
+        if tr:
+            r["tr"] = tr
+            n_tr, n_cut = n_tr + 1, 0
+            for name, _at, _v in tr["sfx"]:
+                names.add(name)
+        else:
+            n_cut += 1
+            if mode and r["dur"] >= 2.0:
+                r["punch"] = True
+                n_punch += 1
+    # sfx: tai mot lan vao assets/sfx cua case, gan vao cell (sfx_list)
+    if names and root:
+        try:
+            from sfx import fetch_sfx, sfx_file
+            thieu = [n for n in names if not sfx_file(root, n)]
+            if thieu:
+                fetch_sfx(root, names=thieu)
+        except Exception as e:      # mang hong -> van dung video, chi mat sfx
+            print(f"  WARN khong tai duoc sfx chuyen canh: {e}")
+    for r in rows:
+        tr = r.get("tr")
+        r["cell"].pop("sfx_list", None)
+        if not tr or not tr["sfx"]:
+            continue
+        r["cell"]["sfx_list"] = [{"name": n, "at": at, "vol": vol}
+                                 for n, at, vol in tr["sfx"]]
+    if n_tr or n_punch:
+        n_ch = sum(1 for r in rows if (r.get("tr") or {}).get("kieu") == "fadewhite")
+        print(f"  chuyen canh: {n_tr} xfade ({n_ch} chuong), {n_punch} punch-in, "
+              f"con lai cat thang")
+    return n_tr
+
+
+def _batches(rows):
+    """Chia lo. Khong co chuyen canh -> y nhu cu (_chunked theo batch_size).
+    Co -> khong de diem chuyen canh roi dung ranh gioi hai lo (lo noi bang -c
+    copy nen o do chi cat thang duoc): keo lo dai them toi da 4 cell, van trung
+    thi bo chuyen canh do."""
+    bs = batch_size(len(rows))
+    if not any(r.get("tr") for r in rows):
+        return list(_chunked(rows, bs))
+    out, i, n = [], 0, len(rows)
+    while i < n:
+        j = min(n, i + bs)
+        ext = 0
+        while j < n and rows[j].get("tr") and ext < 4:
+            j += 1
+            ext += 1
+        if j < n and rows[j].get("tr"):
+            rows[j].pop("tr", None)
+            rows[j]["cell"].pop("sfx_list", None)
+        out.append(rows[i:j])
+        i = j
+    return out
+
+
+def _tieu_de_chuong(root, cell, fps):
+    """drawtext tieu de chuong: nho, thanh, 0,4s -> 3,45s, mo dan vao/ra."""
+    meta = cell.get("chuong") or {}
+    if not meta:
+        return ""
+    tdir = os.path.join(root, "build", "tmp")
+    os.makedirs(tdir, exist_ok=True)
+    import shutil
+    font = None
+    for cand in (r"C:\Windows\Fonts\palab.ttf", r"C:\Windows\Fonts\georgiab.ttf"):
+        if os.path.exists(cand):
+            font = os.path.join(tdir, os.path.basename(cand))
+            if not os.path.exists(font):
+                shutil.copy(cand, font)
+            break
+    if not font:
+        font = os.path.join(tdir, "arialbd.ttf")
+    frel = os.path.relpath(font, root).replace("\\", "/")
+    t_in, t_full, t_out, t_end = 0.40, 0.85, 3.0, 3.45
+    alpha = (f"if(lt(t\\,{t_in})\\,0\\,if(lt(t\\,{t_full})\\,(t-{t_in})/{t_full - t_in:.2f}"
+             f"\\,if(lt(t\\,{t_out})\\,1\\,if(lt(t\\,{t_end})\\,({t_end}-t)/{t_end - t_out:.2f}"
+             f"\\,0))))")
+    so = str(meta.get("so") or "").upper()
+    label = f"PHẦN {so}" if so else ""
+    title = _sanitize_sub(meta.get("tieu_de") or "")
+    lines, cur = [], ""
+    for w in title.split():
+        if len(cur) + 1 + len(w) > 34 and cur:
+            lines.append(cur)
+            cur = w
+        else:
+            cur = (cur + " " + w).strip()
+    if cur:
+        lines.append(cur)
+    if len(lines) > 2:
+        lines = [lines[0], " ".join(lines[1:])]
+    parts = []
+    y = 96
+    common = (f"alpha='{alpha}':enable='between(t\\,{t_in}\\,{t_end})'")
+    if label:
+        tf = _textfile(root, label, f"chuong{cell['id']}_lb")
+        parts.append(
+            f"drawtext=fontfile={frel}:textfile="
+            f"{os.path.relpath(tf, root).replace(os.sep, '/')}:"
+            f"fontsize=30:fontcolor=0xE0A82E:x=(w-text_w)/2:y={y}:"
+            f"borderw=2:bordercolor=black@0.7:shadowcolor=black@0.8:shadowx=0:"
+            f"shadowy=2:{common}")
+        y += 48
+    for i, ln in enumerate(lines):
+        tf = _textfile(root, ln, f"chuong{cell['id']}_t{i}")
+        parts.append(
+            f"drawtext=fontfile={frel}:textfile="
+            f"{os.path.relpath(tf, root).replace(os.sep, '/')}:"
+            f"fontsize=54:fontcolor=white:x=(w-text_w)/2:y={y}:"
+            f"borderw=3:bordercolor=black@0.75:shadowcolor=black@0.85:shadowx=0:"
+            f"shadowy=3:{common}")
+        y += 66
+    return ",".join(parts)
+
+
+def _punch_chain(cid, fps):
+    """Punch-in: PUNCH_FRAMES frame dau o zoom 1,06 lui ve 1,0 (tach dau cell,
+    zoompan, noi lai). Tra ve doan filter co nhan noi bo, chen giua chuoi."""
+    n = PUNCH_FRAMES
+    z = PUNCH_ZOOM
+    step = (z - 1.0) / n
+    return (f"split=2[pa{cid}][pb{cid}];"
+            f"[pa{cid}]trim=end_frame={n},setpts=PTS-STARTPTS,"
+            f"zoompan=z='max(1\\,{z}-{step:.5f}*on)':d=1:x='iw/2-(iw/zoom/2)':"
+            f"y='ih/2-(ih/zoom/2)':s=1920x1080:fps={fps},setsar=1,format=yuv420p"
+            f"[pc{cid}];"
+            f"[pb{cid}]trim=start_frame={n},setpts=PTS-STARTPTS[pd{cid}];"
+            f"[pc{cid}][pd{cid}]concat=n=2:v=1:a=0")
+
+
+def _cell_chain(r, root, fps, rows, idx, tail_frames=0, no_dip=False):
+    """Chuoi filter cho 1 cell trong filtergraph gop: pad/trim/scale/caption/fade.
+
+    tail_frames > 0 (crossfade): cell keo dai them chung ay frame o CUOI — phan
+    du nay nam duoi cell sau trong luc xfade, nen timeline (tieng/phu de) khong
+    lech. no_dip: bo dip-to-black o beat music=drop (kenh khong muon man den).
+    """
     dur = r["dur"]
+    n_frames = int(round(dur * fps)) + int(tail_frames)
     vf = []
-    need_pad = max(0.0, dur - r["shot_dur"])
+    need_pad = max(0.0, n_frames / fps - r["shot_dur"])
     if need_pad > 0.01:
         vf.append(f"tpad=stop_mode=clone:stop_duration={need_pad + 0.2:.3f}")
     vf.append("setpts=PTS-STARTPTS")
@@ -328,7 +527,7 @@ def _cell_chain(r, root, fps, rows, idx):
     # phay dong nen moi cell rung mat dung 1 frame (video 6 cell ngan hon
     # timeline audio 0.25s, va sai so nay cong don theo do dai video).
     vf.append(f"fps={fps}")
-    vf.append(f"trim=end_frame={int(round(dur * fps))}")
+    vf.append(f"trim=end_frame={n_frames}")
     vf.append("setpts=PTS-STARTPTS")
     # KHONG dat them fps= o day. fps thu hai (sau trim + scale) lam roi dung
     # MOT frame cuoi moi cell — do 01/10/2026: trim=end_frame=137 ra 136 frame;
@@ -338,9 +537,15 @@ def _cell_chain(r, root, fps, rows, idx):
     vf.append("scale=1920:1080:force_original_aspect_ratio=decrease,"
               "pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=0x14110F,setsar=1,"
               "format=yuv420p")
+    if r.get("punch") and n_frames > PUNCH_FRAMES + 4:
+        vf.append(_punch_chain(r["cell"]["id"], fps))
     cap, _ = _caption_filter(root, r["cell"], None, r["vo_dur"], fps)
     if cap:
         vf.append(cap)
+    if r["cell"].get("chuong"):
+        td = _tieu_de_chuong(root, r["cell"], fps)
+        if td:
+            vf.append(td)
     # CAT THANG giua cac cell. Truoc day moi cell fade ra den 0.2s roi cell sau
     # fade tu den 0.2s -> moi diem cat la 0.4s man hinh toi (video 6 cell/34s co
     # 2.4s bi am). Dung phim that cat thang; chi dip-to-black o beat co chu dinh
@@ -348,7 +553,8 @@ def _cell_chain(r, root, fps, rows, idx):
     first, last = idx == 0, idx == len(rows) - 1
     fi = 0.6 if first else 0.0
     fo = 0.8 if last else 0.0
-    if r["cell"].get("music") == "drop" and r["cell"].get("fx") != "flash":
+    if (r["cell"].get("music") == "drop" and r["cell"].get("fx") != "flash"
+            and not no_dip):
         fi, fo = max(fi, 0.35), max(fo, 0.35)
     if r["cell"].get("fx") == "flash":
         fi = 0.0
@@ -358,10 +564,22 @@ def _cell_chain(r, root, fps, rows, idx):
             vf.append(f"fade=t=in:st=0:d={fi}")
         if fo > 0:
             vf.append(f"fade=t=out:st={dur - fo:.3f}:d={fo}")
+    if tail_frames or no_dip or r.get("_xf_lo"):
+        # xfade can link co frame rate CO DINH; sau trim/setpts link mat frame
+        # rate (1/0) va xfade tu choi. Dat PTS = so thu tu frame roi fps= :
+        # PTS da nam dung luoi nen fps khong roi/nhan doi frame nao.
+        vf.append(f"setpts=N/({fps}*TB),fps={fps}")
     return ",".join(vf)
 
 
-def stage1_trim(rows, root, fps):
+# Crossfade giua cac cell (kenh bat co kieu_the: long). 8 frame @24fps = 0,33s.
+# Cell truoc keo dai 8 frame duoi cell sau; xfade bat dau DUNG luc cell sau bat
+# dau tren timeline -> tong do dai lo khong doi, tieng/phu de khong lech. Giua
+# hai LO (moi lo ~8 cell) van la cat thang vi cac lo noi bang -c copy.
+XFADE_FRAMES = int(os.environ.get("XFADE_FRAMES", "8"))
+
+
+def stage1_trim(rows, root, fps, xfade=False):
     """Trim + caption + noi — GOP THANH MOT LAN ENCODE cho moi lo cell.
 
     Truoc day moi cell duoc encode rieng (stage1) roi ca video encode lai lan
@@ -374,16 +592,57 @@ def stage1_trim(rows, root, fps):
     _ensure_stage1_fonts(root)
     cmds = []
     n_skip = 0
-    bs = batch_size(len(rows))
-    for b, batch in enumerate(_chunked(rows, bs)):
+    batches = _batches(rows)
+    pos = 0
+    for b, batch in enumerate(batches):
         ins, chains, labels = [], [], ""
+        xf = XFADE_FRAMES if (xfade and len(batch) > 1) else 0
+        # chuyen canh co chu dich (ap_chuyen_canh): xfade o MOT SO ranh gioi,
+        # con lai noi thang bang concat 2 dau vao. Ranh gioi dau lo luon cat thang.
+        mixed = (not xf) and any(r.get("tr") for r in batch[1:])
         for k, r in enumerate(batch):
             ins += ["-i", r["shot"]]
+            if mixed:
+                nxt = batch[k + 1] if k < len(batch) - 1 else None
+                tail = (nxt["tr"]["frames"] if nxt is not None and nxt.get("tr") else 0)
+                r["_xf_lo"] = True
+            else:
+                tail = xf if k < len(batch) - 1 else 0
             chains.append(f"[{k}:v]"
-                          + _cell_chain(r, root, fps, rows, b * bs + k)
+                          + _cell_chain(r, root, fps, rows, pos + k,
+                                        tail_frames=tail, no_dip=bool(xfade))
                           + f"[c{k}]")
             labels += f"[c{k}]"
-        chains.append(f"{labels}concat=n={len(batch)}:v=1:a=0[v]")
+            r.pop("_xf_lo", None)
+        pos += len(batch)
+        if mixed:
+            prev, cum = "c0", int(round(batch[0]["dur"] * fps))
+            for k in range(1, len(batch)):
+                lab = "v" if k == len(batch) - 1 else f"x{k}"
+                tr = batch[k].get("tr")
+                if tr:
+                    chains.append(f"[{prev}][c{k}]xfade=transition={tr['kieu']}:"
+                                  f"duration={tr['frames'] / fps:.6f}:"
+                                  f"offset={cum / fps:.6f}[{lab}]")
+                else:
+                    # concat ra timebase 1/1000000; xfade sau do doi hai dau vao
+                    # cung timebase -> dua ve 1/fps, PTS = so thu tu frame.
+                    chains.append(f"[{prev}][c{k}]concat=n=2:v=1:a=0,"
+                                  f"settb=1/{fps},setpts=N/({fps}*TB),fps={fps}[{lab}]")
+                prev = lab
+                cum += int(round(batch[k]["dur"] * fps))
+        elif xf:
+            # offset = moc bat dau cell k trong lo (tinh bang frame cho chinh xac)
+            prev, cum = "c0", int(round(batch[0]["dur"] * fps))
+            for k in range(1, len(batch)):
+                lab = "v" if k == len(batch) - 1 else f"x{k}"
+                chains.append(f"[{prev}][c{k}]xfade=transition=fade:"
+                              f"duration={xf / fps:.6f}:offset={cum / fps:.6f}"
+                              f"[{lab}]")
+                prev = lab
+                cum += int(round(batch[k]["dur"] * fps))
+        else:
+            chains.append(f"{labels}concat=n={len(batch)}:v=1:a=0[v]")
         out = os.path.join(tdir, f"batch-{b}.mp4")
         cmd = ["ffmpeg", "-y", "-v", "error", *ins,
                "-filter_complex", ";".join(chains), "-map", "[v]",
@@ -498,8 +757,7 @@ def stage2_concat(rows, root, fps=24):
     # cua ca video (lo + video.mp4 + final), case 30 phut la ~6 GB chi cho
     # video. Nay stage4 doc thang danh sach lo bang concat demuxer.
     tdir = os.path.join(root, "build", "trim")
-    bs = batch_size(len(rows))
-    n_batch = (len(rows) + bs - 1) // bs
+    n_batch = len(_batches(rows))
     list_file = os.path.join(tdir, "list.txt")
     with open(list_file, "w", encoding="utf-8", newline="\n") as f:
         for b in range(n_batch):
@@ -573,6 +831,16 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
     for r in rows:
         if r["cell"].get("sfx"):
             sfx_items.append((r["start"], r["cell"]["id"]))
+    # sfx chuyen canh (ap_chuyen_canh): nhieu tieng moi cell, moc tuyet doi
+    from sfx import sfx_file as _sfx_file
+    fx_items = []
+    for r in rows:
+        for it in r["cell"].get("sfx_list") or []:
+            pth = _sfx_file(root, it["name"])
+            if not pth:
+                continue
+            at = max(0.0, r["start"] + float(it.get("at", 0.0)))
+            fx_items.append((at, pth, duration(pth), float(it.get("vol", 0.3))))
 
     part_cmds, parts_by_tag = [], {}
 
@@ -581,14 +849,16 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
     # (adelay + apad + atrim=total), PCM 16-bit stereo: video 30 phut 186 cell
     # = 16 phan x 345 MB = 5,5 GB chi cho giong doc — chinh no lam case Can Long
     # chet het dia o assemble. Nay tong cac phan ~ do dai video x 1, nen FLAC.
-    def _mk_partials(items, tag, is_vo=False, is_sfx=False):
+    def _mk_partials(items, tag, is_vo=False, is_sfx=False, is_fx=False):
         parts = []
         for ci, group in enumerate(_chunked(items, chunk)):
             if not group:
                 continue
             spans = []
             for it in group:
-                if is_vo:
+                if is_fx:
+                    spans.append((it[0], it[0] + it[2]))
+                elif is_vo:
                     start, vo_path = it
                     spans.append((start, start + duration(vo_path)))
                 elif is_sfx:
@@ -605,7 +875,14 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
             ins, fc, n_in, src = [], [], 0, ""
             for it, (s0, _e) in zip(group, spans):
                 rel_ms = int(round((s0 - g0) * 1000))
-                if is_vo:
+                if is_fx:
+                    _at, fpath, flen, fvol = it
+                    ins += ["-i", fpath]
+                    fc.append(f"[{n_in}:a]aformat=sample_rates={AR}:channel_layouts="
+                              f"stereo,asetpts=PTS-STARTPTS,atrim=duration={flen:.3f},"
+                              f"volume={fvol},adelay={rel_ms}|{rel_ms},"
+                              f"apad[{tag}{ci}_{n_in}]")
+                elif is_vo:
                     start, vo_path = it
                     ins += ["-i", vo_path]
                     fc.append(f"[{n_in}:a]aformat=sample_rates={AR}:channel_layouts="
@@ -646,6 +923,7 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
     vo_parts = _mk_partials(vo_items, "vo", is_vo=True)
     clip_parts = _mk_partials(clip_items, "clip")
     sfx_parts = _mk_partials(sfx_items, "sfx", is_sfx=True)
+    sfx_parts += _mk_partials(fx_items, "fx", is_fx=True)
 
     # gop: vo + clip-duck + sfx
     ins, fc, n_in = [], [], 0
@@ -668,15 +946,46 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
         else:
             fc.append(f"{src}amix=inputs={len(parts)}:normalize=0[{out_label}]")
 
+    music = CFG.resolve(root, cfg["music"]["file"]) if cfg.get("music") else None
+    bed_spec = _bed_spec(music)
     _mix(vo_parts, "vo")
+    if bed_spec and float(bed_spec.get("hook_db", 0) or 0) > 0:
+        # 5 giay dau: giong to hon ~2 dB (BLV Hai Thanh: 5s dau giong +2,6 dB,
+        # nhac -4,6 dB so voi than bai) — nguoi xem bam vao nghe giong truoc.
+        g = 10 ** (float(bed_spec["hook_db"]) / 20.0)
+        fc.append(f"[vo]volume='if(lt(t\\,5)\\,{g:.4f}\\,if(lt(t\\,5.6)\\,"
+                  f"{g:.4f}-({g - 1:.4f})*(t-5)/0.6\\,1))':eval=frame[voh]")
+        vo_lab = "[voh]"
+    else:
+        vo_lab = "[vo]"
     _mix(clip_parts, "clipraw")
     _mix(sfx_parts, "sfx")
-    fc.append("[vo][clipraw][sfx]amix=inputs=3:normalize=0,"
+    fc.append(f"{vo_lab}[clipraw][sfx]amix=inputs=3:normalize=0,"
               f"atrim=0:{total:.2f},asetpts=PTS-STARTPTS[side]")
 
     audio_out = "[side]"
-    music = CFG.resolve(root, cfg["music"]["file"]) if cfg.get("music") else None
-    if music and os.path.exists(music):
+    if music and os.path.exists(music) and bed_spec:
+        # Nhac that (music_lib): KHONG sidechaincompress (muc duck phu thuoc muc
+        # vao, nhac to nho khac nhau la duck khac nhau). Thay bang DUONG BAO dung
+        # san tu timeline giong: duoi giong D dB, 5s dau sau hon, khe >= 0,9s
+        # nhac nhich len, truoc diem chuyen chuong nhac day len.
+        music_seg = _build_music_segments(root, cfg, rows, total)
+        env = _build_music_env(root, rows, total, bed_spec)
+        ins += ["-i", music_seg, "-i", env]
+        fi = cfg["music"].get("fade_in", 1.5)
+        fo = cfg["music"].get("fade_out", 3.0)
+        lvl = float(bed_spec.get("level", 1.0))
+        fc.append(f"[{n_in}:a]aformat=sample_rates={AR}:channel_layouts=stereo,"
+                  f"volume={lvl},afade=t=in:st=0:d={fi},"
+                  f"afade=t=out:st={max(0.0, total - fo):.2f}:d={fo}[mb]")
+        fc.append(f"[{n_in + 1}:a]aresample={AR},aformat=sample_rates={AR}:"
+                  f"channel_layouts=stereo,apad,atrim=0:{total:.3f}[menv]")
+        n_in += 2
+        fc.append("[mb][menv]amultiply[mduck]")
+        fc.append(f"[side][mduck]amix=inputs=2:normalize=0,atrim=0:{total},"
+                  f"aformat=sample_rates={AR}:channel_layouts=stereo[aout]")
+        audio_out = "[aout]"
+    elif music and os.path.exists(music):
         # tao nhac co silence tai cell out/drop
         music_seg = _build_music_segments(root, cfg, rows, total)
         ins += ["-i", music_seg]
@@ -710,6 +1019,111 @@ def stage3_audio(rows, total, root, cfg, chunk=12):
               "-ar", str(AR), "-ac", "2", "-t", str(total), out]]
     # cac phan doc lap nhau -> chay song song; lan mix cuoi chay sau cung
     _emit(root, "run_stage3.sh", part_cmds, jobs=4, after=final)
+    return out
+
+
+def _bed_spec(music):
+    """bed.json canh bed.wav (tool/music_lib.py ghi) -> dict, hoac None (cu)."""
+    if not music:
+        return None
+    p = os.path.splitext(music)[0] + ".json"
+    if not os.path.exists(p):
+        return None
+    try:
+        d = json.load(open(p, encoding="utf-8"))
+    except Exception:
+        return None
+    return d if d.get("env") else None
+
+
+def _speech_spans(root, rows):
+    """Cac doan DANG NOI tren timeline (giay). Uu tien moc tu words.json (biet
+    ca khe giua cau trong cell), khong co thi ca cell VO."""
+    spans = []
+    for r in rows:
+        if not r["vo"]:
+            if r["audio"]:          # clip co tieng goc
+                spans.append((r["start"], r["start"] + r["dur"]))
+            continue
+        marks = _word_marks(root, r["cell"]["id"])
+        if marks:
+            cur = None
+            for w in marks:
+                a = r["start"] + float(w["t"])
+                b = a + float(w.get("d", 0.2))
+                if cur and a - cur[1] < 0.35:
+                    cur[1] = max(cur[1], b)
+                else:
+                    if cur:
+                        spans.append(tuple(cur))
+                    cur = [a, b]
+            if cur:
+                spans.append(tuple(cur))
+        else:
+            spans.append((r["start"], r["start"] + r["vo_dur"]))
+    return spans
+
+
+def _build_music_env(root, rows, total, spec):
+    """Duong bao gain cho nhac (WAV 1 kHz mono, 1.0 = muc bed).
+
+    Muc tinh theo dB DUOI muc giong (bed da chuan ve cung loudness voi giong):
+      duoi_giong (18)  khi dang noi
+      hook_them  (+3)  sau hon nua trong 5s dau (doi thu: 20 dB o hook)
+      khe_len    (8)   khe khong loi >= 0,9s: nhac nhich len 8 dB
+      chuong_len (12)  1,8s truoc -> 0,4s sau diem chuyen chuong: day len 12 dB
+    """
+    import numpy as np
+    D = float(spec.get("duoi_giong", 18))
+    hook_extra = float(spec.get("hook_them", 3))
+    gap_up = float(spec.get("khe_len", 8))
+    khe_min = float(spec.get("khe_min", 0.9))
+    ch_up = float(spec.get("chuong_len", 12))
+    hz = 100
+    n = int(total * hz) + 2
+    db = np.full(n, -(D - gap_up))          # mac dinh: khe (khong loi)
+    spans = _speech_spans(root, rows)
+    # khe ngan giua hai doan noi (< 0,9s) -> giu duck, khong de nhac nhap nho
+    merged = []
+    for a, b in sorted(spans):
+        if merged and a - merged[-1][1] < khe_min:
+            merged[-1][1] = max(merged[-1][1], b)
+        else:
+            merged.append([a, b])
+    for a, b in merged:
+        i0 = max(0, int((a - 0.25) * hz))
+        i1 = min(n, int((b + 0.2) * hz) + 1)
+        db[i0:i1] = -D
+    # hook 5s dau: nhac sau hon
+    h = min(n, 5 * hz)
+    db[:h] = np.minimum(db[:h], -(D + hook_extra))
+    # chuyen chuong: day len trong khe truoc diem cat (khong de len giong)
+    speak = np.zeros(n, dtype=bool)
+    for a, b in merged:
+        speak[max(0, int(a * hz)):min(n, int(b * hz) + 1)] = True
+    for r in rows:
+        if (r.get("tr") or {}).get("kieu") == "fadewhite" or r["cell"].get("chuong"):
+            c = r["start"]
+            i0, i1 = max(0, int((c - 1.8) * hz)), min(n, int((c + 0.4) * hz))
+            seg = db[i0:i1]
+            up = -(D - ch_up)
+            db[i0:i1] = np.where(speak[i0:i1], seg, np.maximum(seg, up))
+    # lam muot: trung binh truot 0,3s (len/xuong deu, khong giat)
+    k = 30
+    pad = np.pad(db, (k // 2, k // 2), mode="edge")
+    sm = np.convolve(pad, np.ones(k) / k, mode="valid")[:n]
+    g = 10 ** (sm / 20.0)
+    sr = 1000
+    t_ctrl = np.arange(n) / hz
+    t_out = np.arange(int(total * sr) + sr) / sr
+    gg = np.interp(t_out, t_ctrl, g)
+    out = os.path.join(root, "build", "trim", "music-env.wav")
+    import wave
+    with wave.open(out, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(sr)
+        w.writeframes((np.clip(gg, 0, 1) * 32767).astype("<i2").tobytes())
     return out
 
 
@@ -915,9 +1329,12 @@ def main():
     if missing:
         raise SystemExit(f"{len(missing)} cell thieu VO, chay tts truoc: {missing[:10]}")
     print(f"tong video: {total:.1f}s ({total/60:.1f} phut), {len(rows)} cell")
+    ap_chuyen_canh(rows, cfg, root)
+    from render import kieu_the
+    xf = kieu_the(cfg) in ("long", "info")
 
     if args.emit_only:
-        stage1_trim(rows, root, cfg.get("fps", 24))
+        stage1_trim(rows, root, cfg.get("fps", 24), xfade=xf)
         stage2_concat(rows, root)
         stage3_audio(rows, total, root, cfg)
         stage4_mux(root, cfg, total)
@@ -925,7 +1342,7 @@ def main():
         return
 
     print("stage 1: trim + caption ...")
-    stage1_trim(rows, root, cfg.get("fps", 24))
+    stage1_trim(rows, root, cfg.get("fps", 24), xfade=xf)
     run_script(root, "run_stage1.sh")
     stage2_concat(rows, root)
     print("stage 3: audio ...")

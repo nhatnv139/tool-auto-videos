@@ -91,6 +91,29 @@ It wasn't a test.
 [[sfx]]
 ```
 
+## Kênh lịch sử tiếng Việt (Yêu Lịch sử) — khuôn kể chuyện v3 (16/10/2026)
+
+Spec đầy đủ: `D:\dev\content\yeu-lich-su-khuon-ke-chuyen-v3.md`. Bản mẫu:
+`videos/tran-hung-dao-co-muon-cuop-ngoi/script/script-v3.md`.
+`write_script.py` dùng v3 mặc định cho `dang: nhan-vat` (queue `khuon: v2` = luật cũ).
+
+- **Không đọc to "Phần một / Chương 1"**. Chuyển chương = câu móc cuối chương cũ +
+  thẻ tiêu đề im lặng + cảnh mới mở bằng hành động:
+
+  ```
+  ## Vì sao An Sinh vương chết không nhắm mắt?
+  [[card:"Vì sao An Sinh vương chết không nhắm mắt?"|music=swell]]
+  ```
+  Dòng `##` bị script2config bỏ qua (check_script đếm làm chương). `[[card:"…"]]`
+  không `vo=` → cell card **im lặng 3 s** hiện chữ. Đây là ngoại lệ duy nhất của
+  luật "card bắt buộc `|src=`". Không dùng `[[black|pause=…]]` + dòng lời đọc; không `////`.
+- Cảnh > tóm tắt: năm + nơi + người muốn gì + chi tiết giác quan + thoại (lời sử chép) + "nhưng".
+- Vòng mở (câu hỏi `?` hoặc câu báo trước) mỗi 60–90 s; nối bằng "nhưng / vì thế", không "rồi / sau đó".
+- "Sử chép / Toàn thư…" ≤ 0,5 lần/phút; `///` ≤ 0,6 lần/phút.
+- Kết: trả lời thẳng câu hỏi trung tâm → callback hình ảnh mở đầu → CTA một câu hỏi cụ thể.
+- Chấm: `python auto\check_script.py videos\<slug> --phut 14 --dang nhan-vat --khuon v3 [--file script/script-v3.md]`.
+  Không có `--khuon v3` thì luật v3 chỉ hiện thành cảnh báo `(v3)` (không chặn script cũ).
+
 ## Quy tắc viết VO
 
 - Mỗi dòng VO = 1 ý, 5–20 giây nói (~15–55 từ).

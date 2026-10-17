@@ -22,3 +22,8 @@ tool_base/
 *.stackdump
 **/.env
 **/vbee_config.json
+
+# Nhac thu vien: tai lai theo assets/music_lib/manifest.json
+assets/music_lib/*.mp3
+assets/music_lib/*.wav
+assets/music_lib/.lufs.json

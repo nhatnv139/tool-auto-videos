@@ -1,0 +1,606 @@
+{
+  "name": "kn-10-bo-thue-khoan",
+  "out": "build/final/video-1.mp4",
+  "fps": 24,
+  "w": 1920,
+  "h": 1080,
+  "style": {
+    "ink": "#14110F",
+    "paper": "#F2EDE4",
+    "amber": "#E0A82E",
+    "font_reg": "tool/fonts/arial.ttf",
+    "font_bold": "tool/fonts/arialbd.ttf"
+  },
+  "music": {
+    "file": "assets/music/bed.wav",
+    "level": 0.16,
+    "fade_in": 1.5,
+    "fade_out": 3.0
+  },
+  "caption": {
+    "on": true,
+    "font": "tool/fonts/arialbd.ttf",
+    "size": 46,
+    "color": "#FFFFFF",
+    "y": 920
+  },
+  "cells": [
+    {
+      "id": 1,
+      "type": "card",
+      "text": "Doanh thu mỗi năm không phải nộp thuế: 100 triệu → 1 tỷ",
+      "src": "Thông tư 40/2021/TT-BTC; Nghị định 141/2026/NĐ-CP, áp dụng từ 1/1/2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Hai năm trước, một hộ kinh doanh bán quá 100 triệu đồng một năm là đã phải nộp thuế. Từ đầu năm nay, con số đó là 1 tỷ. Gấp mười lần.",
+      "cap": "Hai năm trước, một hộ kinh doanh bán quá 100 triệu đồng một năm là đã phải nộp thuế. Từ đầu năm nay, con số đó là 1 tỷ. Gấp mười lần."
+    },
+    {
+      "id": 2,
+      "type": "stock",
+      "stock": "vietnamese banh mi street stall morning",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cùng lúc đó, một thứ đã sống với người buôn bán Việt Nam mấy chục năm | chính thức biến mất. | Thuế khoán. // Từ ngày 1 tháng 1 năm nay, | không còn chuyện cán bộ thuế xuống ước chừng, | rồi mỗi tháng bạn đóng một con số cố định.",
+      "cap": "Cùng lúc đó, một thứ đã sống với người buôn bán Việt Nam mấy chục năm chính thức biến mất. Thuế khoán. Từ ngày 1 tháng 1 năm nay, không còn chuyện cán bộ thuế xuống ước chừng, rồi mỗi tháng bạn đóng một con số cố định."
+    },
+    {
+      "id": 3,
+      "type": "stock",
+      "stock": "vietnamese woman selling clothes livestream phone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nếu bạn đang bán bánh mì, bán quần áo online, | hay đứng livestream mỗi tối, | thì chắc bạn đang có mấy câu hỏi. // Mình có phải nộp thuế không? | Nộp bao nhiêu? | Sàn đã trừ rồi thì còn phải làm gì nữa? | Và ai thì vẫn phải nộp?",
+      "cap": "Nếu bạn đang bán bánh mì, bán quần áo online, hay đứng livestream mỗi tối, thì chắc bạn đang có mấy câu hỏi. Mình có phải nộp thuế không? Nộp bao nhiêu? Sàn đã trừ rồi thì còn phải làm gì nữa? Và ai thì vẫn phải nộp?"
+    },
+    {
+      "id": 4,
+      "type": "stock",
+      "stock": "vietnamese small business owner thinking",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Video này trả lời bằng ba người bán hàng, | với ba cách bán khác nhau. // Tôi chỉ nói hai loại thuế ai bán hàng cũng gặp: | thuế giá trị gia tăng và thuế thu nhập cá nhân. | Thuế đất, thuế môn bài, để lúc khác. | Số liệu lấy từ văn bản chính thức và báo chí, | không phải tư vấn thuế cho riêng ai. // Ok, vào việc thôi.",
+      "cap": "Video này trả lời bằng ba người bán hàng, với ba cách bán khác nhau. Tôi chỉ nói hai loại thuế ai bán hàng cũng gặp: thuế giá trị gia tăng và thuế thu nhập cá nhân. Thuế đất, thuế môn bài, để lúc khác. Số liệu lấy từ văn bản chính thức và báo chí, không phải tư vấn thuế cho riêng ai. Ok, vào việc thôi."
+    },
+    {
+      "id": 5,
+      "type": "stock",
+      "stock": "motorbike parking lot vietnam attendant",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Trước hết, thuế khoán là gì. | Hình dung nó giống vé tháng gửi xe. // Đầu tháng bạn trả một khoản cố định. | Tháng đó bạn gửi xe hai lần hay sáu mươi lần, | cũng vậy.",
+      "cap": "Trước hết, thuế khoán là gì. Hình dung nó giống vé tháng gửi xe. Đầu tháng bạn trả một khoản cố định. Tháng đó bạn gửi xe hai lần hay sáu mươi lần, cũng vậy."
+    },
+    {
+      "id": 6,
+      "type": "stock",
+      "stock": "vietnamese tax officer visiting shop",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Với thuế khoán, | cán bộ thuế đến xem quán, | ước xem mỗi tháng bạn bán được chừng nào. | Từ con số ước đó, | tính ra một khoản thuế cố định. // Bán đắt hay bán ế, | tháng nào cũng đóng chừng ấy.",
+      "cap": "Với thuế khoán, cán bộ thuế đến xem quán, ước xem mỗi tháng bạn bán được chừng nào. Từ con số ước đó, tính ra một khoản thuế cố định. Bán đắt hay bán ế, tháng nào cũng đóng chừng ấy."
+    },
+    {
+      "id": 7,
+      "type": "stock",
+      "stock": "taxi meter dashboard asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn từ năm nay, | cách tính chuyển sang giống đồng hồ taxi. | Đi bao xa, trả bấy nhiêu. | Bán bao nhiêu thật, | thì tính thuế trên bấy nhiêu thật.",
+      "cap": "Còn từ năm nay, cách tính chuyển sang giống đồng hồ taxi. Đi bao xa, trả bấy nhiêu. Bán bao nhiêu thật, thì tính thuế trên bấy nhiêu thật."
+    },
+    {
+      "id": 8,
+      "type": "stock",
+      "stock": "vietnamese restaurant busy lunch crowd",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nghe thì vé tháng có vẻ dễ chịu hơn. | Vậy sao lại bỏ? // Vấn đề nằm ở chữ ước. | Quán đông khách nhưng khéo ăn nói, | có khi được ước rất thấp. | Quán ế nhưng thật thà, | có khi bị ước cao hơn mình bán được.",
+      "cap": "Nghe thì vé tháng có vẻ dễ chịu hơn. Vậy sao lại bỏ? Vấn đề nằm ở chữ ước. Quán đông khách nhưng khéo ăn nói, có khi được ước rất thấp. Quán ế nhưng thật thà, có khi bị ước cao hơn mình bán được."
+    },
+    {
+      "id": 9,
+      "type": "stock",
+      "stock": "envelope cash under table",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và ở đâu có chữ ước, | ở đó dễ có chuyện xin và cho. | Một con số do người ta đoán, | thì cũng có thể được đoán lại, | nếu biết cách nói chuyện.",
+      "cap": "Và ở đâu có chữ ước, ở đó dễ có chuyện xin và cho. Một con số do người ta đoán, thì cũng có thể được đoán lại, nếu biết cách nói chuyện."
+    },
+    {
+      "id": 10,
+      "type": "stock",
+      "stock": "vietnamese bank loan counter customer",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn một cái thiệt mà ít ai nghĩ tới. | Quán nộp thuế khoán thì không cần sổ sách. | Đến lúc muốn vay ngân hàng để mở thêm chi nhánh, | ngân hàng hỏi doanh thu thật bao nhiêu, | thì không có gì để chứng minh. // Cái mác nhỏ giúp đóng thuế ít, | nhưng cũng giữ cái quán nhỏ mãi.",
+      "cap": "Còn một cái thiệt mà ít ai nghĩ tới. Quán nộp thuế khoán thì không cần sổ sách. Đến lúc muốn vay ngân hàng để mở thêm chi nhánh, ngân hàng hỏi doanh thu thật bao nhiêu, thì không có gì để chứng minh. Cái mác nhỏ giúp đóng thuế ít, nhưng cũng giữ cái quán nhỏ mãi."
+    },
+    {
+      "id": 11,
+      "type": "card",
+      "text": "Ngưỡng doanh thu không phải nộp thuế, triệu đồng mỗi năm: Trước 7/2025 = 100; Từ 7/2025 = 200; Luật mới = 500; Hiện nay = 1000",
+      "src": "Thông tư 40/2021; Luật Thuế GTGT 2024; Luật Thuế TNCN 2025; Nghị định 141/2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Bỏ thuế khoán đi cùng với một thay đổi lớn hơn: cái ngưỡng được miễn thuế tăng liên tục. Từ 100 triệu, lên 200 triệu, lên 500 triệu trong luật mới. Rồi tháng 4 năm nay, Chính phủ nâng hẳn lên 1 tỷ, tính lùi về từ đầu năm.",
+      "cap": "Bỏ thuế khoán đi cùng với một thay đổi lớn hơn: cái ngưỡng được miễn thuế tăng liên tục. Từ 100 triệu, lên 200 triệu, lên 500 triệu trong luật mới. Rồi tháng 4 năm nay, Chính phủ nâng hẳn lên 1 tỷ, tính lùi về từ đầu năm."
+    },
+    {
+      "id": 12,
+      "type": "stock",
+      "stock": "vietnamese street food vendors night market",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Riêng với mức 500 triệu, | Bộ Tài chính đã tính khoảng 9 trên 10 hộ kinh doanh không phải nộp thuế. | Giờ ngưỡng gấp đôi, | thì con số đó chỉ có cao hơn. // Tức là với phần lớn người buôn bán nhỏ, | bỏ thuế khoán không phải là bắt đầu đóng thuế, | mà là thôi không phải đóng.",
+      "cap": "Riêng với mức 500 triệu, Bộ Tài chính đã tính khoảng 9 trên 10 hộ kinh doanh không phải nộp thuế. Giờ ngưỡng gấp đôi, thì con số đó chỉ có cao hơn. Tức là với phần lớn người buôn bán nhỏ, bỏ thuế khoán không phải là bắt đầu đóng thuế, mà là thôi không phải đóng."
+    },
+    {
+      "id": 13,
+      "type": "stock",
+      "stock": "vietnamese woman making banh mi sandwich",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Thử với người thứ nhất. | Cô Sáu, | bán bánh mì ở đầu một con hẻm ở Sài Gòn. | Mỗi sáng khoảng một trăm ổ, | hai chục nghìn một ổ.",
+      "cap": "Thử với người thứ nhất. Cô Sáu, bán bánh mì ở đầu một con hẻm ở Sài Gòn. Mỗi sáng khoảng một trăm ổ, hai chục nghìn một ổ."
+    },
+    {
+      "id": 14,
+      "type": "stock",
+      "stock": "saigon alley morning street food",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một ngày cô bán được khoảng 2 triệu. | Một tháng khoảng 60 triệu. | Cả năm khoảng 720 triệu. // Nghe thì nhiều. | Nhưng trừ tiền bánh, tiền pate, tiền thịt, tiền ga, | phần cô thật sự bỏ túi ít hơn thế rất nhiều.",
+      "cap": "Một ngày cô bán được khoảng 2 triệu. Một tháng khoảng 60 triệu. Cả năm khoảng 720 triệu. Nghe thì nhiều. Nhưng trừ tiền bánh, tiền pate, tiền thịt, tiền ga, phần cô thật sự bỏ túi ít hơn thế rất nhiều."
+    },
+    {
+      "id": 15,
+      "type": "card",
+      "text": "Thuế mỗi năm của quán bánh mì cô Sáu: khoảng 16 triệu → 0 đồng",
+      "src": "Ví dụ giả định; tỷ lệ ăn uống 3% GTGT và 1,5% TNCN theo cách khoán cũ",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Giả sử trước đây cô bị khoán doanh thu 30 triệu một tháng. Với hàng ăn uống, cô đóng khoảng 16 triệu tiền thuế mỗi năm. Năm nay, doanh thu dưới 1 tỷ, cô không phải nộp đồng thuế nào.",
+      "cap": "Giả sử trước đây cô bị khoán doanh thu 30 triệu một tháng. Với hàng ăn uống, cô đóng khoảng 16 triệu tiền thuế mỗi năm. Năm nay, doanh thu dưới 1 tỷ, cô không phải nộp đồng thuế nào."
+    },
+    {
+      "id": 16,
+      "type": "stock",
+      "stock": "notebook handwriting sales record",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Không phải nộp thuế, | nhưng không có nghĩa là không phải làm gì. // Cô vẫn phải ghi lại mình bán được bao nhiêu. | Một cuốn sổ tay cũng được, | một ứng dụng trên điện thoại cũng được. | Rồi đầu năm sau, chậm nhất là cuối tháng một, | báo cho cơ quan thuế tổng doanh thu cả năm.",
+      "cap": "Không phải nộp thuế, nhưng không có nghĩa là không phải làm gì. Cô vẫn phải ghi lại mình bán được bao nhiêu. Một cuốn sổ tay cũng được, một ứng dụng trên điện thoại cũng được. Rồi đầu năm sau, chậm nhất là cuối tháng một, báo cho cơ quan thuế tổng doanh thu cả năm."
+    },
+    {
+      "id": 17,
+      "type": "stock",
+      "stock": "vietnamese elderly woman using smartphone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Với nhiều cô chú lớn tuổi, | phần khó nhất của luật mới không phải là tiền, | mà là cái điện thoại. // Đăng nhập, điền mẫu, gửi đi. | Mấy việc mà con cháu làm trong năm phút, | có khi làm người bán hàng cả đời phải mất một buổi chiều.",
+      "cap": "Với nhiều cô chú lớn tuổi, phần khó nhất của luật mới không phải là tiền, mà là cái điện thoại. Đăng nhập, điền mẫu, gửi đi. Mấy việc mà con cháu làm trong năm phút, có khi làm người bán hàng cả đời phải mất một buổi chiều."
+    },
+    {
+      "id": 18,
+      "type": "stock",
+      "stock": "two banh mi carts street saigon",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Giả sử năm sau cô Sáu đắt hàng, | mở thêm một xe bánh mì ở đầu hẻm bên kia. | Doanh thu gấp đôi, khoảng 1 tỷ 4. | Lúc đó cô vượt ngưỡng, | và thuế cả năm có thể lên cỡ 40 triệu.",
+      "cap": "Giả sử năm sau cô Sáu đắt hàng, mở thêm một xe bánh mì ở đầu hẻm bên kia. Doanh thu gấp đôi, khoảng 1 tỷ 4. Lúc đó cô vượt ngưỡng, và thuế cả năm có thể lên cỡ 40 triệu."
+    },
+    {
+      "id": 19,
+      "type": "stock",
+      "stock": "vietnamese woman counting money happy",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nghe thì giật mình. | Nhưng xe thứ hai mà mỗi năm lãi được vài trăm triệu, | thì 40 triệu đó vẫn là cái giá đáng trả. // Đừng để một con số thuế, | làm mình sợ lớn.",
+      "cap": "Nghe thì giật mình. Nhưng xe thứ hai mà mỗi năm lãi được vài trăm triệu, thì 40 triệu đó vẫn là cái giá đáng trả. Đừng để một con số thuế, làm mình sợ lớn."
+    },
+    {
+      "id": 20,
+      "type": "stock",
+      "stock": "young vietnamese man packing parcels home",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Người thứ hai, anh Khoa. | Bán quần áo trên hai sàn thương mại điện tử. | Đơn đóng gói ngay trong phòng khách. | Mỗi tháng anh bán được khoảng 150 triệu. // Cả năm, | 1 tỷ 8.",
+      "cap": "Người thứ hai, anh Khoa. Bán quần áo trên hai sàn thương mại điện tử. Đơn đóng gói ngay trong phòng khách. Mỗi tháng anh bán được khoảng 150 triệu. Cả năm, 1 tỷ 8."
+    },
+    {
+      "id": 21,
+      "type": "stock",
+      "stock": "stack of shipping boxes vietnam warehouse",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Anh Khoa thì vượt ngưỡng, nên phải nộp. | Nhưng nộp như thế nào thì có một chi tiết rất đáng để ý. | Hai loại thuế, | tính trên hai cái nền khác nhau.",
+      "cap": "Anh Khoa thì vượt ngưỡng, nên phải nộp. Nhưng nộp như thế nào thì có một chi tiết rất đáng để ý. Hai loại thuế, tính trên hai cái nền khác nhau."
+    },
+    {
+      "id": 22,
+      "type": "stock",
+      "stock": "price tag clothes store asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng trước khi tính, | phải hiểu một điều về thuế giá trị gia tăng. | Về bản chất, đây là tiền người mua trả. | Nó nằm sẵn trong giá cái áo. | Người bán chỉ là người thu hộ, | rồi nộp lại cho nhà nước.",
+      "cap": "Nhưng trước khi tính, phải hiểu một điều về thuế giá trị gia tăng. Về bản chất, đây là tiền người mua trả. Nó nằm sẵn trong giá cái áo. Người bán chỉ là người thu hộ, rồi nộp lại cho nhà nước."
+    },
+    {
+      "id": 23,
+      "type": "stock",
+      "stock": "clothing shop rack asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Thuế giá trị gia tăng, | một khi đã vượt 1 tỷ, | thì tính trên toàn bộ doanh thu. | Với hàng hóa, mức thường là 1%, | năm nay đang được giảm còn 0,8%. // 1 tỷ 8 nhân 0,8%, | khoảng 14 triệu.",
+      "cap": "Thuế giá trị gia tăng, một khi đã vượt 1 tỷ, thì tính trên toàn bộ doanh thu. Với hàng hóa, mức thường là 1%, năm nay đang được giảm còn 0,8%. 1 tỷ 8 nhân 0,8%, khoảng 14 triệu."
+    },
+    {
+      "id": 24,
+      "type": "stock",
+      "stock": "vietnamese man calculator invoice desk",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn thuế thu nhập cá nhân, | thì chỉ tính trên phần vượt 1 tỷ. | Tức là 800 triệu. | Với hàng hóa, nhân 0,5%. | Khoảng 4 triệu.",
+      "cap": "Còn thuế thu nhập cá nhân, thì chỉ tính trên phần vượt 1 tỷ. Tức là 800 triệu. Với hàng hóa, nhân 0,5%. Khoảng 4 triệu."
+    },
+    {
+      "id": 25,
+      "type": "card",
+      "text": "Shop anh Khoa, doanh thu 1,8 tỷ: thuế cả năm khoảng 18 triệu",
+      "src": "Tự tính: GTGT 0,8% trên toàn doanh thu, TNCN 0,5% trên phần vượt 1 tỷ",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Cộng lại, anh Khoa nộp khoảng 18 triệu một năm. Tức là chừng 1% doanh thu. Cứ 100 nghìn tiền hàng bán ra, khoảng 1 nghìn là tiền thuế.",
+      "cap": "Cộng lại, anh Khoa nộp khoảng 18 triệu một năm. Tức là chừng 1% doanh thu. Cứ 100 nghìn tiền hàng bán ra, khoảng 1 nghìn là tiền thuế."
+    },
+    {
+      "id": 26,
+      "type": "stock",
+      "stock": "vietnamese customer buying t shirt",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đến đây chắc có người bảo: | vậy thì tăng giá lên để khách trả thay. // Thử tính đi. | Cái áo 200 nghìn, | muốn bù 1% thuế thì bán 202 nghìn. | Khách gần như không để ý. // Cái khó của người bán chưa bao giờ nằm ở 1% này, | mà nằm ở chỗ phải học cách ghi chép, kê khai, | những việc trước giờ chưa ai bắt làm.",
+      "cap": "Đến đây chắc có người bảo: vậy thì tăng giá lên để khách trả thay. Thử tính đi. Cái áo 200 nghìn, muốn bù 1% thuế thì bán 202 nghìn. Khách gần như không để ý. Cái khó của người bán chưa bao giờ nằm ở 1% này, mà nằm ở chỗ phải học cách ghi chép, kê khai, những việc trước giờ chưa ai bắt làm."
+    },
+    {
+      "id": 27,
+      "type": "stock",
+      "stock": "online shopping app phone checkout asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng anh Khoa gần như không phải tự đi nộp. | Từ giữa năm ngoái, | các sàn có chức năng thanh toán | đã phải trừ thuế ngay trên từng đơn hàng, | rồi nộp thay người bán. // Tiền về ví của anh, | là tiền đã trừ thuế rồi.",
+      "cap": "Nhưng anh Khoa gần như không phải tự đi nộp. Từ giữa năm ngoái, các sàn có chức năng thanh toán đã phải trừ thuế ngay trên từng đơn hàng, rồi nộp thay người bán. Tiền về ví của anh, là tiền đã trừ thuế rồi."
+    },
+    {
+      "id": 28,
+      "type": "stock",
+      "stock": "asian man checking bank statement laptop",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có điều, sàn không biết cả năm anh bán bao nhiêu. | Sàn cứ trừ theo tỷ lệ chung trên từng đơn. | Nên số sàn trừ, | có thể không khớp với số anh thật sự phải nộp. // Cuối năm cộng lại. | Trừ thừa thì đòi lại. | Thiếu thì nộp thêm.",
+      "cap": "Có điều, sàn không biết cả năm anh bán bao nhiêu. Sàn cứ trừ theo tỷ lệ chung trên từng đơn. Nên số sàn trừ, có thể không khớp với số anh thật sự phải nộp. Cuối năm cộng lại. Trừ thừa thì đòi lại. Thiếu thì nộp thêm."
+    },
+    {
+      "id": 29,
+      "type": "stock",
+      "stock": "vietnamese young woman online seller small home shop",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn nếu bạn bán trên sàn, | mà cả năm không tới 1 tỷ, | thì số sàn đã trừ, | theo Cục Thuế, | là được trả lại. // Có điều, | nó không tự chảy về túi bạn. | Bạn phải làm hồ sơ.",
+      "cap": "Còn nếu bạn bán trên sàn, mà cả năm không tới 1 tỷ, thì số sàn đã trừ, theo Cục Thuế, là được trả lại. Có điều, nó không tự chảy về túi bạn. Bạn phải làm hồ sơ."
+    },
+    {
+      "id": 30,
+      "type": "stock",
+      "stock": "vietnamese shop owner reviewing accounts",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Luật mới còn cho người bán từ 1 đến 3 tỷ một lựa chọn. | Hoặc nộp thuế thu nhập theo tỷ lệ trên doanh thu như vừa tính. | Hoặc tính theo lãi thật, | tức là doanh thu trừ chi phí, | rồi nhân 15%.",
+      "cap": "Luật mới còn cho người bán từ 1 đến 3 tỷ một lựa chọn. Hoặc nộp thuế thu nhập theo tỷ lệ trên doanh thu như vừa tính. Hoặc tính theo lãi thật, tức là doanh thu trừ chi phí, rồi nhân 15%."
+    },
+    {
+      "id": 31,
+      "type": "stock",
+      "stock": "profit margin chart paper desk",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Với anh Khoa, nếu lãi ròng 10%, | tức 180 triệu, | thì nhân 15% là 27 triệu. | Đắt hơn hẳn con số 4 triệu lúc nãy. // Cách tính theo lãi, | thường chỉ có lợi khi bạn lãi rất mỏng, | hoặc đang lỗ. | Và bạn phải giữ đủ hóa đơn, chứng từ để chứng minh chi phí.",
+      "cap": "Với anh Khoa, nếu lãi ròng 10%, tức 180 triệu, thì nhân 15% là 27 triệu. Đắt hơn hẳn con số 4 triệu lúc nãy. Cách tính theo lãi, thường chỉ có lợi khi bạn lãi rất mỏng, hoặc đang lỗ. Và bạn phải giữ đủ hóa đơn, chứng từ để chứng minh chi phí."
+    },
+    {
+      "id": 32,
+      "type": "stock",
+      "stock": "vietnamese woman livestream selling cosmetics ring light",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Người thứ ba, chị Thảo. | Mỗi tối chị lên livestream bán mỹ phẩm. | Một phần khách đặt qua giỏ hàng trên sàn. | Phần còn lại nhắn tin, | rồi chuyển khoản thẳng vào tài khoản của chị.",
+      "cap": "Người thứ ba, chị Thảo. Mỗi tối chị lên livestream bán mỹ phẩm. Một phần khách đặt qua giỏ hàng trên sàn. Phần còn lại nhắn tin, rồi chuyển khoản thẳng vào tài khoản của chị."
+    },
+    {
+      "id": 33,
+      "type": "card",
+      "text": "Doanh thu cả năm của chị Thảo, triệu đồng: Qua sàn = 600; Chuyển khoản trực tiếp = 500; Cộng lại = 1100",
+      "src": "Ví dụ giả định",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Qua sàn, chị bán khoảng 600 triệu một năm. Qua chuyển khoản trực tiếp, khoảng 500 triệu. Kênh nào nhìn riêng cũng dưới 1 tỷ. Nhưng cộng lại, là 1 tỷ 1.",
+      "cap": "Qua sàn, chị bán khoảng 600 triệu một năm. Qua chuyển khoản trực tiếp, khoảng 500 triệu. Kênh nào nhìn riêng cũng dưới 1 tỷ. Nhưng cộng lại, là 1 tỷ 1."
+    },
+    {
+      "id": 34,
+      "type": "stock",
+      "stock": "asian woman surprised looking phone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và cái ngưỡng 1 tỷ, | là tính trên tổng tất cả các kênh. | Sàn, mạng xã hội, cửa hàng, chợ. | Không có chuyện mỗi sàn một tỷ. // Tức là chị Thảo đã vượt ngưỡng, | dù chưa từng thấy con số 1 tỷ ở đâu cả.",
+      "cap": "Và cái ngưỡng 1 tỷ, là tính trên tổng tất cả các kênh. Sàn, mạng xã hội, cửa hàng, chợ. Không có chuyện mỗi sàn một tỷ. Tức là chị Thảo đã vượt ngưỡng, dù chưa từng thấy con số 1 tỷ ở đâu cả."
+    },
+    {
+      "id": 35,
+      "type": "stock",
+      "stock": "bank transfer notification phone vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Phần bán qua sàn thì sàn trừ hộ. | Còn 500 triệu chuyển khoản, | không ai trừ hộ cả. | Chị phải tự kê khai, | và tự nộp phần còn lại. // Người bán hàng livestream hay quên đúng chỗ này. | Cứ nghĩ sàn đã lo, | trong khi sàn chỉ lo phần của sàn.",
+      "cap": "Phần bán qua sàn thì sàn trừ hộ. Còn 500 triệu chuyển khoản, không ai trừ hộ cả. Chị phải tự kê khai, và tự nộp phần còn lại. Người bán hàng livestream hay quên đúng chỗ này. Cứ nghĩ sàn đã lo, trong khi sàn chỉ lo phần của sàn."
+    },
+    {
+      "id": 36,
+      "type": "stock",
+      "stock": "cosmetics products shelf small shop",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Tính thử cho chị Thảo. | Mỹ phẩm là hàng hóa, | nên thuế giá trị gia tăng khoảng 0,8% trên cả 1 tỷ 1, | cộng thuế thu nhập 0,5% trên 100 triệu vượt ngưỡng. | Cả năm khoảng 9 triệu. // Phần sàn đã trừ được tính vào đó. | Phần thiếu, chị tự nộp. | Không nhiều, | nhưng nếu quên, thì tiền phạt chậm nộp sẽ cộng dồn mỗi ngày.",
+      "cap": "Tính thử cho chị Thảo. Mỹ phẩm là hàng hóa, nên thuế giá trị gia tăng khoảng 0,8% trên cả 1 tỷ 1, cộng thuế thu nhập 0,5% trên 100 triệu vượt ngưỡng. Cả năm khoảng 9 triệu. Phần sàn đã trừ được tính vào đó. Phần thiếu, chị tự nộp. Không nhiều, nhưng nếu quên, thì tiền phạt chậm nộp sẽ cộng dồn mỗi ngày."
+    },
+    {
+      "id": 37,
+      "type": "stock",
+      "stock": "receipt printer cash register small shop",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vượt 1 tỷ thì còn một nghĩa vụ nữa: | hóa đơn điện tử, | in ra từ máy tính tiền. // Mỗi lần khách trả tiền, | máy in một tờ hóa đơn, | và dữ liệu được gửi thẳng tới cơ quan thuế. | Từ đó, doanh thu không còn là con số ước, | mà là con số được đếm.",
+      "cap": "Vượt 1 tỷ thì còn một nghĩa vụ nữa: hóa đơn điện tử, in ra từ máy tính tiền. Mỗi lần khách trả tiền, máy in một tờ hóa đơn, và dữ liệu được gửi thẳng tới cơ quan thuế. Từ đó, doanh thu không còn là con số ước, mà là con số được đếm."
+    },
+    {
+      "id": 38,
+      "type": "stock",
+      "stock": "cliff edge mountain view",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đến đây có một chỗ mà tôi gọi là vách đá. // Thử hai shop quần áo. | Shop thứ nhất bán 990 triệu một năm. | Shop thứ hai bán 1 tỷ 50 triệu. | Chênh nhau 60 triệu tiền hàng.",
+      "cap": "Đến đây có một chỗ mà tôi gọi là vách đá. Thử hai shop quần áo. Shop thứ nhất bán 990 triệu một năm. Shop thứ hai bán 1 tỷ 50 triệu. Chênh nhau 60 triệu tiền hàng."
+    },
+    {
+      "id": 39,
+      "type": "card",
+      "text": "Thuế cả năm của hai shop quần áo: 990 triệu = 0 đồng → 1,05 tỷ = khoảng 8,6 triệu",
+      "src": "Tự tính: GTGT 0,8% trên toàn doanh thu, TNCN 0,5% trên phần vượt 1 tỷ",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Shop thứ nhất không nộp đồng thuế nào. Shop thứ hai, vì thuế giá trị gia tăng tính trên toàn bộ doanh thu, phải nộp khoảng 8 triệu 6. Bán thêm 60 triệu tiền hàng, mà tiền thuế nhảy từ không lên gần 9 triệu.",
+      "cap": "Shop thứ nhất không nộp đồng thuế nào. Shop thứ hai, vì thuế giá trị gia tăng tính trên toàn bộ doanh thu, phải nộp khoảng 8 triệu 6. Bán thêm 60 triệu tiền hàng, mà tiền thuế nhảy từ không lên gần 9 triệu."
+    },
+    {
+      "id": 40,
+      "type": "stock",
+      "stock": "vietnamese shopkeeper worried counting money",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Mà 60 triệu doanh thu, | trừ tiền hàng, tiền ship, | thì lãi có khi chỉ chừng 6, 7 triệu. | Tức là bán thêm, | có khi lại thiệt. // Đó là lý do, | sát cuối năm, | nhiều shop sẽ có động lực rất lớn để dừng bán ở 999 triệu.",
+      "cap": "Mà 60 triệu doanh thu, trừ tiền hàng, tiền ship, thì lãi có khi chỉ chừng 6, 7 triệu. Tức là bán thêm, có khi lại thiệt. Đó là lý do, sát cuối năm, nhiều shop sẽ có động lực rất lớn để dừng bán ở 999 triệu."
+    },
+    {
+      "id": 41,
+      "type": "stock",
+      "stock": "man looking at sunset rooftop asia",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Thú thật, viết tới đoạn này, | tôi thấy mình may vì không đi bán quần áo. | Vì nếu là tôi, | chắc tháng mười hai tôi sẽ đóng shop, | đi du lịch, | và gọi đó là chiến lược thuế. // Nhưng đùa thôi. | Khi shop đã vượt hẳn qua vạch, | bán 1 tỷ 5, 2 tỷ, | thì cái vách đó trở thành một khoản chi phí bình thường, | chừng 1% doanh thu.",
+      "cap": "Thú thật, viết tới đoạn này, tôi thấy mình may vì không đi bán quần áo. Vì nếu là tôi, chắc tháng mười hai tôi sẽ đóng shop, đi du lịch, và gọi đó là chiến lược thuế. Nhưng đùa thôi. Khi shop đã vượt hẳn qua vạch, bán 1 tỷ 5, 2 tỷ, thì cái vách đó trở thành một khoản chi phí bình thường, chừng 1% doanh thu."
+    },
+    {
+      "id": 42,
+      "type": "stock",
+      "stock": "vietnamese family members sitting together home",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và đó cũng là chỗ sinh ra lỗ hổng. | Cách đầu tiên ai cũng nghĩ ra: | chia nhỏ. | Một shop đứng tên chồng, một shop đứng tên vợ, | một shop đứng tên em gái. | Mỗi người dưới 1 tỷ.",
+      "cap": "Và đó cũng là chỗ sinh ra lỗ hổng. Cách đầu tiên ai cũng nghĩ ra: chia nhỏ. Một shop đứng tên chồng, một shop đứng tên vợ, một shop đứng tên em gái. Mỗi người dưới 1 tỷ."
+    },
+    {
+      "id": 43,
+      "type": "stock",
+      "stock": "vietnamese cash payment market",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cách thứ hai, là tiền mặt. | Hoặc nhận chuyển khoản vào tài khoản của người khác. // Một khoản tiền không đi qua sàn, | không đi qua máy tính tiền, | thì vẫn rất khó đếm.",
+      "cap": "Cách thứ hai, là tiền mặt. Hoặc nhận chuyển khoản vào tài khoản của người khác. Một khoản tiền không đi qua sàn, không đi qua máy tính tiền, thì vẫn rất khó đếm."
+    },
+    {
+      "id": 44,
+      "type": "stock",
+      "stock": "delivery motorbike shipper vietnam street",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Nhưng cũng đừng nghĩ cơ quan thuế ngồi chờ. | Dữ liệu bây giờ đến từ rất nhiều phía. | Sàn báo doanh thu. | Ngân hàng có dòng tiền. | Đơn vị giao hàng biết mỗi tháng bạn gửi bao nhiêu đơn. // Một người bán chỉ khai 900 triệu, | mà mỗi tháng gửi đi ba nghìn đơn, | thì con số đó khá khó để giải thích.",
+      "cap": "Nhưng cũng đừng nghĩ cơ quan thuế ngồi chờ. Dữ liệu bây giờ đến từ rất nhiều phía. Sàn báo doanh thu. Ngân hàng có dòng tiền. Đơn vị giao hàng biết mỗi tháng bạn gửi bao nhiêu đơn. Một người bán chỉ khai 900 triệu, mà mỗi tháng gửi đi ba nghìn đơn, thì con số đó khá khó để giải thích."
+    },
+    {
+      "id": 45,
+      "type": "stock",
+      "stock": "vietnamese tax office counter queue",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Và nếu bị phát hiện chia nhỏ để né, | thì cái giá không chỉ là phần thuế còn thiếu. | Còn tiền phạt, tiền chậm nộp, | tính lùi về cả những năm trước. // Tức là tiết kiệm được vài triệu mỗi năm, | để có ngày trả lại gấp mấy lần.",
+      "cap": "Và nếu bị phát hiện chia nhỏ để né, thì cái giá không chỉ là phần thuế còn thiếu. Còn tiền phạt, tiền chậm nộp, tính lùi về cả những năm trước. Tức là tiết kiệm được vài triệu mỗi năm, để có ngày trả lại gấp mấy lần."
+    },
+    {
+      "id": 46,
+      "type": "stock",
+      "stock": "vietnamese woman selling vegetables market",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Đến đây chắc có người hỏi: | vậy tôi bán hàng nhỏ, | vài chục triệu một tháng, | có cần lo không? // Gần như không. | Bạn chỉ cần ghi lại doanh thu, | và báo một lần mỗi năm. | Luật mới khá nhẹ tay với người nhỏ. | Nó chỉ chặt với người lớn mà muốn trông nhỏ.",
+      "cap": "Đến đây chắc có người hỏi: vậy tôi bán hàng nhỏ, vài chục triệu một tháng, có cần lo không? Gần như không. Bạn chỉ cần ghi lại doanh thu, và báo một lần mỗi năm. Luật mới khá nhẹ tay với người nhỏ. Nó chỉ chặt với người lớn mà muốn trông nhỏ."
+    },
+    {
+      "id": 47,
+      "type": "stock",
+      "stock": "seoul street shopping credit card",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Có một cách khá hay mà Hàn Quốc từng dùng. | Thay vì chỉ đi kiểm tra người bán, | họ kéo người mua về phe mình. // Cuối những năm 1990, | người làm công ở Hàn Quốc được trừ một phần thuế thu nhập, | nếu chi tiêu bằng thẻ. | Người mua thích quẹt thẻ, | nên cửa hàng nào không nhận thẻ thì mất khách. | Và mỗi lần quẹt thẻ, | là một giao dịch được ghi lại.",
+      "cap": "Có một cách khá hay mà Hàn Quốc từng dùng. Thay vì chỉ đi kiểm tra người bán, họ kéo người mua về phe mình. Cuối những năm 1990, người làm công ở Hàn Quốc được trừ một phần thuế thu nhập, nếu chi tiêu bằng thẻ. Người mua thích quẹt thẻ, nên cửa hàng nào không nhận thẻ thì mất khách. Và mỗi lần quẹt thẻ, là một giao dịch được ghi lại."
+    },
+    {
+      "id": 48,
+      "type": "stock",
+      "stock": "vietnamese customer paying qr code",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Việt Nam thì đang đi một con đường gần giống, | dù không ai đặt tên. | Thanh toán bằng mã QR đã thành thói quen, | từ ly cà phê tới bó rau. // Mỗi lần bạn quét mã trả tiền, | là bạn vừa ghi một dòng vào sổ doanh thu của người bán.",
+      "cap": "Việt Nam thì đang đi một con đường gần giống, dù không ai đặt tên. Thanh toán bằng mã QR đã thành thói quen, từ ly cà phê tới bó rau. Mỗi lần bạn quét mã trả tiền, là bạn vừa ghi một dòng vào sổ doanh thu của người bán."
+    },
+    {
+      "id": 49,
+      "type": "stock",
+      "stock": "vietnamese small shop owner smiling customer",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy nhìn tổng thể, ai lợi, ai thiệt? // Lợi nhất là phần đông người buôn bán nhỏ như cô Sáu. | Trước đóng khoán, | giờ không phải đóng. | Rồi đến những người kinh doanh thật thà, | vì từ giờ người khai gian khó cạnh tranh bằng giá rẻ hơn.",
+      "cap": "Vậy nhìn tổng thể, ai lợi, ai thiệt? Lợi nhất là phần đông người buôn bán nhỏ như cô Sáu. Trước đóng khoán, giờ không phải đóng. Rồi đến những người kinh doanh thật thà, vì từ giờ người khai gian khó cạnh tranh bằng giá rẻ hơn."
+    },
+    {
+      "id": 50,
+      "type": "stock",
+      "stock": "vietnamese shop owner late night paperwork",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn bên thiệt, | là những hộ đang lơ lửng ngay trên vạch 1 tỷ, | lãi mỏng, | và phải học thêm cả kê khai lẫn hóa đơn điện tử. // Và những người lớn tuổi, | bán hàng giỏi, | nhưng không quen điện thoại.",
+      "cap": "Còn bên thiệt, là những hộ đang lơ lửng ngay trên vạch 1 tỷ, lãi mỏng, và phải học thêm cả kê khai lẫn hóa đơn điện tử. Và những người lớn tuổi, bán hàng giỏi, nhưng không quen điện thoại."
+    },
+    {
+      "id": 51,
+      "type": "stock",
+      "stock": "vietnamese seller planning notebook phone",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Vậy bạn đang bán hàng thì nên làm gì? | Tôi không phải chuyên gia thuế, | nhưng có ba việc ai cũng làm được ngay.",
+      "cap": "Vậy bạn đang bán hàng thì nên làm gì? Tôi không phải chuyên gia thuế, nhưng có ba việc ai cũng làm được ngay."
+    },
+    {
+      "id": 52,
+      "type": "stock",
+      "stock": "two bank cards wallet table",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Một, tách tài khoản. | Một tài khoản chỉ để nhận tiền bán hàng, | một tài khoản cho chi tiêu cá nhân. | Đến lúc cần chứng minh, | bạn có ngay con số sạch.",
+      "cap": "Một, tách tài khoản. Một tài khoản chỉ để nhận tiền bán hàng, một tài khoản cho chi tiêu cá nhân. Đến lúc cần chứng minh, bạn có ngay con số sạch."
+    },
+    {
+      "id": 53,
+      "type": "stock",
+      "stock": "spreadsheet laptop small business vietnam",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Hai, cộng doanh thu tất cả các kênh, mỗi tháng một lần. | Nếu đến tháng chín, tháng mười mà đã gần chạm 1 tỷ, | thì chuẩn bị máy tính tiền, | và tính trước nên chọn cách nộp nào.",
+      "cap": "Hai, cộng doanh thu tất cả các kênh, mỗi tháng một lần. Nếu đến tháng chín, tháng mười mà đã gần chạm 1 tỷ, thì chuẩn bị máy tính tiền, và tính trước nên chọn cách nộp nào."
+    },
+    {
+      "id": 54,
+      "type": "stock",
+      "stock": "vietnamese woman filling form computer",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Ba, nếu bạn bán trên sàn mà cả năm dưới 1 tỷ, | thì đầu năm sau nhớ làm hồ sơ lấy lại phần sàn đã trừ. // Tiền nhỏ, | nhưng là tiền của bạn.",
+      "cap": "Ba, nếu bạn bán trên sàn mà cả năm dưới 1 tỷ, thì đầu năm sau nhớ làm hồ sơ lấy lại phần sàn đã trừ. Tiền nhỏ, nhưng là tiền của bạn."
+    },
+    {
+      "id": 55,
+      "type": "card",
+      "text": "Ngưỡng 1 tỷ là cánh cửa cho người nhỏ, không phải chỗ trốn cho người lớn",
+      "src": "Tóm tắt luật thuế hộ kinh doanh 2026",
+      "dur": 3.0,
+      "music": "out",
+      "pause_after": 0.0,
+      "vo": "Tóm lại, bỏ thuế khoán và nâng ngưỡng lên 1 tỷ là một món quà thật cho người buôn bán nhỏ. Nhưng đi kèm món quà đó là một điều kiện: con số bạn khai, từ giờ sẽ được đếm, chứ không còn được ước.",
+      "cap": "Tóm lại, bỏ thuế khoán và nâng ngưỡng lên 1 tỷ là một món quà thật cho người buôn bán nhỏ. Nhưng đi kèm món quà đó là một điều kiện: con số bạn khai, từ giờ sẽ được đếm, chứ không còn được ước."
+    },
+    {
+      "id": 56,
+      "type": "stock",
+      "stock": "saigon street food evening lights",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Cô Sáu vẫn bán bánh mì mỗi sáng, | giờ thêm một cuốn sổ. | Anh Khoa vẫn đóng gói trong phòng khách, | và đã thôi lo sàn trừ gì của mình. | Còn chị Thảo, | tối nay sẽ phải ngồi cộng lại sổ chuyển khoản.",
+      "cap": "Cô Sáu vẫn bán bánh mì mỗi sáng, giờ thêm một cuốn sổ. Anh Khoa vẫn đóng gói trong phòng khách, và đã thôi lo sàn trừ gì của mình. Còn chị Thảo, tối nay sẽ phải ngồi cộng lại sổ chuyển khoản."
+    },
+    {
+      "id": 57,
+      "type": "stock",
+      "stock": "hanoi old quarter shops evening",
+      "music": "in",
+      "pause_after": 0.15,
+      "fx": null,
+      "vo": "Còn bạn, | bạn đang bán hàng ở kênh nào, | và cách bạn đang nộp thuế có giống ba người trong video không? | Để lại trong phần bình luận. | Tôi nói sai chỗ nào, | cứ chỉ ra, tôi sẽ đính chính.",
+      "cap": "Còn bạn, bạn đang bán hàng ở kênh nào, và cách bạn đang nộp thuế có giống ba người trong video không? Để lại trong phần bình luận. Tôi nói sai chỗ nào, cứ chỉ ra, tôi sẽ đính chính."
+    }
+  ]
+}
